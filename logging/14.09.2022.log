@@ -1,0 +1,1526 @@
+2022-09-14 10:10:16,364 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 10:10:20,236 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\f6fde8096570babc_chromedriver.exe
+2022-09-14 10:10:57,969 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 10:11:31,557 - [INFO] - ERKNM - autorize(115) - Autorization successfull completed!
+2022-09-14 10:11:31,558 - [INFO] - ERKNM - Controller(66) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000002ABDF01E370>>) прошла с 1 раза
+2022-09-14 10:11:31,558 - [INFO] - ERKNM - enter_knms_in_erknm(121) - Ready knms list to enter in erknm
+2022-09-14 10:11:31,712 - [INFO] - ERKNM - add_knm_visited(1086) - 
+2022-09-14 10:11:31,712 - [INFO] - ERKNM - add_knm_visited(1087) - выездная|МБДОУ детский сад № 34 
+2022-09-14 10:11:31,712 - [INFO] - ERKNM - add_knm_visited(1088) - 
+2022-09-14 10:11:31,712 - [INFO] - ERKNM - add_knm_visited(1120) - вставляем наименование органа контроля
+2022-09-14 10:11:33,968 - [INFO] - ERKNM - add_knm_visited(1131) - вставка наименования органа контроля прошла успешно
+2022-09-14 10:11:33,968 - [INFO] - ERKNM - add_knm_visited(1135) - вставляем Вид контроля
+2022-09-14 10:11:34,239 - [INFO] - ERKNM - add_knm_visited(1144) - вставка Вид контроля прошла успешно
+2022-09-14 10:11:34,239 - [INFO] - ERKNM - add_knm_visited(1148) - вставляем Вид КНМ
+2022-09-14 10:11:45,002 - [INFO] - ERKNM - add_knm_visited(1158) - вставка Вид КНМ прошла успешно
+2022-09-14 10:11:45,003 - [INFO] - ERKNM - enter_type_proverka(1508) - вставляем Характер КНМ
+2022-09-14 10:12:09,167 - [WARNING] - __main__ - <module>(118) - ОШИБКА ИСПОЛНЕНИЯ ПРОГРАММЫ! Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x0114DF13+2219795]
+	Ordinal0 [0x010E2841+1779777]
+	Ordinal0 [0x00FF423D+803389]
+	Ordinal0 [0x01023025+995365]
+	Ordinal0 [0x010231EB+995819]
+	Ordinal0 [0x01050F52+1183570]
+	Ordinal0 [0x0103E844+1108036]
+	Ordinal0 [0x0104F192+1175954]
+	Ordinal0 [0x0103E616+1107478]
+	Ordinal0 [0x01017F89+950153]
+	Ordinal0 [0x01018F56+954198]
+	GetHandleVerifier [0x01442CB2+3040210]
+	GetHandleVerifier [0x01432BB4+2974420]
+	GetHandleVerifier [0x011E6A0A+565546]
+	GetHandleVerifier [0x011E5680+560544]
+	Ordinal0 [0x010E9A5C+1808988]
+	Ordinal0 [0x010EE3A8+1827752]
+	Ordinal0 [0x010EE495+1827989]
+	Ordinal0 [0x010F80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:12:09,167 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 10:12:11,481 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\51eaf7bec63a272d_chromedriver.exe
+2022-09-14 10:12:47,420 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 10:12:49,884 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\2c783ac35e7dd35d_chromedriver.exe
+2022-09-14 10:12:53,533 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 10:13:16,529 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001DA0471E370>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C1DF13+2219795]
+	Ordinal0 [0x00BB2841+1779777]
+	Ordinal0 [0x00AC423D+803389]
+	Ordinal0 [0x00AF3025+995365]
+	Ordinal0 [0x00AF31EB+995819]
+	Ordinal0 [0x00B20F52+1183570]
+	Ordinal0 [0x00B0E844+1108036]
+	Ordinal0 [0x00B1F192+1175954]
+	Ordinal0 [0x00B0E616+1107478]
+	Ordinal0 [0x00AE7F89+950153]
+	Ordinal0 [0x00AE8F56+954198]
+	GetHandleVerifier [0x00F12CB2+3040210]
+	GetHandleVerifier [0x00F02BB4+2974420]
+	GetHandleVerifier [0x00CB6A0A+565546]
+	GetHandleVerifier [0x00CB5680+560544]
+	Ordinal0 [0x00BB9A5C+1808988]
+	Ordinal0 [0x00BBE3A8+1827752]
+	Ordinal0 [0x00BBE495+1827989]
+	Ordinal0 [0x00BC80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:13:28,755 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001DA0471E370>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C1DF13+2219795]
+	Ordinal0 [0x00BB2841+1779777]
+	Ordinal0 [0x00AC423D+803389]
+	Ordinal0 [0x00AF3025+995365]
+	Ordinal0 [0x00AF31EB+995819]
+	Ordinal0 [0x00B20F52+1183570]
+	Ordinal0 [0x00B0E844+1108036]
+	Ordinal0 [0x00B1F192+1175954]
+	Ordinal0 [0x00B0E616+1107478]
+	Ordinal0 [0x00AE7F89+950153]
+	Ordinal0 [0x00AE8F56+954198]
+	GetHandleVerifier [0x00F12CB2+3040210]
+	GetHandleVerifier [0x00F02BB4+2974420]
+	GetHandleVerifier [0x00CB6A0A+565546]
+	GetHandleVerifier [0x00CB5680+560544]
+	Ordinal0 [0x00BB9A5C+1808988]
+	Ordinal0 [0x00BBE3A8+1827752]
+	Ordinal0 [0x00BBE495+1827989]
+	Ordinal0 [0x00BC80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:13:39,939 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001DA0471E370>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C1DF13+2219795]
+	Ordinal0 [0x00BB2841+1779777]
+	Ordinal0 [0x00AC423D+803389]
+	Ordinal0 [0x00AF3025+995365]
+	Ordinal0 [0x00AF31EB+995819]
+	Ordinal0 [0x00B20F52+1183570]
+	Ordinal0 [0x00B0E844+1108036]
+	Ordinal0 [0x00B1F192+1175954]
+	Ordinal0 [0x00B0E616+1107478]
+	Ordinal0 [0x00AE7F89+950153]
+	Ordinal0 [0x00AE8F56+954198]
+	GetHandleVerifier [0x00F12CB2+3040210]
+	GetHandleVerifier [0x00F02BB4+2974420]
+	GetHandleVerifier [0x00CB6A0A+565546]
+	GetHandleVerifier [0x00CB5680+560544]
+	Ordinal0 [0x00BB9A5C+1808988]
+	Ordinal0 [0x00BBE3A8+1827752]
+	Ordinal0 [0x00BBE495+1827989]
+	Ordinal0 [0x00BC80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:13:52,153 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001DA0471E370>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C1DF13+2219795]
+	Ordinal0 [0x00BB2841+1779777]
+	Ordinal0 [0x00AC423D+803389]
+	Ordinal0 [0x00AF3025+995365]
+	Ordinal0 [0x00AF31EB+995819]
+	Ordinal0 [0x00B20F52+1183570]
+	Ordinal0 [0x00B0E844+1108036]
+	Ordinal0 [0x00B1F192+1175954]
+	Ordinal0 [0x00B0E616+1107478]
+	Ordinal0 [0x00AE7F89+950153]
+	Ordinal0 [0x00AE8F56+954198]
+	GetHandleVerifier [0x00F12CB2+3040210]
+	GetHandleVerifier [0x00F02BB4+2974420]
+	GetHandleVerifier [0x00CB6A0A+565546]
+	GetHandleVerifier [0x00CB5680+560544]
+	Ordinal0 [0x00BB9A5C+1808988]
+	Ordinal0 [0x00BBE3A8+1827752]
+	Ordinal0 [0x00BBE495+1827989]
+	Ordinal0 [0x00BC80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:14:03,485 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001DA0471E370>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00C1DF13+2219795]
+	Ordinal0 [0x00BB2841+1779777]
+	Ordinal0 [0x00AC423D+803389]
+	Ordinal0 [0x00AF3025+995365]
+	Ordinal0 [0x00AF31EB+995819]
+	Ordinal0 [0x00B20F52+1183570]
+	Ordinal0 [0x00B0E844+1108036]
+	Ordinal0 [0x00B1F192+1175954]
+	Ordinal0 [0x00B0E616+1107478]
+	Ordinal0 [0x00AE7F89+950153]
+	Ordinal0 [0x00AE8F56+954198]
+	GetHandleVerifier [0x00F12CB2+3040210]
+	GetHandleVerifier [0x00F02BB4+2974420]
+	GetHandleVerifier [0x00CB6A0A+565546]
+	GetHandleVerifier [0x00CB5680+560544]
+	Ordinal0 [0x00BB9A5C+1808988]
+	Ordinal0 [0x00BBE3A8+1827752]
+	Ordinal0 [0x00BBE495+1827989]
+	Ordinal0 [0x00BC80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:14:03,485 - [INFO] - ERKNM - Controller(75) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001DA0471E370>>) не удалась, имеется непредвиденная ошибка, было предпринято 5 попыток
+2022-09-14 10:14:04,050 - [INFO] - ERKNM - enter_knms_in_erknm(121) - Ready knms list to enter in erknm
+2022-09-14 10:14:08,130 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DA050E0580>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/5b91a4696d98551278b3891b15040649/execute/sync
+2022-09-14 10:14:12,208 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DA050E0370>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/5b91a4696d98551278b3891b15040649/execute/sync
+2022-09-14 10:14:16,304 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DA050E03D0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/5b91a4696d98551278b3891b15040649/execute/sync
+2022-09-14 10:14:20,418 - [WARNING] - __main__ - <module>(118) - ОШИБКА ИСПОЛНЕНИЯ ПРОГРАММЫ! HTTPConnectionPool(host='localhost', port=50510): Max retries exceeded with url: /session/5b91a4696d98551278b3891b15040649/execute/sync (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DA050E0FA0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение'))
+2022-09-14 10:14:20,418 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 10:14:22,746 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\ceaf7acfe5894e3a_chromedriver.exe
+2022-09-14 10:14:26,381 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 10:14:28,756 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\3a5b21b483e3ab26_chromedriver.exe
+2022-09-14 10:14:30,944 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 10:15:04,848 - [INFO] - ERKNM - autorize(115) - Autorization successfull completed!
+2022-09-14 10:15:04,848 - [INFO] - ERKNM - Controller(66) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000223D7A8E370>>) прошла с 1 раза
+2022-09-14 10:15:04,848 - [INFO] - ERKNM - enter_knms_in_erknm(121) - Ready knms list to enter in erknm
+2022-09-14 10:15:04,968 - [INFO] - ERKNM - add_knm_visited(1086) - 
+2022-09-14 10:15:04,968 - [INFO] - ERKNM - add_knm_visited(1087) - выездная|МБДОУ детский сад № 34 
+2022-09-14 10:15:04,969 - [INFO] - ERKNM - add_knm_visited(1088) - 
+2022-09-14 10:15:04,969 - [INFO] - ERKNM - add_knm_visited(1120) - вставляем наименование органа контроля
+2022-09-14 10:15:08,604 - [WARNING] - __main__ - <module>(118) - ОШИБКА ИСПОЛНЕНИЯ ПРОГРАММЫ! Message: element click intercepted: Element <div class="_ValueContainer_nx4nv_75 _ValueContainerSingle_nx4nv_94 select-field__value-container css-0">...</div> is not clickable at point (773, 371). Other element would receive the click: <h2 class="shared-title__with-margin">...</h2>
+  (Session info: chrome=105.0.5195.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x005FDF13+2219795]
+	Ordinal0 [0x00592841+1779777]
+	Ordinal0 [0x004A423D+803389]
+	Ordinal0 [0x004D99D4+1022420]
+	Ordinal0 [0x004D78C4+1013956]
+	Ordinal0 [0x004D54AB+1004715]
+	Ordinal0 [0x004D4117+999703]
+	Ordinal0 [0x004C9B76+957302]
+	Ordinal0 [0x004EE7FC+1107964]
+	Ordinal0 [0x004C94B4+955572]
+	Ordinal0 [0x004EEA14+1108500]
+	Ordinal0 [0x004FF192+1175954]
+	Ordinal0 [0x004EE616+1107478]
+	Ordinal0 [0x004C7F89+950153]
+	Ordinal0 [0x004C8F56+954198]
+	GetHandleVerifier [0x008F2CB2+3040210]
+	GetHandleVerifier [0x008E2BB4+2974420]
+	GetHandleVerifier [0x00696A0A+565546]
+	GetHandleVerifier [0x00695680+560544]
+	Ordinal0 [0x00599A5C+1808988]
+	Ordinal0 [0x0059E3A8+1827752]
+	Ordinal0 [0x0059E495+1827989]
+	Ordinal0 [0x005A80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:15:08,604 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 10:15:10,721 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\c4225070bcaf8698_chromedriver.exe
+2022-09-14 10:15:14,730 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 10:15:47,927 - [INFO] - ERKNM - autorize(115) - Autorization successfull completed!
+2022-09-14 10:15:47,927 - [INFO] - ERKNM - Controller(66) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000223D7A7F0A0>>) прошла с 1 раза
+2022-09-14 10:15:47,927 - [INFO] - ERKNM - enter_knms_in_erknm(121) - Ready knms list to enter in erknm
+2022-09-14 10:15:48,115 - [INFO] - ERKNM - add_knm_visited(1086) - 
+2022-09-14 10:15:48,116 - [INFO] - ERKNM - add_knm_visited(1087) - выездная|МБДОУ детский сад № 34 
+2022-09-14 10:15:48,116 - [INFO] - ERKNM - add_knm_visited(1088) - 
+2022-09-14 10:15:48,116 - [INFO] - ERKNM - add_knm_visited(1120) - вставляем наименование органа контроля
+2022-09-14 10:15:49,769 - [INFO] - ERKNM - add_knm_visited(1131) - вставка наименования органа контроля прошла успешно
+2022-09-14 10:15:49,769 - [INFO] - ERKNM - add_knm_visited(1135) - вставляем Вид контроля
+2022-09-14 10:15:50,083 - [INFO] - ERKNM - add_knm_visited(1144) - вставка Вид контроля прошла успешно
+2022-09-14 10:15:50,083 - [INFO] - ERKNM - add_knm_visited(1148) - вставляем Вид КНМ
+2022-09-14 10:15:58,486 - [INFO] - ERKNM - add_knm_visited(1158) - вставка Вид КНМ прошла успешно
+2022-09-14 10:15:58,486 - [INFO] - ERKNM - enter_type_proverka(1508) - вставляем Характер КНМ
+2022-09-14 10:16:07,292 - [INFO] - ERKNM - enter_type_proverka(1518) - вставка Характер КНМ прошла успешно
+2022-09-14 10:16:07,292 - [INFO] - ERKNM - add_knm_visited(1168) - вставляем Номер плана
+2022-09-14 10:16:11,951 - [INFO] - ERKNM - add_knm_visited(1176) - вставка Номер плана прошла успешно
+2022-09-14 10:16:11,951 - [INFO] - ERKNM - add_knm_visited(1180) - вставляем Дата начала КНМ
+2022-09-14 10:16:16,624 - [INFO] - ERKNM - add_knm_visited(1191) - вставка Дата начала КНМ прошла успешно
+2022-09-14 10:16:16,625 - [INFO] - ERKNM - add_knm_visited(1195) - вставляем Дата окончания КНМ
+2022-09-14 10:16:20,550 - [INFO] - ERKNM - add_knm_visited(1206) - вставка Дата окончания КНМ прошла успешно
+2022-09-14 10:16:20,550 - [INFO] - ERKNM - add_knm_visited(1210) - вставляем Cрок проведения (дней)
+2022-09-14 10:16:21,382 - [INFO] - ERKNM - add_knm_visited(1219) - вставка Cрок проведения (дней) прошла успешно
+2022-09-14 10:16:21,382 - [INFO] - ERKNM - add_knm_visited(1223) - вставляем Срок непосредственного взаимодействия (часов)
+2022-09-14 10:16:22,218 - [INFO] - ERKNM - add_knm_visited(1232) - вставка Срок непосредственного взаимодействия (часов) прошла успешно
+2022-09-14 10:16:22,219 - [INFO] - ERKNM - add_knm_visited(1236) - вставляем Основания включения в план
+2022-09-14 10:16:26,052 - [INFO] - ERKNM - add_knm_visited(1262) - вставка Основания включения в план прошла успешно
+2022-09-14 10:16:26,052 - [INFO] - ERKNM - add_knm_visited(1266) - вставляем Наименование прокуратуры
+2022-09-14 10:16:27,189 - [INFO] - ERKNM - add_knm_visited(1276) - вставка Наименование прокуратуры прошла успешно
+2022-09-14 10:16:27,189 - [INFO] - ERKNM - add_knm_visited(1280) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-09-14 10:16:34,255 - [INFO] - ERKNM - add_knm_visited(1290) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-09-14 10:16:37,800 - [INFO] - ERKNM - add_knm_visited(1299) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-09-14 10:16:37,800 - [INFO] - ERKNM - add_knm_visited(1318) - выбираем тип для объекта детсад
+2022-09-14 10:16:39,444 - [INFO] - ERKNM - add_knm_visited(1321) - выбор тип для объекта детсад прошел успешно
+2022-09-14 10:16:39,709 - [INFO] - ERKNM - add_knm_visited(1332) - выбираем вид для объекта детсад
+2022-09-14 10:16:40,618 - [INFO] - ERKNM - add_knm_visited(1336) - выбор вид для объекта детсад прошел успешно
+2022-09-14 10:16:40,869 - [INFO] - ERKNM - add_knm_visited(1343) - выбираем Категория риска для объекта детсад
+2022-09-14 10:16:41,717 - [INFO] - ERKNM - add_knm_visited(1347) - выбор Категория риска для объекта детсад прошел успешно
+2022-09-14 10:16:42,041 - [INFO] - ERKNM - add_knm_visited(1358) - выбираем Класс опасности для объекта детсад
+2022-09-14 10:16:42,894 - [INFO] - ERKNM - add_knm_visited(1362) - выбор Класс опасности для объекта детсад прошел успешно
+2022-09-14 10:17:30,721 - [INFO] - ERKNM - add_knm_visited(1388) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-09-14 10:17:44,310 - [INFO] - ERKNM - add_knm_visited(1398) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-09-14 10:22:05,245 - [INFO] - ERKNM - add_knm_visited(1434) - Нажимаем отметка об использовании проверочного листа
+2022-09-14 10:22:06,560 - [INFO] - ERKNM - add_knm_visited(1440) - Нажатие отметки об использовании проверочного листа прошла успешно
+2022-09-14 10:22:06,575 - [INFO] - ERKNM - add_knm_visited(1453) - Добавляем проверочный лист
+2022-09-14 10:22:07,410 - [INFO] - ERKNM - add_knm_visited(1459) - Добавляем проверочный лист прошла успешно
+2022-09-14 10:22:07,911 - [INFO] - ERKNM - add_knm_visited(1453) - Добавляем проверочный лист
+2022-09-14 10:22:08,339 - [INFO] - ERKNM - add_knm_visited(1459) - Добавляем проверочный лист прошла успешно
+2022-09-14 10:22:08,850 - [INFO] - ERKNM - add_knm_visited(1463) - выбираем проверочный лист
+2022-09-14 10:22:17,711 - [INFO] - ERKNM - add_knm_visited(1476) - Выбор всех проверочных листов успешно завершен
+2022-09-14 10:22:17,711 - [INFO] - ERKNM - add_knm_visited(1481) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-09-14 10:22:18,545 - [INFO] - ERKNM - add_knm_visited(1487) - Добавление места проведения контрольного (надзорного) мероприятия прошла успешно
+2022-09-14 10:22:19,049 - [INFO] - ERKNM - add_knm_visited(1492) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-09-14 10:22:36,636 - [INFO] - ERKNM - add_knm_visited(1500) - Вставляем места проведения контрольного (надзорного) мероприятия прошла успешно
+2022-09-14 10:23:59,858 - [INFO] - ERKNM - save_proverka(1531) - Сохранение проверки прошло успешно
+2022-09-14 10:24:10,743 - [INFO] - ERKNM - save_proverka(1556) - Получение номера и статуса проверки кнм
+2022-09-14 10:24:10,743 - [INFO] - ERKNM - enter_knms_in_erknm(133) - ('выездная|МБДОУ детский сад № 34 ', {'детсад': {'адрес': '603111,г.Нижний Новгород, ул.Раевского, 3 «а»', 'начало проверки': '2023-10-09 00:00:00', 'окончание проверки': '2023-10-20 00:00:00', 'ОГРН': '1025202274822', 'деятельность': 'дошкольные образовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-05-27 00:00:00', 'строчка': 29}}) has been entered in erknm!
+2022-09-14 10:24:10,884 - [INFO] - ERKNM - enter_knms_in_erknm(143) - номер кнм выездная|МБДОУ детский сад № 34   --->>>  КНМ 52230041000103408987 / 2023050341, status   --->>>  КНМ 52230041000103408987 / 2023050341
+2022-09-14 10:24:17,912 - [INFO] - ERKNM - add_knm_visited(1086) - 
+2022-09-14 10:24:17,912 - [INFO] - ERKNM - add_knm_visited(1087) - выездная|ЧОУ религиозной организации "Нижегородская Епархия руской православной церкви (Московский Патриархат) "Гнилицкая православная гимназия имени святителя Николая Чудотворца"
+2022-09-14 10:24:17,912 - [INFO] - ERKNM - add_knm_visited(1088) - 
+2022-09-14 10:24:17,912 - [INFO] - ERKNM - add_knm_visited(1120) - вставляем наименование органа контроля
+2022-09-14 10:24:22,326 - [INFO] - ERKNM - add_knm_visited(1131) - вставка наименования органа контроля прошла успешно
+2022-09-14 10:24:22,326 - [INFO] - ERKNM - add_knm_visited(1135) - вставляем Вид контроля
+2022-09-14 10:24:22,654 - [INFO] - ERKNM - add_knm_visited(1144) - вставка Вид контроля прошла успешно
+2022-09-14 10:24:22,654 - [INFO] - ERKNM - add_knm_visited(1148) - вставляем Вид КНМ
+2022-09-14 10:24:33,325 - [INFO] - ERKNM - add_knm_visited(1158) - вставка Вид КНМ прошла успешно
+2022-09-14 10:24:33,325 - [INFO] - ERKNM - enter_type_proverka(1508) - вставляем Характер КНМ
+2022-09-14 10:24:42,017 - [INFO] - ERKNM - enter_type_proverka(1518) - вставка Характер КНМ прошла успешно
+2022-09-14 10:24:42,018 - [INFO] - ERKNM - add_knm_visited(1168) - вставляем Номер плана
+2022-09-14 10:24:47,157 - [INFO] - ERKNM - add_knm_visited(1176) - вставка Номер плана прошла успешно
+2022-09-14 10:24:47,173 - [INFO] - ERKNM - add_knm_visited(1180) - вставляем Дата начала КНМ
+2022-09-14 10:24:52,119 - [INFO] - ERKNM - add_knm_visited(1191) - вставка Дата начала КНМ прошла успешно
+2022-09-14 10:24:52,119 - [INFO] - ERKNM - add_knm_visited(1195) - вставляем Дата окончания КНМ
+2022-09-14 10:24:56,876 - [INFO] - ERKNM - add_knm_visited(1206) - вставка Дата окончания КНМ прошла успешно
+2022-09-14 10:24:56,877 - [INFO] - ERKNM - add_knm_visited(1210) - вставляем Cрок проведения (дней)
+2022-09-14 10:24:57,727 - [INFO] - ERKNM - add_knm_visited(1219) - вставка Cрок проведения (дней) прошла успешно
+2022-09-14 10:24:57,728 - [INFO] - ERKNM - add_knm_visited(1223) - вставляем Срок непосредственного взаимодействия (часов)
+2022-09-14 10:24:58,575 - [INFO] - ERKNM - add_knm_visited(1232) - вставка Срок непосредственного взаимодействия (часов) прошла успешно
+2022-09-14 10:24:58,576 - [INFO] - ERKNM - add_knm_visited(1236) - вставляем Основания включения в план
+2022-09-14 10:25:02,561 - [INFO] - ERKNM - add_knm_visited(1262) - вставка Основания включения в план прошла успешно
+2022-09-14 10:25:02,561 - [INFO] - ERKNM - add_knm_visited(1266) - вставляем Наименование прокуратуры
+2022-09-14 10:25:03,702 - [INFO] - ERKNM - add_knm_visited(1276) - вставка Наименование прокуратуры прошла успешно
+2022-09-14 10:25:03,702 - [INFO] - ERKNM - add_knm_visited(1280) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-09-14 10:25:10,913 - [INFO] - ERKNM - add_knm_visited(1290) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-09-14 10:25:14,296 - [INFO] - ERKNM - add_knm_visited(1299) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-09-14 10:25:14,296 - [INFO] - ERKNM - add_knm_visited(1318) - выбираем тип для объекта школа
+2022-09-14 10:25:15,953 - [INFO] - ERKNM - add_knm_visited(1321) - выбор тип для объекта школа прошел успешно
+2022-09-14 10:25:16,217 - [INFO] - ERKNM - add_knm_visited(1332) - выбираем вид для объекта школа
+2022-09-14 10:25:17,146 - [INFO] - ERKNM - add_knm_visited(1336) - выбор вид для объекта школа прошел успешно
+2022-09-14 10:25:17,407 - [INFO] - ERKNM - add_knm_visited(1343) - выбираем Категория риска для объекта школа
+2022-09-14 10:25:18,263 - [INFO] - ERKNM - add_knm_visited(1347) - выбор Категория риска для объекта школа прошел успешно
+2022-09-14 10:25:18,527 - [INFO] - ERKNM - add_knm_visited(1358) - выбираем Класс опасности для объекта школа
+2022-09-14 10:25:19,387 - [INFO] - ERKNM - add_knm_visited(1362) - выбор Класс опасности для объекта школа прошел успешно
+2022-09-14 10:26:07,596 - [INFO] - ERKNM - add_knm_visited(1388) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-09-14 10:26:16,029 - [INFO] - ERKNM - add_knm_visited(1398) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-09-14 10:29:00,728 - [INFO] - ERKNM - add_knm_visited(1434) - Нажимаем отметка об использовании проверочного листа
+2022-09-14 10:29:01,783 - [INFO] - ERKNM - add_knm_visited(1440) - Нажатие отметки об использовании проверочного листа прошла успешно
+2022-09-14 10:29:01,799 - [INFO] - ERKNM - add_knm_visited(1453) - Добавляем проверочный лист
+2022-09-14 10:29:02,541 - [INFO] - ERKNM - add_knm_visited(1459) - Добавляем проверочный лист прошла успешно
+2022-09-14 10:29:03,050 - [INFO] - ERKNM - add_knm_visited(1453) - Добавляем проверочный лист
+2022-09-14 10:29:03,447 - [INFO] - ERKNM - add_knm_visited(1459) - Добавляем проверочный лист прошла успешно
+2022-09-14 10:29:03,962 - [INFO] - ERKNM - add_knm_visited(1463) - выбираем проверочный лист
+2022-09-14 10:29:11,068 - [INFO] - ERKNM - add_knm_visited(1476) - Выбор всех проверочных листов успешно завершен
+2022-09-14 10:29:11,068 - [INFO] - ERKNM - add_knm_visited(1481) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-09-14 10:29:11,848 - [INFO] - ERKNM - add_knm_visited(1487) - Добавление места проведения контрольного (надзорного) мероприятия прошла успешно
+2022-09-14 10:29:12,360 - [INFO] - ERKNM - add_knm_visited(1492) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-09-14 10:29:28,864 - [INFO] - ERKNM - add_knm_visited(1500) - Вставляем места проведения контрольного (надзорного) мероприятия прошла успешно
+2022-09-14 10:30:28,898 - [INFO] - ERKNM - save_proverka(1531) - Сохранение проверки прошло успешно
+2022-09-14 10:30:39,789 - [INFO] - ERKNM - save_proverka(1556) - Получение номера и статуса проверки кнм
+2022-09-14 10:30:39,789 - [INFO] - ERKNM - enter_knms_in_erknm(133) - ('выездная|ЧОУ религиозной организации "Нижегородская Епархия руской православной церкви (Московский Патриархат) "Гнилицкая православная гимназия имени святителя Николая Чудотворца"', {'школа': {'адрес': '603049, г.Нижний Новгород, ул.Гнилицкая, д.1-а', 'начало проверки': '2023-10-02 00:00:00', 'окончание проверки': '2023-10-13 00:00:00', 'ОГРН': '1065200046670', 'деятельность': 'общеобразовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-02-28 00:00:00', 'строчка': 30}}) has been entered in erknm!
+2022-09-14 10:30:40,902 - [INFO] - ERKNM - enter_knms_in_erknm(143) - номер кнм выездная|ЧОУ религиозной организации "Нижегородская Епархия руской православной церкви (Московский Патриархат) "Гнилицкая православная гимназия имени святителя Николая Чудотворца"  --->>>  КНМ 52230041000103409387 / 2023050341, status   --->>>  КНМ 52230041000103409387 / 2023050341
+2022-09-14 10:30:49,723 - [INFO] - ERKNM - add_knm_visited(1086) - 
+2022-09-14 10:30:49,723 - [INFO] - ERKNM - add_knm_visited(1087) - выездная|МАДОУ"Детский сад №62(бас) 
+2022-09-14 10:30:49,723 - [INFO] - ERKNM - add_knm_visited(1088) - 
+2022-09-14 10:30:49,723 - [INFO] - ERKNM - add_knm_visited(1120) - вставляем наименование органа контроля
+2022-09-14 10:30:54,111 - [INFO] - ERKNM - add_knm_visited(1131) - вставка наименования органа контроля прошла успешно
+2022-09-14 10:30:54,111 - [INFO] - ERKNM - add_knm_visited(1135) - вставляем Вид контроля
+2022-09-14 10:30:54,366 - [INFO] - ERKNM - add_knm_visited(1144) - вставка Вид контроля прошла успешно
+2022-09-14 10:30:54,366 - [INFO] - ERKNM - add_knm_visited(1148) - вставляем Вид КНМ
+2022-09-14 10:31:05,106 - [INFO] - ERKNM - add_knm_visited(1158) - вставка Вид КНМ прошла успешно
+2022-09-14 10:31:05,106 - [INFO] - ERKNM - enter_type_proverka(1508) - вставляем Характер КНМ
+2022-09-14 10:31:15,496 - [INFO] - ERKNM - enter_type_proverka(1518) - вставка Характер КНМ прошла успешно
+2022-09-14 10:31:15,496 - [INFO] - ERKNM - add_knm_visited(1168) - вставляем Номер плана
+2022-09-14 10:31:20,449 - [INFO] - ERKNM - add_knm_visited(1176) - вставка Номер плана прошла успешно
+2022-09-14 10:31:20,449 - [INFO] - ERKNM - add_knm_visited(1180) - вставляем Дата начала КНМ
+2022-09-14 10:31:24,442 - [INFO] - ERKNM - add_knm_visited(1191) - вставка Дата начала КНМ прошла успешно
+2022-09-14 10:31:24,443 - [INFO] - ERKNM - add_knm_visited(1195) - вставляем Дата окончания КНМ
+2022-09-14 10:31:29,356 - [INFO] - ERKNM - add_knm_visited(1206) - вставка Дата окончания КНМ прошла успешно
+2022-09-14 10:31:29,356 - [INFO] - ERKNM - add_knm_visited(1210) - вставляем Cрок проведения (дней)
+2022-09-14 10:31:30,209 - [INFO] - ERKNM - add_knm_visited(1219) - вставка Cрок проведения (дней) прошла успешно
+2022-09-14 10:31:30,209 - [INFO] - ERKNM - add_knm_visited(1223) - вставляем Срок непосредственного взаимодействия (часов)
+2022-09-14 10:31:31,062 - [INFO] - ERKNM - add_knm_visited(1232) - вставка Срок непосредственного взаимодействия (часов) прошла успешно
+2022-09-14 10:31:31,062 - [INFO] - ERKNM - add_knm_visited(1236) - вставляем Основания включения в план
+2022-09-14 10:31:35,109 - [INFO] - ERKNM - add_knm_visited(1262) - вставка Основания включения в план прошла успешно
+2022-09-14 10:31:35,109 - [INFO] - ERKNM - add_knm_visited(1266) - вставляем Наименование прокуратуры
+2022-09-14 10:31:36,264 - [INFO] - ERKNM - add_knm_visited(1276) - вставка Наименование прокуратуры прошла успешно
+2022-09-14 10:31:36,264 - [INFO] - ERKNM - add_knm_visited(1280) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-09-14 10:31:43,641 - [INFO] - ERKNM - add_knm_visited(1290) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-09-14 10:31:47,236 - [INFO] - ERKNM - add_knm_visited(1299) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-09-14 10:31:48,626 - [INFO] - ERKNM - add_knm_visited(1318) - выбираем тип для объекта детский сад
+2022-09-14 10:31:49,775 - [INFO] - ERKNM - add_knm_visited(1321) - выбор тип для объекта детский сад прошел успешно
+2022-09-14 10:31:50,028 - [INFO] - ERKNM - add_knm_visited(1332) - выбираем вид для объекта детский сад
+2022-09-14 10:31:50,976 - [INFO] - ERKNM - add_knm_visited(1336) - выбор вид для объекта детский сад прошел успешно
+2022-09-14 10:31:51,229 - [INFO] - ERKNM - add_knm_visited(1343) - выбираем Категория риска для объекта детский сад
+2022-09-14 10:31:52,236 - [INFO] - ERKNM - add_knm_visited(1347) - выбор Категория риска для объекта детский сад прошел успешно
+2022-09-14 10:31:52,496 - [INFO] - ERKNM - add_knm_visited(1358) - выбираем Класс опасности для объекта детский сад
+2022-09-14 10:31:53,352 - [INFO] - ERKNM - add_knm_visited(1362) - выбор Класс опасности для объекта детский сад прошел успешно
+2022-09-14 10:31:57,037 - [INFO] - ERKNM - add_knm_visited(1318) - выбираем тип для объекта {'адрес': '603142, г.Нижний Новгород, ул.Зенитчиков, 15-а', 'начало проверки': '2023-10-03 00:00:00', 'окончание проверки': '2023-10-16 00:00:00', 'ОГРН': '1035204894119', 'деятельность': 'дошкольные образовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-03-10 00:00:00', 'строчка': 32}
+2022-09-14 10:31:58,707 - [INFO] - ERKNM - add_knm_visited(1321) - выбор тип для объекта детский сад1 прошел успешно
+2022-09-14 10:31:58,967 - [INFO] - ERKNM - add_knm_visited(1332) - выбираем вид для объекта {'адрес': '603142, г.Нижний Новгород, ул.Зенитчиков, 15-а', 'начало проверки': '2023-10-03 00:00:00', 'окончание проверки': '2023-10-16 00:00:00', 'ОГРН': '1035204894119', 'деятельность': 'дошкольные образовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-03-10 00:00:00', 'строчка': 32}
+2022-09-14 10:32:00,023 - [INFO] - ERKNM - add_knm_visited(1336) - выбор вид для объекта детский сад1 прошел успешно
+2022-09-14 10:32:00,274 - [INFO] - ERKNM - add_knm_visited(1343) - выбираем Категория риска для объекта {'адрес': '603142, г.Нижний Новгород, ул.Зенитчиков, 15-а', 'начало проверки': '2023-10-03 00:00:00', 'окончание проверки': '2023-10-16 00:00:00', 'ОГРН': '1035204894119', 'деятельность': 'дошкольные образовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-03-10 00:00:00', 'строчка': 32}
+2022-09-14 10:32:01,156 - [INFO] - ERKNM - add_knm_visited(1347) - выбор Категория риска для объекта детский сад1 прошел успешно
+2022-09-14 10:32:01,422 - [INFO] - ERKNM - add_knm_visited(1358) - выбираем Класс опасности для объекта детский сад1
+2022-09-14 10:32:02,311 - [INFO] - ERKNM - add_knm_visited(1362) - выбор Класс опасности для объекта детский сад1 прошел успешно
+2022-09-14 10:32:52,044 - [INFO] - ERKNM - add_knm_visited(1388) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-09-14 10:33:05,945 - [INFO] - ERKNM - add_knm_visited(1398) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-09-14 10:37:13,018 - [INFO] - ERKNM - add_knm_visited(1434) - Нажимаем отметка об использовании проверочного листа
+2022-09-14 10:37:13,721 - [INFO] - ERKNM - add_knm_visited(1440) - Нажатие отметки об использовании проверочного листа прошла успешно
+2022-09-14 10:37:13,736 - [INFO] - ERKNM - add_knm_visited(1453) - Добавляем проверочный лист
+2022-09-14 10:37:14,221 - [INFO] - ERKNM - add_knm_visited(1459) - Добавляем проверочный лист прошла успешно
+2022-09-14 10:37:14,746 - [INFO] - ERKNM - add_knm_visited(1453) - Добавляем проверочный лист
+2022-09-14 10:37:15,398 - [INFO] - ERKNM - add_knm_visited(1459) - Добавляем проверочный лист прошла успешно
+2022-09-14 10:37:15,898 - [INFO] - ERKNM - add_knm_visited(1463) - выбираем проверочный лист
+2022-09-14 10:37:21,211 - [INFO] - ERKNM - add_knm_visited(1476) - Выбор всех проверочных листов успешно завершен
+2022-09-14 10:37:21,211 - [INFO] - ERKNM - add_knm_visited(1481) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-09-14 10:37:21,711 - [INFO] - ERKNM - add_knm_visited(1481) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-09-14 10:37:22,351 - [INFO] - ERKNM - add_knm_visited(1487) - Добавление места проведения контрольного (надзорного) мероприятия прошла успешно
+2022-09-14 10:37:22,867 - [INFO] - ERKNM - add_knm_visited(1492) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-09-14 10:37:46,202 - [INFO] - ERKNM - add_knm_visited(1492) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-09-14 10:38:09,167 - [INFO] - ERKNM - add_knm_visited(1500) - Вставляем места проведения контрольного (надзорного) мероприятия прошла успешно
+2022-09-14 10:38:12,117 - [INFO] - ERKNM - save_proverka(1531) - Сохранение проверки прошло успешно
+2022-09-14 10:39:37,550 - [INFO] - ERKNM - save_proverka(1556) - Получение номера и статуса проверки кнм
+2022-09-14 10:39:37,550 - [INFO] - ERKNM - enter_knms_in_erknm(133) - ('выездная|МАДОУ"Детский сад №62(бас) ', {'детский сад': {'адрес': '603142, г.Нижний Новгород, ул. Мончегорская, 19-А', 'начало проверки': '2023-10-03 00:00:00', 'окончание проверки': '2023-10-16 00:00:00', 'ОГРН': '1035204894119', 'деятельность': 'дошкольные образовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-03-10 00:00:00', 'строчка': 31}, 'детский сад1': {'адрес': '603142, г.Нижний Новгород, ул.Зенитчиков, 15-а', 'начало проверки': '2023-10-03 00:00:00', 'окончание проверки': '2023-10-16 00:00:00', 'ОГРН': '1035204894119', 'деятельность': 'дошкольные образовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-03-10 00:00:00', 'строчка': 32}}) has been entered in erknm!
+2022-09-14 10:39:37,675 - [INFO] - ERKNM - enter_knms_in_erknm(143) - номер кнм выездная|МАДОУ"Детский сад №62(бас)   --->>>  КНМ 52230041000103409762 / 2023050341, status   --->>>  КНМ 52230041000103409762 / 2023050341
+2022-09-14 10:39:41,292 - [INFO] - ERKNM - add_knm_visited(1086) - 
+2022-09-14 10:39:41,292 - [INFO] - ERKNM - add_knm_visited(1087) - выездная|МБОУ Школа №127
+2022-09-14 10:39:41,292 - [INFO] - ERKNM - add_knm_visited(1088) - 
+2022-09-14 10:39:41,292 - [INFO] - ERKNM - add_knm_visited(1120) - вставляем наименование органа контроля
+2022-09-14 10:39:44,559 - [WARNING] - ERKNM - add_knm_visited(1130) - вставка наименования органа контроля не прошла: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="react-select-2-option-0"]"}
+  (Session info: chrome=105.0.5195.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A9DF13+2219795]
+	Ordinal0 [0x00A32841+1779777]
+	Ordinal0 [0x0094423D+803389]
+	Ordinal0 [0x00973025+995365]
+	Ordinal0 [0x009731EB+995819]
+	Ordinal0 [0x009A0F52+1183570]
+	Ordinal0 [0x0098E844+1108036]
+	Ordinal0 [0x0099F192+1175954]
+	Ordinal0 [0x0098E616+1107478]
+	Ordinal0 [0x00967F89+950153]
+	Ordinal0 [0x00968F56+954198]
+	GetHandleVerifier [0x00D92CB2+3040210]
+	GetHandleVerifier [0x00D82BB4+2974420]
+	GetHandleVerifier [0x00B36A0A+565546]
+	GetHandleVerifier [0x00B35680+560544]
+	Ordinal0 [0x00A39A5C+1808988]
+	Ordinal0 [0x00A3E3A8+1827752]
+	Ordinal0 [0x00A3E495+1827989]
+	Ordinal0 [0x00A480A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:39:44,559 - [INFO] - ERKNM - add_knm_visited(1131) - вставка наименования органа контроля прошла успешно
+2022-09-14 10:39:44,559 - [INFO] - ERKNM - add_knm_visited(1135) - вставляем Вид контроля
+2022-09-14 10:39:44,621 - [WARNING] - ERKNM - add_knm_visited(1143) - вставка вид контроля не прошла: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="react-select-3-option-2"]"}
+  (Session info: chrome=105.0.5195.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A9DF13+2219795]
+	Ordinal0 [0x00A32841+1779777]
+	Ordinal0 [0x0094423D+803389]
+	Ordinal0 [0x00973025+995365]
+	Ordinal0 [0x009731EB+995819]
+	Ordinal0 [0x009A0F52+1183570]
+	Ordinal0 [0x0098E844+1108036]
+	Ordinal0 [0x0099F192+1175954]
+	Ordinal0 [0x0098E616+1107478]
+	Ordinal0 [0x00967F89+950153]
+	Ordinal0 [0x00968F56+954198]
+	GetHandleVerifier [0x00D92CB2+3040210]
+	GetHandleVerifier [0x00D82BB4+2974420]
+	GetHandleVerifier [0x00B36A0A+565546]
+	GetHandleVerifier [0x00B35680+560544]
+	Ordinal0 [0x00A39A5C+1808988]
+	Ordinal0 [0x00A3E3A8+1827752]
+	Ordinal0 [0x00A3E495+1827989]
+	Ordinal0 [0x00A480A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:39:44,621 - [INFO] - ERKNM - add_knm_visited(1144) - вставка Вид контроля прошла успешно
+2022-09-14 10:39:44,621 - [INFO] - ERKNM - add_knm_visited(1148) - вставляем Вид КНМ
+2022-09-14 10:39:44,944 - [WARNING] - ERKNM - add_knm_visited(1157) - вставка Вид КНМ не прошла: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="react-select-4-option-6"]"}
+  (Session info: chrome=105.0.5195.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A9DF13+2219795]
+	Ordinal0 [0x00A32841+1779777]
+	Ordinal0 [0x0094423D+803389]
+	Ordinal0 [0x00973025+995365]
+	Ordinal0 [0x009731EB+995819]
+	Ordinal0 [0x009A0F52+1183570]
+	Ordinal0 [0x0098E844+1108036]
+	Ordinal0 [0x0099F192+1175954]
+	Ordinal0 [0x0098E616+1107478]
+	Ordinal0 [0x00967F89+950153]
+	Ordinal0 [0x00968F56+954198]
+	GetHandleVerifier [0x00D92CB2+3040210]
+	GetHandleVerifier [0x00D82BB4+2974420]
+	GetHandleVerifier [0x00B36A0A+565546]
+	GetHandleVerifier [0x00B35680+560544]
+	Ordinal0 [0x00A39A5C+1808988]
+	Ordinal0 [0x00A3E3A8+1827752]
+	Ordinal0 [0x00A3E495+1827989]
+	Ordinal0 [0x00A480A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:39:44,944 - [INFO] - ERKNM - add_knm_visited(1158) - вставка Вид КНМ прошла успешно
+2022-09-14 10:39:44,944 - [INFO] - ERKNM - enter_type_proverka(1508) - вставляем Характер КНМ
+2022-09-14 10:40:05,321 - [WARNING] - ERKNM - enter_type_proverka(1517) - вставка Характер КНМ не прошла: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A9DF13+2219795]
+	Ordinal0 [0x00A32841+1779777]
+	Ordinal0 [0x0094423D+803389]
+	Ordinal0 [0x00973025+995365]
+	Ordinal0 [0x009731EB+995819]
+	Ordinal0 [0x009A0F52+1183570]
+	Ordinal0 [0x0098E844+1108036]
+	Ordinal0 [0x0099F192+1175954]
+	Ordinal0 [0x0098E616+1107478]
+	Ordinal0 [0x00967F89+950153]
+	Ordinal0 [0x00968F56+954198]
+	GetHandleVerifier [0x00D92CB2+3040210]
+	GetHandleVerifier [0x00D82BB4+2974420]
+	GetHandleVerifier [0x00B36A0A+565546]
+	GetHandleVerifier [0x00B35680+560544]
+	Ordinal0 [0x00A39A5C+1808988]
+	Ordinal0 [0x00A3E3A8+1827752]
+	Ordinal0 [0x00A3E495+1827989]
+	Ordinal0 [0x00A480A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:40:05,321 - [INFO] - ERKNM - enter_type_proverka(1518) - вставка Характер КНМ прошла успешно
+2022-09-14 10:40:05,321 - [INFO] - ERKNM - add_knm_visited(1168) - вставляем Номер плана
+2022-09-14 10:41:45,795 - [WARNING] - __main__ - <module>(118) - ОШИБКА ИСПОЛНЕНИЯ ПРОГРАММЫ! Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A9DF13+2219795]
+	Ordinal0 [0x00A32841+1779777]
+	Ordinal0 [0x0094423D+803389]
+	Ordinal0 [0x00973025+995365]
+	Ordinal0 [0x009731EB+995819]
+	Ordinal0 [0x009A0F52+1183570]
+	Ordinal0 [0x0098E844+1108036]
+	Ordinal0 [0x0099F192+1175954]
+	Ordinal0 [0x0098E616+1107478]
+	Ordinal0 [0x00967F89+950153]
+	Ordinal0 [0x00968F56+954198]
+	GetHandleVerifier [0x00D92CB2+3040210]
+	GetHandleVerifier [0x00D82BB4+2974420]
+	GetHandleVerifier [0x00B36A0A+565546]
+	GetHandleVerifier [0x00B35680+560544]
+	Ordinal0 [0x00A39A5C+1808988]
+	Ordinal0 [0x00A3E3A8+1827752]
+	Ordinal0 [0x00A3E495+1827989]
+	Ordinal0 [0x00A480A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:41:45,795 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 10:41:59,122 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\07b8d4f3463709a3_chromedriver.exe
+2022-09-14 10:42:35,907 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 10:43:02,942 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000223D8D1F040>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00D3DF13+2219795]
+	Ordinal0 [0x00CD2841+1779777]
+	Ordinal0 [0x00BE423D+803389]
+	Ordinal0 [0x00C13025+995365]
+	Ordinal0 [0x00C131EB+995819]
+	Ordinal0 [0x00C40F52+1183570]
+	Ordinal0 [0x00C2E844+1108036]
+	Ordinal0 [0x00C3F192+1175954]
+	Ordinal0 [0x00C2E616+1107478]
+	Ordinal0 [0x00C07F89+950153]
+	Ordinal0 [0x00C08F56+954198]
+	GetHandleVerifier [0x01032CB2+3040210]
+	GetHandleVerifier [0x01022BB4+2974420]
+	GetHandleVerifier [0x00DD6A0A+565546]
+	GetHandleVerifier [0x00DD5680+560544]
+	Ordinal0 [0x00CD9A5C+1808988]
+	Ordinal0 [0x00CDE3A8+1827752]
+	Ordinal0 [0x00CDE495+1827989]
+	Ordinal0 [0x00CE80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:43:14,087 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000223D8D1F040>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00D3DF13+2219795]
+	Ordinal0 [0x00CD2841+1779777]
+	Ordinal0 [0x00BE423D+803389]
+	Ordinal0 [0x00C13025+995365]
+	Ordinal0 [0x00C131EB+995819]
+	Ordinal0 [0x00C40F52+1183570]
+	Ordinal0 [0x00C2E844+1108036]
+	Ordinal0 [0x00C3F192+1175954]
+	Ordinal0 [0x00C2E616+1107478]
+	Ordinal0 [0x00C07F89+950153]
+	Ordinal0 [0x00C08F56+954198]
+	GetHandleVerifier [0x01032CB2+3040210]
+	GetHandleVerifier [0x01022BB4+2974420]
+	GetHandleVerifier [0x00DD6A0A+565546]
+	GetHandleVerifier [0x00DD5680+560544]
+	Ordinal0 [0x00CD9A5C+1808988]
+	Ordinal0 [0x00CDE3A8+1827752]
+	Ordinal0 [0x00CDE495+1827989]
+	Ordinal0 [0x00CE80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:43:32,895 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000223D8D1F040>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00D3DF13+2219795]
+	Ordinal0 [0x00CD2841+1779777]
+	Ordinal0 [0x00BE423D+803389]
+	Ordinal0 [0x00C13025+995365]
+	Ordinal0 [0x00C131EB+995819]
+	Ordinal0 [0x00C40F52+1183570]
+	Ordinal0 [0x00C2E844+1108036]
+	Ordinal0 [0x00C3F192+1175954]
+	Ordinal0 [0x00C2E616+1107478]
+	Ordinal0 [0x00C07F89+950153]
+	Ordinal0 [0x00C08F56+954198]
+	GetHandleVerifier [0x01032CB2+3040210]
+	GetHandleVerifier [0x01022BB4+2974420]
+	GetHandleVerifier [0x00DD6A0A+565546]
+	GetHandleVerifier [0x00DD5680+560544]
+	Ordinal0 [0x00CD9A5C+1808988]
+	Ordinal0 [0x00CDE3A8+1827752]
+	Ordinal0 [0x00CDE495+1827989]
+	Ordinal0 [0x00CE80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:43:43,895 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000223D8D1F040>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00D3DF13+2219795]
+	Ordinal0 [0x00CD2841+1779777]
+	Ordinal0 [0x00BE423D+803389]
+	Ordinal0 [0x00C13025+995365]
+	Ordinal0 [0x00C131EB+995819]
+	Ordinal0 [0x00C40F52+1183570]
+	Ordinal0 [0x00C2E844+1108036]
+	Ordinal0 [0x00C3F192+1175954]
+	Ordinal0 [0x00C2E616+1107478]
+	Ordinal0 [0x00C07F89+950153]
+	Ordinal0 [0x00C08F56+954198]
+	GetHandleVerifier [0x01032CB2+3040210]
+	GetHandleVerifier [0x01022BB4+2974420]
+	GetHandleVerifier [0x00DD6A0A+565546]
+	GetHandleVerifier [0x00DD5680+560544]
+	Ordinal0 [0x00CD9A5C+1808988]
+	Ordinal0 [0x00CDE3A8+1827752]
+	Ordinal0 [0x00CDE495+1827989]
+	Ordinal0 [0x00CE80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:43:55,312 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000223D8D1F040>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00D3DF13+2219795]
+	Ordinal0 [0x00CD2841+1779777]
+	Ordinal0 [0x00BE423D+803389]
+	Ordinal0 [0x00C13025+995365]
+	Ordinal0 [0x00C131EB+995819]
+	Ordinal0 [0x00C40F52+1183570]
+	Ordinal0 [0x00C2E844+1108036]
+	Ordinal0 [0x00C3F192+1175954]
+	Ordinal0 [0x00C2E616+1107478]
+	Ordinal0 [0x00C07F89+950153]
+	Ordinal0 [0x00C08F56+954198]
+	GetHandleVerifier [0x01032CB2+3040210]
+	GetHandleVerifier [0x01022BB4+2974420]
+	GetHandleVerifier [0x00DD6A0A+565546]
+	GetHandleVerifier [0x00DD5680+560544]
+	Ordinal0 [0x00CD9A5C+1808988]
+	Ordinal0 [0x00CDE3A8+1827752]
+	Ordinal0 [0x00CDE495+1827989]
+	Ordinal0 [0x00CE80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:43:55,312 - [INFO] - ERKNM - Controller(75) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000223D8D1F040>>) не удалась, имеется непредвиденная ошибка, было предпринято 5 попыток
+2022-09-14 10:43:55,870 - [INFO] - ERKNM - enter_knms_in_erknm(121) - Ready knms list to enter in erknm
+2022-09-14 10:44:00,171 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000223D8D22F10>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/e9525ac14f0967d52afad3341ad2ad6e/execute/sync
+2022-09-14 10:44:04,229 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000223D8300D90>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/e9525ac14f0967d52afad3341ad2ad6e/execute/sync
+2022-09-14 10:44:08,292 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000223D8BB2DC0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/e9525ac14f0967d52afad3341ad2ad6e/execute/sync
+2022-09-14 10:44:12,400 - [WARNING] - __main__ - <module>(118) - ОШИБКА ИСПОЛНЕНИЯ ПРОГРАММЫ! HTTPConnectionPool(host='localhost', port=63403): Max retries exceeded with url: /session/e9525ac14f0967d52afad3341ad2ad6e/execute/sync (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000223D7A1BAC0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение'))
+2022-09-14 10:44:12,400 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 10:44:16,556 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000223D8B454F0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/e9525ac14f0967d52afad3341ad2ad6e
+2022-09-14 10:44:20,629 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000223D8B45700>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/e9525ac14f0967d52afad3341ad2ad6e
+2022-09-14 10:44:24,723 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000223D8B45820>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/e9525ac14f0967d52afad3341ad2ad6e
+2022-09-14 10:44:35,295 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\c3d595fd65428a6f_chromedriver.exe
+2022-09-14 10:44:38,285 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 10:45:44,920 - [INFO] - ERKNM - autorize(115) - Autorization successfull completed!
+2022-09-14 10:45:44,920 - [INFO] - ERKNM - Controller(66) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000223D8B5C280>>) прошла с 1 раза
+2022-09-14 10:45:44,920 - [INFO] - ERKNM - enter_knms_in_erknm(121) - Ready knms list to enter in erknm
+2022-09-14 10:45:45,052 - [INFO] - ERKNM - add_knm_visited(1086) - 
+2022-09-14 10:45:45,052 - [INFO] - ERKNM - add_knm_visited(1087) - выездная|МБОУ Школа №127
+2022-09-14 10:45:45,052 - [INFO] - ERKNM - add_knm_visited(1088) - 
+2022-09-14 10:45:45,052 - [INFO] - ERKNM - add_knm_visited(1120) - вставляем наименование органа контроля
+2022-09-14 10:45:49,710 - [WARNING] - __main__ - <module>(118) - ОШИБКА ИСПОЛНЕНИЯ ПРОГРАММЫ! Message: element click intercepted: Element <div class="_ValueContainer_nx4nv_75 _ValueContainerSingle_nx4nv_94 select-field__value-container css-0">...</div> is not clickable at point (773, 371). Other element would receive the click: <div class="_LoaderWrap_1b803_1">...</div>
+  (Session info: chrome=105.0.5195.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x0102DF13+2219795]
+	Ordinal0 [0x00FC2841+1779777]
+	Ordinal0 [0x00ED423D+803389]
+	Ordinal0 [0x00F099D4+1022420]
+	Ordinal0 [0x00F078C4+1013956]
+	Ordinal0 [0x00F054AB+1004715]
+	Ordinal0 [0x00F04117+999703]
+	Ordinal0 [0x00EF9B76+957302]
+	Ordinal0 [0x00F1E7FC+1107964]
+	Ordinal0 [0x00EF94B4+955572]
+	Ordinal0 [0x00F1EA14+1108500]
+	Ordinal0 [0x00F2F192+1175954]
+	Ordinal0 [0x00F1E616+1107478]
+	Ordinal0 [0x00EF7F89+950153]
+	Ordinal0 [0x00EF8F56+954198]
+	GetHandleVerifier [0x01322CB2+3040210]
+	GetHandleVerifier [0x01312BB4+2974420]
+	GetHandleVerifier [0x010C6A0A+565546]
+	GetHandleVerifier [0x010C5680+560544]
+	Ordinal0 [0x00FC9A5C+1808988]
+	Ordinal0 [0x00FCE3A8+1827752]
+	Ordinal0 [0x00FCE495+1827989]
+	Ordinal0 [0x00FD80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 10:45:49,710 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 10:45:55,099 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\f0a4a6fbf607d737_chromedriver.exe
+2022-09-14 10:58:03,382 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 10:58:07,056 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\d7cdd954fef1b0aa_chromedriver.exe
+2022-09-14 10:58:27,532 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 10:58:45,016 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000125F7C51C10>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x002ADF13+2219795]
+	Ordinal0 [0x00242841+1779777]
+	Ordinal0 [0x0015423D+803389]
+	Ordinal0 [0x00183025+995365]
+	Ordinal0 [0x001831EB+995819]
+	Ordinal0 [0x001B0F52+1183570]
+	Ordinal0 [0x0019E844+1108036]
+	Ordinal0 [0x001AF192+1175954]
+	Ordinal0 [0x0019E616+1107478]
+	Ordinal0 [0x00177F89+950153]
+	Ordinal0 [0x00178F56+954198]
+	GetHandleVerifier [0x005A2CB2+3040210]
+	GetHandleVerifier [0x00592BB4+2974420]
+	GetHandleVerifier [0x00346A0A+565546]
+	GetHandleVerifier [0x00345680+560544]
+	Ordinal0 [0x00249A5C+1808988]
+	Ordinal0 [0x0024E3A8+1827752]
+	Ordinal0 [0x0024E495+1827989]
+	Ordinal0 [0x002580A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+	(No symbol) [0x00000000]
+
+2022-09-14 10:58:59,592 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000125F7C51C10>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x002ADF13+2219795]
+	Ordinal0 [0x00242841+1779777]
+	Ordinal0 [0x0015423D+803389]
+	Ordinal0 [0x00183025+995365]
+	Ordinal0 [0x001831EB+995819]
+	Ordinal0 [0x001B0F52+1183570]
+	Ordinal0 [0x0019E844+1108036]
+	Ordinal0 [0x001AF192+1175954]
+	Ordinal0 [0x0019E616+1107478]
+	Ordinal0 [0x00177F89+950153]
+	Ordinal0 [0x00178F56+954198]
+	GetHandleVerifier [0x005A2CB2+3040210]
+	GetHandleVerifier [0x00592BB4+2974420]
+	GetHandleVerifier [0x00346A0A+565546]
+	GetHandleVerifier [0x00345680+560544]
+	Ordinal0 [0x00249A5C+1808988]
+	Ordinal0 [0x0024E3A8+1827752]
+	Ordinal0 [0x0024E495+1827989]
+	Ordinal0 [0x002580A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+	(No symbol) [0x00000000]
+
+2022-09-14 10:59:19,290 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000125F7C51C10>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x002ADF13+2219795]
+	Ordinal0 [0x00242841+1779777]
+	Ordinal0 [0x0015423D+803389]
+	Ordinal0 [0x00183025+995365]
+	Ordinal0 [0x001831EB+995819]
+	Ordinal0 [0x001B0F52+1183570]
+	Ordinal0 [0x0019E844+1108036]
+	Ordinal0 [0x001AF192+1175954]
+	Ordinal0 [0x0019E616+1107478]
+	Ordinal0 [0x00177F89+950153]
+	Ordinal0 [0x00178F56+954198]
+	GetHandleVerifier [0x005A2CB2+3040210]
+	GetHandleVerifier [0x00592BB4+2974420]
+	GetHandleVerifier [0x00346A0A+565546]
+	GetHandleVerifier [0x00345680+560544]
+	Ordinal0 [0x00249A5C+1808988]
+	Ordinal0 [0x0024E3A8+1827752]
+	Ordinal0 [0x0024E495+1827989]
+	Ordinal0 [0x002580A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+	(No symbol) [0x00000000]
+
+2022-09-14 10:59:30,933 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000125F7C51C10>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x002ADF13+2219795]
+	Ordinal0 [0x00242841+1779777]
+	Ordinal0 [0x0015423D+803389]
+	Ordinal0 [0x00183025+995365]
+	Ordinal0 [0x001831EB+995819]
+	Ordinal0 [0x001B0F52+1183570]
+	Ordinal0 [0x0019E844+1108036]
+	Ordinal0 [0x001AF192+1175954]
+	Ordinal0 [0x0019E616+1107478]
+	Ordinal0 [0x00177F89+950153]
+	Ordinal0 [0x00178F56+954198]
+	GetHandleVerifier [0x005A2CB2+3040210]
+	GetHandleVerifier [0x00592BB4+2974420]
+	GetHandleVerifier [0x00346A0A+565546]
+	GetHandleVerifier [0x00345680+560544]
+	Ordinal0 [0x00249A5C+1808988]
+	Ordinal0 [0x0024E3A8+1827752]
+	Ordinal0 [0x0024E495+1827989]
+	Ordinal0 [0x002580A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+	(No symbol) [0x00000000]
+
+2022-09-14 10:59:44,761 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000125F7C51C10>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x002ADF13+2219795]
+	Ordinal0 [0x00242841+1779777]
+	Ordinal0 [0x0015423D+803389]
+	Ordinal0 [0x00183025+995365]
+	Ordinal0 [0x001831EB+995819]
+	Ordinal0 [0x001B0F52+1183570]
+	Ordinal0 [0x0019E844+1108036]
+	Ordinal0 [0x001AF192+1175954]
+	Ordinal0 [0x0019E616+1107478]
+	Ordinal0 [0x00177F89+950153]
+	Ordinal0 [0x00178F56+954198]
+	GetHandleVerifier [0x005A2CB2+3040210]
+	GetHandleVerifier [0x00592BB4+2974420]
+	GetHandleVerifier [0x00346A0A+565546]
+	GetHandleVerifier [0x00345680+560544]
+	Ordinal0 [0x00249A5C+1808988]
+	Ordinal0 [0x0024E3A8+1827752]
+	Ordinal0 [0x0024E495+1827989]
+	Ordinal0 [0x002580A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+	(No symbol) [0x00000000]
+
+2022-09-14 10:59:44,761 - [INFO] - ERKNM - Controller(75) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000125F7C51C10>>) не удалась, имеется непредвиденная ошибка, было предпринято 5 попыток
+2022-09-14 10:59:45,354 - [INFO] - ERKNM - enter_knms_in_erknm(121) - Ready knms list to enter in erknm
+2022-09-14 10:59:49,465 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F7C669A0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/7237d7bf6987589138e7463cf66f6563/execute/sync
+2022-09-14 10:59:53,714 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F7C661F0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/7237d7bf6987589138e7463cf66f6563/execute/sync
+2022-09-14 10:59:57,781 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F7C66CD0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/7237d7bf6987589138e7463cf66f6563/execute/sync
+2022-09-14 11:00:01,864 - [WARNING] - __main__ - <module>(118) - ОШИБКА ИСПОЛНЕНИЯ ПРОГРАММЫ! HTTPConnectionPool(host='localhost', port=64768): Max retries exceeded with url: /session/7237d7bf6987589138e7463cf66f6563/execute/sync (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F7C662B0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение'))
+2022-09-14 11:00:01,864 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 11:00:04,262 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\f2aa57cdaa1ebd80_chromedriver.exe
+2022-09-14 11:00:06,937 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 11:00:22,451 - [WARNING] - ERKNM - autorize(88) - Message: element click intercepted: Element <button class="_Button_5bv2s_1 _ButtonDefault_5bv2s_55 ButtonDefault _ButtonLarge_5bv2s_31 _ButtonLinkButton_5bv2s_39" type="button">...</button> is not clickable at point (464, 602). Other element would receive the click: <button class="_Button_5bv2s_1 _ButtonPrimary_5bv2s_72 ButtonPrimary _ButtonLarge_5bv2s_31 _ButtonContained_5bv2s_15" type="submit">...</button>
+  (Session info: chrome=105.0.5195.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x0086DF13+2219795]
+	Ordinal0 [0x00802841+1779777]
+	Ordinal0 [0x0071423D+803389]
+	Ordinal0 [0x007499D4+1022420]
+	Ordinal0 [0x007478C4+1013956]
+	Ordinal0 [0x007454AB+1004715]
+	Ordinal0 [0x00744117+999703]
+	Ordinal0 [0x00739B76+957302]
+	Ordinal0 [0x0075E7FC+1107964]
+	Ordinal0 [0x007394B4+955572]
+	Ordinal0 [0x0075EA14+1108500]
+	Ordinal0 [0x0076F192+1175954]
+	Ordinal0 [0x0075E616+1107478]
+	Ordinal0 [0x00737F89+950153]
+	Ordinal0 [0x00738F56+954198]
+	GetHandleVerifier [0x00B62CB2+3040210]
+	GetHandleVerifier [0x00B52BB4+2974420]
+	GetHandleVerifier [0x00906A0A+565546]
+	GetHandleVerifier [0x00905680+560544]
+	Ordinal0 [0x00809A5C+1808988]
+	Ordinal0 [0x0080E3A8+1827752]
+	Ordinal0 [0x0080E495+1827989]
+	Ordinal0 [0x008180A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 11:00:22,888 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000125F7C51F70>>) local variable 'ex' referenced before assignment
+2022-09-14 11:00:48,987 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000125F7C51F70>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x0086DF13+2219795]
+	Ordinal0 [0x00802841+1779777]
+	Ordinal0 [0x0071423D+803389]
+	Ordinal0 [0x00743025+995365]
+	Ordinal0 [0x007431EB+995819]
+	Ordinal0 [0x00770F52+1183570]
+	Ordinal0 [0x0075E844+1108036]
+	Ordinal0 [0x0076F192+1175954]
+	Ordinal0 [0x0075E616+1107478]
+	Ordinal0 [0x00737F89+950153]
+	Ordinal0 [0x00738F56+954198]
+	GetHandleVerifier [0x00B62CB2+3040210]
+	GetHandleVerifier [0x00B52BB4+2974420]
+	GetHandleVerifier [0x00906A0A+565546]
+	GetHandleVerifier [0x00905680+560544]
+	Ordinal0 [0x00809A5C+1808988]
+	Ordinal0 [0x0080E3A8+1827752]
+	Ordinal0 [0x0080E495+1827989]
+	Ordinal0 [0x008180A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 11:01:00,068 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000125F7C51F70>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x0086DF13+2219795]
+	Ordinal0 [0x00802841+1779777]
+	Ordinal0 [0x0071423D+803389]
+	Ordinal0 [0x00743025+995365]
+	Ordinal0 [0x007431EB+995819]
+	Ordinal0 [0x00770F52+1183570]
+	Ordinal0 [0x0075E844+1108036]
+	Ordinal0 [0x0076F192+1175954]
+	Ordinal0 [0x0075E616+1107478]
+	Ordinal0 [0x00737F89+950153]
+	Ordinal0 [0x00738F56+954198]
+	GetHandleVerifier [0x00B62CB2+3040210]
+	GetHandleVerifier [0x00B52BB4+2974420]
+	GetHandleVerifier [0x00906A0A+565546]
+	GetHandleVerifier [0x00905680+560544]
+	Ordinal0 [0x00809A5C+1808988]
+	Ordinal0 [0x0080E3A8+1827752]
+	Ordinal0 [0x0080E495+1827989]
+	Ordinal0 [0x008180A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 11:01:11,540 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000125F7C51F70>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x0086DF13+2219795]
+	Ordinal0 [0x00802841+1779777]
+	Ordinal0 [0x0071423D+803389]
+	Ordinal0 [0x00743025+995365]
+	Ordinal0 [0x007431EB+995819]
+	Ordinal0 [0x00770F52+1183570]
+	Ordinal0 [0x0075E844+1108036]
+	Ordinal0 [0x0076F192+1175954]
+	Ordinal0 [0x0075E616+1107478]
+	Ordinal0 [0x00737F89+950153]
+	Ordinal0 [0x00738F56+954198]
+	GetHandleVerifier [0x00B62CB2+3040210]
+	GetHandleVerifier [0x00B52BB4+2974420]
+	GetHandleVerifier [0x00906A0A+565546]
+	GetHandleVerifier [0x00905680+560544]
+	Ordinal0 [0x00809A5C+1808988]
+	Ordinal0 [0x0080E3A8+1827752]
+	Ordinal0 [0x0080E495+1827989]
+	Ordinal0 [0x008180A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 11:01:22,591 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000125F7C51F70>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x0086DF13+2219795]
+	Ordinal0 [0x00802841+1779777]
+	Ordinal0 [0x0071423D+803389]
+	Ordinal0 [0x00743025+995365]
+	Ordinal0 [0x007431EB+995819]
+	Ordinal0 [0x00770F52+1183570]
+	Ordinal0 [0x0075E844+1108036]
+	Ordinal0 [0x0076F192+1175954]
+	Ordinal0 [0x0075E616+1107478]
+	Ordinal0 [0x00737F89+950153]
+	Ordinal0 [0x00738F56+954198]
+	GetHandleVerifier [0x00B62CB2+3040210]
+	GetHandleVerifier [0x00B52BB4+2974420]
+	GetHandleVerifier [0x00906A0A+565546]
+	GetHandleVerifier [0x00905680+560544]
+	Ordinal0 [0x00809A5C+1808988]
+	Ordinal0 [0x0080E3A8+1827752]
+	Ordinal0 [0x0080E495+1827989]
+	Ordinal0 [0x008180A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 11:01:22,591 - [INFO] - ERKNM - Controller(75) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000125F7C51F70>>) не удалась, имеется непредвиденная ошибка, было предпринято 5 попыток
+2022-09-14 11:01:23,138 - [INFO] - ERKNM - enter_knms_in_erknm(121) - Ready knms list to enter in erknm
+2022-09-14 11:01:27,196 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F84D3310>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/d7d51ebcb3bd60a0242c6ab7170079c4/execute/sync
+2022-09-14 11:01:31,286 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F7C6E1C0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/d7d51ebcb3bd60a0242c6ab7170079c4/execute/sync
+2022-09-14 11:01:35,369 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F7C667C0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/d7d51ebcb3bd60a0242c6ab7170079c4/execute/sync
+2022-09-14 11:01:39,469 - [WARNING] - __main__ - <module>(118) - ОШИБКА ИСПОЛНЕНИЯ ПРОГРАММЫ! HTTPConnectionPool(host='localhost', port=64975): Max retries exceeded with url: /session/d7d51ebcb3bd60a0242c6ab7170079c4/execute/sync (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F7C66610>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение'))
+2022-09-14 11:01:39,469 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 11:01:43,569 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F8797490>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/d7d51ebcb3bd60a0242c6ab7170079c4
+2022-09-14 11:01:47,641 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F8797580>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/d7d51ebcb3bd60a0242c6ab7170079c4
+2022-09-14 11:01:51,723 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F87976D0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/d7d51ebcb3bd60a0242c6ab7170079c4
+2022-09-14 11:02:02,811 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\0bac5584c0022689_chromedriver.exe
+2022-09-14 11:02:07,347 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 11:03:58,334 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F8536760>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/7237d7bf6987589138e7463cf66f6563
+2022-09-14 11:04:02,394 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F457B760>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/7237d7bf6987589138e7463cf66f6563
+2022-09-14 11:04:06,464 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F4D916D0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/7237d7bf6987589138e7463cf66f6563
+2022-09-14 11:04:19,363 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F44C8100>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/9c6022b5b7c63c220f9455beb3bc576b
+2022-09-14 11:04:23,452 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F45711C0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/9c6022b5b7c63c220f9455beb3bc576b
+2022-09-14 11:04:27,515 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000125F551E280>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/9c6022b5b7c63c220f9455beb3bc576b
+2022-09-14 12:16:18,163 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 12:16:20,773 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\25e9e50ec1a2e448_chromedriver.exe
+2022-09-14 12:16:36,565 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 12:20:29,998 - [INFO] - ERKNM - autorize(115) - Autorization successfull completed!
+2022-09-14 12:20:29,998 - [INFO] - ERKNM - Controller(66) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000206C9CD3B50>>) прошла с 1 раза
+2022-09-14 12:20:29,999 - [INFO] - ERKNM - enter_knms_in_erknm(121) - Ready knms list to enter in erknm
+2022-09-14 12:20:30,183 - [INFO] - ERKNM - add_knm_visited(1086) - 
+2022-09-14 12:20:30,184 - [INFO] - ERKNM - add_knm_visited(1087) - выездная|МБОУ Школа №127
+2022-09-14 12:20:30,184 - [INFO] - ERKNM - add_knm_visited(1088) - 
+2022-09-14 12:20:30,184 - [INFO] - ERKNM - add_knm_visited(1120) - вставляем наименование органа контроля
+2022-09-14 12:20:31,979 - [INFO] - ERKNM - add_knm_visited(1131) - вставка наименования органа контроля прошла успешно
+2022-09-14 12:20:31,980 - [INFO] - ERKNM - add_knm_visited(1135) - вставляем Вид контроля
+2022-09-14 12:20:32,209 - [INFO] - ERKNM - add_knm_visited(1144) - вставка Вид контроля прошла успешно
+2022-09-14 12:20:32,210 - [INFO] - ERKNM - add_knm_visited(1148) - вставляем Вид КНМ
+2022-09-14 12:20:42,973 - [INFO] - ERKNM - add_knm_visited(1158) - вставка Вид КНМ прошла успешно
+2022-09-14 12:20:42,973 - [INFO] - ERKNM - enter_type_proverka(1508) - вставляем Характер КНМ
+2022-09-14 12:20:53,580 - [INFO] - ERKNM - enter_type_proverka(1519) - вставка Характер КНМ прошла успешно
+2022-09-14 12:20:53,580 - [INFO] - ERKNM - add_knm_visited(1168) - вставляем Номер плана
+2022-09-14 12:20:58,940 - [INFO] - ERKNM - add_knm_visited(1176) - вставка Номер плана прошла успешно
+2022-09-14 12:20:58,940 - [INFO] - ERKNM - add_knm_visited(1180) - вставляем Дата начала КНМ
+2022-09-14 12:21:03,015 - [INFO] - ERKNM - add_knm_visited(1191) - вставка Дата начала КНМ прошла успешно
+2022-09-14 12:21:03,015 - [INFO] - ERKNM - add_knm_visited(1195) - вставляем Дата окончания КНМ
+2022-09-14 12:21:08,458 - [INFO] - ERKNM - add_knm_visited(1206) - вставка Дата окончания КНМ прошла успешно
+2022-09-14 12:21:08,458 - [INFO] - ERKNM - add_knm_visited(1210) - вставляем Cрок проведения (дней)
+2022-09-14 12:21:09,361 - [INFO] - ERKNM - add_knm_visited(1219) - вставка Cрок проведения (дней) прошла успешно
+2022-09-14 12:21:09,361 - [INFO] - ERKNM - add_knm_visited(1223) - вставляем Срок непосредственного взаимодействия (часов)
+2022-09-14 12:21:10,202 - [INFO] - ERKNM - add_knm_visited(1232) - вставка Срок непосредственного взаимодействия (часов) прошла успешно
+2022-09-14 12:21:10,202 - [INFO] - ERKNM - add_knm_visited(1236) - вставляем Основания включения в план
+2022-09-14 12:21:14,282 - [INFO] - ERKNM - add_knm_visited(1262) - вставка Основания включения в план прошла успешно
+2022-09-14 12:21:14,282 - [INFO] - ERKNM - add_knm_visited(1266) - вставляем Наименование прокуратуры
+2022-09-14 12:21:15,148 - [INFO] - ERKNM - add_knm_visited(1276) - вставка Наименование прокуратуры прошла успешно
+2022-09-14 12:21:15,148 - [INFO] - ERKNM - add_knm_visited(1280) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-09-14 12:21:23,082 - [INFO] - ERKNM - add_knm_visited(1290) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-09-14 12:21:26,753 - [INFO] - ERKNM - add_knm_visited(1299) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-09-14 12:21:28,491 - [INFO] - ERKNM - add_knm_visited(1318) - выбираем тип для объекта школа
+2022-09-14 12:21:29,491 - [INFO] - ERKNM - add_knm_visited(1321) - выбор тип для объекта школа прошел успешно
+2022-09-14 12:21:29,753 - [INFO] - ERKNM - add_knm_visited(1332) - выбираем вид для объекта школа
+2022-09-14 12:21:30,583 - [INFO] - ERKNM - add_knm_visited(1336) - выбор вид для объекта школа прошел успешно
+2022-09-14 12:21:30,844 - [INFO] - ERKNM - add_knm_visited(1343) - выбираем Категория риска для объекта школа
+2022-09-14 12:21:31,647 - [INFO] - ERKNM - add_knm_visited(1347) - выбор Категория риска для объекта школа прошел успешно
+2022-09-14 12:21:31,899 - [INFO] - ERKNM - add_knm_visited(1358) - выбираем Класс опасности для объекта школа
+2022-09-14 12:21:32,706 - [INFO] - ERKNM - add_knm_visited(1362) - выбор Класс опасности для объекта школа прошел успешно
+2022-09-14 12:21:35,047 - [INFO] - ERKNM - add_knm_visited(1318) - выбираем тип для объекта {'адрес': '603043, г.Нижний Новгород, пр.Октября, 22а', 'начало проверки': '2023-10-09 00:00:00', 'окончание проверки': '2023-10-20 00:00:00', 'ОГРН': '1025202272116', 'деятельность': 'общеобразовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-01 00:00:00', 'строчка': 34}
+2022-09-14 12:21:36,681 - [INFO] - ERKNM - add_knm_visited(1321) - выбор тип для объекта школа1 прошел успешно
+2022-09-14 12:21:36,932 - [INFO] - ERKNM - add_knm_visited(1332) - выбираем вид для объекта {'адрес': '603043, г.Нижний Новгород, пр.Октября, 22а', 'начало проверки': '2023-10-09 00:00:00', 'окончание проверки': '2023-10-20 00:00:00', 'ОГРН': '1025202272116', 'деятельность': 'общеобразовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-01 00:00:00', 'строчка': 34}
+2022-09-14 12:21:37,785 - [INFO] - ERKNM - add_knm_visited(1336) - выбор вид для объекта школа1 прошел успешно
+2022-09-14 12:21:38,035 - [INFO] - ERKNM - add_knm_visited(1343) - выбираем Категория риска для объекта {'адрес': '603043, г.Нижний Новгород, пр.Октября, 22а', 'начало проверки': '2023-10-09 00:00:00', 'окончание проверки': '2023-10-20 00:00:00', 'ОГРН': '1025202272116', 'деятельность': 'общеобразовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-01 00:00:00', 'строчка': 34}
+2022-09-14 12:21:38,708 - [INFO] - ERKNM - add_knm_visited(1347) - выбор Категория риска для объекта школа1 прошел успешно
+2022-09-14 12:21:38,969 - [INFO] - ERKNM - add_knm_visited(1358) - выбираем Класс опасности для объекта школа1
+2022-09-14 12:21:39,673 - [INFO] - ERKNM - add_knm_visited(1362) - выбор Класс опасности для объекта школа1 прошел успешно
+2022-09-14 12:22:37,666 - [INFO] - ERKNM - add_knm_visited(1388) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-09-14 12:22:47,372 - [INFO] - ERKNM - add_knm_visited(1398) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-09-14 12:25:22,640 - [INFO] - ERKNM - add_knm_visited(1434) - Нажимаем отметка об использовании проверочного листа
+2022-09-14 12:25:23,605 - [INFO] - ERKNM - add_knm_visited(1440) - Нажатие отметки об использовании проверочного листа прошла успешно
+2022-09-14 12:25:23,621 - [INFO] - ERKNM - add_knm_visited(1453) - Добавляем проверочный лист
+2022-09-14 12:25:24,322 - [INFO] - ERKNM - add_knm_visited(1459) - Добавляем проверочный лист прошла успешно
+2022-09-14 12:25:24,828 - [INFO] - ERKNM - add_knm_visited(1453) - Добавляем проверочный лист
+2022-09-14 12:25:25,217 - [INFO] - ERKNM - add_knm_visited(1459) - Добавляем проверочный лист прошла успешно
+2022-09-14 12:25:25,733 - [INFO] - ERKNM - add_knm_visited(1463) - выбираем проверочный лист
+2022-09-14 12:25:32,711 - [INFO] - ERKNM - add_knm_visited(1476) - Выбор всех проверочных листов успешно завершен
+2022-09-14 12:25:32,711 - [INFO] - ERKNM - add_knm_visited(1481) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-09-14 12:25:33,480 - [INFO] - ERKNM - add_knm_visited(1481) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-09-14 12:25:33,951 - [INFO] - ERKNM - add_knm_visited(1487) - Добавление места проведения контрольного (надзорного) мероприятия прошла успешно
+2022-09-14 12:25:34,454 - [INFO] - ERKNM - add_knm_visited(1492) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-09-14 12:25:51,356 - [INFO] - ERKNM - add_knm_visited(1492) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-09-14 12:26:05,716 - [INFO] - ERKNM - add_knm_visited(1500) - Вставляем места проведения контрольного (надзорного) мероприятия прошла успешно
+2022-09-14 12:26:07,948 - [INFO] - ERKNM - save_proverka(1532) - Сохранение проверки прошло успешно
+2022-09-14 12:27:04,840 - [INFO] - ERKNM - save_proverka(1557) - Получение номера и статуса проверки кнм
+2022-09-14 12:27:04,840 - [INFO] - ERKNM - enter_knms_in_erknm(133) - ('выездная|МБОУ Школа №127', {'школа': {'адрес': '603111, г.Нижний Новгород, ул.Комсомольская, 10а', 'начало проверки': '2023-10-09 00:00:00', 'окончание проверки': '2023-10-20 00:00:00', 'ОГРН': '1025202272116', 'деятельность': 'общеобразовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-01 00:00:00', 'строчка': 33}, 'школа1': {'адрес': '603043, г.Нижний Новгород, пр.Октября, 22а', 'начало проверки': '2023-10-09 00:00:00', 'окончание проверки': '2023-10-20 00:00:00', 'ОГРН': '1025202272116', 'деятельность': 'общеобразовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-01 00:00:00', 'строчка': 34}}) has been entered in erknm!
+2022-09-14 12:27:04,965 - [INFO] - ERKNM - enter_knms_in_erknm(143) - номер кнм выездная|МБОУ Школа №127  --->>>  КНМ 52230041000103413944 / 2023050341, status   --->>>  КНМ 52230041000103413944 / 2023050341
+2022-09-14 12:27:04,965 - [WARNING] - __main__ - <module>(118) - ОШИБКА ИСПОЛНЕНИЯ ПРОГРАММЫ! [Errno 13] Permission denied: 'Z:\\ДЛЯ ЭПИДЕМИОЛОГОВ\\2023\\забивать на 2023.xlsx'
+2022-09-14 12:27:04,965 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 12:27:07,320 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\3beec234eda8c449_chromedriver.exe
+2022-09-14 12:27:24,759 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 12:27:41,327 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000206CA84E130>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x003EDF13+2219795]
+	Ordinal0 [0x00382841+1779777]
+	Ordinal0 [0x0029423D+803389]
+	Ordinal0 [0x002C3025+995365]
+	Ordinal0 [0x002C31EB+995819]
+	Ordinal0 [0x002F0F52+1183570]
+	Ordinal0 [0x002DE844+1108036]
+	Ordinal0 [0x002EF192+1175954]
+	Ordinal0 [0x002DE616+1107478]
+	Ordinal0 [0x002B7F89+950153]
+	Ordinal0 [0x002B8F56+954198]
+	GetHandleVerifier [0x006E2CB2+3040210]
+	GetHandleVerifier [0x006D2BB4+2974420]
+	GetHandleVerifier [0x00486A0A+565546]
+	GetHandleVerifier [0x00485680+560544]
+	Ordinal0 [0x00389A5C+1808988]
+	Ordinal0 [0x0038E3A8+1827752]
+	Ordinal0 [0x0038E495+1827989]
+	Ordinal0 [0x003980A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 12:28:02,208 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000206CA84E130>>) Message: element click intercepted: Element <button class="_Button_5bv2s_1 _ButtonDefault_5bv2s_55 _SwitchButton_8ofrs_1 ButtonDefault _ButtonLarge_5bv2s_31 _ButtonContained_5bv2s_15" data-fz="248ФЗ" type="button">...</button> is not clickable at point (503, 85). Other element would receive the click: <div class="_TopHeader_el9jz_16">...</div>
+  (Session info: chrome=105.0.5195.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x003EDF13+2219795]
+	Ordinal0 [0x00382841+1779777]
+	Ordinal0 [0x0029423D+803389]
+	Ordinal0 [0x002C99D4+1022420]
+	Ordinal0 [0x002C78C4+1013956]
+	Ordinal0 [0x002C54AB+1004715]
+	Ordinal0 [0x002C4117+999703]
+	Ordinal0 [0x002B9B76+957302]
+	Ordinal0 [0x002DE7FC+1107964]
+	Ordinal0 [0x002B94B4+955572]
+	Ordinal0 [0x002DEA14+1108500]
+	Ordinal0 [0x002EF192+1175954]
+	Ordinal0 [0x002DE616+1107478]
+	Ordinal0 [0x002B7F89+950153]
+	Ordinal0 [0x002B8F56+954198]
+	GetHandleVerifier [0x006E2CB2+3040210]
+	GetHandleVerifier [0x006D2BB4+2974420]
+	GetHandleVerifier [0x00486A0A+565546]
+	GetHandleVerifier [0x00485680+560544]
+	Ordinal0 [0x00389A5C+1808988]
+	Ordinal0 [0x0038E3A8+1827752]
+	Ordinal0 [0x0038E495+1827989]
+	Ordinal0 [0x003980A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 12:28:12,611 - [WARNING] - ERKNM - autorize(88) - Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x003EDF13+2219795]
+	Ordinal0 [0x00382841+1779777]
+	Ordinal0 [0x0029423D+803389]
+	Ordinal0 [0x002C3025+995365]
+	Ordinal0 [0x002C31EB+995819]
+	Ordinal0 [0x002F0F52+1183570]
+	Ordinal0 [0x002DE844+1108036]
+	Ordinal0 [0x002EF192+1175954]
+	Ordinal0 [0x002DE616+1107478]
+	Ordinal0 [0x002B7F89+950153]
+	Ordinal0 [0x002B8F56+954198]
+	GetHandleVerifier [0x006E2CB2+3040210]
+	GetHandleVerifier [0x006D2BB4+2974420]
+	GetHandleVerifier [0x00486A0A+565546]
+	GetHandleVerifier [0x00485680+560544]
+	Ordinal0 [0x00389A5C+1808988]
+	Ordinal0 [0x0038E3A8+1827752]
+	Ordinal0 [0x0038E495+1827989]
+	Ordinal0 [0x003980A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 12:28:12,657 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000206CA84E130>>) local variable 'ex' referenced before assignment
+2022-09-14 12:28:23,140 - [WARNING] - ERKNM - autorize(88) - Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x003EDF13+2219795]
+	Ordinal0 [0x00382841+1779777]
+	Ordinal0 [0x0029423D+803389]
+	Ordinal0 [0x002C3025+995365]
+	Ordinal0 [0x002C31EB+995819]
+	Ordinal0 [0x002F0F52+1183570]
+	Ordinal0 [0x002DE844+1108036]
+	Ordinal0 [0x002EF192+1175954]
+	Ordinal0 [0x002DE616+1107478]
+	Ordinal0 [0x002B7F89+950153]
+	Ordinal0 [0x002B8F56+954198]
+	GetHandleVerifier [0x006E2CB2+3040210]
+	GetHandleVerifier [0x006D2BB4+2974420]
+	GetHandleVerifier [0x00486A0A+565546]
+	GetHandleVerifier [0x00485680+560544]
+	Ordinal0 [0x00389A5C+1808988]
+	Ordinal0 [0x0038E3A8+1827752]
+	Ordinal0 [0x0038E495+1827989]
+	Ordinal0 [0x003980A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 12:28:23,140 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000206CA84E130>>) local variable 'ex' referenced before assignment
+2022-09-14 12:28:28,709 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProtocolError('Connection aborted.', ConnectionResetError(10054, 'Удаленный хост принудительно разорвал существующее подключение', None, 10054, None))': /session/a7b6b8a01278a4203131f8eb639498e9
+2022-09-14 12:36:38,919 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 12:36:41,216 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\2e8f4482a902a044_chromedriver.exe
+2022-09-14 12:36:45,864 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 12:37:14,594 - [INFO] - ERKNM - autorize(115) - Autorization successfull completed!
+2022-09-14 12:37:14,595 - [INFO] - ERKNM - Controller(66) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001B67252E340>>) прошла с 1 раза
+2022-09-14 12:37:14,595 - [INFO] - ERKNM - enter_knms_in_erknm(121) - Ready knms list to enter in erknm
+2022-09-14 12:37:15,307 - [INFO] - ERKNM - add_knm_visited(1086) - 
+2022-09-14 12:37:15,308 - [INFO] - ERKNM - add_knm_visited(1087) - выездная|МБОУ "Школа № 182"
+2022-09-14 12:37:15,308 - [INFO] - ERKNM - add_knm_visited(1088) - 
+2022-09-14 12:37:15,308 - [INFO] - ERKNM - add_knm_visited(1120) - вставляем наименование органа контроля
+2022-09-14 12:37:17,088 - [INFO] - ERKNM - add_knm_visited(1131) - вставка наименования органа контроля прошла успешно
+2022-09-14 12:37:17,088 - [INFO] - ERKNM - add_knm_visited(1135) - вставляем Вид контроля
+2022-09-14 12:37:17,313 - [INFO] - ERKNM - add_knm_visited(1144) - вставка Вид контроля прошла успешно
+2022-09-14 12:37:17,313 - [INFO] - ERKNM - add_knm_visited(1148) - вставляем Вид КНМ
+2022-09-14 12:37:27,987 - [INFO] - ERKNM - add_knm_visited(1158) - вставка Вид КНМ прошла успешно
+2022-09-14 12:37:27,987 - [INFO] - ERKNM - enter_type_proverka(1508) - вставляем Характер КНМ
+2022-09-14 12:37:37,632 - [INFO] - ERKNM - enter_type_proverka(1519) - вставка Характер КНМ прошла успешно
+2022-09-14 12:37:37,632 - [INFO] - ERKNM - add_knm_visited(1168) - вставляем Номер плана
+2022-09-14 12:37:42,179 - [INFO] - ERKNM - add_knm_visited(1176) - вставка Номер плана прошла успешно
+2022-09-14 12:37:42,179 - [INFO] - ERKNM - add_knm_visited(1180) - вставляем Дата начала КНМ
+2022-09-14 12:37:46,593 - [INFO] - ERKNM - add_knm_visited(1191) - вставка Дата начала КНМ прошла успешно
+2022-09-14 12:37:46,593 - [INFO] - ERKNM - add_knm_visited(1195) - вставляем Дата окончания КНМ
+2022-09-14 12:37:50,695 - [INFO] - ERKNM - add_knm_visited(1206) - вставка Дата окончания КНМ прошла успешно
+2022-09-14 12:37:50,695 - [INFO] - ERKNM - add_knm_visited(1210) - вставляем Cрок проведения (дней)
+2022-09-14 12:37:51,733 - [INFO] - ERKNM - add_knm_visited(1219) - вставка Cрок проведения (дней) прошла успешно
+2022-09-14 12:37:51,733 - [INFO] - ERKNM - add_knm_visited(1223) - вставляем Срок непосредственного взаимодействия (часов)
+2022-09-14 12:37:52,707 - [INFO] - ERKNM - add_knm_visited(1232) - вставка Срок непосредственного взаимодействия (часов) прошла успешно
+2022-09-14 12:37:52,707 - [INFO] - ERKNM - add_knm_visited(1236) - вставляем Основания включения в план
+2022-09-14 12:37:56,600 - [INFO] - ERKNM - add_knm_visited(1262) - вставка Основания включения в план прошла успешно
+2022-09-14 12:37:56,600 - [INFO] - ERKNM - add_knm_visited(1266) - вставляем Наименование прокуратуры
+2022-09-14 12:37:57,741 - [INFO] - ERKNM - add_knm_visited(1276) - вставка Наименование прокуратуры прошла успешно
+2022-09-14 12:37:57,741 - [INFO] - ERKNM - add_knm_visited(1280) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-09-14 12:38:04,902 - [INFO] - ERKNM - add_knm_visited(1290) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-09-14 12:38:08,457 - [INFO] - ERKNM - add_knm_visited(1299) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-09-14 12:38:09,847 - [INFO] - ERKNM - add_knm_visited(1318) - выбираем тип для объекта школа
+2022-09-14 12:38:11,029 - [INFO] - ERKNM - add_knm_visited(1321) - выбор тип для объекта школа прошел успешно
+2022-09-14 12:38:11,282 - [INFO] - ERKNM - add_knm_visited(1332) - выбираем вид для объекта школа
+2022-09-14 12:38:12,231 - [INFO] - ERKNM - add_knm_visited(1336) - выбор вид для объекта школа прошел успешно
+2022-09-14 12:38:12,485 - [INFO] - ERKNM - add_knm_visited(1343) - выбираем Категория риска для объекта школа
+2022-09-14 12:38:13,349 - [INFO] - ERKNM - add_knm_visited(1347) - выбор Категория риска для объекта школа прошел успешно
+2022-09-14 12:38:13,605 - [INFO] - ERKNM - add_knm_visited(1358) - выбираем Класс опасности для объекта школа
+2022-09-14 12:38:14,509 - [INFO] - ERKNM - add_knm_visited(1362) - выбор Класс опасности для объекта школа прошел успешно
+2022-09-14 12:38:16,008 - [INFO] - ERKNM - add_knm_visited(1318) - выбираем тип для объекта {'адрес': '603029, г.Нижний Новгород, ул. Космонавта Комарова, д. 6', 'начало проверки': '2023-10-09 00:00:00', 'окончание проверки': '2023-10-20 00:00:00', 'ОГРН': '1025202617813', 'деятельность': 'общеобразовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2021-12-08 00:00:00', 'строчка': 36}
+2022-09-14 12:38:17,518 - [INFO] - ERKNM - add_knm_visited(1321) - выбор тип для объекта школа1 прошел успешно
+2022-09-14 12:38:17,782 - [INFO] - ERKNM - add_knm_visited(1332) - выбираем вид для объекта {'адрес': '603029, г.Нижний Новгород, ул. Космонавта Комарова, д. 6', 'начало проверки': '2023-10-09 00:00:00', 'окончание проверки': '2023-10-20 00:00:00', 'ОГРН': '1025202617813', 'деятельность': 'общеобразовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2021-12-08 00:00:00', 'строчка': 36}
+2022-09-14 12:38:18,447 - [INFO] - ERKNM - add_knm_visited(1336) - выбор вид для объекта школа1 прошел успешно
+2022-09-14 12:38:18,702 - [INFO] - ERKNM - add_knm_visited(1343) - выбираем Категория риска для объекта {'адрес': '603029, г.Нижний Новгород, ул. Космонавта Комарова, д. 6', 'начало проверки': '2023-10-09 00:00:00', 'окончание проверки': '2023-10-20 00:00:00', 'ОГРН': '1025202617813', 'деятельность': 'общеобразовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2021-12-08 00:00:00', 'строчка': 36}
+2022-09-14 12:38:19,300 - [INFO] - ERKNM - add_knm_visited(1347) - выбор Категория риска для объекта школа1 прошел успешно
+2022-09-14 12:38:19,556 - [INFO] - ERKNM - add_knm_visited(1358) - выбираем Класс опасности для объекта школа1
+2022-09-14 12:38:20,276 - [INFO] - ERKNM - add_knm_visited(1362) - выбор Класс опасности для объекта школа1 прошел успешно
+2022-09-14 12:39:08,811 - [INFO] - ERKNM - add_knm_visited(1388) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-09-14 12:39:16,963 - [INFO] - ERKNM - add_knm_visited(1398) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-09-14 12:39:38,683 - [WARNING] - __main__ - <module>(118) - ОШИБКА ИСПОЛНЕНИЯ ПРОГРАММЫ! Message: no such element: Unable to locate element: {"method":"xpath","selector":"./td[2]/div/div/div[2]//div[text()="Создать новый"]"}
+  (Session info: chrome=105.0.5195.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00B4DF13+2219795]
+	Ordinal0 [0x00AE2841+1779777]
+	Ordinal0 [0x009F423D+803389]
+	Ordinal0 [0x00A23025+995365]
+	Ordinal0 [0x00A231EB+995819]
+	Ordinal0 [0x00A19531+955697]
+	Ordinal0 [0x00A3E844+1108036]
+	Ordinal0 [0x00A194B4+955572]
+	Ordinal0 [0x00A3EA14+1108500]
+	Ordinal0 [0x00A4F192+1175954]
+	Ordinal0 [0x00A3E616+1107478]
+	Ordinal0 [0x00A17F89+950153]
+	Ordinal0 [0x00A18F56+954198]
+	GetHandleVerifier [0x00E42CB2+3040210]
+	GetHandleVerifier [0x00E32BB4+2974420]
+	GetHandleVerifier [0x00BE6A0A+565546]
+	GetHandleVerifier [0x00BE5680+560544]
+	Ordinal0 [0x00AE9A5C+1808988]
+	Ordinal0 [0x00AEE3A8+1827752]
+	Ordinal0 [0x00AEE495+1827989]
+	Ordinal0 [0x00AF80A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 12:39:38,683 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 12:39:41,123 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\01bdf9c31f0d8622_chromedriver.exe
+2022-09-14 12:41:48,867 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 12:41:51,163 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\151d10b86d1f6e19_chromedriver.exe
+2022-09-14 12:41:53,416 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 12:42:25,564 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001CDB5D2E340>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00CADF13+2219795]
+	Ordinal0 [0x00C42841+1779777]
+	Ordinal0 [0x00B5423D+803389]
+	Ordinal0 [0x00B83025+995365]
+	Ordinal0 [0x00B831EB+995819]
+	Ordinal0 [0x00BB0F52+1183570]
+	Ordinal0 [0x00B9E844+1108036]
+	Ordinal0 [0x00BAF192+1175954]
+	Ordinal0 [0x00B9E616+1107478]
+	Ordinal0 [0x00B77F89+950153]
+	Ordinal0 [0x00B78F56+954198]
+	GetHandleVerifier [0x00FA2CB2+3040210]
+	GetHandleVerifier [0x00F92BB4+2974420]
+	GetHandleVerifier [0x00D46A0A+565546]
+	GetHandleVerifier [0x00D45680+560544]
+	Ordinal0 [0x00C49A5C+1808988]
+	Ordinal0 [0x00C4E3A8+1827752]
+	Ordinal0 [0x00C4E495+1827989]
+	Ordinal0 [0x00C580A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 12:42:57,469 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001CDB5D2E340>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00CADF13+2219795]
+	Ordinal0 [0x00C42841+1779777]
+	Ordinal0 [0x00B5423D+803389]
+	Ordinal0 [0x00B83025+995365]
+	Ordinal0 [0x00B831EB+995819]
+	Ordinal0 [0x00BB0F52+1183570]
+	Ordinal0 [0x00B9E844+1108036]
+	Ordinal0 [0x00BAF192+1175954]
+	Ordinal0 [0x00B9E616+1107478]
+	Ordinal0 [0x00B77F89+950153]
+	Ordinal0 [0x00B78F56+954198]
+	GetHandleVerifier [0x00FA2CB2+3040210]
+	GetHandleVerifier [0x00F92BB4+2974420]
+	GetHandleVerifier [0x00D46A0A+565546]
+	GetHandleVerifier [0x00D45680+560544]
+	Ordinal0 [0x00C49A5C+1808988]
+	Ordinal0 [0x00C4E3A8+1827752]
+	Ordinal0 [0x00C4E495+1827989]
+	Ordinal0 [0x00C580A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 12:43:08,692 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001CDB5D2E340>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00CADF13+2219795]
+	Ordinal0 [0x00C42841+1779777]
+	Ordinal0 [0x00B5423D+803389]
+	Ordinal0 [0x00B83025+995365]
+	Ordinal0 [0x00B831EB+995819]
+	Ordinal0 [0x00BB0F52+1183570]
+	Ordinal0 [0x00B9E844+1108036]
+	Ordinal0 [0x00BAF192+1175954]
+	Ordinal0 [0x00B9E616+1107478]
+	Ordinal0 [0x00B77F89+950153]
+	Ordinal0 [0x00B78F56+954198]
+	GetHandleVerifier [0x00FA2CB2+3040210]
+	GetHandleVerifier [0x00F92BB4+2974420]
+	GetHandleVerifier [0x00D46A0A+565546]
+	GetHandleVerifier [0x00D45680+560544]
+	Ordinal0 [0x00C49A5C+1808988]
+	Ordinal0 [0x00C4E3A8+1827752]
+	Ordinal0 [0x00C4E495+1827989]
+	Ordinal0 [0x00C580A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 12:43:20,068 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001CDB5D2E340>>) Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00CADF13+2219795]
+	Ordinal0 [0x00C42841+1779777]
+	Ordinal0 [0x00B5423D+803389]
+	Ordinal0 [0x00B83025+995365]
+	Ordinal0 [0x00B831EB+995819]
+	Ordinal0 [0x00BB0F52+1183570]
+	Ordinal0 [0x00B9E844+1108036]
+	Ordinal0 [0x00BAF192+1175954]
+	Ordinal0 [0x00B9E616+1107478]
+	Ordinal0 [0x00B77F89+950153]
+	Ordinal0 [0x00B78F56+954198]
+	GetHandleVerifier [0x00FA2CB2+3040210]
+	GetHandleVerifier [0x00F92BB4+2974420]
+	GetHandleVerifier [0x00D46A0A+565546]
+	GetHandleVerifier [0x00D45680+560544]
+	Ordinal0 [0x00C49A5C+1808988]
+	Ordinal0 [0x00C4E3A8+1827752]
+	Ordinal0 [0x00C4E495+1827989]
+	Ordinal0 [0x00C580A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 12:43:30,546 - [WARNING] - ERKNM - autorize(88) - Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00CADF13+2219795]
+	Ordinal0 [0x00C42841+1779777]
+	Ordinal0 [0x00B5423D+803389]
+	Ordinal0 [0x00B83025+995365]
+	Ordinal0 [0x00B831EB+995819]
+	Ordinal0 [0x00BB0F52+1183570]
+	Ordinal0 [0x00B9E844+1108036]
+	Ordinal0 [0x00BAF192+1175954]
+	Ordinal0 [0x00B9E616+1107478]
+	Ordinal0 [0x00B77F89+950153]
+	Ordinal0 [0x00B78F56+954198]
+	GetHandleVerifier [0x00FA2CB2+3040210]
+	GetHandleVerifier [0x00F92BB4+2974420]
+	GetHandleVerifier [0x00D46A0A+565546]
+	GetHandleVerifier [0x00D45680+560544]
+	Ordinal0 [0x00C49A5C+1808988]
+	Ordinal0 [0x00C4E3A8+1827752]
+	Ordinal0 [0x00C4E495+1827989]
+	Ordinal0 [0x00C580A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+
+2022-09-14 12:43:30,562 - [WARNING] - ERKNM - Controller(71) - Ошибка авторизации: functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001CDB5D2E340>>) local variable 'ex' referenced before assignment
+2022-09-14 12:43:30,562 - [INFO] - ERKNM - Controller(75) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001CDB5D2E340>>) не удалась, имеется непредвиденная ошибка, было предпринято 5 попыток
+2022-09-14 12:43:30,780 - [INFO] - ERKNM - enter_knms_in_erknm(121) - Ready knms list to enter in erknm
+2022-09-14 12:43:34,911 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001CDB66F0550>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/d2b0f58607a1e753bc9b75eb36be6bae/execute/sync
+2022-09-14 12:43:38,979 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001CDB65DEA30>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/d2b0f58607a1e753bc9b75eb36be6bae/execute/sync
+2022-09-14 12:43:43,085 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001CDB65DEFA0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/d2b0f58607a1e753bc9b75eb36be6bae/execute/sync
+2022-09-14 12:43:47,210 - [WARNING] - __main__ - <module>(118) - ОШИБКА ИСПОЛНЕНИЯ ПРОГРАММЫ! HTTPConnectionPool(host='localhost', port=54551): Max retries exceeded with url: /session/d2b0f58607a1e753bc9b75eb36be6bae/execute/sync (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001CDB65DE6D0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение'))
+2022-09-14 12:43:47,210 - [INFO] - __main__ - main(91) - Начало выполнения программы
+2022-09-14 12:43:49,384 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\dc056ee9e09435d7_chromedriver.exe
+2022-09-14 12:43:51,970 - [INFO] - ERKNM - __init__(53) - Начало авторизации
+2022-09-14 12:44:09,658 - [INFO] - ERKNM - autorize(115) - Autorization successfull completed!
+2022-09-14 12:44:09,659 - [INFO] - ERKNM - Controller(66) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000001CDB50571C0>>) прошла с 1 раза
+2022-09-14 12:44:09,659 - [INFO] - ERKNM - enter_knms_in_erknm(121) - Ready knms list to enter in erknm
+2022-09-14 12:44:09,786 - [INFO] - ERKNM - add_knm_visited(1086) - 
+2022-09-14 12:44:09,786 - [INFO] - ERKNM - add_knm_visited(1087) - выездная|МБОУ "Школа № 182"
+2022-09-14 12:44:09,786 - [INFO] - ERKNM - add_knm_visited(1088) - 
+2022-09-14 12:44:09,786 - [INFO] - ERKNM - add_knm_visited(1120) - вставляем наименование органа контроля
+2022-09-14 12:44:11,934 - [INFO] - ERKNM - add_knm_visited(1131) - вставка наименования органа контроля прошла успешно
+2022-09-14 12:44:11,934 - [INFO] - ERKNM - add_knm_visited(1135) - вставляем Вид контроля
+2022-09-14 12:44:12,280 - [INFO] - ERKNM - add_knm_visited(1144) - вставка Вид контроля прошла успешно
+2022-09-14 12:44:12,280 - [INFO] - ERKNM - add_knm_visited(1148) - вставляем Вид КНМ
+2022-09-14 12:44:23,149 - [INFO] - ERKNM - add_knm_visited(1158) - вставка Вид КНМ прошла успешно
+2022-09-14 12:44:23,150 - [INFO] - ERKNM - enter_type_proverka(1508) - вставляем Характер КНМ
+2022-09-14 12:44:32,720 - [INFO] - ERKNM - enter_type_proverka(1519) - вставка Характер КНМ прошла успешно
+2022-09-14 12:44:32,720 - [INFO] - ERKNM - add_knm_visited(1168) - вставляем Номер плана
+2022-09-14 12:44:37,256 - [INFO] - ERKNM - add_knm_visited(1176) - вставка Номер плана прошла успешно
+2022-09-14 12:44:37,256 - [INFO] - ERKNM - add_knm_visited(1180) - вставляем Дата начала КНМ
+2022-09-14 12:44:41,637 - [INFO] - ERKNM - add_knm_visited(1191) - вставка Дата начала КНМ прошла успешно
+2022-09-14 12:44:41,637 - [INFO] - ERKNM - add_knm_visited(1195) - вставляем Дата окончания КНМ
+2022-09-14 12:44:45,480 - [INFO] - ERKNM - add_knm_visited(1206) - вставка Дата окончания КНМ прошла успешно
+2022-09-14 12:44:45,481 - [INFO] - ERKNM - add_knm_visited(1210) - вставляем Cрок проведения (дней)
+2022-09-14 12:44:46,311 - [INFO] - ERKNM - add_knm_visited(1219) - вставка Cрок проведения (дней) прошла успешно
+2022-09-14 12:44:46,312 - [INFO] - ERKNM - add_knm_visited(1223) - вставляем Срок непосредственного взаимодействия (часов)
+2022-09-14 12:44:47,134 - [INFO] - ERKNM - add_knm_visited(1232) - вставка Срок непосредственного взаимодействия (часов) прошла успешно
+2022-09-14 12:44:47,134 - [INFO] - ERKNM - add_knm_visited(1236) - вставляем Основания включения в план
+2022-09-14 12:44:50,937 - [INFO] - ERKNM - add_knm_visited(1262) - вставка Основания включения в план прошла успешно
+2022-09-14 12:44:50,937 - [INFO] - ERKNM - add_knm_visited(1266) - вставляем Наименование прокуратуры
+2022-09-14 12:44:52,311 - [INFO] - ERKNM - add_knm_visited(1276) - вставка Наименование прокуратуры прошла успешно
+2022-09-14 12:44:52,311 - [INFO] - ERKNM - add_knm_visited(1280) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-09-14 12:44:59,339 - [INFO] - ERKNM - add_knm_visited(1290) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-09-14 12:45:02,635 - [INFO] - ERKNM - add_knm_visited(1299) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-09-14 12:45:04,201 - [INFO] - ERKNM - add_knm_visited(1318) - выбираем тип для объекта школа
+2022-09-14 12:45:05,060 - [INFO] - ERKNM - add_knm_visited(1321) - выбор тип для объекта школа прошел успешно
+2022-09-14 12:45:05,315 - [INFO] - ERKNM - add_knm_visited(1332) - выбираем вид для объекта школа
+2022-09-14 12:45:06,244 - [INFO] - ERKNM - add_knm_visited(1336) - выбор вид для объекта школа прошел успешно
+2022-09-14 12:45:06,504 - [INFO] - ERKNM - add_knm_visited(1343) - выбираем Категория риска для объекта школа
+2022-09-14 12:45:07,348 - [INFO] - ERKNM - add_knm_visited(1347) - выбор Категория риска для объекта школа прошел успешно
+2022-09-14 12:45:07,612 - [INFO] - ERKNM - add_knm_visited(1358) - выбираем Класс опасности для объекта школа
+2022-09-14 12:45:08,454 - [INFO] - ERKNM - add_knm_visited(1362) - выбор Класс опасности для объекта школа прошел успешно
+2022-09-14 12:45:09,753 - [INFO] - ERKNM - add_knm_visited(1318) - выбираем тип для объекта {'адрес': '603029, г.Нижний Новгород, ул. Космонавта Комарова, д. 6', 'начало проверки': '2023-10-09 00:00:00', 'окончание проверки': '2023-10-20 00:00:00', 'ОГРН': '1025202617813', 'деятельность': 'общеобразовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2021-12-08 00:00:00', 'строчка': 36}
+2022-09-14 12:45:11,355 - [INFO] - ERKNM - add_knm_visited(1321) - выбор тип для объекта школа1 прошел успешно
+2022-09-14 12:45:11,611 - [INFO] - ERKNM - add_knm_visited(1332) - выбираем вид для объекта {'адрес': '603029, г.Нижний Новгород, ул. Космонавта Комарова, д. 6', 'начало проверки': '2023-10-09 00:00:00', 'окончание проверки': '2023-10-20 00:00:00', 'ОГРН': '1025202617813', 'деятельность': 'общеобразовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2021-12-08 00:00:00', 'строчка': 36}
+2022-09-14 12:45:12,515 - [INFO] - ERKNM - add_knm_visited(1336) - выбор вид для объекта школа1 прошел успешно
+2022-09-14 12:45:12,771 - [INFO] - ERKNM - add_knm_visited(1343) - выбираем Категория риска для объекта {'адрес': '603029, г.Нижний Новгород, ул. Космонавта Комарова, д. 6', 'начало проверки': '2023-10-09 00:00:00', 'окончание проверки': '2023-10-20 00:00:00', 'ОГРН': '1025202617813', 'деятельность': 'общеобразовательные организации', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2021-12-08 00:00:00', 'строчка': 36}
+2022-09-14 12:45:13,614 - [INFO] - ERKNM - add_knm_visited(1347) - выбор Категория риска для объекта школа1 прошел успешно
+2022-09-14 12:45:13,865 - [INFO] - ERKNM - add_knm_visited(1358) - выбираем Класс опасности для объекта школа1
+2022-09-14 12:45:14,717 - [INFO] - ERKNM - add_knm_visited(1362) - выбор Класс опасности для объекта школа1 прошел успешно
+2022-09-14 12:46:02,764 - [INFO] - ERKNM - add_knm_visited(1388) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-09-14 12:46:11,182 - [INFO] - ERKNM - add_knm_visited(1398) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-09-14 12:47:41,109 - [WARNING] - __main__ - <module>(118) - ОШИБКА ИСПОЛНЕНИЯ ПРОГРАММЫ! Message: chrome not reachable
+  (Session info: chrome=105.0.5195.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x002DDF13+2219795]
+	Ordinal0 [0x00272841+1779777]
+	Ordinal0 [0x00184100+803072]
+	Ordinal0 [0x00179BF2+760818]
+	Ordinal0 [0x0016CD35+707893]
+	Ordinal0 [0x00171122+725282]
+	Ordinal0 [0x00175699+743065]
+	Ordinal0 [0x00185610+808464]
+	Ordinal0 [0x001DE93A+1173818]
+	Ordinal0 [0x001CE616+1107478]
+	Ordinal0 [0x001A7F89+950153]
+	Ordinal0 [0x001A8F56+954198]
+	GetHandleVerifier [0x005D2CB2+3040210]
+	GetHandleVerifier [0x005C2BB4+2974420]
+	GetHandleVerifier [0x00376A0A+565546]
+	GetHandleVerifier [0x00375680+560544]
+	Ordinal0 [0x00279A5C+1808988]
+	Ordinal0 [0x0027E3A8+1827752]
+	Ordinal0 [0x0027E495+1827989]
+	Ordinal0 [0x002880A4+1867940]
+	BaseThreadInitThunk [0x75D5FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77E47A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77E47A6E+238]
+	(No symbol) [0x00000000]
+
+2022-09-14 12:47:41,109 - [INFO] - __main__ - main(91) - Начало выполнения программы

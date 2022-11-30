@@ -1,0 +1,6 @@
+venv/
+.DS_Store
+.idea
+Plan_knm_full_2022.json
+Plan_knm_full_2023.json
+KNM_list_50.json

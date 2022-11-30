@@ -1,0 +1,1464 @@
+2022-08-29 09:56:15,653 - [INFO] - __main__ - main(67) - Начало выполнения программы
+2022-08-29 09:56:17,929 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\70ff979bc2d8ac48_chromedriver.exe
+2022-08-29 09:56:31,561 - [INFO] - ERKNM - __init__(50) - Начало авторизации
+2022-08-29 09:56:47,458 - [INFO] - ERKNM - autorize(115) - Autorization successfull completed!
+2022-08-29 09:56:47,458 - [INFO] - ERKNM - Controller(64) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x000002269C8A27F0>>) прошла с 1 раза
+2022-08-29 09:56:47,458 - [INFO] - ERKNM - enter_knms_in_erknm(124) - Ready knms list to enter in erknm
+2022-08-29 09:56:47,641 - [INFO] - ERKNM - add_knm_reid(161) - 
+2022-08-29 09:56:47,641 - [INFO] - ERKNM - add_knm_reid(162) - рейдовая|Пришкольные лагеря Богородского района
+2022-08-29 09:56:47,641 - [INFO] - ERKNM - add_knm_reid(163) - 
+2022-08-29 09:56:47,641 - [INFO] - ERKNM - add_knm_reid(196) - вставляем наименование органа контроля
+2022-08-29 09:56:49,789 - [INFO] - ERKNM - add_knm_reid(204) - вставка наименования органа контроля прошла успешно
+2022-08-29 09:56:49,789 - [INFO] - ERKNM - add_knm_reid(209) - вставляем Вид контроля
+2022-08-29 09:56:50,414 - [INFO] - ERKNM - add_knm_reid(218) - вставка Вид контроля прошла успешно
+2022-08-29 09:56:50,414 - [INFO] - ERKNM - add_knm_reid(225) - вставляем Вид КНМ
+2022-08-29 09:57:00,209 - [INFO] - ERKNM - add_knm_reid(234) - вставка Вид КНМ прошла успешно
+2022-08-29 09:57:00,209 - [INFO] - ERKNM - add_knm_reid(240) - вставляем Характер КНМ
+2022-08-29 09:57:05,056 - [INFO] - ERKNM - add_knm_reid(250) - вставка Характер КНМ прошла успешно
+2022-08-29 09:57:05,056 - [INFO] - ERKNM - add_knm_reid(257) - вставляем Номер плана
+2022-08-29 09:57:09,242 - [INFO] - ERKNM - add_knm_reid(264) - вставка Номер плана прошла успешно
+2022-08-29 09:57:09,242 - [INFO] - ERKNM - add_knm_reid(271) - вставляем Дата начала КНМ
+2022-08-29 09:57:12,795 - [INFO] - ERKNM - add_knm_reid(279) - вставка Дата начала КНМ прошла успешно
+2022-08-29 09:57:12,795 - [INFO] - ERKNM - add_knm_reid(286) - вставляем Дата окончания КНМ
+2022-08-29 09:57:17,264 - [INFO] - ERKNM - add_knm_reid(296) - вставка Дата окончания КНМ прошла успешно
+2022-08-29 09:57:17,265 - [INFO] - ERKNM - add_knm_reid(303) - вставляем Cрок проведения (дней)
+2022-08-29 09:57:18,065 - [INFO] - ERKNM - add_knm_reid(312) - вставка Cрок проведения (дней) прошла успешно
+2022-08-29 09:57:18,065 - [INFO] - ERKNM - add_knm_reid(318) - вставляем Срок непосредственного взаимодействия (часов)
+2022-08-29 09:57:18,879 - [INFO] - ERKNM - add_knm_reid(327) - вставка Срок непосредственного взаимодействия (часов) прошла успешно
+2022-08-29 09:57:18,879 - [INFO] - ERKNM - add_knm_reid(332) - вставляем Основания включения в план
+2022-08-29 09:57:22,584 - [INFO] - ERKNM - add_knm_reid(360) - вставка Основания включения в план прошла успешно
+2022-08-29 09:57:22,584 - [INFO] - ERKNM - add_knm_reid(367) - вставляем Наименование прокуратуры
+2022-08-29 09:57:23,957 - [INFO] - ERKNM - add_knm_reid(377) - вставка Наименование прокуратуры прошла успешно
+2022-08-29 09:57:23,957 - [INFO] - ERKNM - add_knm_reid(384) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 09:57:30,778 - [INFO] - ERKNM - add_knm_reid(394) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 09:57:34,286 - [INFO] - ERKNM - add_knm_reid(405) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 09:57:35,336 - [INFO] - ERKNM - add_knm_reid(420) - выбираем тип для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4}
+2022-08-29 09:57:36,400 - [INFO] - ERKNM - add_knm_reid(423) - выбор тип для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4} прошел успешно
+2022-08-29 09:57:36,400 - [INFO] - ERKNM - add_knm_reid(436) - выбираем вид для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4}
+2022-08-29 09:57:37,281 - [INFO] - ERKNM - add_knm_reid(440) - выбор вид для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4} прошел успешно
+2022-08-29 09:57:37,554 - [INFO] - ERKNM - add_knm_reid(447) - выбираем Категория риска для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4}
+2022-08-29 09:57:38,367 - [INFO] - ERKNM - add_knm_reid(452) - выбор Категория риска для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4} прошел успешно
+2022-08-29 09:57:38,619 - [INFO] - ERKNM - add_knm_reid(459) - выбираем Класс опасности для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4}
+2022-08-29 09:57:39,446 - [INFO] - ERKNM - add_knm_reid(463) - выбор Класс опасности для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4} прошел успешно
+2022-08-29 09:58:25,882 - [INFO] - ERKNM - add_knm_reid(490) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-08-29 10:00:01,415 - [INFO] - ERKNM - add_knm_reid(517) - Добавление Сведения об остальных контролируемых лицах прошло успешно
+2022-08-29 10:00:01,415 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:00:08,441 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:00:12,086 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:00:12,087 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:00:19,531 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:00:23,099 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:00:23,099 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:00:30,592 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:00:34,184 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:00:34,184 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:00:41,646 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:00:45,232 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:00:45,233 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:00:52,703 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:00:56,277 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:00:56,277 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:01:03,761 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:01:07,334 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:01:07,334 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:01:14,766 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:01:45,436 - [WARNING] - ERKNM - add_knm_reid(545) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) не прошел: Message: 
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:01:45,436 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:01:52,408 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:01:54,250 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:01:54,250 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:02:02,229 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:02:03,798 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:02:03,798 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:02:11,766 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:02:13,332 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:02:13,332 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:02:21,378 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:02:22,946 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:02:22,946 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:02:30,946 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:02:32,500 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:02:32,500 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:02:40,466 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:02:42,037 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:02:42,037 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:02:50,010 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:02:51,629 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:02:51,629 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:02:59,623 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:03:01,241 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:03:01,241 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:03:09,428 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:03:11,079 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:03:11,079 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:03:20,052 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:03:21,812 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:03:21,812 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:03:30,857 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:03:32,289 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:03:32,289 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:03:40,532 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:03:42,501 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:03:42,501 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:03:50,983 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:03:52,499 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:03:52,499 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:54,139 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:54,576 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:54,982 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:55,414 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:55,820 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:56,242 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:56,633 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:57,055 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:57,430 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:57,877 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:58,231 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:58,637 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:59,012 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:59,434 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:03:59,841 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:00,231 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:00,601 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:01,023 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:01,429 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:01,835 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,210 - [INFO] - ERKNM - add_knm_reid(651) - Добавление места проведения контрольного (надзорного) мероприятия прошла успешно
+2022-08-29 10:04:02,721 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,721 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[1]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,721 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,736 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[2]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,736 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,736 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[3]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,736 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,752 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[4]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,752 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,768 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[5]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,768 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,768 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[6]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,768 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,783 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[7]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,783 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,783 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[8]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,783 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,799 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[9]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,799 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,815 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[10]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,815 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,815 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[11]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,815 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,830 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[12]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,830 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,846 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[13]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,846 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,846 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[14]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,846 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,861 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[15]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,861 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,861 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[16]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,861 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,877 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[17]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,877 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,893 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[18]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,893 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,893 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[19]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,893 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,908 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[20]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,908 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:04:02,924 - [WARNING] - ERKNM - add_knm_reid(662) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[7]/div[2]/div[21]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x004D78B3+2193587]
+	Ordinal0 [0x00470681+1771137]
+	Ordinal0 [0x003841A8+803240]
+	Ordinal0 [0x003B24A0+992416]
+	Ordinal0 [0x003B273B+993083]
+	Ordinal0 [0x003DF7C2+1177538]
+	Ordinal0 [0x003CD7F4+1103860]
+	Ordinal0 [0x003DDAE2+1170146]
+	Ordinal0 [0x003CD5C6+1103302]
+	Ordinal0 [0x003A77E0+948192]
+	Ordinal0 [0x003A86E6+952038]
+	GetHandleVerifier [0x00780CB2+2738370]
+	GetHandleVerifier [0x007721B8+2678216]
+	GetHandleVerifier [0x005617AA+512954]
+	GetHandleVerifier [0x00560856+509030]
+	Ordinal0 [0x0047743B+1799227]
+	Ordinal0 [0x0047BB68+1817448]
+	Ordinal0 [0x0047BC55+1817685]
+	Ordinal0 [0x00485230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:04:02,924 - [INFO] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия прошла успешно
+2022-08-29 10:14:27,394 - [INFO] - __main__ - main(67) - Начало выполнения программы
+2022-08-29 10:14:29,383 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\user\appdata\roaming\undetected_chromedriver\44e6c7137439c432_chromedriver.exe
+2022-08-29 10:14:32,595 - [INFO] - ERKNM - __init__(50) - Начало авторизации
+2022-08-29 10:15:07,367 - [INFO] - ERKNM - autorize(115) - Autorization successfull completed!
+2022-08-29 10:15:07,367 - [INFO] - ERKNM - Controller(64) - functools.partial(<bound method erknm.autorize of <ERKNM.erknm object at 0x00000269E21317F0>>) прошла с 1 раза
+2022-08-29 10:15:07,367 - [INFO] - ERKNM - enter_knms_in_erknm(124) - Ready knms list to enter in erknm
+2022-08-29 10:15:07,470 - [INFO] - ERKNM - add_knm_reid(161) - 
+2022-08-29 10:15:07,470 - [INFO] - ERKNM - add_knm_reid(162) - рейдовая|Пришкольные лагеря Богородского района
+2022-08-29 10:15:07,470 - [INFO] - ERKNM - add_knm_reid(163) - 
+2022-08-29 10:15:07,471 - [INFO] - ERKNM - add_knm_reid(196) - вставляем наименование органа контроля
+2022-08-29 10:15:09,149 - [INFO] - ERKNM - add_knm_reid(204) - вставка наименования органа контроля прошла успешно
+2022-08-29 10:15:09,149 - [INFO] - ERKNM - add_knm_reid(209) - вставляем Вид контроля
+2022-08-29 10:15:09,350 - [INFO] - ERKNM - add_knm_reid(218) - вставка Вид контроля прошла успешно
+2022-08-29 10:15:09,350 - [INFO] - ERKNM - add_knm_reid(225) - вставляем Вид КНМ
+2022-08-29 10:15:18,707 - [INFO] - ERKNM - add_knm_reid(234) - вставка Вид КНМ прошла успешно
+2022-08-29 10:15:18,707 - [INFO] - ERKNM - add_knm_reid(240) - вставляем Характер КНМ
+2022-08-29 10:15:23,620 - [INFO] - ERKNM - add_knm_reid(250) - вставка Характер КНМ прошла успешно
+2022-08-29 10:15:23,620 - [INFO] - ERKNM - add_knm_reid(257) - вставляем Номер плана
+2022-08-29 10:15:28,068 - [INFO] - ERKNM - add_knm_reid(264) - вставка Номер плана прошла успешно
+2022-08-29 10:15:28,068 - [INFO] - ERKNM - add_knm_reid(271) - вставляем Дата начала КНМ
+2022-08-29 10:15:31,654 - [INFO] - ERKNM - add_knm_reid(279) - вставка Дата начала КНМ прошла успешно
+2022-08-29 10:15:31,654 - [INFO] - ERKNM - add_knm_reid(286) - вставляем Дата окончания КНМ
+2022-08-29 10:15:36,142 - [INFO] - ERKNM - add_knm_reid(296) - вставка Дата окончания КНМ прошла успешно
+2022-08-29 10:15:36,142 - [INFO] - ERKNM - add_knm_reid(303) - вставляем Cрок проведения (дней)
+2022-08-29 10:15:36,962 - [INFO] - ERKNM - add_knm_reid(312) - вставка Cрок проведения (дней) прошла успешно
+2022-08-29 10:15:36,962 - [INFO] - ERKNM - add_knm_reid(318) - вставляем Срок непосредственного взаимодействия (часов)
+2022-08-29 10:15:37,779 - [INFO] - ERKNM - add_knm_reid(327) - вставка Срок непосредственного взаимодействия (часов) прошла успешно
+2022-08-29 10:15:37,779 - [INFO] - ERKNM - add_knm_reid(332) - вставляем Основания включения в план
+2022-08-29 10:15:41,544 - [INFO] - ERKNM - add_knm_reid(360) - вставка Основания включения в план прошла успешно
+2022-08-29 10:15:41,544 - [INFO] - ERKNM - add_knm_reid(367) - вставляем Наименование прокуратуры
+2022-08-29 10:15:42,934 - [INFO] - ERKNM - add_knm_reid(377) - вставка Наименование прокуратуры прошла успешно
+2022-08-29 10:15:42,934 - [INFO] - ERKNM - add_knm_reid(384) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:15:49,789 - [INFO] - ERKNM - add_knm_reid(394) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:15:53,305 - [INFO] - ERKNM - add_knm_reid(405) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:15:54,356 - [INFO] - ERKNM - add_knm_reid(420) - выбираем тип для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4}
+2022-08-29 10:15:55,435 - [INFO] - ERKNM - add_knm_reid(423) - выбор тип для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4} прошел успешно
+2022-08-29 10:15:55,435 - [INFO] - ERKNM - add_knm_reid(436) - выбираем вид для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4}
+2022-08-29 10:15:56,333 - [INFO] - ERKNM - add_knm_reid(440) - выбор вид для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4} прошел успешно
+2022-08-29 10:15:56,584 - [INFO] - ERKNM - add_knm_reid(447) - выбираем Категория риска для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4}
+2022-08-29 10:15:57,407 - [INFO] - ERKNM - add_knm_reid(452) - выбор Категория риска для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4} прошел успешно
+2022-08-29 10:15:57,665 - [INFO] - ERKNM - add_knm_reid(459) - выбираем Класс опасности для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4}
+2022-08-29 10:15:58,489 - [INFO] - ERKNM - add_knm_reid(463) - выбор Класс опасности для объекта {'адрес': 'Нижегородская область, Богородский район г. Богородск, 3-й микрорайон, дом 4а дом 4а', 'начало проверки': '2023-06-05 00:00:00', 'окончание проверки': '2023-06-19 00:00:00', 'ОГРН': '1025201454145', 'деятельность': 'Деятельность детских лагерей на время каникул', 'ОКВЭД': 'None', 'категория риска': 'чрезвычайно высокий риск', 'класс опасности': 'Второй', 'дата последнего планового кнм': '2022-04-22 00:00:00', 'строчка': 4} прошел успешно
+2022-08-29 10:16:45,632 - [INFO] - ERKNM - add_knm_reid(490) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-08-29 10:18:20,293 - [INFO] - ERKNM - add_knm_reid(517) - Добавление Сведения об остальных контролируемых лицах прошло успешно
+2022-08-29 10:18:20,293 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:18:27,254 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:18:30,862 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:18:30,862 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:18:38,382 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:18:41,983 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:18:41,983 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:18:49,484 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:18:53,090 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:18:53,091 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:19:00,647 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:19:04,243 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:19:04,244 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:19:11,791 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:19:15,377 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:19:15,377 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:19:23,001 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:19:26,569 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:19:26,570 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:19:34,070 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:19:37,688 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:19:37,688 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:19:45,196 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:19:48,808 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:19:48,809 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:19:56,318 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:19:59,912 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:19:59,912 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:20:07,428 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:20:11,002 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:20:11,003 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:20:18,557 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:20:22,145 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:20:22,145 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:20:29,678 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:20:33,272 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:20:33,272 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:20:40,804 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:20:44,383 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:20:44,383 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:20:51,908 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:20:55,466 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:20:55,466 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:21:02,966 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:21:06,605 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:21:06,605 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:21:14,121 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:21:17,723 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:21:17,723 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:21:25,251 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:21:28,856 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:21:28,856 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:21:36,419 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:21:40,008 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:21:40,008 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:21:47,557 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:21:51,140 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:21:51,140 - [INFO] - ERKNM - add_knm_reid(525) - вставляем Основной государственный регистрационный номер (ОГРН)
+2022-08-29 10:21:58,693 - [INFO] - ERKNM - add_knm_reid(532) - вставка Основной государственный регистрационный номер (ОГРН) прошла успешно
+2022-08-29 10:22:02,292 - [INFO] - ERKNM - add_knm_reid(542) - выбор варианта выпадающего списка после регистрационного номера (ОГРН) прошел успешно!
+2022-08-29 10:22:12,858 - [INFO] - ERKNM - add_knm_reid(559) - Добавлено Перечень действий, осуществляемый в рамках КНМ прошел успешно
+2022-08-29 10:53:11,094 - [INFO] - ERKNM - add_knm_reid(591) - Нажимаем отметка об использовании проверочного листа
+2022-08-29 10:53:11,783 - [INFO] - ERKNM - add_knm_reid(597) - Нажатие отметки об использовании проверочного листа прошла успешно
+2022-08-29 10:53:11,798 - [INFO] - ERKNM - add_knm_reid(612) - Добавляем проверочный лист
+2022-08-29 10:53:12,251 - [INFO] - ERKNM - add_knm_reid(618) - Добавляем проверочный лист прошла успешно
+2022-08-29 10:53:12,762 - [INFO] - ERKNM - add_knm_reid(612) - Добавляем проверочный лист
+2022-08-29 10:53:13,178 - [INFO] - ERKNM - add_knm_reid(618) - Добавляем проверочный лист прошла успешно
+2022-08-29 10:53:13,679 - [INFO] - ERKNM - add_knm_reid(622) - выбираем проверочный лист
+2022-08-29 10:53:19,008 - [INFO] - ERKNM - add_knm_reid(633) - Выбор всех проверочных листов успешно завершен
+2022-08-29 10:53:19,008 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:19,507 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:20,007 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:20,471 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:20,971 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:21,502 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:21,971 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:22,486 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:22,944 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:23,491 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:23,959 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:24,444 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:24,959 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:25,485 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:25,938 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:26,470 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:26,907 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:27,485 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:27,933 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:28,505 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:28,943 - [INFO] - ERKNM - add_knm_reid(645) - Добавляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:29,506 - [INFO] - ERKNM - add_knm_reid(651) - Добавление места проведения контрольного (надзорного) мероприятия прошла успешно
+2022-08-29 10:53:30,021 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,021 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[1]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,021 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,037 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[2]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,037 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,052 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[3]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,052 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,052 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[4]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,052 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,068 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[5]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,068 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,068 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[6]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,068 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,084 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[7]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,084 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,099 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[8]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,099 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,099 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[9]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,099 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,115 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[10]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,115 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,130 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[11]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,130 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,130 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[12]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,130 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,146 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[13]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,146 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,162 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[14]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,162 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,162 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[15]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,162 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,177 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[16]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,177 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,193 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[17]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,193 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,193 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[18]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,193 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,209 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[19]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,209 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,224 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[20]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,224 - [INFO] - ERKNM - add_knm_reid(657) - Вставляем места проведения контрольного (надзорного) мероприятия
+2022-08-29 10:53:30,224 - [WARNING] - ERKNM - add_knm_reid(663) - Вставляем места проведения контрольного (надзорного) мероприятия не прошла: Message: no such element: Unable to locate element: {"method":"xpath","selector":"/html/body/div/div/main/form/div[2]/section[4]/div[6]/div[2]/div[21]/div/div/textarea"}
+  (Session info: chrome=104.0.5112.102)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00A878B3+2193587]
+	Ordinal0 [0x00A20681+1771137]
+	Ordinal0 [0x009341A8+803240]
+	Ordinal0 [0x009624A0+992416]
+	Ordinal0 [0x0096273B+993083]
+	Ordinal0 [0x0098F7C2+1177538]
+	Ordinal0 [0x0097D7F4+1103860]
+	Ordinal0 [0x0098DAE2+1170146]
+	Ordinal0 [0x0097D5C6+1103302]
+	Ordinal0 [0x009577E0+948192]
+	Ordinal0 [0x009586E6+952038]
+	GetHandleVerifier [0x00D30CB2+2738370]
+	GetHandleVerifier [0x00D221B8+2678216]
+	GetHandleVerifier [0x00B117AA+512954]
+	GetHandleVerifier [0x00B10856+509030]
+	Ordinal0 [0x00A2743B+1799227]
+	Ordinal0 [0x00A2BB68+1817448]
+	Ordinal0 [0x00A2BC55+1817685]
+	Ordinal0 [0x00A35230+1856048]
+	BaseThreadInitThunk [0x7518FA29+25]
+	RtlGetAppContainerNamedObjectPath [0x77167A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x77167A6E+238]
+
+2022-08-29 10:53:30,224 - [INFO] - ERKNM - add_knm_reid(664) - Вставляем места проведения контрольного (надзорного) мероприятия прошла успешно

@@ -1,0 +1,40 @@
+2022-11-29 14:02:09,674 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\976401ff6461f41b_chromedriver.exe
+2022-11-29 14:02:17,831 - [INFO] - main_ERKNM - __init__(57) - Начало авторизации
+2022-11-29 14:02:30,900 - [INFO] - main_ERKNM - autorize(136) - Autorization successfull completed!
+2022-11-29 14:04:12,634 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\3c81b5a246675cf2_chromedriver.exe
+2022-11-29 14:04:21,871 - [INFO] - main_ERKNM - __init__(57) - Начало авторизации
+2022-11-29 14:04:32,827 - [INFO] - main_ERKNM - autorize(136) - Autorization successfull completed!
+2022-11-29 14:17:54,985 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\74e4675843f4239a_chromedriver.exe
+2022-11-29 14:18:04,148 - [INFO] - main_ERKNM - __init__(57) - Начало авторизации
+2022-11-29 14:18:15,860 - [INFO] - main_ERKNM - autorize(136) - Autorization successfull completed!
+2022-11-29 14:18:40,059 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\963220c386e8ce64_chromedriver.exe
+2022-11-29 14:18:46,217 - [INFO] - main_ERKNM - __init__(57) - Начало авторизации
+2022-11-29 14:18:56,701 - [INFO] - main_ERKNM - autorize(136) - Autorization successfull completed!
+2022-11-29 14:20:08,750 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\6ab2530bf1b1b3a1_chromedriver.exe
+2022-11-29 14:20:15,260 - [INFO] - main_ERKNM - __init__(57) - Начало авторизации
+2022-11-29 14:20:25,370 - [INFO] - main_ERKNM - autorize(136) - Autorization successfull completed!
+2022-11-29 14:21:46,541 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\442b291751d11ea5_chromedriver.exe
+2022-11-29 14:22:00,474 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\78344832c38bb11d_chromedriver.exe
+2022-11-29 14:22:07,550 - [INFO] - main_ERKNM - __init__(57) - Начало авторизации
+2022-11-29 14:22:48,312 - [INFO] - main_ERKNM - autorize(136) - Autorization successfull completed!
+2022-11-29 14:37:54,550 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\37871b9b9ea20db1_chromedriver.exe
+2022-11-29 14:38:01,517 - [INFO] - main_ERKNM - __init__(57) - Начало авторизации
+2022-11-29 14:38:14,061 - [INFO] - main_ERKNM - autorize(136) - Autorization successfull completed!
+2022-11-29 14:49:57,940 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\dac6fbf4c034bff6_chromedriver.exe
+2022-11-29 14:50:07,697 - [INFO] - main_ERKNM - __init__(57) - Начало авторизации
+2022-11-29 14:50:21,124 - [INFO] - main_ERKNM - autorize(136) - Autorization successfull completed!
+2022-11-29 14:54:15,152 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001EE151C58A0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/162454ff2d319c526d3a667224f53f13
+2022-11-29 14:54:19,238 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001EE12AD1930>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/162454ff2d319c526d3a667224f53f13
+2022-11-29 14:54:23,316 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001EE16473E20>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/162454ff2d319c526d3a667224f53f13
+2022-11-29 14:54:58,949 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\2a23ccdf4a55c7a6_chromedriver.exe
+2022-11-29 14:55:06,352 - [INFO] - main_ERKNM - __init__(57) - Начало авторизации
+2022-11-29 14:55:17,781 - [INFO] - main_ERKNM - autorize(136) - Autorization successfull completed!
+2022-11-29 15:30:31,617 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\e9ad6f06ba60f5e9_chromedriver.exe
+2022-11-29 15:30:40,628 - [INFO] - main_ERKNM - __init__(57) - Начало авторизации
+2022-11-29 15:30:52,535 - [INFO] - main_ERKNM - autorize(136) - Autorization successfull completed!
+2022-11-29 15:34:47,082 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\20c77a3dd81f8839_chromedriver.exe
+2022-11-29 15:34:57,158 - [INFO] - main_ERKNM - __init__(57) - Начало авторизации
+2022-11-29 15:35:10,487 - [INFO] - main_ERKNM - autorize(136) - Autorization successfull completed!
+2022-11-29 15:46:28,421 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\8194b7e122b6f38a_chromedriver.exe
+2022-11-29 15:46:37,630 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2022-11-29 15:46:49,396 - [INFO] - main_ERKNM - autorize(138) - Autorization successfull completed!

@@ -1,0 +1,28 @@
+2022-11-24 14:20:58,024 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\cde20b30bb2b1b29_chromedriver.exe
+2022-11-24 14:21:05,850 - [INFO] - main_ERKNM - __init__(56) - Начало авторизации
+2022-11-24 14:21:16,094 - [INFO] - main_ERKNM - autorize(134) - Autorization successfull completed!
+2022-11-24 14:50:01,563 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\e7945719f42fa424_chromedriver.exe
+2022-11-24 14:50:08,142 - [INFO] - main_ERKNM - __init__(56) - Начало авторизации
+2022-11-24 14:50:18,843 - [INFO] - main_ERKNM - autorize(134) - Autorization successfull completed!
+2022-11-24 14:50:57,645 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\0a12c65b7d3c325d_chromedriver.exe
+2022-11-24 14:51:02,944 - [INFO] - main_ERKNM - __init__(56) - Начало авторизации
+2022-11-24 14:51:12,629 - [INFO] - main_ERKNM - autorize(134) - Autorization successfull completed!
+2022-11-24 14:53:27,401 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\3fc2cabb3e443726_chromedriver.exe
+2022-11-24 14:53:33,533 - [INFO] - main_ERKNM - __init__(56) - Начало авторизации
+2022-11-24 14:53:43,311 - [INFO] - main_ERKNM - autorize(134) - Autorization successfull completed!
+2022-11-24 14:57:23,448 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\feb76557a99f2390_chromedriver.exe
+2022-11-24 14:57:29,459 - [INFO] - main_ERKNM - __init__(56) - Начало авторизации
+2022-11-24 14:57:53,166 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\2fd5d282de386900_chromedriver.exe
+2022-11-24 14:57:58,599 - [INFO] - main_ERKNM - __init__(56) - Начало авторизации
+2022-11-24 14:58:25,534 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\18bf23156692e7fb_chromedriver.exe
+2022-11-24 14:58:31,369 - [INFO] - main_ERKNM - __init__(56) - Начало авторизации
+2022-11-24 14:58:40,663 - [INFO] - main_ERKNM - autorize(134) - Autorization successfull completed!
+2022-11-24 15:52:17,514 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\0b41e8164cfc3058_chromedriver.exe
+2022-11-24 15:52:24,244 - [INFO] - main_ERKNM - __init__(56) - Начало авторизации
+2022-11-24 15:52:34,642 - [INFO] - main_ERKNM - autorize(134) - Autorization successfull completed!
+2022-11-24 15:57:58,553 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002A7F63A4BB0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/64fc17a0df02a0416e81852c4d3dea0a
+2022-11-24 15:58:02,613 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002A7F22056F0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/64fc17a0df02a0416e81852c4d3dea0a
+2022-11-24 15:58:06,671 - [WARNING] - urllib3.connectionpool - urlopen(812) - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002A7F49100A0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение')': /session/64fc17a0df02a0416e81852c4d3dea0a
+2022-11-24 16:07:25,305 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\29001d380abeeed7_chromedriver.exe
+2022-11-24 16:07:32,406 - [INFO] - main_ERKNM - __init__(56) - Начало авторизации
+2022-11-24 16:07:43,246 - [INFO] - main_ERKNM - autorize(134) - Autorization successfull completed!
