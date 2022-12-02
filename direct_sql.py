@@ -1,11 +1,27 @@
 from sql import Database
+from multiprocessing import Pool
+import logging
+from pathlib import Path
+import traceback
+from datetime import date
+import json
 
 
+logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
+                        filename=f'logging/reports/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
+                        level=logging.INFO)
+logger = logging.getLogger(Path(traceback.StackSummary.extract(traceback.walk_stack(None))[0].filename).name)
 
 d = Database()
+exception_knm = []
+
 # ter_upr_name = knm['controllingOrganization']
 # controllingOrganizationID = knm['controllingOrganizationID']
 # ter_upr_name_id = d.insert_terr_upr_with_return_id(name=ter_upr_name, controllingOrganizationID=controllingOrganizationID)
+
+def formattig_str(text):
+    text = str(text).replace("'", "").replace('"', '').replace("   ", " ").replace("  ", " ").replace('/"', ' ')
+    return text
 
 def create_knm_in_knms(knm):
 
@@ -65,10 +81,109 @@ def create_knm_in_knms(knm):
         d.insert_m_to_m_object_inspection(inspection_id=insp_id, object_id=object_id)
 
 
-def insert_in_database(list_knm: list):
+def database_inserts_conductor(list_knm: list):
+    """
+    Функция для внесения списка КНМ в базу данных с обработкой ошибок. Пробует просто запустить функцию и ожидает
+        успешного выполнения, при неуспешном - пробует второй раз, но высталяет специальный параметр.
+        При повторной неудаче умывает руки и выдает ошибку, с которой не удалось справиться.
+
+    @param list_knm: Список КМН, как правило в формате json (список json-ов) для загрузки в базу данных
+    @return:
+    """
+    logger.info('началась запись в базу данных...')
+
+
     for knm in list_knm:
-        print(knm)
+
+        result = insert_in_database(knm)
+        if result is False:
+            try:
+                result = insert_in_database(knm, special=True)
+                if result is False:
+                    logger.info('Возникла ошибка, с которой не удалось справиться...')
+                    exception_knm.append(knm)
+            except Exception as ex:
+                logger.info(f'Непредвиденная ошибка строка 90: {ex}')
+                exception_knm.append(knm)
+    if exception_knm:
+        with open('Exception_knm.json', 'w') as file:
+            json.dump(exception_knm, file)
+            result = f'По итогу внесения не было внесено {len(exception_knm)} проверок. Они упакованы в файл Exception_knm.json и их ошибки ожидают решений'
+            logger.info(result)
+        return result
+    logger.info('Все проверки успешно занесены!')
+
+
+def database_inserts_conductor_for_multiprocessing(knm):
+
+    result = insert_in_database(knm)
+    if result is False:
+        try:
+            result = insert_in_database(knm, special=True)
+            if result is False:
+                logger.info('Возникла ошибка, с которой не удалось справиться...')
+                logger.info('')
+                exception_knm.append(knm)
+        except Exception as ex:
+            logger.info(f'Непредвиденная ошибка строка 90: {ex}')
+            exception_knm.append(knm)
+
+
+def multiple_inserts(processes: int, knm_list: list):
+    logger.info('старт программы')
+    pool = Pool(processes)
+    pool.map(database_inserts_conductor_for_multiprocessing, knm_list)
+    if len(exception_knm) > 0:
+        with open('Exception_knm.json', 'w') as file:
+            json.dump(exception_knm, file)
+            result = f'По итогу внесения не было внесено {len(exception_knm)} проверок. Они упакованы в файл Exception_knm.json и их ошибки ожидают решений'
+            logger.info(result)
+        return result
+    logger.info('Все проверки успешно занесены!')
+
+
+def insert_in_database(knm: dict, special: bool = False) -> bool:
+    """
+    Функция непосредственного внесения в базу данных
+    @param knm: словарь сведений о кнм, как правило в формате json (список json-ов) для загрузки в базу данных
+    @param special: параметр, включаемый для повторного включения, является более медленным, так как при значении  True
+        заменяет значения в адресах субъектов
+    @return: значение True или False при успешном выполнении инсёрта, и соответственно, ошибке при выполнении инсёрта
+
+    """
+    if special is True:
+        addresses = []
+        for address in knm['addresses']:
+            address = formattig_str(address)
+            addresses.append(str(address))
+        knm['addresses'] = addresses
+
+        organizationName = knm['organizationName']
+        knm['organizationName'] = formattig_str(organizationName)
+
+        organizations = []
+        for organization in knm['organizationsName']:
+            organization = formattig_str(organization)
+            organizations.append(str(organization))
+        knm['organizationsName'] = organizations
+
+        requirementsList = []
+        for requirement in knm['requirementsList']:
+
+            requirement['nameNpa'] = formattig_str(requirement['nameNpa'])
+            requirement['numberNpa'] = formattig_str(requirement['numberNpa'])
+            requirement['title'] = formattig_str(requirement['title'])
+            requirementsList.append(requirement)
+        print(requirementsList)
+        knm['requirementsList'] = requirementsList
+
+
+
+    data = str(knm).replace('"', '').replace('None', "'None'").replace('False', "'False'")\
+        .replace('True', "'True'").replace("'", '"').replace('""', '"').replace('\n', '').replace('\\n', '').replace('\\r', '').replace('\\t', '').replace('\\p', '').replace("\\", "/")
+    try:
         id = int(knm['erpId'])
+
         kind = knm['kind']
         type = knm['knmType']
         status = knm['status']
@@ -77,25 +192,35 @@ def insert_in_database(list_knm: list):
         stop_date = knm['stopDateEn']
         if stop_date is None:
             stop_date = '1900-01-01'
-        inn = int(knm['inn'])
-        ogrn = int(knm['ogrn'])
-        risk = knm['riskCategory'][0]
-        # if risk is None:
-        #     risk = 'NULL'
-        object_kind = knm['objectsKind'][0]
-        # if object_kind is None:
-        #     object_kind = 'NULL'
-        controll_organ = knm['controllingOrganization']
-        data = str(knm).replace('"', '').replace('None', "'None'").replace('False', "'False'").replace('True', "'True'").replace("'", '"').replace('\\n', '').replace('\\t', '').replace('\\p', '')
+        inn = knm['inn']
+        ogrn = knm['ogrn']
         try:
-            Database().create_json_formate_knm_in_raw_knm(id, kind, type, status, year, start_date, stop_date, inn, ogrn, risk, object_kind, controll_organ, data)
-        except Exception as ex:
-            print(ex)
-            print(knm)
+            risk = knm['riskCategory'][0]
+        except:
+            risk = 'NULL'
 
-def formattig_str(text):
-    text = str(text).replace("'", "").replace('"', '')
-    return text
+        try:
+            object_kind = knm['objectsKind'][0]
+        except:
+            object_kind = 'NULL'
+        controll_organ = knm['controllingOrganization']
+
+        Database().create_json_formate_knm_in_raw_knm(id, kind, type, status, year, start_date, stop_date, inn, ogrn, risk, object_kind, controll_organ, data)
+        if special:
+            logger.warning('Проведена повторная попытка внесения с параметром special, результат УСПЕШНО.')
+        return True
+
+    except Exception as ex:
+        if not special:
+            logger.error(ex)
+            logger.info(data)
+            logger.info(knm)
+        else:
+            logger.warning('Проведена повторная попытка внесения с параметром special, результат неудачный.')
+        return False
+
+
+
 
 
 def create_tables_for_knms(knm):
@@ -129,8 +254,14 @@ def create_tables_for_knms(knm):
 
     print(str(code).strip())
 
+def main():
+    with open('Exception_knm.json', 'r') as file:
+        list_knm = json.load(file)
+
+    database_inserts_conductor(list_knm)
+
 
 if __name__ == '__main__':
-    pass
-    # create_knm_in_knms(knm)
+    # pass
+    main()
 

@@ -1,8 +1,8 @@
 import json
 from main_ERKNM import erknm
 from direct_pxl import Operation
-from direct_sql import create_knm_in_knms
-from sql import Database
+
+from direct_sql import multiple_inserts
 from Dates_manager import period_between_month, split_year_for_periods, split_period
 
 
@@ -84,10 +84,12 @@ class Erknm:
             json.dump(self.result, file)
 
     def get_all_knm_and_pm_for_a_year(self, count: int = 8000, year: int = 2023):
-        year_periods = split_year_for_periods(2022, 50)
+        year_periods = split_year_for_periods(year, 50)
+        result = []
+
         for between in year_periods:
 
-            print(f'{between}')
+            print(f'{between} {len(result)}')
 
             response = self.session.get_knm_list(
                 date_start=between['start'],
@@ -134,22 +136,21 @@ class Erknm:
                         for knm_month_parts in subresponse['list']:
                             subresponses_result.append(knm_month_parts)
                     for subresp in subresponses_result:
-                        self.result.append(subresp)
+                        result.append(subresp)
                     break
 
             else:
+                print('запрос короче')
+                print(len(response['list']))
                 for knm_in_month in response['list']:
-                    self.result.append(knm_in_month)
+                    result.append(knm_in_month)
 
 
-        try:
-            with Database as d:
-                for knm_pass in self.result:
-                    d.create_json_formate_knm_in_raw_knm(knm_pass)
-        except Exception as ex:
-            print(ex)
-            with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
-                json.dump(self.result, file)
+
+        with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
+            json.dump(result, file)
+
+        multiple_inserts(4, result)
 
 
 
