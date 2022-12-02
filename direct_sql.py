@@ -19,9 +19,11 @@ exception_knm = []
 # controllingOrganizationID = knm['controllingOrganizationID']
 # ter_upr_name_id = d.insert_terr_upr_with_return_id(name=ter_upr_name, controllingOrganizationID=controllingOrganizationID)
 
+
 def formattig_str(text):
     text = str(text).replace("'", "").replace('"', '').replace("   ", " ").replace("  ", " ").replace('/"', ' ')
     return text
+
 
 def create_knm_in_knms(knm):
 
@@ -133,7 +135,7 @@ def multiple_inserts(processes: int, knm_list: list):
     logger.info('старт программы')
     pool = Pool(processes)
     pool.map(database_inserts_conductor_for_multiprocessing, knm_list)
-    if len(exception_knm) > 0:
+    if exception_knm:
         with open('Exception_knm.json', 'w') as file:
             json.dump(exception_knm, file)
             result = f'По итогу внесения не было внесено {len(exception_knm)} проверок. Они упакованы в файл Exception_knm.json и их ошибки ожидают решений'
@@ -144,10 +146,13 @@ def multiple_inserts(processes: int, knm_list: list):
 
 def insert_in_database(knm: dict, special: bool = False) -> bool:
     """
-    Функция непосредственного внесения в базу данных
+    Функция непосредственного внесения в базу данных. Как правило должна управляться кондуктором
+    или функцией мультипроцесса, так как не имеет обработчика исключений, в качестве исключения лишь делает запись в
+    логгере и то тольно при специальном параметре.
+
     @param knm: словарь сведений о кнм, как правило в формате json (список json-ов) для загрузки в базу данных
-    @param special: параметр, включаемый для повторного включения, является более медленным, так как при значении  True
-        заменяет значения в адресах субъектов
+    @param special: параметр, включаемый для повторного введения значений, является более медленным, так как при значении  True
+        заменяет значения в адресах субъектов. ПРИ ВЫКЛЮЧЕННОМ ЗНАЧЕНИИ (ПО ДЕФОЛТУ) ВОЗВРАЩАЕТ ТОЛЬКО bool, без записи в логгере
     @return: значение True или False при успешном выполнении инсёрта, и соответственно, ошибке при выполнении инсёрта
 
     """
@@ -174,13 +179,13 @@ def insert_in_database(knm: dict, special: bool = False) -> bool:
             requirement['numberNpa'] = formattig_str(requirement['numberNpa'])
             requirement['title'] = formattig_str(requirement['title'])
             requirementsList.append(requirement)
-        print(requirementsList)
+
         knm['requirementsList'] = requirementsList
 
 
 
     data = str(knm).replace('"', '').replace('None', "'None'").replace('False', "'False'")\
-        .replace('True', "'True'").replace("'", '"').replace('""', '"').replace('\n', '').replace('\\n', '').replace('\\r', '').replace('\\t', '').replace('\\p', '').replace("\\", "/")
+        .replace('True', "'True'").replace("', ',", "', '").replace("'", '"').replace('""', '"').replace('": ", "', '": "", "').replace('\n', '').replace('\\n', '').replace('\\r', '').replace('\\t', '').replace('\\p', '').replace("\\", "/")
     try:
         id = int(knm['erpId'])
 
@@ -206,21 +211,16 @@ def insert_in_database(knm: dict, special: bool = False) -> bool:
         controll_organ = knm['controllingOrganization']
 
         Database().create_json_formate_knm_in_raw_knm(id, kind, type, status, year, start_date, stop_date, inn, ogrn, risk, object_kind, controll_organ, data)
-        if special:
-            logger.warning('Проведена повторная попытка внесения с параметром special, результат УСПЕШНО.')
+
         return True
 
     except Exception as ex:
-        if not special:
+        if special:
             logger.error(ex)
             logger.info(data)
             logger.info(knm)
-        else:
             logger.warning('Проведена повторная попытка внесения с параметром special, результат неудачный.')
         return False
-
-
-
 
 
 def create_tables_for_knms(knm):
@@ -254,14 +254,21 @@ def create_tables_for_knms(knm):
 
     print(str(code).strip())
 
-def main():
+
+def insert_exceptions():
     with open('Exception_knm.json', 'r') as file:
         list_knm = json.load(file)
 
     database_inserts_conductor(list_knm)
 
 
+def insert_from_json_with_multiple():
+    with open('Plan_knm_full_2022.json', 'r') as file:
+        list_knm = json.load(file)
+    multiple_inserts(4, list_knm)
+
+
 if __name__ == '__main__':
     # pass
-    main()
+    insert_exceptions()
 

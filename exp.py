@@ -9,7 +9,7 @@ from direct_pxl import Operation
 from multiprocessing import Pool
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
-                        filename=f'logging/reports/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
+                        filename=f'logging/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
                         level=logging.INFO)
 logger = logging.getLogger(Path(traceback.StackSummary.extract(traceback.walk_stack(None))[0].filename).name)
 
@@ -202,8 +202,48 @@ def insert_in_database(knm: dict, special: bool = False) -> bool:
         return False
 
 
-def analys_from_db():
-    text_request = """SELECT controll_organ FROM erknm WHERE status IN ('Исключение обжаловано', 'Ожидает проведения', 'Есть замечания');"""
+def request_db(targets: list, table: str = 'erknm', **params):
+    target_text = ''
+    if target_text:
+        print('yt gecnjq')
+    for target in targets:
+        if target_text:
+            target_text += f', {target}'
+        else:
+            target_text += target
+    params_text = ''
+    for db_column, value in params.items():
+
+        if isinstance(value, type(list)):
+            values_text = ''
+            for v in value:
+                if values_text:
+                    values_text += f", '{v}'"
+                else:
+                    values_text += f"'{v}'"
+            if params_text:
+                params_text += f" AND {db_column} IN ({values_text})"
+            else:
+                params_text += f" WHERE {db_column} IN ({values_text})"
+        else:
+            if params_text:
+                params_text += f" AND {db_column}='{value}'"
+            else:
+                params_text += f" WHERE {db_column}='{value}'"
+    if params_text:
+        text = f"""SELECT {target_text} FROM {table}{params_text};"""
+    else:
+        text = f"""SELECT {target_text} FROM {table};"""
+    return text
+
+def binary_analys_from_db() -> dict:
+    text_request = """SELECT risk FROM erknm WHERE year='2023' AND status IN ('Исключение обжаловано', 'Есть замечания', 'Ожидает проведения');"""
+    request = d.take_request_from_database(text_request)
+
+
+def simple_analys_from_db(targets: list, table: str = 'erknm', **params) -> dict:
+    text_request = request_db(targets, table, **params)
+
     request = d.take_request_from_database(text_request)
     result = {}
     responce = []
@@ -215,19 +255,20 @@ def analys_from_db():
         details = {}
         for kind in set(responce):
             details[kind] = responce.count(kind)
-        result['details'] = dict(sorted(details.items(), key=lambda item: item[1]))
+        result['details'] = dict(sorted(details.items(), key=lambda item: item[1], reverse=True))
         logger.info(f'{text_request}, {result}')
 
         for key, values in result.items():
             if key == 'details':
                 for obj, value in values.items():
-                    print(f'    {obj} - {value}')
+                    print(f'    {obj}: {value}')
             else:
-                print(f'{key} - {values}')
+                print(f'{key}: {values}')
         return result
 
 def where_is_error_in_string_by_index(index: int, text: str):
     print(text)
+
 
 if __name__ == '__main__':
     # knm = {"actCreateDate": "None", "actCreateDateEn": "None", "addresses": ["Кемеровская область - Кузбасс, г. Прокопьевск,  ул. Крупской 1"], "admLevelId": 50001, "appealed": "False", "approveDocOrderDate": "17.05.2022", "approveDocOrderNum": "297-ВН", "approveDocRequestDate": "None", "approveDocRequestNum": "None", "approveDocs": [], "approveRequired": "False", "approved": "None", "approvedErknm": "None", "chlistCount": 0, "chlistFilledCount": 0, "chlistFillingIndicationTypeId": [], "collaboratingOrganizations": [], "collaboratingOrganizationsIds": [], "comment": "None", "controllingOrganization": "Управление Роспотребнадзора по Кемеровской области ", "controllingOrganizationId": 10001011723, "createPlanDate": "None", "createPlanDateLong": "None", "createdByErpDb": "False", "createdById": 196458, "dataNotEqualEGRUL": "False", "dataSetNotInTime": "True", "deleted": "False", "directDurationDays": "None", "disapprove": "False", "district": "Кемеровская область", "districtId": 1035320000000001, "durationDays": "None", "durationHours": 15, "erknmActViolationIds": [3], "erknmResultKindDecisionIds": [], "erpId": "42220041000102077940", "events": [{"startDate": "18.05.2022", "stopDate": "31.05.2022", "title": "Осмотр"}, {"startDate": "18.05.2022", "stopDate": "31.05.2022", "title": "Получение письменных объяснений"}, {"startDate": "18.05.2022", "stopDate": "31.05.2022", "title": "Истребование документов"}, {"startDate": "18.05.2022", "stopDate": "31.05.2022", "title": "Отбор проб (образцов)"}, {"startDate": "18.05.2022", "stopDate": "31.05.2022", "title": "Инструментальное обследование"}, {"startDate": "18.05.2022", "stopDate": "31.05.2022", "title": "Испытание"}, {"startDate": "18.05.2022", "stopDate": "31.05.2022", "title": "Экспертиза"}], "federalLaw": "248", "federalLawId": 3, "fullFieldViolationKnm": "False", "hasViolations": "False", "id": 12150060, "inn": "4223077332", "inspectorFullName": ["Ворожцова О.С.", "Суханицкая Я.А."], "isFromSmev": "False", "isHasApproveDocs": "False", "isHasCollaboratingOrganization": "False", "isHasRequirements": "True", "isHasViolationTerm": "False", "isPm": "False", "kind": "Выездная проверка", "knmAnnulled": "False", "knmRejected": "False", "knmType": "Внеплановое КНМ", "knmTypeId": 5, "legalBasisDocName": [], "links": [], "mspCategory": ["Микропредприятие"], "noPunishment": "False", "notifyLate": "False", "objectsKind": ["прочие "], "objectsSubKind": ["прочие "], "objectsType": ["Деятельность и действия"], "ogrn": "1154223001338", "oldKnm": "None", "oldPlan": "None", "orderDone": "False", "organizationName": "ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ ТРАНСИБ-ФРУКТ", "organizationsInn": ["4223077332"], "organizationsName": ["ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ ТРАНСИБ-ФРУКТ"], "organizationsOgrn": ["1154223001338"], "planId": "None", "prosecutorOrganization": "Прокуратура Кемеровской области", "prosecutorOrganizationId": 2282, "publishedStatus": "PUBLISHED", "reasons": [309], "reasonsList": [{"assignmentDate": "None", "assignmentDateEn": "None", "assignmentNumber": "None", "date": "None", "dateEn": "None", "requirementDetails": "None", "text": "(Постановление 336) Поручение Президента Российской Федерации"}], "recEmptyOrLate": "False", "regDateEgrul": "17.05.2022", "regDateEgrulEn": "2022-05-17", "regLate": "False", "regTypes": ["MSP"], "requirements": 8, "requirementsList": [{"nameNpa": " Федерального закона «О санитарно-эпидемиологическом благополучии населения» ", "numberNpa": "30.03.1999", "title": "Главы I - VIII Федерального закона «О санитарно-эпидемиологическом благополучии населения» от 30.03.1999 № 52-ФЗ"}, {"nameNpa": "Федерального закона от 17.09.1998 № 157-ФЗ «Об иммунопрофилактике инфекционных болезней»", "numberNpa": "17.09.1998", "title": "Главы I, II, IV Федерального закона от 17.09.1998 № 157-ФЗ «Об иммунопрофилактике инфекционных болезней»;"}, {"nameNpa": "Постановления Правительства РФ от 15.07.99 № 825 «Об утверждении перечня работ, выполнение которых связано с высоким риском заболевания инфекционными болезнями и требует обязательного проведения профилактических прививок»", "numberNpa": "15.07.1999", "title": "Постановления Правительства РФ от 15.07.99 № 825 «Об утверждении перечня работ, выполнение которых связано с высоким риском заболевания инфекционными болезнями и требует обязательного проведения профилактических прививок»;"}, {"nameNpa": "СП 2.3.6.3668-20 от 20.11.20г «Санитарно-эпидемиологические требования к условиям деятельности торговых объектов и рынков, реализующих пищевую продукцию»", "numberNpa": "20.11.2020", "title": "Разделы с 2 по 11 СП 2.3.6.3668-20 от 20.11.20г «Санитарно-эпидемиологические требования к условиям деятельности торговых объектов и рынков, реализующих пищевую продукцию»"}, {"nameNpa": "Технический регламент таможенного союза ТР ГС 021/2011 от 01.07.201Зг «О безопасности пищевых продуктов»", "numberNpa": "01.07.2013", "title": "Главы I - II Технический регламент таможенного союза ТР ГС 021/2011 от 01.07.201Зг «О безопасности пищевых продуктов»"}, {"nameNpa": "Технический регламент таможенного союза ТР ТС 022/2011 от 01.07.201Зг «Пищевая продукция в части ее маркировки»", "numberNpa": "01.07.2013", "title": "Статьи 4-5 Технический регламент таможенного союза ТР ТС 022/2011 от 01.07.201Зг «Пищевая продукция в части ее маркировки»"}, {"nameNpa": "Технический регламент таможенного союза ТР ТС 023/2011 от 01.07.2013 «Технический регламент на соковую продукцию из фруктов и овощей»", "numberNpa": "01.07.2013", "title": "Статьи 3-5, ст. 7-8 Технический регламент таможенного союза ТР ТС 023/2011 от 01.07.2013 «Технический регламент на соковую продукцию из фруктов и овощей»"}, {"nameNpa": "Технический регламент таможенного союза ТР СТ 024/2011 от 01.07.201Зг «Технический регламент на масложировую продукцию»", "numberNpa": "01.07.2013", "title": "Главы III - VII Технический регламент таможенного союза ТР СТ 024/2011 от 01.07.201Зг «Технический регламент на масложировую продукцию»"}], "resolved": "False", "resultEmpty": "False", "resultEmptyOrLate": "False", "resultInfoTypeCodes": [], "resultViolationKnm": "False", "riskCategory": [], "riskCategoryAndDangerClass": [], "sezRegistryExists": "False", "signed": "True", "smevInfoType": "None", "smevMessageType": "None", "smevReceivedAt": "None", "smevReceivedAtEn": "None", "smevReceivedAtMonth": "None", "smevReceivedAtYear": "None", "spvRegistryExists": "False", "startDate": "18.05.2022", "startDateEn": "2022-05-18", "status": "Завершено", "statusEgrul": "Найден", "statusId": 7, "stopDate": "31.05.2022", "stopDateEn": "2022-05-31", "subjectTypeId": 0, "supervisionType": "Федеральный государственный санитарно-эпидемиологический контроль (надзор)", "supervisionTypeId": 4, "torRegistryExists": "False", "updatePlanDate": "None", "updatePlanDateLong": "None", "version": "ERKNM", "violationLawsuitTypeCodes": [], "violationTypeCodes": [], "year": 2022}
@@ -238,6 +279,7 @@ if __name__ == '__main__':
     #     print(f'{key} - {value}')
 
     # print(main())
-    result = analys_from_db()
+    result = simple_analys_from_db(['status'], year=2023)
+    print(result)
 
 
