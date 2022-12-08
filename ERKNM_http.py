@@ -183,5 +183,5 @@ class Erknm:
 
 
 if __name__ == '__main__':
-    Erknm().get_all_knm_and_pm_for_a_year(year=2022)
+    Erknm().get_all_knm_and_pm_for_a_year(year=2021)
 

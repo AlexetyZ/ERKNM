@@ -10,7 +10,7 @@ from openpyxl.styles import Font, Color, PatternFill
 Workbook = TypeVar('Workbook', bound=openpyxl.Workbook)
 
 class Operation:
-    def __init__(self, wb_path: str, init_sh: bool = True):
+    def __init__(self, wb_path: str = 'Новый документ.xlsx', init_sh: bool = True):
         """
         :param wb_path: путь до файла, в котором итерируются ячейки
         :param init_sh: нужно ли инициировать первый лист книги. По умолчанию True. Необходимо для ситуаций,
@@ -18,7 +18,10 @@ class Operation:
         например открытия книги для сохранения в другом формате, без обращения к листу.
         """
         self.wb_path = wb_path
-        self.wb = openpyxl.load_workbook(wb_path)
+        if self.wb_path == 'Новый документ.xlsx':
+            self.wb = openpyxl.Workbook()
+        else:
+            self.wb = openpyxl.load_workbook(wb_path)
         if init_sh is True:
             self.sh = self.wb.worksheets[0]
 
@@ -70,7 +73,9 @@ class Operation:
     def get_cell_value(self, row: int, column: int):
         return self.sh.cell(row=row, column=column).value
 
-    def change_value_in_cell(self, row: int, column: int, value, saving: bool = True):
+    def change_value_in_cell(self, row: int, column: int, value, number_format: str = 'no', saving: bool = True):
+        if number_format != 'no':
+            self.sh.cell(row=row, column=column).number_format = number_format
         self.sh.cell(row=row, column=column, value=value)
         if saving is True:
             self.save_document()
@@ -84,6 +89,8 @@ class Operation:
     def save_document(self, workbook: Type[Workbook] or bool = False, path: str or bool = False):
         if path is False:
             path = self.wb_path
+        else:
+            path += '.xlsx'
         if workbook is False:
             workbook = self.wb
         workbook.save(path)
