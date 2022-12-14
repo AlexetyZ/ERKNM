@@ -1,8 +1,14 @@
 import pymysql
-
+import logging
+import traceback
+from datetime import date
+from pathlib import Path
 
 # from REG_to_APPLY import Registration_sadik
-
+logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
+                        filename=f'logging/reports/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
+                        level=logging.INFO)
+logger = logging.getLogger(Path(traceback.StackSummary.extract(traceback.walk_stack(None))[0].filename).name)
 
 class Database:
     def __init__(self):
@@ -10,7 +16,7 @@ class Database:
             user='root',
             password='ntygazRPNautoz',
             host='127.0.0.1',
-            port=3307,
+            port=3308,
             database='knm'
         )
     def take_request_from_database(self, request: str = """SHOW DATABASES;"""):
@@ -19,11 +25,223 @@ class Database:
             result = cursor.fetchall()
             return result
 
+    def commit(self):
+        self.conn.commit()
+
     def create_json_formate_knm_in_raw_knm(self, id, kind, type, status, year, start_date, stop_date, inn, ogrn, risk, object_kind, controll_organ, data):
         with self.conn.cursor() as cursor:
-            insert = f"""REPLACE INTO erknm (id, kind, type, status, year, start_date, stop_date, inn, ogrn, risk, object_kind, controll_organ, data) VALUES('{id}', '{kind}', '{type}', '{status}', '{year}', '{start_date}', '{stop_date}', '{inn}', '{ogrn}', '{risk}', '{object_kind}', '{controll_organ}', '{data}')"""
+            insert = f"""INSERT INTO erknm (id, kind, type, status, year, start_date, stop_date, inn, ogrn, risk, object_kind, controll_organ, data) VALUES('{id}', '{kind}', '{type}', '{status}', '{year}', '{start_date}', '{stop_date}', '{inn}', '{ogrn}', '{risk}', '{object_kind}', '{controll_organ}', '{data}') ON DUPLICATE KEY UPDATE status='{status}', data='{data}';"""
             cursor.execute(insert)
             self.conn.commit()
+
+    def change_stop_date_by_erpID(self, stop_date, erpID,):
+        """
+
+        @param stop_date:  новая дата в формате "гггг-мм-дд"
+        @param erpID: id проверки в базе данных в таблице erknm
+        @return:
+        """
+        with self.conn.cursor() as cursor:
+            update = f"""UPDATE erknm SET stop_date='{stop_date}' WHERE id={erpID};"""
+            cursor.execute(update)
+            self.conn.commit()
+
+    def check_list_str(self, elements_list: list, only_first: bool = False) -> list or str:
+        """
+        Проверяет список на наличие значений и возвращает их для последующей итерации.
+        При отсутствии значений возвращает пустую строку. Так же может возвращать только первое значение из списка,
+            с заданным параметром only_first
+
+        @param raw_list: сырой список
+        @param only_first: параметр ответчающий за возврат только первого элемента списка, если он не пустой
+        @return: список при наличии в нем хотя бы одного элемента(при отрицательном only_first) или пустая строка "",
+        если в списке нет ничего, или при положительном only_first
+        """
+        if elements_list:
+            if only_first:
+                elements_list = elements_list[0]
+        else:
+            elements_list = ""
+        return elements_list
+
+    def ultra_create_handler(self, result):
+
+        with self.conn.cursor() as cursor:
+
+            # вносим теруправление
+            try:
+                controllingOrganization = result['controllingOrganization']
+                controllingOrganizationId = result['controllingOrganizationId']
+                district = result['district']
+                cursor.execute(
+                    f"""SELECT id FROM knd_terr_upravlenie WHERE controllingOrganizationId='{controllingOrganizationId}';""")
+                exists_terr_uprav = cursor.fetchall()
+                if exists_terr_uprav == ():
+                    cursor.execute(
+                        f"""INSERT INTO knd_terr_upravlenie(name, controllingOrganizationId, district) VALUES 
+                                    ("{controllingOrganization}", {controllingOrganizationId}, "{district}")""")
+                    # self.conn.commit()
+                    cursor.execute("SELECT LAST_INSERT_ID();")
+                    terr_upr_id = cursor.fetchall()[0][0]
+                else:
+                    terr_upr_id = exists_terr_uprav[0][0]
+            except Exception as ex:
+                logger.exception("не получилось внести теруправление:")
+                raise f"не получилось внести теруправление:{Exception}"
+
+            # вносим проверку
+            try:
+                inspection_number = result['erpId']
+                status = result['status']
+                profilactic = result['isPm']
+                if profilactic is True:
+                    profilactic = 1
+                else:
+                    profilactic = 0
+
+                # print(inspection_number)
+
+                comment = result['comment']
+                # print(comment)
+                if not comment:
+                    comment = ""
+                else:
+                    comment = comment.replace("'", "").replace('"', '').replace("   ", " ").replace("  ", " ").replace('/"', ' ')
+                # print('контрольная точка 0')
+                plan_id = result['planId']
+                if not plan_id:
+                    plan_id = 0
+
+                date_end = result['stopDateEn']
+                if date_end is None:
+                    date_end = '1900-01-01'
+
+                knm_id = result['id']
+                cursor.execute(f"""SELECT id FROM knd_inspection WHERE knm_id='{knm_id}';""")
+                res = cursor.fetchall()
+                # print('контрольная точка 01')
+                if res == ():
+                    cursor.execute(f"""INSERT INTO knd_inspection 
+                    (knm_id, kind, profilactic, date_start, mspCategory, number, status, year, terr_upr_id, comment, plan_id, date_end, desicion_number, desicion_date, last_inspection_date_end)
+                    VALUES 
+                    ("{knm_id}", "{result['kind']}", "{profilactic}", "{result['startDateEn']}", "{result['mspCategory']}", "{inspection_number}",
+                     "{status}", "{result['year']}", "{terr_upr_id}", "{comment}", "{plan_id}", "{date_end}", "0", "1900-01-01", "1900-01-01");""")
+
+                    # self.conn.commit()
+                    cursor.execute("SELECT LAST_INSERT_ID();")
+                    inspection_id = cursor.fetchall()[0][0]
+                else:
+                    inspection_id = res[0][0]
+                    cursor.execute(f"""UPDATE knd_inspection SET 
+                        status='{status}', comment='{comment}' WHERE id={inspection_id};""")
+                    # self.conn.commit()
+
+                # print('контрольная точка 1')
+            except Exception as ex:
+                logger.exception("не получилось внести проверку:")
+                raise f'не получилось внести проверку: {Exception}'
+
+
+            count_inn = len(result['organizationsInn'])
+            if count_inn == 1:
+                # внесение субъекта, если это не рейд
+                try:
+                    subject_name = result['organizationName']
+                    address = self.check_list_str(result['addresses'], only_first=True)
+                    inn = result['inn']
+                    ogrn = result['inn']
+
+                    cursor.execute(f"""SELECT id FROM knd_subject WHERE inn='{inn}';""")
+                    res = cursor.fetchall()
+                    if res == ():
+                        cursor.execute(f"""INSERT INTO knd_subject(name, address, inn, ogrn, e_mail, district) VALUES (
+                                    '{subject_name}', '{address}', '{inn}', '{ogrn}', ' ', ' ');""")
+                        # self.conn.commit()
+                        cursor.execute("SELECT LAST_INSERT_ID();")
+                        subject_id = cursor.fetchall()[0][0]
+                    else:
+                        subject_id = res[0][0]
+                except Exception as ex:
+                    logger.exception(f"не получилось внести субъект (не рейд):{ex}")
+                    raise Exception
+
+
+                # внесение объекта, если это не рейд
+                try:
+                    objects_adresses = result['addresses']
+                    objects_kinds = result['objectsKind']
+                    objects_risks = result['riskCategory']
+                    for address, kind, risk in zip(objects_adresses, objects_kinds, objects_risks):
+                        cursor.execute(
+                            f"""SELECT id FROM knd_object WHERE subject_id='{subject_id}' AND address='{address}' AND risk='{risk}' AND kind='{kind}';""")
+                        res = cursor.fetchall()
+                        if res == ():
+                            cursor.execute(
+                                f"""INSERT INTO knd_object(subject_id, kind, address, risk) VALUES ('{subject_id}', '{kind}', '{address}', '{risk}');""")
+                            # self.conn.commit()
+                            cursor.execute("SELECT LAST_INSERT_ID();")
+                            object_id = cursor.fetchall()[0][0]
+                        else:
+                            object_id = res[0][0]
+
+                        # создаем M_to_m_insp_obj
+                        cursor.execute(
+                            f"""SELECT id FROM knd_m_to_m_object_inspection WHERE object_id='{object_id}' AND inspection_id='{inspection_id}';""")
+                        res = cursor.fetchall()
+                        if res == ():
+                            cursor.execute(
+                                f"""INSERT INTO knd_m_to_m_object_inspection(inspection_id, object_id) VALUES ('{inspection_id}', '{object_id}')""")
+                except Exception as ex:
+                    logger.exception("не получилось внести объект (не рейд):")
+                    raise f'не получилось внести объект (не рейд): {Exception}'
+
+
+
+
+
+            else:
+                # внесение субъекта, если это рейд
+                try:
+                    risk = self.check_list_str(result['riskCategory'], only_first=True)
+                    kind = result['objectsKind'][0]
+                    for subject_name, inn, ogrn in zip(result['organizationsName'], result['organizationsInn'],
+                                                       result['organizationsOgrn']):
+                        cursor.execute(f"""SELECT id FROM knd_subject WHERE inn='{inn}';""")
+                        res = cursor.fetchall()
+                        if res == ():
+                            cursor.execute(f"""INSERT INTO knd_subject(name, address, inn, ogrn, e_mail, district) VALUES (
+                                                        '{subject_name}', ' ', '{inn}', '{ogrn}', ' ', ' ');""")
+                            # self.conn.commit()
+                            cursor.execute("SELECT LAST_INSERT_ID();")
+                            subject_id = cursor.fetchall()[0][0]
+                        else:
+                            subject_id = res[0][0]
+
+                        #  и сразу же создаем объект
+                        cursor.execute(
+                            f"""SELECT id FROM knd_object WHERE subject_id='{subject_id}' AND risk='{risk}' AND kind='{kind}';""")
+                        res = cursor.fetchall()
+                        if res == ():
+                            cursor.execute(
+                                f"""INSERT INTO knd_object(subject_id, kind, address, risk) VALUES ('{subject_id}', '{kind}', ' ', '{risk}');""")
+                            # self.conn.commit()
+                            cursor.execute("SELECT LAST_INSERT_ID();")
+                            object_id = cursor.fetchall()[0][0]
+                        else:
+                            object_id = res[0][0]
+
+                        # создаем M_to_m_insp_obj
+                        cursor.execute(
+                            f"""SELECT id FROM knd_m_to_m_object_inspection WHERE object_id='{object_id}' AND inspection_id='{inspection_id}';""")
+                        res = cursor.fetchall()
+                        if res == ():
+                            cursor.execute(
+                                f"""INSERT INTO knd_m_to_m_object_inspection(inspection_id, object_id) VALUES ('{inspection_id}', '{object_id}')""")
+                except Exception as ex:
+                    logger.exception(f"не получилось внести субъект с объектом (рейд): {ex}")
+                    raise f'не получилось внести субъект с объектом (рейд): {Exception}'
+            self.conn.commit()
+
 
     def create_terr_upr_returned_id(self, name, controllingOrganizationId, district):
         with self.conn.cursor() as cursor:
@@ -36,29 +254,18 @@ class Database:
                     ("{name}", {controllingOrganizationId}, "{district}")""")
                 self.conn.commit()
                 cursor.execute("SELECT LAST_INSERT_ID();")
-                result_id = cursor.fetchall()[0][0]
+                res_id = cursor.fetchall()[0][0]
 
             else:
-                result_id = exists_terr_uprav[0][0]
-            return result_id
+                res_id = exists_terr_uprav[0][0]
+            return res_id
 
-    def create_inspection_knd_returned_id(self, plan_id: int, knm_id: int,  kind: str, profilactic: bool,
-                                          date_start: str, date_end: str, desicion_number: str, deleted: bool,
-                                          desicion_date: str,
-                                          last_inspection_date_end: str, mspCategory: str, number: str,
-                                          status: str, comment: str,
-                                          year: int,
-                                          terr_upr_id: int
-                                          ):
-        if profilactic:
-            profilactic = 1
-        else:
-            profilactic = 0
+    def create_inspection_knd_returned_id(self, knm_id: int,  kind: str, profilactic: bool,
+                                          date_start: str, mspCategory: str, number: str,
+                                          status: str, comment: str, year: int, terr_upr_id: int,
+                                          plan_id: int, date_end: str, last_inspection_date_end):
 
-        if deleted:
-            deleted = 1
-        else:
-            deleted = 0
+
 
 
         with self.conn.cursor() as cursor:
@@ -66,30 +273,28 @@ class Database:
             result = cursor.fetchall()
             if result == ():
                 cursor.execute(f"""INSERT INTO knd_inspection 
-                (plan_id, knm_id, kind, profilactic, deleted, date_start, date_end, desicion_number, desicion_date,
-                 last_inspection_date_end, mspCategory, number, status, comment, year, terr_upr_id)
+                (knm_id, kind, profilactic, date_start, mspCategory, number, status, year, terr_upr_id, comment, plan_id, date_end, desicion_number, desicion_date, last_inspection_date_end)
                 VALUES 
-                ("{plan_id}", "{knm_id}", "{kind}", "{profilactic}", "{deleted}", "{date_start}", "{date_end}", 
-                "{desicion_number}", "{desicion_date}", "{last_inspection_date_end}", "{mspCategory}", "{number}",
-                 "{status}", "{comment}", "{year}", "{terr_upr_id}");""")
+                ("{knm_id}", "{kind}", "{profilactic}", "{date_start}", "{mspCategory}", "{number}",
+                 "{status}", "{year}", "{terr_upr_id}", "{comment}", "{plan_id}", "{date_end}", "0", "1900-01-01", "{last_inspection_date_end}");""")
+
                 self.conn.commit()
                 cursor.execute("SELECT LAST_INSERT_ID();")
                 insp_id = cursor.fetchall()[0][0]
             else:
                 insp_id = result[0][0]
                 cursor.execute(f"""UPDATE knd_inspection SET 
-                    deleted={deleted}, status='{status}', date_start='{date_start}', date_end='{date_end}', 
-                    desicion_number='{desicion_number}', mspCategory='{mspCategory}', desicion_date='{desicion_date}', 
-                    comment='{comment}' WHERE id={insp_id};""")
+                    status='{status}', comment='{comment}' WHERE id={insp_id};""")
+                self.conn.commit()
             return insp_id
 
-    def create_subject_with_returned_id(self, name, address, inn, ogrn, e_mail='', district=''):
+    def create_subject_with_returned_id(self, name, address, inn, ogrn, e_mail, district):
         with self.conn.cursor() as cursor:
             cursor.execute(f"""SELECT id FROM knd_subject WHERE inn='{inn}';""")
             result = cursor.fetchall()
             if result == ():
-                cursor.execute(f"""INSERT INTO knd_subject(name, address, e_mail, district, inn, ogrn) VALUES (
-                '{name}', '{address}', '{e_mail}', '{district}', '{inn}', '{ogrn}');""")
+                cursor.execute(f"""INSERT INTO knd_subject(name, address, inn, ogrn, e_mail, district) VALUES (
+                '{name}', '{address}', '{inn}', '{ogrn}', '{e_mail}', '{district}');""")
                 self.conn.commit()
                 cursor.execute("SELECT LAST_INSERT_ID();")
                 subject_id = cursor.fetchall()[0][0]
@@ -99,7 +304,7 @@ class Database:
 
     def create_object_with_returned_id(self, subject, kind, address, risk):
         with self.conn.cursor() as cursor:
-            cursor.execute(f"""SELECT id FROM knd_object WHERE subject_id='{subject}' AND address='{address}';""")
+            cursor.execute(f"""SELECT id FROM knd_object WHERE subject_id='{subject}' AND risk='{risk}' AND kind='{kind}';""")
             result = cursor.fetchall()
             if result == ():
                 cursor.execute(f"""INSERT INTO knd_object(subject_id, kind, address, risk) VALUES ('{subject}', '{kind}', '{address}', '{risk}');""")
@@ -119,6 +324,8 @@ class Database:
             if result == ():
                 return True
             return False
+        
+        
     def get_terr_upravlenie_name(self, condition):
         with self.conn.cursor() as cursor:
             cursor.execute(f"SELECT name FROM knd_terr_upravlenie WHERE name='{condition}';")

@@ -1,11 +1,18 @@
 import json
 from main_ERKNM import erknm
 from direct_pxl import Operation
-
-from direct_sql import multiple_inserts
+import logging
+from direct_sql import multiple_inserts, database_inserts_conductor
 from Dates_manager import period_between_month, split_year_for_periods, split_period
+from datetime import date
+import traceback
+from pathlib import Path
 
 
+logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
+                        filename=f'logging/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
+                        level=logging.INFO)
+logger = logging.getLogger(Path(traceback.StackSummary.extract(traceback.walk_stack(None))[0].filename).name)
 class Erknm:
 
     def __init__(self, path_xl_table: str or bool = None):
@@ -98,13 +105,14 @@ class Erknm:
                 year=year,
 
             )
+            # print(response)
 
             # break
 
             try:
                 resp_count = response['totalCount']
             except Exception as ex:
-                print(response)
+
                 print(ex)
                 break
             if resp_count > count:
@@ -140,18 +148,20 @@ class Erknm:
                     break
 
             else:
-                print('запрос короче')
+                # print('запрос короче')
                 print(len(response['list']))
                 for knm_in_month in response['list']:
                     result.append(knm_in_month)
 
 
+        # logger.info('сбор данных завершен, записываем для сохранения в json')
+        # with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
+        #     json.dump(result, file)
 
-        with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
-            json.dump(result, file)
+        logger.info('Запись в json завершена, заносим в базу данных')
 
         multiple_inserts(4, result)
-
+        # database_inserts_conductor(result)
 
 
     def get_knms_by_numbers(self):
@@ -183,5 +193,6 @@ class Erknm:
 
 
 if __name__ == '__main__':
-    Erknm().get_all_knm_and_pm_for_a_year(year=2021)
+    year = int(input('Enter the year, to reload datas knm (format: "YYYY")'))
+    Erknm().get_all_knm_and_pm_for_a_year(year=year)
 

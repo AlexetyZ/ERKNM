@@ -2,16 +2,17 @@ import decimal
 import json
 import re
 import time
-from datetime import datetime, date
+from datetime import  date, timedelta
 import logging
+from Bot_telegram import send_message_to_terr_upr
 from sql import Database
-import os
 from pathlib import Path
 import traceback
 from direct_pxl import Operation
 from multiprocessing import Pool
 from itertools import groupby
-from Bot_telegram import send_message_to_terr_upr
+from main_ERKNM import erknm
+# from direct_sql import database_inserts_conductor
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
                         filename=f'logging/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
@@ -169,9 +170,12 @@ def insert_in_database(knm: dict, special: bool = False) -> bool:
         .replace('True', "'True'").replace("'", '"').replace('\n', '').replace('\\n', '').replace('\\r', '').replace('\\t', '').replace('\\p', '').replace("\\", "/")
     try:
         id = int(knm['erpId'])
-
+        true_id = int(knm['id'])
         kind = knm['kind']
-        type = knm['knmType']
+        try:
+            type = knm['knmType']
+        except:
+            type = knm['type']['name']
         status = knm['status']
         year = int(knm['year'])
         start_date = knm['startDateEn']
@@ -274,8 +278,17 @@ def group(set_1):
     return set_2
 
 
-def send_about_voilation_status(responce):
-    send_message_to_terr_upr('Внимание! \n срочно исправить статус паспорта КНМ:\n')
+def send_about_voilation_status(responce, message_theme: str = 'Внимание! \n срочно исправить статус паспорта/ов КНМ:\n'):
+    """
+
+    @param responce: сырой ответ из базы данных в оношении определенного вида нарушений, состоящий из парных значений, где первое значение
+        - наименование органа контроля, ответственного за заполнение паспорта КНМ,
+        а второе - номер паспорта КНМ, в котором неиобходимо исправитьошибки, указанные в теме
+    @param message_theme: тема сообщения, где важно указать, что именно нужно исправить ответственным в паспортах КНМ
+    @return: ничего не ретерн, просто отправляет сообщения через бота или принтует, когда отладка
+    """
+    send_message_to_terr_upr(message_theme)
+    # print(message_theme)
 
     for key, value in group(responce).items():
         message = ''
@@ -284,6 +297,71 @@ def send_about_voilation_status(responce):
             message += f'{v}\n'
         send_message_to_terr_upr(message)
         time.sleep(11)
+        print(message)
+
+def find_violations():
+    chek_old_violations()
+    status_violations()   # потом раскомментить обязательно
+
+def chek_old_violations(reason: str = 'status'):
+    delete_with_right_status()   # потом раскомментить обязательно
+    viol_erknm_id_list = d.take_request_from_database(f"""SELECT erknm_id, id FROM viol where verify=0;""")
+    s = erknm(headless=True)
+    s.autorize()
+
+
+    knm_detail_list = []
+    len_id_list = len(viol_erknm_id_list)
+    for n, erknm_id in enumerate(viol_erknm_id_list):
+        print(f'{n+1}/{len_id_list}')
+        try:
+            responce = s.get_knm_by_number(erknm_id[0])
+            knm_detail_list.append(responce)
+            d.change_verify_where_knm_already_checked(f'{erknm_id[0]}{reason}')
+        except IndexError:
+            d.delete_all_info_about_knm_by_erp_id(erknm_id[0])
+
+
+    database_inserts_conductor(knm_detail_list)
+
+
+
+def delete_with_right_status():
+    d.take_request_from_database(f"""DELETE FROM viol WHERE id IN (SELECT concat(id, 'status') from erknm where id in (SELECT erknm_id from (select * from viol) as t2) and status in ('Завершено', 'Удалено'));""")
+    d.commit()
+
+def status_violations():
+    """
+    Функция выявления ошибок статуса, берет начало года и дату 25 дней назад и в этом диапозоне ищет проверки
+        со статусами "Ожидает завершения", "В процессе заполнения", "Ожидает проведения"
+        (а они должны иметь на эту дату другой статус - следственно, нарушение)
+        формирует данные в отдельную таблицу viol
+        найденные паспорта КНМ передает в чат-бота для отправки адресатам
+    @return:
+    """
+    actual_year = date.today().year
+    date_start = f'{actual_year}-01-01'
+    date_end = date.today()-timedelta(days=25)
+
+
+    d.take_request_from_database(f"""INSERT INTO viol(id, erknm_id, reason, organ, rating) select CONCAT(id, 'status'), id, 'status',
+    controll_organ, 1 FROM erknm WHERE status IN (
+    "Ожидает завершения", "В процессе заполнения", "Ожидает проведения") AND (start_date BETWEEN '{date_start}' AND '{date_end}') ON DUPLICATE KEY UPDATE rating=rating+1;""")
+    d.commit()
+    first_mistake = d.take_request_from_database(f"""SELECT organ, erknm_id FROM viol WHERE reason='status' AND rating=1;""")
+    if len(first_mistake) > 1:
+        send_about_voilation_status(first_mistake)
+
+    second_and_more_mistake = d.take_request_from_database(f"""SELECT organ, erknm_id FROM viol WHERE reason='status' AND rating>1;""")
+    if len(second_and_more_mistake) > 1:
+        abusive_theme = 'Нижеуказанные паспорта КНМ не исправлены с момента последнего напоминания.\n Их учет тщательно ведется.\n Напоминаем, необходимо НЕМЕДЛЕННО исправить следующие паспорта:'
+        send_about_voilation_status(second_and_more_mistake, message_theme=abusive_theme)
+
+
+def get_data_knm_in_json(knm_number):
+    responce = d.take_request_from_database(f"""SELECT data FROM erknm WHERE id='{knm_number}';""")
+    data = json.loads(responce[0][0])
+    return data
 
 
 def binary_analys_from_db() -> dict:
@@ -296,8 +374,8 @@ def get_cells_for_request_db(targets: list, table: str = 'erknm', **params):
 
     print(text_request)
     request = d.take_request_from_database(text_request)
-    for row in request:
-        print(row)
+    # for row in request:
+    #     print(row)
     return request
 
 
@@ -341,17 +419,18 @@ def where_is_error_in_string_by_index(index: int, text: str):
 
 if __name__ == '__main__':
 
-    result = get_cells_for_request_db(
-        ['controll_organ', 'id'],
-        year=2022,
-        status=[
-            "Ожидает завершения",
-            "В процессе заполнения",
-            "Ожидает проведения"
-        ],
-        start_date=['2022-11-01', '2022-11-17']
-    )
-
-    send_about_voilation_status(result)
+    # result = get_cells_for_request_db(
+    #     ['controll_organ', 'id'],
+    #     year=2022,
+    #     status=[
+    #         "Ожидает завершения",
+    #         "В процессе заполнения",
+    #         "Ожидает проведения"
+    #     ],
+    #     start_date=['2022-11-01', '2022-11-17']
+    # )
+    #
+    # send_about_voilation_status(result)
+    find_violations()
 
 

@@ -1,9 +1,13 @@
-import os.path
+
+import re
 from pathlib import Path
 from direct_pxl import Operation
-from datetime import datetime, date
+from datetime import  date
 import json
 import logging
+from main_ERKNM import erknm
+from sql import Database
+from exp import simple_analys_from_db, request_db
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
                     filename=f'logging/reports/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
@@ -169,11 +173,89 @@ class Analys:
         return {power_set: phrase}
 
 
+    def get_knm_without_stop_date(self):
+        text_request = request_db(
+            targets=['id'],
+            year=2022,
+            status=[
+                'Завершено',
+                # 'Решение обжаловано',
+                # 'В процессе заполнения',
+                # 'Ожидает завершения',
+                # 'Не может быть проведено',
+                # 'Не согласована',
+                # 'Исключена'
+            ],
+            start_date=['2022-01-01', '2022-09-30'],
+            stop_date='1900-01-01',
+            controll_organ=[
+                'Управление Роспотребнадзора по Республике Бурятия',
+                'Управление Роспотребнадзора по Республике Саха (Якутия)',
+                'Управление Роспотребнадзора по Забайкальскому краю',
+                'Управление Роспотребнадзора по Камчатскому краю',
+                'Управление Роспотребнадзора по Приморскому краю',
+                'Управление Роспотребнадзора по Хабаровскому краю',
+                'Управление Роспотребнадзора по Амурскоу области',
+                'Управление Роспотребнадзора по Магаданской области',
+                'Управление Роспотребнадзора по Сахалинской области',
+                'Управление Роспотребнадзора по о Еврейской автономной области',
+                'Управление Роспотребнадзора по Чукотскому автономному округу'
+            ]
+        )
+
+        result = Database().take_request_from_database(text_request)
+        print(len(result))
+        s = erknm(headless=True)
+        s.autorize()
+        for n, erknm_id in enumerate(result):
+            erpId = erknm_id[0]
+            full_knm_info = s.get_knm_by_number(erpId)
+            print(n)
+            try:
+                true_stop_date = full_knm_info['knmErknm']['organizations'][0]['act']['nextWordDayActDateTime']
+
+            except:
+                true_stop_date = re.search(r"\d{4}-\d{2}-\d{2}", full_knm_info['statusDateCreate']).group()
+
+            Database().change_stop_date_by_erpID(true_stop_date, erpId)
+
+
+
+    def get_consists(self):
+        simple_analys_from_db(
+            targets=['id'],
+            year=2022,
+            status=[
+                'Завершено',
+                'Решение обжаловано',
+                'В процессе заполнения',
+                'Ожидает завершения',
+                # 'Не может быть проведено',
+                # 'Не согласована',
+                # 'Исключена'
+            ],
+            start_date=['2022-01-01', '2022-03-31'],
+            stop_date='1900-01-01',
+            controll_organ=[
+                'Управление Роспотребнадзора по Республике Бурятия',
+                'Управление Роспотребнадзора по Республике Саха (Якутия)',
+                'Управление Роспотребнадзора по Забайкальскому краю',
+                'Управление Роспотребнадзора по Камчатскому краю',
+                'Управление Роспотребнадзора по Приморскому краю',
+                'Управление Роспотребнадзора по Хабаровскому краю',
+                'Управление Роспотребнадзора по Амурскоу области',
+                'Управление Роспотребнадзора по Магаданской области',
+                'Управление Роспотребнадзора по Сахалинской области',
+                'Управление Роспотребнадзора по о Еврейской автономной области',
+                'Управление Роспотребнадзора по Чукотскому автономному округу'
+            ]
+
+        )
+
+
 if __name__ == '__main__':
 
-    a = Analys(
-        path_json="C:\\Users\zaitsev_ad\Documents\Плановые проверки 2023\Plan_knm_full_2023.json"
-    )
-    print(a.knm_status_consists())
+    a = Analys()
+    a.get_knm_without_stop_date()
 #     # path = Path("S:\Зайцев_АД\письма в территории\О недопущении нарушений в ЕРКНМ\d_120500527.xlsx")
 #     print(datetime.now().strftime('%d.%m.%Y'))

@@ -151,7 +151,7 @@ class erknm:
                 script = f"""const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-index/api/knm/find-indexes?page={page}&size={count}&order=erpId%2Casc', """ + """{method: 'POST', headers: {'Accept': 'application/json','Content-Type': 'application/json'}, body: JSON.stringify({""" + f'''"name":"все проверки","years":[{year}],"domainIds":[1000000000000001],"includeDomainChild":true,"ignoreKno":false,"federalLawIds":[3],"knmTypeIds":[6,4,5],"controllingOrganizationIds":["10000001082"],"includeChildKno":true,"startDateBetween":[{between_date}],"supervisionTypeId":"","subjectInn":null,"subjectOrgName":null,{planNum}"approveDocOrderNum":null,"approveDocRequestNum":null,"objectOgrn":null,"prosecutorOrganizationIds":[],"legalBasisDocName":null,"statusIds":[],"pubStatuses":[],"subjectTypeIds":[],"erpId":null,"inspectorFullName":null,"address":null,"kinds":["Контрольная закупка","Рейдовый осмотр","Выборочный контроль","Инспекционный визит","Мониторинговая закупка","Документарная проверка","Выездная проверка"],"version":"ERKNM"''' + """})});const content = await rawResponse.json();return content;"""
                 print(script)
                 result = self.browser.execute_script(script)
-                print('запрос прошел')
+                # print('запрос прошел')
                 return result
             except Exception as ex:
                 print(f'не удалось запустить скрипт: {ex}')
@@ -175,8 +175,21 @@ class erknm:
                 time.sleep(10)
 
     def get_knm_by_number(self, number):
-        result = self.browser.execute_script(
+        result_0 = self.browser.execute_script(
             f"""const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-index/api/knm/find-indexes?page=0&size=50&order=erpId%2Casc', """ + """{method: 'POST', headers: {'Accept': 'application/json','Content-Type': 'application/json'}, body: JSON.stringify({""" + f'''"name":"все проверки","years":[2022,2015,2016,2017,2018,2019,2020,2021,2023],"domainIds":[1000000000000001],"includeDomainChild":true,"ignoreKno":false,"federalLawIds":[3],"knmTypeIds":[6,4,5],"controllingOrganizationIds":["10000001082"],"includeChildKno":true,"supervisionTypeId":"","subjectInn":null,"subjectOrgName":null,"planNum":null,"approveDocOrderNum":null,"approveDocRequestNum":null,"objectOgrn":null,"prosecutorOrganizationIds":[],"legalBasisDocName":null,"statusIds":[],"pubStatuses":[], searchString: "{number}", "subjectTypeIds":[],"erpId":null,"inspectorFullName":null,"address":null,"kinds":["Контрольная закупка","Рейдовый осмотр","Выборочный контроль","Инспекционный визит","Мониторинговая закупка","Документарная проверка","Выездная проверка"],"version":"ERKNM"''' + """})});const content = await rawResponse.json();return content;""")
+        try:
+            true_id = result_0['list'][0]['id']
+        except:
+            print(f'{number=}')
+            print(f'{result_0=}')
+            raise IndexError("list index out of range")
+
+        return self.get_knm_by_true_id(true_id)
+
+
+    def get_knm_by_true_id(self, true_id):
+        result = self.browser.execute_script(
+            f"""const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-catalogs/api/knm/{true_id}');const content = await rawResponse.json();console.log(content);return content;""")
         return result
 
 
