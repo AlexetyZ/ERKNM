@@ -7,6 +7,7 @@ from Dates_manager import period_between_month, split_year_for_periods, split_pe
 from datetime import date
 import traceback
 from pathlib import Path
+from create_doc import make_xl_from_kmns
 
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
@@ -33,6 +34,7 @@ class Erknm:
         self.result = []
 
     def get_knm_by_plan_list(self, count: int = 10000, year: int = 2023):
+        result = []
         if self.o is None:
             raise Exception(
                 'Эй! Так не пойдет. Эта функция анализирует только таблицу exel,'
@@ -40,11 +42,9 @@ class Erknm:
                 'а сейчас:  path_xl_table is None')
         plan_list = self.o.get_column_values('A')
 
-
-
         for plan in plan_list:
             print(plan)
-            print(f'сумма КНМ - {len(self.result)}')
+            print(f'сумма КНМ - {len(result)}')
             try:
                 response = self.session.get_knm_list(
                     date_start=f'{year}-01-01',
@@ -56,7 +56,7 @@ class Erknm:
             except Exception as ex:
                 print(ex)
                 with open(f'Part_plan_last_{plan}.json', 'wb') as file:
-                    json.dump(self.result, file)
+                    json.dump(result, file)
                 break
             if response['totalCount'] > count:
                 for month in range(1, 13):
@@ -71,7 +71,7 @@ class Erknm:
                         plan_number=plan
                     )
                     for knm_in_month in subresponse['list']:
-                        self.result.append(knm_in_month)
+                        result.append(knm_in_month)
                         # try:
                         #     create_knm_in_knms(knm_in_month)
                         # except Exception as ex:
@@ -80,15 +80,20 @@ class Erknm:
 
             else:
                 for knm in response['list']:
-                    self.result.append(knm)
+                    result.append(knm)
                     # try:
                     #     create_knm_in_knms(knm)
                     # except Exception as ex:
                     #     print(knm)
                     #     print(ex)
-        print('завершен сбор информации, приступаем к сохранению результатов')
-        with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
-            json.dump(self.result, file)
+        logger.info('Сбор результатов по планам завершен')
+
+        try:
+            make_xl_from_kmns(result)
+        except:
+
+            with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
+                json.dump(result, file)
 
     def get_all_knm_and_pm_for_a_year(self, count: int = 8000, year: int = 2023):
         year_periods = split_year_for_periods(year, 50)
@@ -160,8 +165,16 @@ class Erknm:
 
         logger.info('Запись в json завершена, заносим в базу данных')
 
-        multiple_inserts(4, result)
+        # multiple_inserts(8, result)
         # database_inserts_conductor(result)
+        try:
+            make_xl_from_kmns(result)
+        except:
+
+            with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
+                json.dump(result, file)
+
+
 
 
     def get_knms_by_numbers(self):
@@ -193,6 +206,7 @@ class Erknm:
 
 
 if __name__ == '__main__':
-    year = int(input('Enter the year, to reload datas knm (format: "YYYY")'))
-    Erknm().get_all_knm_and_pm_for_a_year(year=year)
+    # year = int(input('Enter the year, to reload datas knm (format: "YYYY")'))
+    # Erknm().get_all_knm_and_pm_for_a_year(year=year)
+    Erknm("C:\\Users\zaitsev_ad\Documents\ЕРКНМ\Список_утвержденных_планов_2023.xlsx").get_knm_by_plan_list()
 

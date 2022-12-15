@@ -85,9 +85,10 @@ class Database:
                     terr_upr_id = cursor.fetchall()[0][0]
                 else:
                     terr_upr_id = exists_terr_uprav[0][0]
-            except Exception as ex:
+            except:
                 logger.exception("не получилось внести теруправление:")
-                raise f"не получилось внести теруправление:{Exception}"
+                logger.info(result)
+
 
             # вносим проверку
             try:
@@ -122,9 +123,9 @@ class Database:
                 # print('контрольная точка 01')
                 if res == ():
                     cursor.execute(f"""INSERT INTO knd_inspection 
-                    (knm_id, kind, profilactic, date_start, mspCategory, number, status, year, terr_upr_id, comment, plan_id, date_end, desicion_number, desicion_date, last_inspection_date_end)
+                    (knm_id, kind, type, profilactic, date_start, mspCategory, number, status, year, terr_upr_id, comment, plan_id, date_end, desicion_number, desicion_date, last_inspection_date_end)
                     VALUES 
-                    ("{knm_id}", "{result['kind']}", "{profilactic}", "{result['startDateEn']}", "{result['mspCategory']}", "{inspection_number}",
+                    ("{knm_id}", "{result['kind']}", "{result['knmType']}", "{profilactic}", "{result['startDateEn']}", "{result['mspCategory']}", "{inspection_number}",
                      "{status}", "{result['year']}", "{terr_upr_id}", "{comment}", "{plan_id}", "{date_end}", "0", "1900-01-01", "1900-01-01");""")
 
                     # self.conn.commit()
@@ -137,9 +138,9 @@ class Database:
                     # self.conn.commit()
 
                 # print('контрольная точка 1')
-            except Exception as ex:
+            except:
                 logger.exception("не получилось внести проверку:")
-                raise f'не получилось внести проверку: {Exception}'
+                logger.info(result)
 
 
             count_inn = len(result['organizationsInn'])
@@ -161,9 +162,9 @@ class Database:
                         subject_id = cursor.fetchall()[0][0]
                     else:
                         subject_id = res[0][0]
-                except Exception as ex:
-                    logger.exception(f"не получилось внести субъект (не рейд):{ex}")
-                    raise Exception
+                except:
+                    logger.exception(f"не получилось внести субъект (не рейд):")
+                    logger.info(result)
 
 
                 # внесение объекта, если это не рейд
@@ -191,9 +192,9 @@ class Database:
                         if res == ():
                             cursor.execute(
                                 f"""INSERT INTO knd_m_to_m_object_inspection(inspection_id, object_id) VALUES ('{inspection_id}', '{object_id}')""")
-                except Exception as ex:
+                except:
                     logger.exception("не получилось внести объект (не рейд):")
-                    raise f'не получилось внести объект (не рейд): {Exception}'
+                    logger.info(result)
 
 
 
@@ -237,9 +238,9 @@ class Database:
                         if res == ():
                             cursor.execute(
                                 f"""INSERT INTO knd_m_to_m_object_inspection(inspection_id, object_id) VALUES ('{inspection_id}', '{object_id}')""")
-                except Exception as ex:
-                    logger.exception(f"не получилось внести субъект с объектом (рейд): {ex}")
-                    raise f'не получилось внести субъект с объектом (рейд): {Exception}'
+                except:
+                    logger.exception(f"не получилось внести субъект с объектом (рейд):")
+                    logger.info(result)
             self.conn.commit()
 
 

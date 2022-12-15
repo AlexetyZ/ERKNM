@@ -228,10 +228,9 @@ def insert_in_database(result: dict, special: bool = False) -> bool:
 
 
 def new_insert_in_database(result: dict, special: bool = False):
-    print("записываю")
     try:
         if special:
-            print("теперь со специальным параметром")
+            # print("теперь со специальным параметром")
             if special is True:
                 addresses = []
                 for address in result['addresses']:
