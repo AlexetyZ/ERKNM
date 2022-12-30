@@ -8,7 +8,7 @@ from datetime import date
 import traceback
 from pathlib import Path
 from create_doc import make_xl_from_kmns
-
+from sql import Database
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
                         filename=f'logging/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
@@ -29,7 +29,9 @@ class Erknm:
         else:
             self.o = Operation(path_xl_table)
 
-        self.session = erknm(headless=True)
+        self.session = erknm(
+            headless=True
+        )
         self.session.autorize()
         self.result = []
 
@@ -95,7 +97,7 @@ class Erknm:
             with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
                 json.dump(result, file)
 
-    def get_all_knm_and_pm_for_a_year(self, count: int = 8000, year: int = 2023):
+    def get_all_knm_for_a_year(self, count: int = 8000, year: int = 2023):
         year_periods = split_year_for_periods(year, 50)
         result = []
 
@@ -165,16 +167,101 @@ class Erknm:
 
         logger.info('Запись в json завершена, заносим в базу данных')
 
-        # multiple_inserts(8, result)
+        multiple_inserts(8, result)
+        Database().conn.commit()
         # database_inserts_conductor(result)
-        try:
-            make_xl_from_kmns(result)
-        except:
-
-            with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
-                json.dump(result, file)
 
 
+
+        # try:
+        #     make_xl_from_kmns(result)
+        # except:
+        #
+        #     with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
+        #         json.dump(result, file)
+
+
+    def get_all_pm_for_a_year(self, count: int = 8000, year: int = 2023):
+        year_periods = split_year_for_periods(year, 50)
+        result = []
+
+        for between in year_periods:
+
+            print(f'{between} {len(result)}')
+
+            response = self.session.get_pm_list(
+                date_start=between['start'],
+                date_end=between['end'],
+                count=count,
+                year=year,
+
+            )
+            # print(response)
+
+            # break
+
+            try:
+                resp_count = response['totalCount']
+            except Exception as ex:
+
+                print(ex)
+                break
+            if resp_count > count:
+                print(f"Запрос длинее {count} - {response['totalCount']}")
+
+                cycle = round(resp_count/count)
+                if cycle < 2:
+                    cycle = 2
+                while True:
+                    subresponses_result = []
+                    periods = split_period(between['start'], between['end'], parts=cycle)
+                    for period in periods:
+                        subresponse = self.session.get_pm_list(
+                            date_start=period['start'],
+                            date_end=period['end'],
+                            count=count,
+                            year=year,
+                        )
+                        try:
+                            subresp_count = subresponse['totalCount']
+                        except Exception as ex:
+                            print(subresponse)
+                            print(ex)
+                            break
+                        if subresp_count > count:
+                            print(f"Подзапрос длинее {count} - {subresponse['totalCount']}")
+                            cycle += 1
+                            continue
+                        for knm_month_parts in subresponse['list']:
+                            subresponses_result.append(knm_month_parts)
+                    for subresp in subresponses_result:
+                        result.append(subresp)
+                    break
+
+            else:
+                # print('запрос короче')
+                print(len(response['list']))
+                for knm_in_month in response['list']:
+                    result.append(knm_in_month)
+
+
+        logger.info('сбор данных завершен, записываем для сохранения в json')
+        with open(f'pm_{str(year)}.json', 'w') as file:
+            json.dump(result, file)
+
+        logger.info('Запись в json завершена, заносим в базу данных')
+
+        multiple_inserts(8, result)
+        # database_inserts_conductor(result)
+
+
+
+        # try:
+        #     make_xl_from_kmns(result)
+        # except:
+        #
+        #     with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
+        #         json.dump(result, file)
 
 
     def get_knms_by_numbers(self):
@@ -206,7 +293,7 @@ class Erknm:
 
 
 if __name__ == '__main__':
-    # year = int(input('Enter the year, to reload datas knm (format: "YYYY")'))
-    # Erknm().get_all_knm_and_pm_for_a_year(year=year)
-    Erknm("C:\\Users\zaitsev_ad\Documents\ЕРКНМ\Список_утвержденных_планов_2023.xlsx").get_knm_by_plan_list()
+    year = int(input('Enter the year, to reload datas knm (format: "YYYY")'))
+    Erknm().get_all_knm_for_a_year(year=year)
+    # Erknm("C:\\Users\zaitsev_ad\Documents\ЕРКНМ\Список_утвержденных_планов_2023.xlsx").get_knm_by_plan_list()
 

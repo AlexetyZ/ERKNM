@@ -19,7 +19,7 @@ import requests
 import config
 from crypto import Crypto
 from bs4 import BeautifulSoup
-
+from direct_pxl import Operation
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
                     filename=f'logging/{datetime.date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
@@ -83,6 +83,29 @@ class erknm:
 
                     self.browser.quit()
                     return f'{str(function)} не удалась, имеется непредвиденная ошибка, было предпринято 5 попыток'
+
+    def go_to_rpn_inspect_next_year(self):
+        next_year = datetime.datetime.now().year + 1
+
+        self.browser.get(f'https://inspect.rospotrebnadzor.ru/{next_year}/')
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.ID, "form_search")))
+
+    def get_xl_list_ogrn_for_rpn_inspect(self, ogrn):
+        """
+        @param ogrn_list:
+        @return:
+        """
+
+        self.browser.find_element(by=By.ID, value='ogrn').clear()
+        self.browser.find_element(by=By.ID, value='ogrn').send_keys(ogrn)
+        time.sleep(1)
+        self.browser.find_element(by=By.XPATH, value='//*[@id="form_search"]/form/table/tbody/tr[5]/td[2]/input').click()
+
+
+
+
+
+
 
     def autorize(self):
         self.browser.get('https://private.proverki.gov.ru/private/auth')
@@ -167,7 +190,7 @@ class erknm:
             try:
                 result = self.browser.execute_script(
                     f"""const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-index/api/knm/find-indexes?page=0&size={count}&order=erpId%2Casc', """ + """{method: 'POST', headers: {'Accept': 'application/json','Content-Type': 'application/json'}, body: JSON.stringify({"years":""" + f'''[{year}],"controllingOrganizationIds":["10000001082"],"includeChildKno":true,startDateBetween:[{between_date}],"pm":true,"version":"ERKNM"''' + """})});const content = await rawResponse.json();return content;""")
-                print('запрос прошел')
+                # print('запрос прошел')
                 return result
             except Exception as ex:
                 print(f'не удалось запустить скрипт: {ex}')

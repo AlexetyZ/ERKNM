@@ -73,6 +73,12 @@ class Operation:
     def get_cell_value(self, row: int, column: int):
         return self.sh.cell(row=row, column=column).value
 
+    def detect_last_row(self):
+        return self.sh.max_row + 1
+
+    def detect_last_column(self):
+        return self.sh.max_column + 1
+
     def change_value_in_cell(self, row: int, column: int, value, number_format: str = 'no', saving: bool = True):
         if number_format != 'no':
             self.sh.cell(row=row, column=column).number_format = number_format

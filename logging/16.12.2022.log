@@ -1,0 +1,15 @@
+2022-12-16 11:50:24,477 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\be49e8fc57d9ddbf_chromedriver.exe
+2022-12-16 11:50:27,409 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2022-12-16 11:57:03,654 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\f01d2c74ec9b8151_chromedriver.exe
+2022-12-16 11:57:06,552 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2022-12-16 11:57:50,914 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\d779461d2b407c86_chromedriver.exe
+2022-12-16 11:57:53,342 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2022-12-16 11:58:39,823 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\3117c22c4ebcc1e2_chromedriver.exe
+2022-12-16 11:58:42,379 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2022-12-16 12:00:48,834 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\4845ed246366769f_chromedriver.exe
+2022-12-16 12:00:51,666 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2022-12-16 12:01:15,352 - [INFO] - main_ERKNM - autorize(138) - Autorization successfull completed!
+2022-12-16 12:13:29,676 - [INFO] - ERKNM_http.py - get_knm_by_plan_list(91) - Сбор результатов по планам завершен
+2022-12-16 12:13:29,678 - [INFO] - create_doc.py - make_xl_from_kmns(27) - Создаем файл
+2022-12-16 12:13:44,733 - [INFO] - create_doc.py - make_xl_from_kmns(74) - Файл наполнен данными, сохраняем
+2022-12-16 12:18:14,156 - [INFO] - create_doc.py - make_xl_from_kmns(76) - Файл сохранен

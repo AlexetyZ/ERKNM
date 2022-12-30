@@ -112,6 +112,7 @@ def database_inserts_conductor(list_knm: list):
             except Exception as ex:
                 logger.info(f'Непредвиденная ошибка строка 90: {ex}')
                 exception_knm.append(knm)
+    Database().commit()
     if exception_knm:
         with open('Exception_knm.json', 'w') as file:
             json.dump(exception_knm, file)
@@ -126,7 +127,7 @@ def database_inserts_conductor_for_multiprocessing(knm):
     result = new_insert_in_database(knm)
     if result is False:
         try:
-            result = new_insert_in_database(knm)
+            result = new_insert_in_database(knm, special=True)
             if result is False:
                 logger.info('Возникла ошибка, с которой не удалось справиться...')
                 logger.info('')
@@ -140,12 +141,15 @@ def multiple_inserts(processes: int, knm_list: list):
     logger.info('старт программы')
     pool = Pool(processes)
     pool.map(database_inserts_conductor_for_multiprocessing, knm_list)
+    Database().commit()
     if exception_knm:
         with open('Exception_knm.json', 'w') as file:
             json.dump(exception_knm, file)
             result = f'По итогу внесения не было внесено {len(exception_knm)} проверок. Они упакованы в файл Exception_knm.json и их ошибки ожидают решений'
             logger.info(result)
         return result
+
+    Database().commit()
     logger.info('Все проверки успешно занесены!')
 
 
@@ -258,11 +262,11 @@ def new_insert_in_database(result: dict, special: bool = False):
         Database().ultra_create_handler(result)
 
     except Exception as ex:
-        print(ex)
-
-        logger.error(ex)
-        logger.info(result)
-        logger.warning('Проведена повторная попытка внесения с параметром special, результат неудачный.')
+        # print(ex)
+        if special:
+            logger.error(ex)
+            logger.info(result)
+            logger.warning('Проведена повторная попытка внесения с параметром special, результат неудачный.')
         return False
 
 

@@ -15,7 +15,7 @@ def str_from_list(some_list):
     string = ''
     for element in some_list:
         if string:
-            string += f', {element}'
+            string += f'; {element}'
         else:
             string += element
     return string
@@ -27,6 +27,7 @@ def make_xl_from_kmns(kmns):
     logger.info('Создаем файл')
     cell_pass = 2
     for n, knm in enumerate(kmns):
+        controll_organ = knm['controllingOrganization']
         status = knm['status']
 
 
@@ -42,6 +43,7 @@ def make_xl_from_kmns(kmns):
         erpId = knm['erpId']
 
         for name in knm['organizationsName']:
+
             name_index = knm['organizationsName'].index(name)
             organizationsName = knm['organizationsName'][name_index]
             organizationsOgrn = knm['organizationsOgrn'][name_index]
@@ -50,6 +52,7 @@ def make_xl_from_kmns(kmns):
 
 
             knm_columns = [
+                controll_organ,
                 status,
                 organizationsName,
                 organizationsOgrn,

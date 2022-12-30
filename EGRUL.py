@@ -11,7 +11,7 @@ class Egrul:
         self.user_agent = fake_useragent.UserAgent().random  # UserAgent().random
         self.header = {'User-Agent': self.user_agent}
 
-    def find_in_egrul(self, cell, region='52'):
+    def find_in_egrul(self, cell, row: int = 0):
 
         # get request for first page
         link = 'https://egrul.nalog.ru/index.html'
@@ -25,7 +25,7 @@ class Egrul:
             'vyp3CaptchaToken': '',
             'page': '',
             'query': cell,
-            'region': region,
+
             # 'Адрес': str(ipaddress.IPv4Address(random.randint(0, 2 ** 32))),
             'PreventChromeAutocomplete': ''
 
@@ -48,8 +48,8 @@ class Egrul:
 
             datas_dict = json.loads(soup_get_datas.find('p').text)
 
-            info = datas_dict['rows'][0]
+            info = datas_dict['rows'][row]
             return info
         except:
-            print(soup_post_t)
+            # print(soup_post_t)
             return 'Возникла ошибка'
