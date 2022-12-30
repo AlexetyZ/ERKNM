@@ -133,24 +133,18 @@ class Database:
                     date_end = '1900-01-01'
 
                 knm_id = result['id']
-                cursor.execute(f"""SELECT id FROM knd_inspection WHERE knm_id='{knm_id}';""")
-                exist_inspection = cursor.fetchall()
-                # print('контрольная точка 01')
-                if exist_inspection == ():
-                    cursor.execute(f"""INSERT INTO knd_inspection 
-                    (knm_id, kind, profilactic, date_start, mspCategory, number, status, year, terr_upr_id, comment, plan_id, date_end, desicion_number, desicion_date, last_inspection_date_end, duration_days, duration_hours)
-                    VALUES 
-                    ("{knm_id}", "{result['kind']}", "{profilactic}", "{date_start}", "{result['mspCategory']}", "{inspection_number}",
-                     "{status}", "{result['year']}", "{terr_upr_id}", "{comment}", "{plan_id}", "{date_end}", "0", "1900-01-01", "1900-01-01", "{duration_days}", "{duration_hours}");""")
 
-                    # self.conn.commit()
-                    cursor.execute("SELECT LAST_INSERT_ID();")
-                    inspection_id = cursor.fetchall()[0][0]
-                else:
-                    inspection_id = exist_inspection[0][0]
-                    cursor.execute(f"""UPDATE knd_inspection SET 
-                        status='{status}', comment='{comment}' WHERE id={inspection_id};""")
-                    # self.conn.commit()
+
+                cursor.execute(f"""INSERT INTO knd_inspection 
+                (knm_id, kind, profilactic, date_start, mspCategory, number, status, year, terr_upr_id, comment, plan_id, date_end, desicion_number, desicion_date, last_inspection_date_end, duration_days, duration_hours)
+                VALUES 
+                ("{knm_id}", "{result['kind']}", "{profilactic}", "{date_start}", "{result['mspCategory']}", "{inspection_number}",
+                 "{status}", "{result['year']}", "{terr_upr_id}", "{comment}", "{plan_id}", "{date_end}", "0", "1900-01-01", "1900-01-01", "{duration_days}", "{duration_hours}") ON DUPLICATE KEY UPDATE status='{status}', comment='{comment}', date_end='{date_end}';""")
+
+                # self.conn.commit()
+                cursor.execute("SELECT LAST_INSERT_ID();")
+                inspection_id = cursor.fetchall()[0][0]
+
 
                 # print('контрольная точка 1')
             except:
