@@ -10,7 +10,7 @@ class Contragents:
     def request(self, page: int = 1) -> list:
         session = requests.Session()
         user_agent = fake_useragent.UserAgent().random
-        url = 'https://www.1cont.ru/contragent/by-region/sverdlovskaya-oblast'
+        url = 'https://www.1cont.ru/contragent/by-region/kemerovskaya-oblast'
         headers = {
             "User-Agent": user_agent
         }
@@ -94,7 +94,7 @@ if __name__ == '__main__':
     o = Operation()
 
     dict_org = []
-    for n in range(1, 6):
+    for n in range(38, 43):   # 728
         organizations = cont.request(page=n)
         parse_result = cont.parse(organizations)
         dict_org.extend(parse_result)
@@ -104,8 +104,6 @@ if __name__ == '__main__':
             inn = org['ИНН']
             liqv_inf = egrul.find_info_liquidate(inn)
             if liqv_inf != 'Информация о ликвидации отсутствует':
-
-
 
                 objects = rpn_risk.request(inn)
                 # print()
@@ -117,6 +115,5 @@ if __name__ == '__main__':
                     o.change_value_in_cell(last_row, 4, value=org['ИНН'], saving=False)
                     o.change_value_in_cell(last_row, 5, value=liqv_inf, saving=False)
 
+                o.save_document(path="C:\\Users\zaitsev_ad\Desktop\проверка риск Кемеровская область")
 
-
-                o.save_document(path="C:\\Users\zaitsev_ad\Desktop\проверка риск Свердловская область")

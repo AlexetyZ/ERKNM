@@ -79,21 +79,18 @@ class Database:
                 controllingOrganization = result['controllingOrganization']
                 controllingOrganizationId = result['controllingOrganizationId']
                 district = result['district']
+
                 cursor.execute(
-                    f"""SELECT id FROM knd_terr_upravlenie WHERE controllingOrganizationId='{controllingOrganizationId}';""")
-                exists_terr_uprav = cursor.fetchall()
-                if exists_terr_uprav == ():
-                    cursor.execute(
-                        f"""INSERT INTO knd_terr_upravlenie(name, controllingOrganizationId, district) VALUES 
-                                    ("{controllingOrganization}", {controllingOrganizationId}, "{district}")""")
-                    # self.conn.commit()
-                    cursor.execute("SELECT LAST_INSERT_ID();")
-                    terr_upr_id = cursor.fetchall()[0][0]
-                else:
-                    terr_upr_id = exists_terr_uprav[0][0]
+                    f"""INSERT INTO knd_terr_upravlenie(name, controllingOrganizationId, district) VALUES 
+                                ("{controllingOrganization}", {controllingOrganizationId}, "{district}") ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)""")
+                self.conn.commit()
+                cursor.execute("SELECT LAST_INSERT_ID();")
+                terr_upr_id = cursor.fetchall()[0][0]
+                # print(terr_upr_id)
+
             except:
-                # logger.exception("не получилось внести теруправление:")
-                # logger.info(result)
+                logger.exception("не получилось внести теруправление:")
+                logger.info(result)
                 raise ValueError('не получилось внести теруправление:')
 
             # вносим проверку
@@ -139,7 +136,7 @@ class Database:
                 (knm_id, kind, profilactic, date_start, mspCategory, number, status, year, terr_upr_id, comment, plan_id, date_end, desicion_number, desicion_date, last_inspection_date_end, duration_days, duration_hours)
                 VALUES 
                 ("{knm_id}", "{result['kind']}", "{profilactic}", "{date_start}", "{result['mspCategory']}", "{inspection_number}",
-                 "{status}", "{result['year']}", "{terr_upr_id}", "{comment}", "{plan_id}", "{date_end}", "0", "1900-01-01", "1900-01-01", "{duration_days}", "{duration_hours}") ON DUPLICATE KEY UPDATE status='{status}', comment='{comment}', date_end='{date_end}';""")
+                 "{status}", "{result['year']}", "{terr_upr_id}", "{comment}", "{plan_id}", "{date_end}", "0", "1900-01-01", "1900-01-01", "{duration_days}", "{duration_hours}") ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), status='{status}', comment='{comment}', date_end='{date_end}';""")
 
                 # self.conn.commit()
                 cursor.execute("SELECT LAST_INSERT_ID();")
@@ -148,8 +145,8 @@ class Database:
 
                 # print('контрольная точка 1')
             except:
-                # logger.exception("не получилось внести проверку:")
-                # logger.info(result)
+                logger.exception("не получилось внести проверку:")
+                logger.info(result)
                 raise ValueError('не получилось внести проверку:')
 
             count_inn = len(result['organizationsInn'])
@@ -161,19 +158,16 @@ class Database:
                     inn = result['inn']
                     ogrn = result['inn']
 
-                    cursor.execute(f"""SELECT id FROM knd_subject WHERE inn='{inn}';""")
-                    exist_subject = cursor.fetchall()
-                    if exist_subject == ():
-                        cursor.execute(f"""INSERT INTO knd_subject(name, address, inn, ogrn, e_mail, district) VALUES (
-                                    '{subject_name}', '{address}', '{inn}', '{ogrn}', ' ', ' ');""")
-                        # self.conn.commit()
-                        cursor.execute("SELECT LAST_INSERT_ID();")
-                        subject_id = cursor.fetchall()[0][0]
-                    else:
-                        subject_id = exist_subject[0][0]
+
+                    cursor.execute(f"""INSERT INTO knd_subject(name, address, inn, ogrn, e_mail, district) VALUES (
+                                '{subject_name}', '{address}', '{inn}', '{ogrn}', ' ', ' ') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id);""")
+                    # self.conn.commit()
+                    cursor.execute("SELECT LAST_INSERT_ID();")
+                    subject_id = cursor.fetchall()[0][0]
+
                 except:
-                    # logger.exception(f"не получилось внести субъект (не рейд):")
-                    # logger.info(result)
+                    logger.exception(f"не получилось внести субъект (не рейд):")
+                    logger.info(result)
                     raise ValueError(f"не получилось внести субъект (не рейд):")
 
                 # внесение объекта, если это не рейд
@@ -202,8 +196,8 @@ class Database:
                             cursor.execute(
                                 f"""INSERT INTO knd_m_to_m_object_inspection(inspection_id, object_id) VALUES ('{inspection_id}', '{object_id}')""")
                 except:
-                    # logger.exception("не получилось внести объект (не рейд):")
-                    # logger.info(result)
+                    logger.exception("не получилось внести объект (не рейд):")
+                    logger.info(result)
                     raise ValueError("не получилось внести объект (не рейд):")
 
             else:
@@ -213,16 +207,13 @@ class Database:
                     kind = result['objectsKind'][0]
                     for subject_name, inn, ogrn in zip(result['organizationsName'], result['organizationsInn'],
                                                        result['organizationsOgrn']):
-                        cursor.execute(f"""SELECT id FROM knd_subject WHERE inn='{inn}';""")
-                        exist_subject = cursor.fetchall()
-                        if exist_subject == ():
-                            cursor.execute(f"""INSERT INTO knd_subject(name, address, inn, ogrn, e_mail, district) VALUES (
-                                                        '{subject_name}', ' ', '{inn}', '{ogrn}', ' ', ' ');""")
-                            # self.conn.commit()
-                            cursor.execute("SELECT LAST_INSERT_ID();")
-                            subject_id = cursor.fetchall()[0][0]
-                        else:
-                            subject_id = exist_subject[0][0]
+
+
+                        cursor.execute(f"""INSERT INTO knd_subject(name, address, inn, ogrn, e_mail, district) VALUES (
+                                    '{subject_name}', ' ', '{inn}', '{ogrn}', ' ', ' ') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id);""")
+                        # self.conn.commit()
+                        cursor.execute("SELECT LAST_INSERT_ID();")
+                        subject_id = cursor.fetchall()[0][0]
 
                         #  и сразу же создаем объект
                         cursor.execute(
@@ -245,10 +236,10 @@ class Database:
                             cursor.execute(
                                 f"""INSERT INTO knd_m_to_m_object_inspection(inspection_id, object_id) VALUES ('{inspection_id}', '{object_id}')""")
                 except:
-                    # logger.exception(f"не получилось внести субъект с объектом (рейд):")
-                    # logger.info(result)
+                    logger.exception(f"не получилось внести субъект с объектом (рейд):")
+                    logger.info(result)
                     raise ValueError(f"не получилось внести субъект с объектом (рейд):")
-            # self.conn.commit()
+            self.conn.commit()
 
 
     def multiple_ultra_create_handler(self, results):
