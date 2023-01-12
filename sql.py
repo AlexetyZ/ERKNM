@@ -70,68 +70,82 @@ class Database:
 
         return result_list
 
-    def ultra_create_handler(self, result):
+    def ultra_create_handler(self, result, enter_terr_upr: bool = False):
+
 
         with self.conn.cursor() as cursor:
 
             # вносим теруправление
-            try:
-                controllingOrganization = result['controllingOrganization']
-                controllingOrganizationId = result['controllingOrganizationId']
-                district = result['district']
+            controllingOrganization = result['controllingOrganization']
+            controllingOrganizationId = result['controllingOrganizationId']
+            district = result['district']
 
-                cursor.execute(
-                    f"""INSERT INTO knd_terr_upravlenie(name, controllingOrganizationId, district) VALUES 
-                                ("{controllingOrganization}", {controllingOrganizationId}, "{district}") ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)""")
-                self.conn.commit()
-                cursor.execute("SELECT LAST_INSERT_ID();")
-                terr_upr_id = cursor.fetchall()[0][0]
-                # print(terr_upr_id)
+            if enter_terr_upr:
+                try:
+                    cursor.execute(
+                        f"""INSERT INTO knd_terr_upravlenie(name, controllingOrganizationId, district) VALUES 
+                                    ("{controllingOrganization}", {controllingOrganizationId}, "{district}") ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)""")
+                    self.conn.commit()
+                    cursor.execute("SELECT LAST_INSERT_ID();")
+                    terr_upr_id = cursor.fetchall()[0][0]
+                    # print(terr_upr_id)
 
-            except:
-                logger.exception("не получилось внести теруправление:")
-                logger.info(result)
-                raise ValueError('не получилось внести теруправление:')
+                except:
+                    logger.exception("не получилось внести теруправление:")
+                    logger.info(result)
+                    raise ValueError('не получилось внести теруправление:')
+
+            else:
+                try:
+                    cursor.execute(f"""SELECT id FROM knd_terr_upravlenie WHERE controllingOrganizationId="{controllingOrganizationId}";""")
+                    terr_upr_id = cursor.fetchall()[0][0]
+                except:
+                    logger.exception("не получилось найти теруправление с параметром enter_terr_upr:")
+                    logger.info(result)
+                    raise ValueError('не получилось найти теруправление с параметром enter_terr_upr:')
 
             # вносим проверку
+            inspection_number = result['erpId']
+            cursor.execute(f"""SELECT id FROM knd_inspection where number="{inspection_number}";""")
+            exists_inspection = cursor.fetchall()
+
+            status = result['status']
+            profilactic = result['isPm']
+            if profilactic is True:
+                profilactic = 1
+            else:
+                profilactic = 0
+
+            # print(inspection_number)
+
+            comment = result['comment']
+            # print(comment)
+            if not comment:
+                comment = ""
+            else:
+                comment = comment.replace("'", "").replace('"', '').replace("   ", " ").replace("  ", " ").replace('/"',
+                                                                                                                   ' ')
+            # print('контрольная точка 0')
+            plan_id = result['planId']
+            if not plan_id:
+                plan_id = 0
+            date_start = result['startDateEn']
+
+            duration_days = result['durationDays']
+            if not duration_days:
+                duration_days = ''
+
+            duration_hours = result['durationHours']
+            if not duration_hours:
+                duration_hours = ''
+
+            date_end = result['stopDateEn']
+            if date_end is None:
+                date_end = '1900-01-01'
+
+            knm_id = result['id']
+
             try:
-                inspection_number = result['erpId']
-                status = result['status']
-                profilactic = result['isPm']
-                if profilactic is True:
-                    profilactic = 1
-                else:
-                    profilactic = 0
-
-                # print(inspection_number)
-
-                comment = result['comment']
-                # print(comment)
-                if not comment:
-                    comment = ""
-                else:
-                    comment = comment.replace("'", "").replace('"', '').replace("   ", " ").replace("  ", " ").replace('/"', ' ')
-                # print('контрольная точка 0')
-                plan_id = result['planId']
-                if not plan_id:
-                    plan_id = 0
-                date_start = result['startDateEn']
-
-                duration_days = result['durationDays']
-                if not duration_days:
-                    duration_days = ''
-
-                duration_hours = result['durationHours']
-                if not duration_hours:
-                    duration_hours = ''
-
-                date_end = result['stopDateEn']
-                if date_end is None:
-                    date_end = '1900-01-01'
-
-                knm_id = result['id']
-
-
                 cursor.execute(f"""INSERT INTO knd_inspection 
                 (knm_id, kind, profilactic, date_start, mspCategory, number, status, year, terr_upr_id, comment, plan_id, date_end, desicion_number, desicion_date, last_inspection_date_end, duration_days, duration_hours)
                 VALUES 
@@ -149,15 +163,18 @@ class Database:
                 logger.info(result)
                 raise ValueError('не получилось внести проверку:')
 
+            if exists_inspection != ():
+                return 1
+
             count_inn = len(result['organizationsInn'])
             if count_inn == 1:
+
                 # внесение субъекта, если это не рейд
                 try:
                     subject_name = result['organizationName']
                     address = self.check_list_str(result['addresses'], only_first=True)
                     inn = result['inn']
                     ogrn = result['inn']
-
 
                     cursor.execute(f"""INSERT INTO knd_subject(name, address, inn, ogrn, e_mail, district) VALUES (
                                 '{subject_name}', '{address}', '{inn}', '{ogrn}', ' ', ' ') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id);""")
@@ -166,8 +183,8 @@ class Database:
                     subject_id = cursor.fetchall()[0][0]
 
                 except:
-                    logger.exception(f"не получилось внести субъект (не рейд):")
-                    logger.info(result)
+                    # logger.exception(f"не получилось внести субъект (не рейд):")
+                    # logger.info(result)
                     raise ValueError(f"не получилось внести субъект (не рейд):")
 
                 # внесение объекта, если это не рейд
@@ -196,8 +213,8 @@ class Database:
                             cursor.execute(
                                 f"""INSERT INTO knd_m_to_m_object_inspection(inspection_id, object_id) VALUES ('{inspection_id}', '{object_id}')""")
                 except:
-                    logger.exception("не получилось внести объект (не рейд):")
-                    logger.info(result)
+                    # logger.exception("не получилось внести объект (не рейд):")
+                    # logger.info(result)
                     raise ValueError("не получилось внести объект (не рейд):")
 
             else:
@@ -207,7 +224,6 @@ class Database:
                     kind = result['objectsKind'][0]
                     for subject_name, inn, ogrn in zip(result['organizationsName'], result['organizationsInn'],
                                                        result['organizationsOgrn']):
-
 
                         cursor.execute(f"""INSERT INTO knd_subject(name, address, inn, ogrn, e_mail, district) VALUES (
                                     '{subject_name}', ' ', '{inn}', '{ogrn}', ' ', ' ') ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id);""")
@@ -236,11 +252,10 @@ class Database:
                             cursor.execute(
                                 f"""INSERT INTO knd_m_to_m_object_inspection(inspection_id, object_id) VALUES ('{inspection_id}', '{object_id}')""")
                 except:
-                    logger.exception(f"не получилось внести субъект с объектом (рейд):")
-                    logger.info(result)
+                    # logger.exception(f"не получилось внести субъект с объектом (рейд):")
+                    # logger.info(result)
                     raise ValueError(f"не получилось внести субъект с объектом (рейд):")
             self.conn.commit()
-
 
     def multiple_ultra_create_handler(self, results):
         with self.conn.cursor() as cursor:

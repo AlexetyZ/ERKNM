@@ -101,7 +101,7 @@ class Erknm:
         year_periods = split_year_for_periods(year, 50)
         result = []
 
-        for between in year_periods:
+        for between in year_periods[:3]:
 
             print(f'{between} {len(result)}')
 
