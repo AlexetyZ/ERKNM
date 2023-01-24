@@ -3,15 +3,19 @@ import logging
 import traceback
 from datetime import date
 from pathlib import Path
+from main_ERKNM import erknm
 
 # from REG_to_APPLY import Registration_sadik
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
-                        filename=f'logging/reports/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
+                        filename=f'logging/reports/log {date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
                         level=logging.INFO)
 logger = logging.getLogger(Path(traceback.StackSummary.extract(traceback.walk_stack(None))[0].filename).name)
 
 class Database:
-    def __init__(self):
+    def __init__(self, init_erknm: bool = True):
+        if init_erknm:
+            pass
+            # self.session = erknm(headless=True)
         self.conn = pymysql.connect(
             user='root',
             password='ntygazRPNautoz',
@@ -19,11 +23,18 @@ class Database:
             port=3308,
             database='knm'
         )
+
     def take_request_from_database(self, request: str = """SHOW DATABASES;"""):
         with self.conn.cursor() as cursor:
             cursor.execute(request)
             result = cursor.fetchall()
             return result
+
+    def change_violation_submitted_in_inspections(self, inspections_numbers_set):
+        with self.conn.cursor() as cursor:
+            for number in inspections_numbers_set:
+                cursor.execute(f"""UPDATE knd_inspection SET violation_submitted="1" WHERE number="{number}";""")
+            self.conn.commit()
 
     def commit(self):
         self.conn.commit()
@@ -88,11 +99,12 @@ class Database:
                     self.conn.commit()
                     cursor.execute("SELECT LAST_INSERT_ID();")
                     terr_upr_id = cursor.fetchall()[0][0]
-                    # print(terr_upr_id)
+                    print(terr_upr_id)
 
                 except:
                     logger.exception("не получилось внести теруправление:")
                     logger.info(result)
+                    print('не получилось внести теруправление:')
                     raise ValueError('не получилось внести теруправление:')
 
             else:
@@ -102,12 +114,14 @@ class Database:
                 except:
                     logger.exception("не получилось найти теруправление с параметром enter_terr_upr:")
                     logger.info(result)
+                    print('не получилось найти теруправление с параметром enter_terr_upr')
                     raise ValueError('не получилось найти теруправление с параметром enter_terr_upr:')
 
             # вносим проверку
             inspection_number = result['erpId']
             cursor.execute(f"""SELECT id FROM knd_inspection where number="{inspection_number}";""")
             exists_inspection = cursor.fetchall()
+            # print(exists_inspection)
 
             status = result['status']
             profilactic = result['isPm']
@@ -143,13 +157,30 @@ class Database:
             if date_end is None:
                 date_end = '1900-01-01'
 
+            reasons = result['reasons']
+            reason_text = ''
+            for reason_number, reason in enumerate(reasons):
+                # print(result['reasonsList'])
+                if result['reasonsList']:
+                    text = result['reasonsList'][reason_number]['text']
+                    if text == 'None':
+                        text = ''
+                    else:
+                        text = f'; {text}'
+                else:
+                    text = ''
+                if reason_text:
+                    pass
+                else:
+                    reason_text += f"{reason}{text}"
+
             knm_id = result['id']
 
             try:
                 cursor.execute(f"""INSERT INTO knd_inspection 
-                (knm_id, kind, profilactic, date_start, mspCategory, number, status, year, terr_upr_id, comment, plan_id, date_end, desicion_number, desicion_date, last_inspection_date_end, duration_days, duration_hours)
+                (knm_id, reason, violation_submitted, kind, profilactic, date_start, mspCategory, number, status, year, terr_upr_id, comment, plan_id, date_end, desicion_number, desicion_date, last_inspection_date_end, duration_days, duration_hours)
                 VALUES 
-                ("{knm_id}", "{result['kind']}", "{profilactic}", "{date_start}", "{result['mspCategory']}", "{inspection_number}",
+                ("{knm_id}", "{reason_text}", "0", "{result['kind']}", "{profilactic}", "{date_start}", "{result['mspCategory']}", "{inspection_number}",
                  "{status}", "{result['year']}", "{terr_upr_id}", "{comment}", "{plan_id}", "{date_end}", "0", "1900-01-01", "1900-01-01", "{duration_days}", "{duration_hours}") ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id), status='{status}', comment='{comment}', date_end='{date_end}';""")
 
                 # self.conn.commit()
@@ -158,16 +189,20 @@ class Database:
 
 
                 # print('контрольная точка 1')
+                # print('проверка введена')
             except:
                 logger.exception("не получилось внести проверку:")
                 logger.info(result)
+                # print('не получилось проверку')
                 raise ValueError('не получилось внести проверку:')
 
             if exists_inspection != ():
+                # print('такая проверка уже существует, заканчиваем...')
                 return 1
 
             count_inn = len(result['organizationsInn'])
             if count_inn == 1:
+                # print('не рейд')
 
                 # внесение субъекта, если это не рейд
                 try:
@@ -182,9 +217,12 @@ class Database:
                     cursor.execute("SELECT LAST_INSERT_ID();")
                     subject_id = cursor.fetchall()[0][0]
 
+
+                    # print('субъект введен')
                 except:
-                    # logger.exception(f"не получилось внести субъект (не рейд):")
-                    # logger.info(result)
+                    logger.exception(f"не получилось внести субъект (не рейд):")
+                    logger.info(result)
+                    # print('не получилось субъект не рейд')
                     raise ValueError(f"не получилось внести субъект (не рейд):")
 
                 # внесение объекта, если это не рейд
@@ -192,7 +230,25 @@ class Database:
                     objects_adresses = result['addresses']
                     objects_kinds = result['objectsKind']
                     objects_risks = result['riskCategory']
+                    # print(f'{objects_adresses=}')
+                    # print(f'{objects_kinds=}')
+                    # print(f'{objects_risks=}')
+
+
+                    # if profilactic:
+                        # objects_kinds = []
+                        # objects_risks = []
+                        # for number, address in enumerate(objects_adresses):
+                        #     obj_kind = self.session.get_pm_object_kind(knm_id, number)
+                        #     objects_kinds.append(obj_kind)
+                        #     objects_risks.append('Отсутствует')
+
+                    # print(zip(objects_adresses, objects_kinds, objects_risks))
                     for address, kind, risk in zip(objects_adresses, objects_kinds, objects_risks):
+                        # print(f'{address=}')
+                        # print(f'{kind=}')
+                        # print(f'{risk=}')
+
                         cursor.execute(
                             f"""SELECT id FROM knd_object WHERE subject_id='{subject_id}' AND address='{address}' AND risk='{risk}' AND kind='{kind}';""")
                         exist_object = cursor.fetchall()
@@ -204,6 +260,7 @@ class Database:
                             object_id = cursor.fetchall()[0][0]
                         else:
                             object_id = exist_object[0][0]
+                        # print('введен объект')
 
                         # создаем M_to_m_insp_obj
                         cursor.execute(
@@ -212,13 +269,16 @@ class Database:
                         if exist_m_to_m_object_inspect == ():
                             cursor.execute(
                                 f"""INSERT INTO knd_m_to_m_object_inspection(inspection_id, object_id) VALUES ('{inspection_id}', '{object_id}')""")
+                        # print('создали связь м-на-м не рейд')
                 except:
-                    # logger.exception("не получилось внести объект (не рейд):")
-                    # logger.info(result)
+                    logger.exception("не получилось внести объект (не рейд):")
+                    logger.info(result)
+                    # print('не получилось внести объект (не рейд)')
                     raise ValueError("не получилось внести объект (не рейд):")
 
             else:
                 # внесение субъекта, если это рейд
+                # print('рейд')
                 try:
                     risk = self.check_list_str(result['riskCategory'], only_first=True)
                     kind = result['objectsKind'][0]
@@ -230,6 +290,7 @@ class Database:
                         # self.conn.commit()
                         cursor.execute("SELECT LAST_INSERT_ID();")
                         subject_id = cursor.fetchall()[0][0]
+                        # print('введен субъект')
 
                         #  и сразу же создаем объект
                         cursor.execute(
@@ -243,6 +304,7 @@ class Database:
                             object_id = cursor.fetchall()[0][0]
                         else:
                             object_id = exist_object[0][0]
+                        # print('введен субъект')
 
                         # создаем M_to_m_insp_obj
                         cursor.execute(
@@ -251,11 +313,23 @@ class Database:
                         if exist_m_to_m_object_inspection == ():
                             cursor.execute(
                                 f"""INSERT INTO knd_m_to_m_object_inspection(inspection_id, object_id) VALUES ('{inspection_id}', '{object_id}')""")
+                        # print('создали связь м-на-м рейд')
                 except:
-                    # logger.exception(f"не получилось внести субъект с объектом (рейд):")
-                    # logger.info(result)
+                    logger.exception(f"не получилось внести субъект с объектом (рейд):")
+                    logger.info(result)
+                    # print('не получилось внести субъект с объектом (рейд)')
                     raise ValueError(f"не получилось внести субъект с объектом (рейд):")
             self.conn.commit()
+
+    def is_inspection_exists(self, inspection_number):
+        with self.conn.cursor() as cursor:
+
+            cursor.execute(f"""SELECT id FROM knd_inspection where number="{inspection_number}";""")
+            exists_inspection = cursor.fetchall()
+            if exists_inspection == ():
+                return 0
+            else:
+                return 1
 
     def multiple_ultra_create_handler(self, results):
         with self.conn.cursor() as cursor:
@@ -776,4 +850,4 @@ class Database:
 
 
 if __name__ == "__main__":
-    Database().exec_it_database()
+    Database(init_erknm=False).exec_it_database()

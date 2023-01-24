@@ -10,7 +10,7 @@ from openpyxl.styles import Font, Color, PatternFill
 Workbook = TypeVar('Workbook', bound=openpyxl.Workbook)
 
 class Operation:
-    def __init__(self, wb_path: str = 'Новый документ.xlsx', init_sh: bool = True):
+    def __init__(self, wb_path: str = 'Новый документ.xlsx', init_sh: bool = True, sh_index: int = 0, sh_name: str = 'Лист0'):
         """
         :param wb_path: путь до файла, в котором итерируются ячейки
         :param init_sh: нужно ли инициировать первый лист книги. По умолчанию True. Необходимо для ситуаций,
@@ -23,7 +23,10 @@ class Operation:
         else:
             self.wb = openpyxl.load_workbook(wb_path)
         if init_sh is True:
-            self.sh = self.wb.worksheets[0]
+            if sh_name != 'Лист0':
+                self.sh = self.wb[sh_name]
+            else:
+                self.sh = self.wb.worksheets[sh_index]
 
 
     def get_list_from_sh_column(self, *columns: str, start_from_row: int = 1, reference_column: str = 'A',

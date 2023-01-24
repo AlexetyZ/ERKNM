@@ -6,10 +6,11 @@ import traceback
 from datetime import date
 import json
 from knm_status_kinds import completed
+from main_ERKNM import erknm
 
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
-                        filename=f'logging/reports/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
+                        filename=f'logging/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
                         level=logging.INFO)
 logger = logging.getLogger(Path(traceback.StackSummary.extract(traceback.walk_stack(None))[0].filename).name)
 
@@ -151,6 +152,38 @@ def multiple_inserts(processes: int, knm_list: list):
 
     Database().commit()
     logger.info('Все проверки успешно занесены!')
+
+def database_inserts_conductor_for_multiprocessing_2(knm):
+    if not d.is_inspection_exists(knm['erpId']):
+        true_id = knm['id']
+        obj_address = knm['addresses']
+        objects_kinds = []
+        objects_risks = []
+        for n, ob_ad in enumerate(obj_address):
+            ob_kind = self.session.get_pm_object_kind(true_id, n)
+            # print(f'запрос прошел: {ob_kind}')
+            objects_kinds.append(ob_kind)
+            objects_risks.append('-')
+        knm['objectsKind'] = objects_kinds
+        knm['riskCategory'] = objects_risks
+        # print('')
+    d.ultra_create_handler(knm)
+
+def multiple_inserts_2(processes: int, knm_list: list):
+    logger.info('старт программы')
+    pool = Pool(processes)
+    pool.map(database_inserts_conductor_for_multiprocessing, knm_list)
+    Database().commit()
+    if exception_knm:
+        with open('Exception_knm.json', 'w') as file:
+            json.dump(exception_knm, file)
+            result = f'По итогу внесения не было внесено {len(exception_knm)} проверок. Они упакованы в файл Exception_knm.json и их ошибки ожидают решений'
+            logger.info(result)
+        return result
+
+    Database().commit()
+    logger.info('Все проверки успешно занесены!')
+
 
 
 def insert_in_database(result: dict, special: bool = False) -> bool:

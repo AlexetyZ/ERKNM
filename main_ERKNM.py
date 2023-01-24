@@ -215,7 +215,22 @@ class erknm:
             f"""const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-catalogs/api/knm/{true_id}');const content = await rawResponse.json();console.log(content);return content;""")
         return result
 
+    def get_okved(self, inn, ogrn):
+        result = self.browser.execute_script(f"""const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-catalogs/api/registry/export/okved?inn={inn}&ogrn={ogrn}');const content = await rawResponse.json();return content['0']['name'];""")
+        return result
 
+    def get_pm_object_kind(self, true_id, object_number: int = 0):
+        """
+
+        @param true_id: айди профилактического мероприятия - тот который id, а не erpId
+        @param object_number: номер объекта в структуре проверки - по дефолту 0, но передавая в цикле можно и найти все
+        @return:
+        """
+        script = f"""const knmInfo = await fetch('https://private.proverki.gov.ru/erknm-catalogs/api/knm/{true_id}'); const knmContent = await knmInfo.json(); const dictId = knmContent['pmErknm']['objects']['{object_number}']['objectKind']['dictId']; const dictVersionId = knmContent['pmErknm']['objects']['{object_number}']['objectKind']['dictVersionId']; const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-catalogs/api/dictionaries/get-dictionary-value/' + dictId + '/' + dictVersionId);const content = await rawResponse.json();return JSON.parse(content['value'])['title'];"""
+        # print(f'{script=}')
+        object_kind = self.browser.execute_script(script)
+        # print(f'{object_kind=}')
+        return object_kind
 
     def quit(self):
         self.browser.quit()

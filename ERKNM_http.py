@@ -1,14 +1,17 @@
+import datetime
 import json
 from main_ERKNM import erknm
 from direct_pxl import Operation
 import logging
-from direct_sql import multiple_inserts, database_inserts_conductor
+from direct_sql import multiple_inserts, database_inserts_conductor, new_insert_in_database, database_inserts_conductor_for_multiprocessing
 from Dates_manager import period_between_month, split_year_for_periods, split_period
 from datetime import date
 import traceback
 from pathlib import Path
 from create_doc import make_xl_from_kmns
 from sql import Database
+from multiprocessing import Pool
+from concurrent.futures import ThreadPoolExecutor
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
                         filename=f'logging/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
@@ -101,7 +104,7 @@ class Erknm:
         year_periods = split_year_for_periods(year, 50)
         result = []
 
-        for between in year_periods[:3]:
+        for between in year_periods:
 
             print(f'{between} {len(result)}')
 
@@ -185,7 +188,7 @@ class Erknm:
         year_periods = split_year_for_periods(year, 50)
         result = []
 
-        for between in year_periods:
+        for between in year_periods[:3]:
 
             print(f'{between} {len(result)}')
 
@@ -250,8 +253,45 @@ class Erknm:
             json.dump(result, file)
 
         logger.info('Запись в json завершена, заносим в базу данных')
+        print(f'start {datetime.datetime.now()}')
+        d = Database()
+        def stabilise_pm(res):
+            if not d.is_inspection_exists(res['erpId']):
+                true_id = res['id']
+                obj_address = res['addresses']
+                objects_kinds = []
+                objects_risks = []
+                for n, ob_ad in enumerate(obj_address):
+                    ob_kind = self.session.get_pm_object_kind(true_id, n)
+                    print(f'запрос прошел: {ob_kind}')
+                    objects_kinds.append(ob_kind)
+                    objects_risks.append('-')
+                res['objectsKind'] = objects_kinds
+                res['riskCategory'] = objects_risks
 
-        multiple_inserts(8, result)
+
+
+
+
+        # with ThreadPoolExecutor() as executor:
+        #
+        #     executor.map(stabilise_pm, result)
+
+        for res in result:
+            try:
+                # print(f'проверка {res["id"]}')
+                try:
+                    d.ultra_create_handler(res)
+                except:
+                    new_insert_in_database(res)
+            except Exception as ex:
+                print(ex)
+                print(res)
+        print(f'stabilize_ending {datetime.datetime.now()}')
+
+
+        # multiple_inserts(4, result)
+        # print(f'end {datetime.datetime.now()}')
         # database_inserts_conductor(result)
 
 

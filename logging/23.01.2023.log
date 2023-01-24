@@ -1,0 +1,69 @@
+2023-01-23 13:16:44,954 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\46d9fb65c72c3ede_chromedriver.exe
+2023-01-23 13:16:48,633 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2023-01-23 13:16:58,924 - [INFO] - main_ERKNM - autorize(161) - Autorization successfull completed!
+2023-01-23 13:18:01,979 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(248) - сбор данных завершен, записываем для сохранения в json
+2023-01-23 13:18:13,586 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(252) - Запись в json завершена, заносим в базу данных
+2023-01-23 13:18:13,589 - [INFO] - direct_sql.py - multiple_inserts(141) - старт программы
+2023-01-23 13:30:22,121 - [INFO] - direct_sql.py - multiple_inserts(153) - Все проверки успешно занесены!
+2023-01-23 17:36:32,747 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\b57901bb4ae007af_chromedriver.exe
+2023-01-23 17:36:35,408 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\4d33808c536ce539_chromedriver.exe
+2023-01-23 17:37:47,490 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\4f75af5457915936_chromedriver.exe
+2023-01-23 17:37:50,193 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\92af5746f9fd0ba9_chromedriver.exe
+2023-01-23 17:40:27,747 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\83a18154baa08c02_chromedriver.exe
+2023-01-23 17:40:30,348 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\f0933e3374f2e1b1_chromedriver.exe
+2023-01-23 17:42:55,323 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\8f1116f506bef7a5_chromedriver.exe
+2023-01-23 17:42:58,139 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\af321d368b9c325e_chromedriver.exe
+2023-01-23 17:53:24,425 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\d76bdde152a1b939_chromedriver.exe
+2023-01-23 17:53:27,204 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\54e3142de372a21b_chromedriver.exe
+2023-01-23 18:03:24,637 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\065c1b62a23f8a17_chromedriver.exe
+2023-01-23 18:03:27,815 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2023-01-23 18:03:37,188 - [INFO] - main_ERKNM - autorize(161) - Autorization successfull completed!
+2023-01-23 18:03:45,581 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(248) - сбор данных завершен, записываем для сохранения в json
+2023-01-23 18:03:47,617 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(252) - Запись в json завершена, заносим в базу данных
+2023-01-23 18:05:57,519 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\b997d01f88a90cad_chromedriver.exe
+2023-01-23 18:06:00,081 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2023-01-23 18:06:09,220 - [INFO] - main_ERKNM - autorize(161) - Autorization successfull completed!
+2023-01-23 18:06:17,367 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(248) - сбор данных завершен, записываем для сохранения в json
+2023-01-23 18:06:19,355 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(252) - Запись в json завершена, заносим в базу данных
+2023-01-23 18:16:03,120 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\5813f4613452ca13_chromedriver.exe
+2023-01-23 18:16:05,728 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2023-01-23 18:16:14,880 - [INFO] - main_ERKNM - autorize(161) - Autorization successfull completed!
+2023-01-23 18:16:23,032 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(249) - сбор данных завершен, записываем для сохранения в json
+2023-01-23 18:16:25,325 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(253) - Запись в json завершена, заносим в базу данных
+2023-01-23 18:21:18,563 - [INFO] - direct_sql.py - multiple_inserts(141) - старт программы
+2023-01-23 18:22:07,943 - [INFO] - direct_sql.py - multiple_inserts(153) - Все проверки успешно занесены!
+2023-01-23 18:23:00,612 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\60731fb485ab171f_chromedriver.exe
+2023-01-23 18:23:03,121 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2023-01-23 18:23:12,409 - [INFO] - main_ERKNM - autorize(161) - Autorization successfull completed!
+2023-01-23 18:23:15,163 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(249) - сбор данных завершен, записываем для сохранения в json
+2023-01-23 18:23:15,202 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(253) - Запись в json завершена, заносим в базу данных
+2023-01-23 18:36:51,632 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\12b28ff67ce6d275_chromedriver.exe
+2023-01-23 18:36:54,672 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2023-01-23 18:37:04,586 - [INFO] - main_ERKNM - autorize(161) - Autorization successfull completed!
+2023-01-23 18:37:07,356 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(249) - сбор данных завершен, записываем для сохранения в json
+2023-01-23 18:37:07,391 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(253) - Запись в json завершена, заносим в базу данных
+2023-01-23 18:40:33,526 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\3f32407ad11f8bcc_chromedriver.exe
+2023-01-23 18:40:36,198 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2023-01-23 18:40:45,506 - [INFO] - main_ERKNM - autorize(161) - Autorization successfull completed!
+2023-01-23 18:40:48,269 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(249) - сбор данных завершен, записываем для сохранения в json
+2023-01-23 18:40:48,311 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(253) - Запись в json завершена, заносим в базу данных
+2023-01-23 18:43:04,170 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\2a2c3d218eebfce0_chromedriver.exe
+2023-01-23 18:43:06,781 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2023-01-23 18:43:16,122 - [INFO] - main_ERKNM - autorize(161) - Autorization successfull completed!
+2023-01-23 18:43:18,904 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(249) - сбор данных завершен, записываем для сохранения в json
+2023-01-23 18:43:18,938 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(253) - Запись в json завершена, заносим в базу данных
+2023-01-23 18:44:48,169 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\64f03e420791d07f_chromedriver.exe
+2023-01-23 18:44:50,855 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2023-01-23 18:45:00,055 - [INFO] - main_ERKNM - autorize(161) - Autorization successfull completed!
+2023-01-23 18:45:02,843 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(249) - сбор данных завершен, записываем для сохранения в json
+2023-01-23 18:45:02,876 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(253) - Запись в json завершена, заносим в базу данных
+2023-01-23 18:55:21,404 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\14c8d510abf7508b_chromedriver.exe
+2023-01-23 18:55:24,072 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2023-01-23 18:55:33,853 - [INFO] - main_ERKNM - autorize(161) - Autorization successfull completed!
+2023-01-23 18:55:36,623 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(249) - сбор данных завершен, записываем для сохранения в json
+2023-01-23 18:55:36,657 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(253) - Запись в json завершена, заносим в базу данных
+2023-01-23 18:57:59,280 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\8020a9b8d7673b67_chromedriver.exe
+2023-01-23 18:58:01,848 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
+2023-01-23 18:58:11,682 - [INFO] - main_ERKNM - autorize(161) - Autorization successfull completed!
+2023-01-23 18:59:13,914 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(249) - сбор данных завершен, записываем для сохранения в json
+2023-01-23 18:59:26,356 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(253) - Запись в json завершена, заносим в базу данных
