@@ -4,10 +4,10 @@ import ast
 from sql import Database
 
 exceptions = []
-with open('C:\\Users\zaitsev_ad\PycharmProjects\ERKNM\logging\\18.01.2023.log', 'rb') as file:
+with open('C:\\Users\zaitsev_ad\PycharmProjects\ERKNM\logging\\02.03.2023.log', 'rb') as file:
 
     for line in file:
-        find = re.findall(r'new_insert_in_database.268.*- ({.*})', line.decode("utf-8", "ignore"))
+        find = re.findall(r'new_insert_in_database.301.*- ({.*})', line.decode("utf-8", "ignore"))
         # print(find)
         if find:
             exceptions.append(eval(find[0]))

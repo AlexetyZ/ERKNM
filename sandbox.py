@@ -1,9 +1,11 @@
+import traceback
 from main_ERKNM import erknm
 import operator
 from direct_pxl import Operation
 import os
 import re
 from pathlib import Path
+from difflib import SequenceMatcher
 
 
 def main():
@@ -103,5 +105,22 @@ def main4():
     print(f'{parts[-2]}\{parts[-1]}')
 
 
+def main5():
+    str1 = '298300, Республика Крым, г. Керчь, Сенная площадь, 16'
+    str2 = '298405, Республика Крым, г Керчь, ул Сенная, 17'
+    difference = SequenceMatcher(None, str1, str2).ratio()
+    print(difference)
+
+
+def main6():
+    print(Path(traceback.StackSummary.extract(traceback.walk_stack(None))[0].filename).name)
+
+
+def main7():
+    try_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+    print(try_list[3:11])
+
+
 if __name__ == '__main__':
-    main4()
+    main7()

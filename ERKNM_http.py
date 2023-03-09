@@ -3,7 +3,8 @@ import json
 from main_ERKNM import erknm
 from direct_pxl import Operation
 import logging
-from direct_sql import multiple_inserts, database_inserts_conductor, new_insert_in_database, database_inserts_conductor_for_multiprocessing
+from direct_sql import multiple_inserts, database_inserts_conductor, new_insert_in_database, \
+    database_inserts_conductor_for_multiprocessing
 from Dates_manager import period_between_month, split_year_for_periods, split_period
 from datetime import date
 import traceback
@@ -14,9 +15,11 @@ from multiprocessing import Pool
 from concurrent.futures import ThreadPoolExecutor
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
-                        filename=f'logging/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
-                        level=logging.INFO)
+                    filename=f'logging/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
+                    level=logging.INFO)
 logger = logging.getLogger(Path(traceback.StackSummary.extract(traceback.walk_stack(None))[0].filename).name)
+
+
 class Erknm:
 
     def __init__(self, path_xl_table: str or bool = None):
@@ -128,7 +131,7 @@ class Erknm:
             if resp_count > count:
                 print(f"Запрос длинее {count} - {response['totalCount']}")
 
-                cycle = round(resp_count/count)
+                cycle = round(resp_count / count)
                 if cycle < 2:
                     cycle = 2
                 while True:
@@ -163,7 +166,6 @@ class Erknm:
                 for knm_in_month in response['list']:
                     result.append(knm_in_month)
 
-
         # logger.info('сбор данных завершен, записываем для сохранения в json')
         # with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
         #     json.dump(result, file)
@@ -174,8 +176,6 @@ class Erknm:
         Database().conn.commit()
         # database_inserts_conductor(result)
 
-
-
         # try:
         #     make_xl_from_kmns(result)
         # except:
@@ -183,12 +183,11 @@ class Erknm:
         #     with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
         #         json.dump(result, file)
 
-
     def get_all_pm_for_a_year(self, count: int = 8000, year: int = 2023):
         year_periods = split_year_for_periods(year, 50)
         result = []
 
-        for between in year_periods[:3]:
+        for between in year_periods:
 
             print(f'{between} {len(result)}')
 
@@ -212,7 +211,7 @@ class Erknm:
             if resp_count > count:
                 print(f"Запрос длинее {count} - {response['totalCount']}")
 
-                cycle = round(resp_count/count)
+                cycle = round(resp_count / count)
                 if cycle < 2:
                     cycle = 2
                 while True:
@@ -247,7 +246,6 @@ class Erknm:
                 for knm_in_month in response['list']:
                     result.append(knm_in_month)
 
-
         logger.info('сбор данных завершен, записываем для сохранения в json')
         with open(f'pm_{str(year)}.json', 'w') as file:
             json.dump(result, file)
@@ -255,23 +253,6 @@ class Erknm:
         logger.info('Запись в json завершена, заносим в базу данных')
         print(f'start {datetime.datetime.now()}')
         d = Database()
-        def stabilise_pm(res):
-            if not d.is_inspection_exists(res['erpId']):
-                true_id = res['id']
-                obj_address = res['addresses']
-                objects_kinds = []
-                objects_risks = []
-                for n, ob_ad in enumerate(obj_address):
-                    ob_kind = self.session.get_pm_object_kind(true_id, n)
-                    print(f'запрос прошел: {ob_kind}')
-                    objects_kinds.append(ob_kind)
-                    objects_risks.append('-')
-                res['objectsKind'] = objects_kinds
-                res['riskCategory'] = objects_risks
-
-
-
-
 
         # with ThreadPoolExecutor() as executor:
         #
@@ -279,22 +260,19 @@ class Erknm:
 
         for res in result:
             try:
+                self.stabilise_pm(res)
                 # print(f'проверка {res["id"]}')
-                try:
-                    d.ultra_create_handler(res)
-                except:
-                    new_insert_in_database(res)
-            except Exception as ex:
-                print(ex)
-                print(res)
-        print(f'stabilize_ending {datetime.datetime.now()}')
 
+            except Exception as ex:
+                logger.exception('Не получилось ввести проф. мероприятие на основании элемента выгрузки')
+                logger.info(res)
+                # print(ex)
+                # print(res)
+        print(f'stabilize_ending {datetime.datetime.now()}')
 
         # multiple_inserts(4, result)
         # print(f'end {datetime.datetime.now()}')
         # database_inserts_conductor(result)
-
-
 
         # try:
         #     make_xl_from_kmns(result)
@@ -303,6 +281,27 @@ class Erknm:
         #     with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
         #         json.dump(result, file)
 
+    def stabilise_pm(self, res):
+        try:
+            if not Database().is_inspection_exists(res['erpId']):
+                true_id = res['id']
+                obj_address = res['addresses']
+                objects_kinds = []
+                objects_risks = []
+                for n, ob_ad in enumerate(obj_address):
+                    ob_kind = self.session.get_pm_object_kind(true_id, n)
+                    # print(f'запрос прошел: {ob_kind}')
+                    objects_kinds.append(ob_kind)
+                    objects_risks.append('-')
+                res['objectsKind'] = objects_kinds
+                res['riskCategory'] = objects_risks
+            try:
+                Database().ultra_create_handler(res)
+            except:
+                new_insert_in_database(res)
+        except:
+            logger.exception('Не удалось включить элемент выгрузки в базу данных')
+            logger.info(res)
 
     def get_knms_by_numbers(self):
         if self.o is None:
@@ -336,4 +335,3 @@ if __name__ == '__main__':
     year = int(input('Enter the year, to reload datas knm (format: "YYYY")'))
     Erknm().get_all_knm_for_a_year(year=year)
     # Erknm("C:\\Users\zaitsev_ad\Documents\ЕРКНМ\Список_утвержденных_планов_2023.xlsx").get_knm_by_plan_list()
-

@@ -1,4 +1,5 @@
 import json
+import re
 
 list = [
     {'actCreateDate': None, 'actCreateDateEn': None, 'addresses': [], 'admLevelId': 50001, 'appealed': False,
@@ -112,10 +113,31 @@ def request_constructor(targets: list, table: str = 'erknm', **params):
     return text
 
 
-if __name__ == '__main__':
+def address_parser(address):
+  pattern = r'(.*?), (.*?), (.*?), (.*?)$'
+  matches = re.findall(pattern, address)
+  city, region, street, house = matches[0]
+  return f'Город: {city}, Улица: {street}, Дом: {house}'
 
-    request = request_constructor(['id', 'kind'], year='2023', kind=['kind_1', 'kind_2'])
-    print(request)
+def address_parser(postal_address):
+    # Создаём регулярное выражение для поиска информации в адресе
+    pattern = re.compile(r'\s+?,?[<г> <д><пгт><деревня>]+? ?(\D+\D+),\s+(\D+)\s+(\d+)$')
+
+    # Ищем соответствия с регулярным выражением
+    match = re.search(pattern, postal_address)
+    city = match.group(1)
+    street = match.group(2)
+    house = match.group(3)
+    # Возвращаем информацию в формате "Город, улица, дом"
+    return f"({city}), {street} дом {house}"
+
+
+if __name__ == '__main__':
+    address = '654038, обл Кемеровская область - Кузбасс,  Ростов-на-Дону, проезд Щедрухинский, 17'
+    print(address_parser(address))
+
+    # request = request_constructor(['id', 'kind'], year='2023', kind=['kind_1', 'kind_2'])
+    # print(request)
 
 
 

@@ -1,9 +1,0 @@
-2023-01-17 18:12:21,415 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\2c22cfb022445640_chromedriver.exe
-2023-01-17 18:12:24,890 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
-2023-01-17 18:13:56,845 - [INFO] - undetected_chromedriver.patcher - patch_exe(231) - patching driver executable C:\Users\zaitsev_ad\appdata\roaming\undetected_chromedriver\49a1511d773db386_chromedriver.exe
-2023-01-17 18:13:59,862 - [INFO] - main_ERKNM - __init__(59) - Начало авторизации
-2023-01-17 18:14:09,263 - [INFO] - main_ERKNM - autorize(161) - Autorization successfull completed!
-2023-01-17 18:14:12,123 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(248) - сбор данных завершен, записываем для сохранения в json
-2023-01-17 18:14:12,157 - [INFO] - ERKNM_http.py - get_all_pm_for_a_year(252) - Запись в json завершена, заносим в базу данных
-2023-01-17 18:14:12,157 - [INFO] - direct_sql.py - multiple_inserts(141) - старт программы
-2023-01-17 18:14:15,817 - [INFO] - direct_sql.py - multiple_inserts(153) - Все проверки успешно занесены!

@@ -3,11 +3,12 @@ import logging
 import traceback
 from datetime import date
 from pathlib import Path
+import openpyxl
 from main_ERKNM import erknm
 
 # from REG_to_APPLY import Registration_sadik
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
-                        filename=f'logging/reports/log {date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
+                        filename=f'logging/log {date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
                         level=logging.INFO)
 logger = logging.getLogger(Path(traceback.StackSummary.extract(traceback.walk_stack(None))[0].filename).name)
 
@@ -330,6 +331,22 @@ class Database:
                 return 0
             else:
                 return 1
+
+
+    def is_subject_exists(self, inn):
+        """
+
+        @param inn: ИНН организации
+        @return: кортеж с категориями риска объектов организации
+        """
+        with self.conn.cursor() as cursor:
+
+            cursor.execute(f"""SELECT address, risk FROM knd_object WHERE subject_id IN (SELECT id FROM knd_subject WHERE inn='{inn}');""")
+            risk = cursor.fetchall()
+            if risk == ():
+                return 0
+            else:
+                return risk
 
     def multiple_ultra_create_handler(self, results):
         with self.conn.cursor() as cursor:
@@ -832,21 +849,46 @@ class Database:
             return result
 
     def exec_it_database(self):
-        print('вводите команду.\n exit - выйти из приложения\n commit - внести изменения в базу данных от предыдущих команд')
+        print('вводите команду.\n exit - выйти из приложения\n commit - внести изменения в базу данных от предыдущих команд\n wte - запись полученных сведений в файл exel (сведения из базы данных.xlsx)')
+        logger.info('START SQL session')
+        write_to_exel = False
         with self.conn.cursor() as cursor:
             while True:
                 command = input('>>>')
+                logger.info(f"request {command}")
                 if command == 'exit':
                     break
                 if command == 'commit':
                     self.conn.commit()
+
+                if command == 'wte':
+                    write_to_exel = True
+                    continue
+
                 try:
+
                     cursor.execute(f"""{command}""")
                     result = cursor.fetchall()
-                    print(result)
+                    logger.info(f"responce {result}")
+                    if write_to_exel:
+                        wb_path = 'C:\\Users\zaitsev_ad\Desktop\сведения из базы данных.xlsx'
+                        wb = openpyxl.Workbook(wb_path)
+                        ws = wb.create_sheet('Лист1')
+                        ws.append(('', '', ''))
+                        for row in result:
+                            ws.append(row)
+                            print(row)
+                        wb.save(wb_path)
+                        write_to_exel = False
+                        continue
+                    for row in result:
+                        print(row)
+
                 except Exception as ex:
+                    logger.info(f"SQL error: {ex}")
                     print(ex)
                     continue
+        logger.info('EXIT SQL session')
 
 
 if __name__ == "__main__":
