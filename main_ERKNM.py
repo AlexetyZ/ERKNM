@@ -6,6 +6,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 import time
 
 import Proverochnii_list
@@ -29,7 +31,16 @@ logger = logging.getLogger(__name__)
 
 class erknm:
     def __init__(self, headless: bool = False):
-        self.options = undetected_chromedriver.ChromeOptions()
+        self.options = webdriver.ChromeOptions()
+        # prefs = {"credentials_enable_service", False}
+        # prefs = {"profile.password_manager_enabled": False}
+        # #
+        # self.options.add_experimental_option('prefs', prefs)
+        binary_yandex_driver_file = 'C:\\Users\zaitsev_ad\PycharmProjects\WORK_sed\yandexdriver.exe'  # path to YandexDriver
+        browser_service = Service(executable_path=binary_yandex_driver_file)
+
+        self.options.add_argument('--ignore-certificate-errors-spki-list')
+        self.options.add_argument("disable-infobars")
         prefs = {'profile.default_content_setting_values': {'images': 2,
                                                             'plugins': 2, 'popups': 2, 'geolocation': 2,
                                                             'notifications': 2, 'auto_select_certificate': 2,
@@ -48,13 +59,17 @@ class erknm:
         self.options.add_argument("disable-infobars")
         self.options.add_argument("--disable-extensions")
 
-        if headless is True:
-            self.options.add_argument("--headless")  # если это включено, то будет в режиме фантома
 
-        # host_dir = 'C:\\Users\\user\\AppData\\Local\\Google\\Chrome\\User Data\\Default'
-        # self.options.add_argument('user-data-dir=' + host_dir)
-        self.browser = undetected_chromedriver.Chrome(self.options)
-        self.browser.set_script_timeout(250)
+
+        if headless is True:
+            self.options.headless = True
+        self.options.add_argument('--enable-save-password-bubble=false')
+
+        #
+        self.options.add_argument("--disable-extensions")
+        # print(self.options)
+
+        self.browser = webdriver.Chrome(service=browser_service, options=self.options)
 
         logger.info('Начало авторизации')
         # self.Controller(partial(self.autorize))
