@@ -84,7 +84,6 @@ class Database:
 
     def ultra_create_handler(self, result, enter_terr_upr: bool = False):
 
-
         with self.conn.cursor() as cursor:
 
             # вносим теруправление
@@ -321,6 +320,8 @@ class Database:
                     # print('не получилось внести субъект с объектом (рейд)')
                     raise ValueError(f"не получилось внести субъект с объектом (рейд):")
             self.conn.commit()
+        print(f'успешно внесено - id {inspection_id}')
+
 
     def is_inspection_exists(self, inspection_number):
         with self.conn.cursor() as cursor:

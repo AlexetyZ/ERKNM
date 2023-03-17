@@ -10,8 +10,8 @@ class Table_erknm:
             self.wb_path_2 = wb_path_2
             self.wb_2 = openpyxl.load_workbook(self.wb_path_2)
 
-    def rename_tu(self):
-        sh = self.wb_1.worksheets[0]
+    def rename_tu_list(self, sh_index: int = 0):
+        sh = self.wb_1.worksheets[sh_index]
         for n, row in enumerate(sh.iter_rows(min_row=4, values_only=True)):
             try:
                 new_tu_name = rename_tu_dict[row[1]]
@@ -40,6 +40,34 @@ class Table_erknm:
 
 
 
+    def compare_regions_doc_and_erknm(self):
+        """
+        region docs = wb_1
+        erknm = wb_2
+        @return:
+        """
+
+        for erknm_report_row in self.wb_2.worksheets[0].iter_rows(min_row=3, values_only=True):
+
+            erknm_tu_name = erknm_report_row[1]
+            for sheet_in_region_doc in self.wb_1.worksheets:
+                if sheet_in_region_doc['C1'] == erknm_tu_name:
+                    for cell_g in range(16, 45):
+                        sheet_in_region_doc[f'G{cell_g}'].value = erknm_report_row[cell_g-14]
+
+        self.wb_1.save(self.wb_path_1)
+
+
+    def rename_tu_in_pages(self):
+        for page in self.wb_1.worksheets:
+            old_tu_name = page['C1'].value
+            try:
+                new_tu_name = rename_tu_dict[old_tu_name]
+            except:
+                continue
+            page['C1'].value = new_tu_name
+        self.wb_1.save(self.wb_path_1)
+
 
 
 
@@ -60,14 +88,20 @@ class Table_erknm:
 
 
 if __name__ == '__main__':
-    path_table_1_1_22 = "C:\\Users\zaitsev_ad\Documents\ЕРКНМ\отчеты ГАСУ\Субъекты РФ_ табл 1.xlsx"
-    path_table_2_1_22 = "C:\\Users\zaitsev_ad\Documents\ЕРКНМ\отчеты ГАСУ\Субъекты РФ_ таблица 2.xlsx"
-    path_gasu = "C:\\Users\zaitsev_ad\Documents\ЕРКНМ\отчеты ГАСУ\\2022.xlsx"
-    path_erknm = "C:\\Users\zaitsev_ad\Documents\ЕРКНМ\отчеты ГАСУ\отчет ЕРКНМ 2023-03-10.xlsx"
+    # path_table_1_1_22 = "C:\\Users\zaitsev_ad\Documents\ЕРКНМ\отчеты ГАСУ\Субъекты РФ_ табл 1.xlsx"
+    # path_table_2_1_22 = "C:\\Users\zaitsev_ad\Documents\ЕРКНМ\отчеты ГАСУ\Субъекты РФ_ таблица 2.xlsx"
+    # path_gasu = "C:\\Users\zaitsev_ad\Documents\ЕРКНМ\отчеты ГАСУ\\2022.xlsx"
+    # path_erknm = "C:\\Users\zaitsev_ad\Documents\ЕРКНМ\отчеты ГАСУ\отчет ЕРКНМ 2023-03-10.xlsx"
+
+    fbuz_regions = "C:\\Users\zaitsev_ad\Documents\ЕРКНМ\отчеты ГАСУ\ФБУЗ\новая свод по ТУ.xlsx"
+
+    report_erknm = "C:\\Users\zaitsev_ad\Documents\ЕРКНМ\отчеты ГАСУ\отчет КНМ.xlsx"
 
     Table_erknm(
         # path_table_1_1_22,
         # path_table_2_1_22,
-        path_gasu,
-        path_erknm
-    ).svod_gasu_erknm_meri()
+        # path_gasu,
+        # path_erknm
+        fbuz_regions,
+        # report_erknm
+    ).rename_tu_in_pages()

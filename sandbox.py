@@ -121,6 +121,9 @@ def main7():
 
     print(try_list[3:11])
 
+def main8():
+    pass
+
 
 if __name__ == '__main__':
     main7()
