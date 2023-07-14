@@ -6,6 +6,11 @@ import os
 import re
 from pathlib import Path
 from difflib import SequenceMatcher
+from sql import Database
+import openpyxl
+import time
+from tqdm import tqdm
+import json
 
 
 def main():
@@ -122,8 +127,43 @@ def main7():
     print(try_list[3:11])
 
 def main8():
-    pass
+    e = erknm(headless=True)
+    e.autorize()
+    path_file = "C:\\Users\zaitsev_ad\Documents\ЕРКНМ\отчеты на 2023\Перечень проведенных ПМ в Управление по г. Москве 01.01.2023 - 21.04.2023.xlsx"
+
+    ws = openpyxl.load_workbook(path_file)
+    sh = ws.worksheets[0]
+    for n, row in tqdm(enumerate(sh.iter_rows(min_row=2))):
+        sh[f'E{n+2}'].value = e.get_pm_by_number(sh[f'C{n+2}'].value)['pmErknm']['subject']['organizationName']
+
+    ws.save(path_file)
+
+def main9():
+    # e = erknm(headless=True)
+    # e.autorize()
+    ws = openpyxl.Workbook()
+    sh = ws.worksheets[0]
+    sh.append(("Территориальное Управление", "номер ПМ", "Вид ПМ", "Статус ПМ", "Дата начала", "Дата окончания", "Субъект проверки"))
+
+    with open("C:\\Users\zaitsev_ad\PycharmProjects\ERKNM\pm_2023.json") as file:
+        req = json.load(file)
+    print("req прочитан")
+    for pm in tqdm(req):
+        tu = pm['controllingOrganization']
+        number = pm['erpId']
+        kind = pm['kind']
+        status = pm['status']
+        startDate = pm['startDate']
+        stopDate = pm['stopDate']
+        organizationName = pm['organizationName']
+        sh.append((tu, number, kind, status, startDate, stopDate, organizationName))
+
+    ws.save("C:\\Users\zaitsev_ad\Documents\ЕРКНМ\отчеты на 2023\Перечень проведенных ПМ в Управление по г. Москве 01.01.2023 - 21.04.2023.xlsx")
+
+
+
+
 
 
 if __name__ == '__main__':
-    main7()
+    main9()

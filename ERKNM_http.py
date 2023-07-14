@@ -13,6 +13,8 @@ from create_doc import make_xl_from_kmns
 from sql import Database
 from multiprocessing import Pool
 from concurrent.futures import ThreadPoolExecutor
+from tqdm import tqdm
+
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
                     filename=f'logging/{date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
@@ -36,7 +38,7 @@ class Erknm:
             self.o = Operation(path_xl_table)
 
         self.session = erknm(
-            headless=True
+            headless=False
         )
         self.session.autorize()
         self.result = []
@@ -166,9 +168,9 @@ class Erknm:
                 for knm_in_month in response['list']:
                     result.append(knm_in_month)
 
-        # logger.info('сбор данных завершен, записываем для сохранения в json')
-        # with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
-        #     json.dump(result, file)
+        logger.info('сбор данных завершен, записываем для сохранения в json')
+        with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
+            json.dump(result, file)
 
         logger.info('Запись в json завершена, заносим в базу данных')
 
@@ -258,7 +260,7 @@ class Erknm:
         #
         #     executor.map(stabilise_pm, result)
 
-        for res in result:
+        for res in tqdm(result):
             try:
                 self.stabilise_pm(res)
                 # print(f'проверка {res["id"]}')

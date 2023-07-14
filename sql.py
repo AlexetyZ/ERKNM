@@ -37,6 +37,11 @@ class Database:
                 cursor.execute(f"""UPDATE knd_inspection SET violation_submitted="1" WHERE number="{number}";""")
             self.conn.commit()
 
+    def change_comment(self, number, comment):
+        with self.conn.cursor() as cursor:
+            cursor.execute(f"""UPDATE knd_inspection SET comment="{comment}" WHERE number="{number}";""")
+            self.conn.commit()
+
     def commit(self):
         self.conn.commit()
 
@@ -320,7 +325,7 @@ class Database:
                     # print('не получилось внести субъект с объектом (рейд)')
                     raise ValueError(f"не получилось внести субъект с объектом (рейд):")
             self.conn.commit()
-        print(f'успешно внесено - id {inspection_id}')
+        # print(f'успешно внесено - id {inspection_id}')
 
 
     def is_inspection_exists(self, inspection_number):
@@ -870,7 +875,7 @@ class Database:
 
                     cursor.execute(f"""{command}""")
                     result = cursor.fetchall()
-                    logger.info(f"responce {result}")
+                    # logger.info(f"responce {result}")
                     if write_to_exel:
                         wb_path = 'C:\\Users\zaitsev_ad\Desktop\сведения из базы данных.xlsx'
                         wb = openpyxl.Workbook(wb_path)
@@ -878,7 +883,7 @@ class Database:
                         ws.append(('', '', ''))
                         for row in result:
                             ws.append(row)
-                            print(row)
+
                         wb.save(wb_path)
                         write_to_exel = False
                         continue

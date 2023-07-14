@@ -6,11 +6,14 @@ from functools import partial
 
 from EGRUL import Egrul
 import openpyxl
+from tqdm import tqdm
 
 
 class Direct:
 
     def __init__(self, interactive: bool = True):
+        self.history = []
+
         if interactive:
             navigation = ['1', '2']
             main_menu = input(
@@ -62,52 +65,63 @@ class Direct:
         return path
 
     def get_values_from_table(self, path, inn_letter, ogrn_letter):
-        navigation = ['1', '2', '3', '4']
-        choose_func = input('Выберете функционал поиска: \n1. ОГРН, \n2. Название, \n3. Адрес, \n4. Информация о ликвидиации\n')
+        navigation = ['1', '2', '3', '4', '5']
+        choose_func = input('Выберете функционал поиска: \n1. ОГРН, \n2. Название, \n3. Адрес, \n4. Информация о ликвидиации\n5. дата присвоения ОГРН, \n')
 
         while True:
 
             if choose_func in navigation:
                 break
             else:
-                choose_func = input('Введенное значение выходит за пределы навигации. \nВыберете функционал поиска: \n1. ОГРН, \n2. Название, \n3. Адрес, \n4. Информация о ликвидиации\n')
+                choose_func = input('Введенное значение выходит за пределы навигации. \nВыберете функционал поиска: \n1. ОГРН, \n2. Название, \n3. Адрес, \n4. Информация о ликвидиации\n5. дата присвоения ОГРН, \n')
 
         wb = openpyxl.load_workbook(path)
         sh = wb.active
         inn_table = sh[f'{inn_letter}']
         ogrn_table = sh[f'{ogrn_letter}']
-        for inn_cell in inn_table:
-            if inn_cell.row > 1:
-                if inn_cell.value is None:
-                    print('Пустой ИНН')
-                    continue
-                if sh.cell(inn_cell.row, column=ogrn_table[0].column).value is not None:
-                    print('Уже заполнено огрн')
-                    continue
+        for inn_cell in tqdm(inn_table):
+            try:
+                if inn_cell.row > 1:
+                    if inn_cell.value is None:
+                        # print('Пустой ИНН')
+                        continue
+                    if sh.cell(inn_cell.row, column=ogrn_table[0].column).value is not None:
+                        # print('Уже заполнено огрн')
+                        continue
 
-                # print(inn_cell.value)
-                inn = str(inn_cell.value)
-                if choose_func == '1':
-                    result = self.find_info(inn)
-                elif choose_func == '2':
-                    result = self.find_info_name(inn)
-                elif choose_func == '3':
-                    result = self.find_info_address(inn)
+                    # print(inn_cell.value)
+                    inn = str(inn_cell.value)
+                    if inn in self.history:
+                        continue
+                    if choose_func == '1':
+                        result = self.find_info(inn)
+                    elif choose_func == '2':
+                        result = self.find_info_name(inn)
+                    elif choose_func == '3':
+                        result = self.find_info_address(inn)
 
-                elif choose_func == '4':
-                    result = self.find_info_liquidate(inn)
-                else:
-                    print("не удалось распознать")
-                    wb.save(path)
-                    return 0
+                    elif choose_func == '4':
+                        result = self.find_info_liquidate(inn)
 
-                # print(result)
+                    elif choose_func == '5':
+                        result = self.find_date_ogrn(inn)
+                    else:
+                        # print("не удалось распознать")
+                        wb.save(path)
+                        return 0
+
+                    # print(result)
+
+                    self.history.append(inn)
 
 
 
-                sh.cell(row=inn_cell.row, column=ogrn_table[0].column, value=result)
+                    sh.cell(row=inn_cell.row, column=ogrn_table[0].column, value=result)
+
+                    time.sleep(1)
+            except:
                 wb.save(path)
-                time.sleep(1)
+        wb.save(path)
 
     def get_org_info(self):
         org_info = input('введите известную информацию об учреждении (чем специфичнее информация, тем точнее результат, так что лучше вводить ИНН или ОГРН)\n')
@@ -152,7 +166,7 @@ class Direct:
         except Exception as ex:
             raise ValueError(f'Ошибка запроса: {ex}')
         result = request['o']
-        print(result)
+        # print(result)
         return result
 
     def find_info_name(self, org_info):
@@ -162,7 +176,7 @@ class Direct:
         except Exception as ex:
             raise ValueError(f'Ошибка запроса: {ex}')
         result = request['n']
-        print(result)
+        # print(result)
         return result
 
     def find_info_address(self, org_info):
@@ -175,7 +189,7 @@ class Direct:
             result = request['a']
         except:
             result = 'Нет адреса'
-        print(result)
+        # print(result)
         return result
 
     def find_info_liquidate(self, org_info):
@@ -188,7 +202,20 @@ class Direct:
             result = request['e']
         except:
             result = 'Информация о ликвидации отсутствует'
-        print(result)
+        # print(result)
+        return result
+
+    def find_date_ogrn(self, org_info):
+        find_in_egrul = Egrul().find_in_egrul
+        try:
+            request = find_in_egrul(org_info)
+        except Exception as ex:
+            raise ValueError(f'Ошибка запроса: {ex}')
+        try:
+            result = request['r']
+        except:
+            result = 'Информация о дате присвоения ОГРН отсутствует'
+        # print(result)
         return result
 
 

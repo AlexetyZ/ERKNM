@@ -9,4 +9,6 @@ def group(set_1):
         set_2[v[0]] = [i[1] for i in v[1]]
     return set_2
 
-group(set_1)
+
+print(group(set_1))
+

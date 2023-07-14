@@ -1,22 +1,25 @@
+import datetime
+
 from bs4 import BeautifulSoup
 from requests import Session
 import fake_useragent
 import json
 import re
-
+import datetime
 
 class Egrul:
     def __init__(self):
         self.session = Session()
         self.user_agent = fake_useragent.UserAgent().random  # UserAgent().random
         self.header = {'User-Agent': self.user_agent}
+        link = 'https://egrul.nalog.ru/index.html'
+
+        self.session.get(link, headers=self.header)
 
     def find_in_egrul(self, cell, row: int = 0):
 
         # get request for first page
-        link = 'https://egrul.nalog.ru/index.html'
 
-        get1 = self.session.get(link, headers=self.header)
         # soup = BeautifulSoup(get1.text, 'lxml')
 
         # post request for "t"
@@ -30,10 +33,10 @@ class Egrul:
             'PreventChromeAutocomplete': ''
 
         }
-        post_t = self.session.post(link_post_t, headers=self.header, data=data_post_t)
+        post_t = self.session.post(link_post_t, headers={'User-Agent': fake_useragent.UserAgent().random}, data=data_post_t)
         soup_post_t = BeautifulSoup(post_t.text, 'lxml')
         p_post_t = json.loads(soup_post_t.find('p').text)
-        # print(p_post_t['t'])
+        # print(p_post_t)
 
         # get request for datas
         try:
@@ -50,6 +53,12 @@ class Egrul:
 
             info = datas_dict['rows'][row]
             return info
-        except:
+        except Exception as ex:
             # print(soup_post_t)
-            return 'Возникла ошибка'
+            return f'Возникла ошибка: {ex}'
+
+
+if __name__ == '__main__':
+    print(datetime.datetime.now())
+    Egrul().find_in_egrul('7716154981')
+    print(datetime.datetime.now())
