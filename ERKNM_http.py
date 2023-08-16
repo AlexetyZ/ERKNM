@@ -14,6 +14,7 @@ from sql import Database
 from multiprocessing import Pool
 from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
+from mongo_database import WorkMongo
 
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
@@ -169,13 +170,35 @@ class Erknm:
                     result.append(knm_in_month)
 
         logger.info('сбор данных завершен, записываем для сохранения в json')
-        with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
-            json.dump(result, file)
 
-        logger.info('Запись в json завершена, заносим в базу данных')
 
-        multiple_inserts(8, result)
-        Database().conn.commit()
+        # Для записи поэтапно
+        # for knm in tqdm(result):
+        #     WorkMongo().insert(knm)
+
+        # Для тотальной записи
+        print(f"Начало записи - {datetime.datetime.now()}")
+        WorkMongo().insert_many(result)
+        print(f"Конец записи - {datetime.datetime.now()}")
+
+
+
+        # with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
+        #     json.dump(result, file)
+        #
+        # logger.info('Запись в json завершена, заносим в базу данных')
+        #
+        # multiple_inserts(8, result)
+        # Database().conn.commit()
+
+
+
+
+
+
+
+
+
         # database_inserts_conductor(result)
 
         # try:
@@ -249,39 +272,36 @@ class Erknm:
                     result.append(knm_in_month)
 
         logger.info('сбор данных завершен, записываем для сохранения в json')
-        with open(f'pm_{str(year)}.json', 'w') as file:
-            json.dump(result, file)
 
-        logger.info('Запись в json завершена, заносим в базу данных')
-        print(f'start {datetime.datetime.now()}')
-        d = Database()
+        print(f"Начало записи - {datetime.datetime.now()}")
+        WorkMongo().insert_many(result)
+        print(f"Конец записи - {datetime.datetime.now()}")
 
-        # with ThreadPoolExecutor() as executor:
+
+        # with open(f'pm_{str(year)}.json', 'w') as file:
+        #     json.dump(result, file)
         #
-        #     executor.map(stabilise_pm, result)
-
-        for res in tqdm(result):
-            try:
-                self.stabilise_pm(res)
-                # print(f'проверка {res["id"]}')
-
-            except Exception as ex:
-                logger.exception('Не получилось ввести проф. мероприятие на основании элемента выгрузки')
-                logger.info(res)
-                # print(ex)
-                # print(res)
-        print(f'stabilize_ending {datetime.datetime.now()}')
-
-        # multiple_inserts(4, result)
-        # print(f'end {datetime.datetime.now()}')
-        # database_inserts_conductor(result)
-
-        # try:
-        #     make_xl_from_kmns(result)
-        # except:
+        # logger.info('Запись в json завершена, заносим в базу данных')
+        # print(f'start {datetime.datetime.now()}')
+        # d = Database()
         #
-        #     with open(f'Plan_knm_full_{str(year)}.json', 'w') as file:
-        #         json.dump(result, file)
+        # # with ThreadPoolExecutor() as executor:
+        # #
+        # #     executor.map(stabilise_pm, result)
+        #
+        # for res in tqdm(result):
+        #     try:
+        #         self.stabilise_pm(res)
+        #         # print(f'проверка {res["id"]}')
+        #
+        #     except Exception as ex:
+        #         logger.exception('Не получилось ввести проф. мероприятие на основании элемента выгрузки')
+        #         logger.info(res)
+        #         # print(ex)
+        #         # print(res)
+        # print(f'stabilize_ending {datetime.datetime.now()}')
+
+
 
     def stabilise_pm(self, res):
         try:

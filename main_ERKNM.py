@@ -39,34 +39,34 @@ class erknm:
         binary_yandex_driver_file = 'C:\\Users\zaitsev_ad\PycharmProjects\WORK_sed\yandexdriver.exe'  # path to YandexDriver
         browser_service = Service(executable_path=binary_yandex_driver_file)
 
-        self.options.add_argument('--ignore-certificate-errors-spki-list')
-        self.options.add_argument("disable-infobars")
-        prefs = {'profile.default_content_setting_values': {'images': 2,
-                                                            'plugins': 2, 'popups': 2, 'geolocation': 2,
-                                                            'notifications': 2, 'auto_select_certificate': 2,
-                                                            'mouselock': 2, 'mixed_script': 2, 'media_stream': 2,
-                                                            'media_stream_mic': 2, 'media_stream_camera': 2,
-                                                            'protocol_handlers': 2,
-                                                            'ppapi_broker': 2, 'automatic_downloads': 2,
-                                                            'midi_sysex': 2,
-                                                            'push_messaging': 2, 'ssl_cert_decisions': 2,
-                                                            'metro_switch_to_desktop': 2,
-                                                            'protected_media_identifier': 2, 'app_banner': 2,
-                                                            'site_engagement': 2,
-                                                            'durable_storage': 2}}
-        self.options.add_experimental_option('prefs', prefs)
-        self.options.add_argument("--disable-native-events")
-        self.options.add_argument("disable-infobars")
-        self.options.add_argument("--disable-extensions")
+        # self.options.add_argument('--ignore-certificate-errors-spki-list')
+        # self.options.add_argument("disable-infobars")
+        # prefs = {'profile.default_content_setting_values': {'images': 2,
+        #                                                     'plugins': 2, 'popups': 2, 'geolocation': 2,
+        #                                                     'notifications': 2, 'auto_select_certificate': 2,
+        #                                                     'mouselock': 2, 'mixed_script': 2, 'media_stream': 2,
+        #                                                     'media_stream_mic': 2, 'media_stream_camera': 2,
+        #                                                     'protocol_handlers': 2,
+        #                                                     'ppapi_broker': 2, 'automatic_downloads': 2,
+        #                                                     'midi_sysex': 2,
+        #                                                     'push_messaging': 2, 'ssl_cert_decisions': 2,
+        #                                                     'metro_switch_to_desktop': 2,
+        #                                                     'protected_media_identifier': 2, 'app_banner': 2,
+        #                                                     'site_engagement': 2,
+        #                                                     'durable_storage': 2}}
+        # self.options.add_experimental_option('prefs', prefs)
+        # self.options.add_argument("--disable-native-events")
+        # self.options.add_argument("disable-infobars")
+        # self.options.add_argument("--disable-extensions")
 
 
 
         if headless is True:
             self.options.headless = True
-        self.options.add_argument('--enable-save-password-bubble=false')
+        # self.options.add_argument('--enable-save-password-bubble=false')
 
         #
-        self.options.add_argument("--disable-extensions")
+        # self.options.add_argument("--disable-extensions")
         # print(self.options)
 
         self.browser = webdriver.Chrome(service=browser_service, options=self.options)

@@ -417,6 +417,8 @@ def where_is_error_in_string_by_index(index: int, text: str):
     print(text)
 
 
+
+
 if __name__ == '__main__':
 
     # result = get_cells_for_request_db(
