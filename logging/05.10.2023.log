@@ -1,0 +1,47 @@
+2023-10-05 12:15:40,373 - [INFO] - sql.py - exec_it_database(859) - START SQL session
+2023-10-05 12:18:10,300 - [INFO] - sql.py - exec_it_database(864) - request exit
+2023-10-05 12:18:10,301 - [INFO] - sql.py - exec_it_database(897) - EXIT SQL session
+2023-10-05 12:18:29,868 - [INFO] - main_ERKNM - __init__(74) - Начало авторизации
+2023-10-05 12:18:34,225 - [WARNING] - main_ERKNM - autorize(132) - Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=114.0.5735.999)
+Stacktrace:
+Backtrace:
+	GetHandleVerifier [0x00007FF7E6435C72+83858]
+	(No symbol) [0x00007FF7E63AD782]
+	(No symbol) [0x00007FF7E6286155]
+	(No symbol) [0x00007FF7E6266C37]
+	(No symbol) [0x00007FF7E62E2117]
+	(No symbol) [0x00007FF7E62F4E43]
+	(No symbol) [0x00007FF7E62DD923]
+	(No symbol) [0x00007FF7E62B1FF8]
+	(No symbol) [0x00007FF7E62B3184]
+	GetHandleVerifier [0x00007FF7E66FF432+3006290]
+	GetHandleVerifier [0x00007FF7E673071A+3207738]
+	GetHandleVerifier [0x00007FF7E64EE415+839477]
+	GetHandleVerifier [0x00007FF7E64F5965+869509]
+	(No symbol) [0x00007FF7E63B9206]
+	(No symbol) [0x00007FF7E63B4204]
+	(No symbol) [0x00007FF7E63B42FC]
+	(No symbol) [0x00007FF7E63A5281]
+	BaseThreadInitThunk [0x00007FF9C1EB7034+20]
+	RtlUserThreadStart [0x00007FF9C2D82651+33]
+
+2023-10-05 12:18:34,228 - [WARNING] - main_ERKNM - autorize(143) - ex=NoSuchWindowException('no such window: target window already closed\nfrom unknown error: web view not found\n  (Session info: chrome=114.0.5735.999)', None, ['Backtrace:', '\tGetHandleVerifier [0x00007FF7E6435C72+83858]', '\t(No symbol) [0x00007FF7E63AD782]', '\t(No symbol) [0x00007FF7E6286155]', '\t(No symbol) [0x00007FF7E6266C37]', '\t(No symbol) [0x00007FF7E62E2117]', '\t(No symbol) [0x00007FF7E62F4E43]', '\t(No symbol) [0x00007FF7E62DD923]', '\t(No symbol) [0x00007FF7E62B1FF8]', '\t(No symbol) [0x00007FF7E62B3184]', '\tGetHandleVerifier [0x00007FF7E66FF432+3006290]', '\tGetHandleVerifier [0x00007FF7E673071A+3207738]', '\tGetHandleVerifier [0x00007FF7E64EE415+839477]', '\tGetHandleVerifier [0x00007FF7E64F5965+869509]', '\t(No symbol) [0x00007FF7E63B9206]', '\t(No symbol) [0x00007FF7E63B4204]', '\t(No symbol) [0x00007FF7E63B42FC]', '\t(No symbol) [0x00007FF7E63A5281]', '\tBaseThreadInitThunk [0x00007FF9C1EB7034+20]', '\tRtlUserThreadStart [0x00007FF9C2D82651+33]', ''])
+2023-10-05 12:19:18,381 - [INFO] - sql.py - exec_it_database(859) - START SQL session
+2023-10-05 12:20:17,666 - [INFO] - sql.py - exec_it_database(864) - request show tables
+2023-10-05 12:20:41,824 - [INFO] - sql.py - exec_it_database(864) - request wte
+2023-10-05 12:20:58,197 - [INFO] - sql.py - exec_it_database(864) - request select name from knd_terr_upravlenie
+2023-10-05 12:21:49,642 - [INFO] - sql.py - exec_it_database(864) - request exit
+2023-10-05 12:21:49,642 - [INFO] - sql.py - exec_it_database(897) - EXIT SQL session
+2023-10-05 12:22:41,129 - [INFO] - sql.py - exec_it_database(859) - START SQL session
+2023-10-05 12:22:50,457 - [INFO] - sql.py - exec_it_database(864) - request exit
+2023-10-05 12:22:50,457 - [INFO] - sql.py - exec_it_database(897) - EXIT SQL session
+2023-10-05 14:50:26,631 - [INFO] - sql.py - exec_it_database(859) - START SQL session
+2023-10-05 18:13:46,390 - [INFO] - sql.py - exec_it_database(859) - START SQL session
+2023-10-05 18:48:42,431 - [INFO] - main_ERKNM - __init__(74) - Начало авторизации
+2023-10-05 18:49:39,350 - [INFO] - main_ERKNM - __init__(74) - Начало авторизации
+2023-10-05 18:50:13,319 - [INFO] - main_ERKNM - autorize(176) - Autorization successfull completed!
+2023-10-05 18:50:33,723 - [INFO] - main_ERKNM - __init__(74) - Начало авторизации
+2023-10-05 18:51:05,310 - [INFO] - main_ERKNM - autorize(176) - Autorization successfull completed!
+2023-10-05 18:54:44,004 - [INFO] - ERKNM_http.py - get_all_knm_for_a_year(172) - сбор данных завершен, записываем для сохранения в json

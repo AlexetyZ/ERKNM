@@ -2,7 +2,6 @@ import datetime
 
 from bs4 import BeautifulSoup
 from requests import Session
-import fake_useragent
 import json
 import re
 import datetime
@@ -10,7 +9,7 @@ import datetime
 class Egrul:
     def __init__(self):
         self.session = Session()
-        self.user_agent = fake_useragent.UserAgent().random  # UserAgent().random
+        self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 YaBrowser/23.7.2.765 Yowser/2.5 Safari/537.36"  # UserAgent().random
         self.header = {'User-Agent': self.user_agent}
         link = 'https://egrul.nalog.ru/index.html'
 
@@ -33,7 +32,7 @@ class Egrul:
             'PreventChromeAutocomplete': ''
 
         }
-        post_t = self.session.post(link_post_t, headers={'User-Agent': fake_useragent.UserAgent().random}, data=data_post_t)
+        post_t = self.session.post(link_post_t, headers={'User-Agent': self.user_agent}, data=data_post_t)
         soup_post_t = BeautifulSoup(post_t.text, 'lxml')
         p_post_t = json.loads(soup_post_t.find('p').text)
         # print(p_post_t)

@@ -1,0 +1,4 @@
+2023-10-09 09:29:08,900 - [INFO] - main_ERKNM - __init__(74) - Начало авторизации
+2023-10-09 09:35:15,990 - [INFO] - main_ERKNM - __init__(74) - Начало авторизации
+2023-10-09 09:35:50,764 - [INFO] - main_ERKNM - autorize(184) - Autorization successfull completed!
+2023-10-09 09:40:04,557 - [INFO] - ERKNM_http.py - get_all_knm_for_a_year(172) - сбор данных завершен, записываем для сохранения в json

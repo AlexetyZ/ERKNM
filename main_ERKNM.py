@@ -150,6 +150,14 @@ class erknm:
         self.browser.find_element(by=By.XPATH, value='/html/body/esia-root/div/esia-login/div/div[1]/form/div[4]/button').click()
         print('контрольная точка 1')
 
+        try:
+            time.sleep(3)
+
+            self.browser.find_element(by=By.XPATH,
+                                      value=config.epgu_dont_send_sms_way).click()
+        except Exception as ex:
+            print(ex)
+
 
         try:
             time.sleep(3)

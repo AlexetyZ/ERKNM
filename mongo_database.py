@@ -27,6 +27,29 @@ class WorkMongo:
         pipeline = [{"$match": filters}, {"$group": {"_id": 1, "count": {"$sum": {"$size": "$addresses"}}}}]
         return list(self.collection.aggregate(pipeline))[0]['count']
 
+    def reportByObjects(self, **filters):
+        return self.collection.aggregate([{"$match": filters}, {"$unwind": "$objectsKind"}, {"$group": {"_id": "$objectsKind", "count": {"$sum": 1}}}])
+
+    def reportByRisk(self, **filters):
+        return self.collection.aggregate(
+            [{"$match": filters}, {"$unwind": "$riskCategory"}, {"$group": {"_id": "$riskCategory", "count": {"$sum": 1}}}])
+
+    def free_command(self, request):
+        return self.collection.find(request)
+
+    def reportByAggreedProcess(self):
+        return self.collection.aggregate([{'$group': {'_id': {'tu': "$controllingOrganization", 'status': "$status"}, 'totalCount': {'$sum': 1}}}])
+
+    def reportFromDeniedKNMComment(self):
+        return self.collection.find({'status': 'Исключена'}, {'_id': 0, 'controllingOrganization': 1, 'comment': 1, 'erpId': 1, 'id': 1, 'organizationsInn': {'$slice': 1}})
+
+    def convertForsaving(self, results: list[dict]) -> list:
+
+        title = list(results[0].keys())
+        values = [list(result.values()) for result in list(results)]
+        return title, values
+
+
     def predosterezhenia(self):
         # xl_path = 'inns_predostereg.xlsx'
         # wb = openpyxl.Workbook()
@@ -56,7 +79,7 @@ class WorkMongo:
 
 if __name__ == '__main__':
     wm = WorkMongo()
-    wm.predosterezhenia()
+    wm.count_objects()
 
 
 

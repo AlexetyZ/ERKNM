@@ -417,9 +417,29 @@ def where_is_error_in_string_by_index(index: int, text: str):
     print(text)
 
 
+def oneOperation(string: str):
+    return ''.join([string, '_'])
+
+
+def manyOperation(*strings):
+    per = []
+    for string in strings:
+        per += (yield oneOperation(string))
+
+    print(list(per))
+
+
+
+def _dict_oper():
+    _dict = {1: 2, 2: 3, 3: 4}
+    print(_dict)
+    _dict.pop(1)
+    print(_dict)
 
 
 if __name__ == '__main__':
+    # _dict_oper()
+    manyOperation('раз', "два", "три")
 
     # result = get_cells_for_request_db(
     #     ['controll_organ', 'id'],
@@ -433,6 +453,6 @@ if __name__ == '__main__':
     # )
     #
     # send_about_voilation_status(result)
-    find_violations()
+    # find_violations()
 
 

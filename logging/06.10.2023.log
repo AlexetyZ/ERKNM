@@ -1,0 +1,7 @@
+2023-10-06 09:49:21,576 - [INFO] - main_ERKNM - __init__(74) - Начало авторизации
+2023-10-06 09:49:51,606 - [INFO] - main_ERKNM - autorize(176) - Autorization successfull completed!
+2023-10-06 09:53:33,106 - [INFO] - ERKNM_http.py - get_all_knm_for_a_year(172) - сбор данных завершен, записываем для сохранения в json
+2023-10-06 09:54:45,154 - [INFO] - sql.py - exec_it_database(859) - START SQL session
+2023-10-06 09:54:56,192 - [INFO] - sql.py - exec_it_database(864) - request show tables;
+2023-10-06 09:55:10,723 - [INFO] - sql.py - exec_it_database(864) - request exit
+2023-10-06 09:55:10,723 - [INFO] - sql.py - exec_it_database(897) - EXIT SQL session

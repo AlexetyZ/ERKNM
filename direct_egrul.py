@@ -89,7 +89,7 @@ class Direct:
                         # print('Уже заполнено огрн')
                         continue
 
-                    # print(inn_cell.value)
+                    print(inn_cell.value)
                     inn = str(inn_cell.value)
                     if inn in self.history:
                         continue

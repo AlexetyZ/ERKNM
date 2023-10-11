@@ -49,7 +49,7 @@ class Crypto:
 
 
 if __name__ == '__main__':
-    password = config.erknm_accounts['Alexety']['password']
+    password = b'gAAAAABlGmpYhKgtrR0kzruuVshX0h9VxOIJBJuOpfmixrE1d8XJ9c_il3hYFMDemjzx4HaSSgVInsaW3dtSmqMhum7RdtgYwA=='
     # print(Crypto().get_hash_password(password=password.encode('utf-8')))
     print(Crypto().unpack_password(password))
     # print(result)
