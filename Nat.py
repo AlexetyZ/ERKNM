@@ -160,38 +160,39 @@ class KnowHow:
         finder = Finder(tokens)
         # print(tokens)
         roots = finder.find_all(rel='root')
+        if roots:
 
-        results = [*roots]
-        for root in roots:
-            r1s = finder.find_all(head_id=root.id)
-            results.extend(finder.find_all(head_id=root.id))
-            for r1 in r1s:
-                r2s = finder.find_all(head_id=r1.id, pos='NOUN')
-                results.extend(r2s)
-                for r2 in r2s:
-                    r3s = finder.find_all(head_id=r2.id, pos='NOUN')
-                    results.extend(r3s)
-                    for r3 in r3s:
-                        r4s = finder.find_all(head_id=r3.id, pos='NOUN')
-                        results.extend(r4s)
-        new_r = []
-        helper = []
-        for r in results:
-            text = r.lemma if lemmatize else r.text
-            if text not in helper:
-                new_r.append(r)
-                helper.append(text)
-        results = new_r
+            results = [*roots]
+            for root in roots:
+                r1s = finder.find_all(head_id=root.id)
+                results.extend(finder.find_all(head_id=root.id))
+                for r1 in r1s:
+                    r2s = finder.find_all(head_id=r1.id, pos='NOUN')
+                    results.extend(r2s)
+                    for r2 in r2s:
+                        r3s = finder.find_all(head_id=r2.id, pos='NOUN')
+                        results.extend(r3s)
+                        for r3 in r3s:
+                            r4s = finder.find_all(head_id=r3.id, pos='NOUN')
+                            results.extend(r4s)
+            new_r = []
+            helper = []
+            for r in results:
+                text = r.lemma if lemmatize else r.text
+                if text not in helper:
+                    new_r.append(r)
+                    helper.append(text)
+            results = new_r
+        else:
+            results = [token for token in tokens]
 
         results = sorted(results, key=lambda x: int(str(x.id).split('_')[1]))
         # print([result.lemmatize(self.morph_vocab) for result in results])
         resultsLemma = [result.lemma if lemmatize else result.text for result in results]
         return self.finallyPreparing(' '.join(resultsLemma))
 
-
         # print(roots)
         # r1 =finder.find_all()
-
 
     def printScheme(self, *sents):
         try:
@@ -200,6 +201,7 @@ class KnowHow:
             pass
         except Exception as ex:
             print(f'Не удалось напечатать все: {ex}')
+
 
 def multiproc_main(text):
     comments = {}
@@ -218,7 +220,7 @@ def main(text):
     from not_mine import merge_both, in_one_of
     for r in kh.func4():
 
-        dehydrate = kh.syntezHeader(r)
+        dehydrate = r
         # print(dehydrate)
         commentKeyExists = in_one_of(dehydrate, list(comments.keys()))
         if dehydrate in comments:
