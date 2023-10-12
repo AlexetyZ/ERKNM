@@ -151,9 +151,10 @@ class KnowHow:
 
         from natasha import MorphVocab
         morph_vocab = MorphVocab()
+        explanation = ' '.join([token.text for token in tokens])
         for regex, value in Dictionary.findSpecial.items():
-            if re.search(regex, ''.join([token.text for token in tokens]).lower()):
-                return value
+            if re.search(regex, explanation.lower()):
+                return value, value
         if lemmatize:
             for token in tokens:
                 token.lemmatize(morph_vocab)
@@ -189,7 +190,7 @@ class KnowHow:
         results = sorted(results, key=lambda x: int(str(x.id).split('_')[1]))
         # print([result.lemmatize(self.morph_vocab) for result in results])
         resultsLemma = [result.lemma if lemmatize else result.text for result in results]
-        return self.finallyPreparing(' '.join(resultsLemma))
+        return self.finallyPreparing(' '.join(resultsLemma)), explanation
 
         # print(roots)
         # r1 =finder.find_all()
@@ -221,30 +222,38 @@ def main(text):
     from not_mine import merge_both, in_one_of
     for r in kh.func4():
 
-        dehydrate = r
+        dehydrate = r[0]
+        # print(dehydrate)
         # print(dehydrate)
         commentKeyExists = in_one_of(dehydrate, list(comments.keys()))
         if dehydrate in comments:
-            comments[dehydrate] += 1
+            comments[dehydrate]['count'] += 1
         else:
             if commentKeyExists:
-                comments[commentKeyExists] += 1
+                comments[commentKeyExists]['count'] += 1
             else:
-                comments[dehydrate] = 1
+                comments[dehydrate] = {'count': 1, 'explanation': r[1]}
+
 
     return comments
 
 
 def get_reasons(text_list: list):
+    from not_mine import merge_both, in_one_of
     comments = {}
+    # comments = {'dehyd': {'count': 'count', 'explanation': 'explanation'}}
     for text in tqdm(text_list, 'обработка...'):
         res = main(text)
         # print(res)
         for k, v in res.items():
+            commentKeyExists = in_one_of(k, list(comments.keys()))
             if k in comments:
-                comments[k] += v
+                comments[k]['count'] += v['count']
             else:
-                comments[k] = v
+                if commentKeyExists:
+                    comments[commentKeyExists]['count'] += 1
+                else:
+                    comments[k] = {'count': v['count'], 'explanation': v['explanation']}
     return comments
 
 

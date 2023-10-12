@@ -437,10 +437,16 @@ def _dict_oper():
     print(_dict)
 
 
+def getReg(text):
+    import re
+    return re.search(r' ([\.,:;!\?]) ', text).group()
+
+
 if __name__ == '__main__':
+    print(getReg('привет , я джанго'))
     # _dict_oper()
-    for r in manyOperation('раз', "два", "три"):
-        print(r[0])
+    # for r in manyOperation('раз', "два", "три"):
+    #     print(r[0])
 
     # result = get_cells_for_request_db(
     #     ['controll_organ', 'id'],

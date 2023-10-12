@@ -221,14 +221,20 @@ def useDatabase():
     return 'Работа с базой данных завершена!'
 
 
-def countIsklByReasons(pathFile):
+def countIsklByReasons(pathDir):
     import xl
     from Nat import get_reasons, get_reasons_multy
-    comments = xl.bringCol(pathFile)
-    categories = get_reasons(comments)
-    results = [[str(k), int(v)] for k, v in categories.items()]
-    # pprint(results)
-    xl.writeResultsInXL(results=results, title="Причины", pathFile=pathFile, sheetIndex=1, sheetTitle='причины исключений')
+    import os
+    from pathlib import Path
+
+
+    for file in os.listdir(pathDir):
+        pathFile = os.path.join(pathDir, file)
+        comments = xl.bringCol(pathFile)
+        categories = get_reasons(comments)
+        results = [['', 'причины исключений', 'Найдено в КНМ'], *[[n+1, str(value['explanation']), int(value['count'])] for n, value in enumerate(categories.values())]]
+        # pprint(results)
+        xl.writeResultsInXL(results=results, title=Path(pathFile).stem, pathFile=pathFile, sheetIndex=1, sheetTitle='причины исключений')
     return 'Причины исключений собраны!'
 
 

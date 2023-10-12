@@ -25,7 +25,7 @@ def merge_both(string1: str, string2: str, lastetski: bool = False):
     string1 = standartingString(string1)
     string2 = standartingString(string2)
     fuzz_ratio = fuzz.token_sort_ratio(string1, string2)
-    if fuzz.token_sort_ratio(string1, string2) >= 90:
+    if fuzz.token_sort_ratio(string1, string2) >= 60:
         return True
     if lastetski:
         # print(f'{string1}  not equal  {string2}')
@@ -34,8 +34,11 @@ def merge_both(string1: str, string2: str, lastetski: bool = False):
         return merge_both(string1[:7], string2[:7], lastetski=True)
     return False
 
-def in_one_of(string, _list):
 
+def in_one_of(string, _list):
+    """Возвращает значение из списка, соответствующее строке на 60 % и более"""
+    if not _list:
+        return False
     for elem in _list:
         if merge_both(string, elem):
             return elem

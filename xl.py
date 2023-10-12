@@ -63,7 +63,7 @@ def writeResultsInXL(results, title='столбец', pathFile: str = "C:\\Users
         if len(wb.worksheets) < sheetIndex+1:
             wb.create_sheet(
                 title=sheetTitle,
-                index=sheetIndex
+                # index=sheetIndex
             )
         sh = wb.worksheets[sheetIndex]
         sh.title = sheetTitle
@@ -72,7 +72,7 @@ def writeResultsInXL(results, title='столбец', pathFile: str = "C:\\Users
         if len(wb.worksheets) < sheetIndex+1:
             wb.create_sheet(
                 title=sheetTitle,
-                index=sheetIndex
+                # index=sheetIndex
             )
         sh = wb.worksheets[sheetIndex]
         sh.title = sheetTitle
@@ -83,7 +83,7 @@ def writeResultsInXL(results, title='столбец', pathFile: str = "C:\\Users
         sh.append([title])
 
     for result in results:
-        print(f'{result} --- {type(result)}')
+        # print(f'{result} --- {type(result)}')
         if isinstance(result, list) or isinstance(result, tuple):
             # print(result)
             sh.append([r if not isinstance(r, list) else r[0] for r in result])
