@@ -4,6 +4,7 @@ import pprint
 import openpyxl
 from tqdm import tqdm
 from datetime import datetime
+from pprint import pprint
 
 
 class WorkMongo:
@@ -43,6 +44,9 @@ class WorkMongo:
     def reportFromDeniedKNMComment(self):
         return self.collection.find({'status': 'Исключена'}, {'_id': 0, 'controllingOrganization': 1, 'comment': 1, 'erpId': 1, 'id': 1, 'organizationsInn': {'$slice': 1}})
 
+    def getObjectsFromPlan(self):
+        return self.collection.find({'status': "На согласовании", 'kind': {'$ne': 'Выборочный контроль'}}, {'_id': 0, 'inn': 1, 'addresses': 1, 'riskCategory': 1, 'objectsKind': 1}).limit(1)
+
     def convertForsaving(self, results: list[dict]) -> list:
 
         title = list(results[0].keys())
@@ -79,7 +83,10 @@ class WorkMongo:
 
 if __name__ == '__main__':
     wm = WorkMongo()
-    wm.count_objects()
+    result = wm.getObjectsFromPlan()[0]
+    inn = result['inn']
+    for address, kind, risk in zip(result['addresses'], result['objectsKind'], result['riskCategory']):
+        print(address, kind, risk)
 
 
 

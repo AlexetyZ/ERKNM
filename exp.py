@@ -438,12 +438,11 @@ def _dict_oper():
 
 
 def getReg(text):
-    import re
-    return re.search(r' ([\.,:;!\?]) ', text).group()
+    print(text[-17:])
 
 
 if __name__ == '__main__':
-    print(getReg('привет , я джанго'))
+    print(getReg('603057, обл. Нижегородская, г. Нижний Новгород, ул. Косогорная, д 3'))
     # _dict_oper()
     # for r in manyOperation('раз', "два", "три"):
     #     print(r[0])

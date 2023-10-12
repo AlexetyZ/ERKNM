@@ -21,11 +21,11 @@ def standartingString(string: str):
         raise Exception(string)
 
 
-def merge_both(string1: str, string2: str, lastetski: bool = False):
+def merge_both(string1: str, string2: str, lastetski: bool = False, limitWeight: int = 60):
     string1 = standartingString(string1)
     string2 = standartingString(string2)
     fuzz_ratio = fuzz.token_sort_ratio(string1, string2)
-    if fuzz.token_sort_ratio(string1, string2) >= 60:
+    if fuzz.token_sort_ratio(string1, string2) >= limitWeight:
         return True
     if lastetski:
         # print(f'{string1}  not equal  {string2}')
