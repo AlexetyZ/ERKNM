@@ -209,6 +209,7 @@ def reportDayliAggreedProcess():
     today = str(datetime.now().strftime('%d.%m.%Y'))
     filePath = f"C:\\Users\zaitsev_ad\Documents\ЕРКНМ\План 2024\этап планирования\ежедневный мониторинг процесса согласования\\{today}.xlsx"
     reportByAggreedProcess(filePath, today)
+    reportByProsecutorComments(f"C:\\Users\zaitsev_ad\Documents\ЕРКНМ\План 2024\этап планирования\ежедневный мониторинг процесса согласования\\Исключения {today}.xlsx")
     return 'Отчет готов!'
 
 
@@ -219,6 +220,41 @@ def useDatabase():
     d = Database(init_erknm=False)
     d.exec_it_database()
     return 'Работа с базой данных завершена!'
+
+
+def groupByRegions(pathFile):
+    import openpyxl
+    import xl
+    import os
+    from datetime import datetime
+    from pathlib import Path
+
+
+
+
+    t_date = datetime.now().strftime('%d.%m.%Y')
+
+    parentDir = Path(pathFile).parent
+
+    todayDir = os.path.join(parentDir, f'на {t_date}')
+    isklAnalysDir = os.path.join(todayDir, 'анализ исключений')
+    if not os.path.exists(todayDir):
+        os.mkdir(todayDir)
+    if not os.path.exists(isklAnalysDir):
+        os.mkdir(isklAnalysDir)
+
+    datas = {}
+    wb = openpyxl.load_workbook(pathFile)
+    sh = wb.worksheets[0]
+    for row in sh.iter_rows(min_row=2, values_only=True):
+        tu = row[1]
+        if row[1] in datas:
+            datas[tu].append(row)
+        else:
+            datas[tu] = [row]
+    for region, rows in datas.items():
+
+        xl.writeResultsInXL([['', 'Причины', 'Встречается в КНМ'], *rows], title=region, pathFile=os.path.join(isklAnalysDir, f'{region}.xlsx'), sheetTitle='Исключения')
 
 
 def countIsklByReasons(pathDir):
@@ -243,6 +279,9 @@ if __name__ == '__main__':
     functions = {
         'count_iskl': {'action': countIsklByReasons, 'desc': 'Делает отчет, по причинам исключений проверок прокуратурой',
                      'args': ["путь до файла с ТУ в столбце А"]},
+        'group_iskl_by_regions': {'action': groupByRegions,
+                       'desc': 'Сортирует нарушения по регионам',
+                       'args': ["путь до файла"]},
         'load_knm': {'action': load_knm, 'desc': 'загружает проверки из ЕРКМН', 'args': ["Год, за который нужно выгрузить проверки"]},
         'load_pm': {'action': load_pm, 'desc': 'загружает профилактические мероприятия из ЕРКМН', 'args': ["Год, за который нужно выгрузить профилактические мероприятия"]},
         'merge_tu': {'action': mergeTu, 'desc': 'забирает столбец из файла exel c ТУ и по регурялке проверяет, кто есть в списке и сколько раз, а кого нет', 'args': ["путь до файла с ТУ в столбце А", 'номер столбца, который берем']},
