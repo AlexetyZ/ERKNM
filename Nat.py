@@ -113,7 +113,7 @@ class KnowHow:
 
         return text.strip()
 
-    def func1(self, sent):
+    def func1(self, sent) -> str:
         finder = Finder(sent.tokens)
         root = finder.find(rel='root')
         nouns = finder.find_all(pos='NOUN')
@@ -134,7 +134,7 @@ class KnowHow:
         for sent in self.sents:
             yield self.func1(sent)
 
-    def func4(self):
+    def func4(self) -> list:
         for sent in self.sents:
             # print(f"---{' '.join([token.text for token in sent.tokens])}")
             yield self.func2(sent.tokens)
@@ -147,7 +147,7 @@ class KnowHow:
         else:
             return self.syntezHeader(dehydrotateString, lemmatize=False)
 
-    def func2(self, tokens, lemmatize: bool = True):
+    def func2(self, tokens, lemmatize: bool = True) -> str:
 
         from natasha import MorphVocab
         morph_vocab = MorphVocab()
@@ -214,6 +214,7 @@ def multiproc_main(text):
 
 def main(text):
     comments = {}
+    # comments = {'dehyd': {'count': 'count', 'explanation': 'explanation'}}
     kh = KnowHow(text)
     # kh = KnowHow('адрес наименование объект контроль не соответствовать сведение сайт указать .')
     # print(len(kh.sents))

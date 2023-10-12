@@ -418,15 +418,15 @@ def where_is_error_in_string_by_index(index: int, text: str):
 
 
 def oneOperation(string: str):
-    return ''.join([string, '_'])
+    return ''.join([string, '_']), ''.join(['_', string])
 
 
 def manyOperation(*strings):
-    per = []
-    for string in strings:
-        per += (yield oneOperation(string))
 
-    print(list(per))
+    for string in strings:
+        yield oneOperation(string)
+
+    # print(list(per))
 
 
 
@@ -439,7 +439,8 @@ def _dict_oper():
 
 if __name__ == '__main__':
     # _dict_oper()
-    manyOperation('раз', "два", "три")
+    for r in manyOperation('раз', "два", "три"):
+        print(r[0])
 
     # result = get_cells_for_request_db(
     #     ['controll_organ', 'id'],
