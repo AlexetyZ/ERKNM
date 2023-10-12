@@ -229,6 +229,7 @@ def countIsklByReasons(pathDir):
 
 
     for file in os.listdir(pathDir):
+        print(file)
         pathFile = os.path.join(pathDir, file)
         comments = xl.bringCol(pathFile)
         categories = get_reasons(comments)
