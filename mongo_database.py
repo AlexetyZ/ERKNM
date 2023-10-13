@@ -38,11 +38,18 @@ class WorkMongo:
     def free_command(self, request):
         return self.collection.find(request)
 
-    def reportByAggreedProcess(self):
+    def reportByAggreedProcessKNM(self):
         return self.collection.aggregate([{'$group': {'_id': {'tu': "$controllingOrganization", 'status': "$status"}, 'totalCount': {'$sum': 1}}}])
+
+    def reportByAggreedProcessObjects(self):
+        return self.collection.aggregate([{"$unwind": "$riskCategory"}, {'$group': {'_id': {'tu': "$controllingOrganization", 'status': "$status"}, 'totalCount': {'$sum': 1}}}])
 
     def reportFromDeniedKNMComment(self):
         return self.collection.find({'status': 'Исключена'}, {'_id': 0, 'controllingOrganization': 1, 'comment': 1, 'erpId': 1, 'id': 1, 'organizationsInn': {'$slice': 1}})
+
+    def reportFromDeniedKNMObjectCategory(self):
+        return self.collection.aggregate([{'$match': {'status': "Исключена"}}, {'$unwind': "$objectsKind"}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': 1}}}])
+
 
     def getObjectsFromPlan(self):
         return self.collection.find({'status': "На согласовании", 'kind': {'$ne': 'Выборочный контроль'}}, {'_id': 0, 'inn': 1, 'addresses': 1, 'riskCategory': 1, 'objectsKind': 1}).limit(1)

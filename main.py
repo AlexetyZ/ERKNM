@@ -68,7 +68,96 @@ def reportByProsecutorComments(pathFile):
     return 'Причины исключений успешно выгружены!'
 
 
-def reportByAggreedProcess(pathFile, today):
+def reportByDienedObjects():
+    from mongo_database import WorkMongo
+    import xl
+    from pathlib import Path
+    import os
+    import json
+    from datetime import datetime
+    import Dictionary as d
+
+    group_kinds = {
+        'Деятельность в сфере здравоохранения': d.health_care_kinds,
+        'Детские лагеря с дневным пребыванием': d.child_camps_kinds,
+        'Деятельность организаторов детского питания': d.children_meal_kinds,
+        'Деятельность общеобразовательных организаций': d.school_kinds,
+        'Деятельность дошкольных образовательных организаций': d.preschool_kinds,
+        'Торговля пищевыми продуктами': d.food_store_kind,
+        'Объекты промышленности и транспорта': d.industry_kinds,
+        'Производство пищевых продуктов': d.food_production,
+        'Общественное питание населения': d.public_catering_kind,
+        'Деятельность водоснабжения и водоотведения': d.water_supply_kinds,
+        'Коммунальное обслуживание': d.communal_services,
+        'Предоставление социальных услуг': d.social_services,
+    }
+
+    t_data = datetime.now().strftime('%d.%m.%Y')
+
+    wm = WorkMongo()
+    _tus_kinds_counts = wm.reportFromDeniedKNMObjectCategory()
+
+    results = {'Всего': {'Общее': 0}}
+    value_list = []
+    # print(results['Всего']['Общее'])
+    otherKinds = []
+    for tu_object_count in _tus_kinds_counts:
+        recordId = tu_object_count['_id']
+        count = tu_object_count['totalCount']
+        tu = recordId['tu']
+        kind = recordId['kind']
+        isOther = True
+        for groupName, groupRefs in group_kinds.items():
+            if kind in groupRefs:
+                kind = groupName
+                isOther = False
+        if isOther:
+            otherKinds.append(kind)
+            kind = 'Прочие виды деятельности'
+
+        if tu in results:
+            # print(results[tu])
+            if kind in results[tu]:
+                results[tu][kind] += count
+            else:
+                results[tu][kind] = count
+            results[tu]['Общее'] += count
+
+        else:
+            results[tu] = {'Общее': count, kind: count}
+        if kind in results['Всего']:
+            results['Всего'][kind] += count
+        else:
+            results['Всего'][kind] = count
+        # pprint(results)
+        results['Всего']['Общее'] += count
+
+    results = dict(sorted(results.items(), key=lambda x: x[1]['Общее'], reverse=True))
+    # pprint(results)
+    results['Всего'] = dict((sorted(results['Всего'].items(), key=lambda x: x[1], reverse=True)))
+
+    value_list.append(['', *[key for key in results['Всего'].keys()]])
+    # for main_kind in results['Всего'].keys():+
+
+    # print(list(results['Всего'].keys()))
+    for tu, kinds in results.items():
+        # print(kinds)
+        value_list.append([tu, *[kinds[val] if val in kinds else 0 for val in list(results['Всего'].keys())]])
+
+    pathFile = f"C:\\Users\zaitsev_ad\Documents\ЕРКНМ\План 2024\этап планирования\ежедневный мониторинг процесса согласования\отчет по объектам {t_data}.xlsx"
+
+    xl.writeResultsInXL(results=value_list, title=f'Количество и состав объектов, исключенных из плана прокуратурой {t_data}', pathFile=pathFile)
+    xl.writeResultsInXL(results=[kind for kind in set(otherKinds)], title=f'Прочие виды деятельности', pathFile=pathFile, sheetTitle='прочие', sheetIndex=1)
+    pathFileStr = str(pathFile).replace("\\\\", "\\")
+    # pprint(otherKinds)
+    return f'Отчет готов! Сохранен в {pathFileStr}'
+
+
+
+
+
+
+def reportByAggreedProcess(pathFile, today, count_by='knm'):
     from mongo_database import WorkMongo
     import xl
     from pathlib import Path
@@ -81,7 +170,12 @@ def reportByAggreedProcess(pathFile, today):
     results = {}
     statusses = []
     wm = WorkMongo()
-    _objects = wm.reportByAggreedProcess()
+    if count_by == 'knm':
+        _objects = wm.reportByAggreedProcessKNM()
+    elif count_by == 'objects':
+        _objects = wm.reportByAggreedProcessObjects()
+    else:
+        return 'Не удалось распознать дополнительный аттрибут, по которому будет подсчет!'
     for _object in _objects:
         id_part = _object['_id']
         name = id_part['tu']
@@ -204,11 +298,11 @@ def reportByAggreedProcess(pathFile, today):
 
 
 
-def reportDayliAggreedProcess():
+def reportDayliAggreedProcess(count_attribute='knm'):
     from datetime import datetime
     today = str(datetime.now().strftime('%d.%m.%Y'))
     filePath = f"C:\\Users\zaitsev_ad\Documents\ЕРКНМ\План 2024\этап планирования\ежедневный мониторинг процесса согласования\\{today}.xlsx"
-    reportByAggreedProcess(filePath, today)
+    reportByAggreedProcess(filePath, today, count_by=count_attribute)
     reportByProsecutorComments(f"C:\\Users\zaitsev_ad\Documents\ЕРКНМ\План 2024\этап планирования\ежедневный мониторинг процесса согласования\\Исключения {today}.xlsx")
     return 'Отчет готов!'
 
@@ -285,10 +379,12 @@ if __name__ == '__main__':
         'load_knm': {'action': load_knm, 'desc': 'загружает проверки из ЕРКМН', 'args': ["Год, за который нужно выгрузить проверки"]},
         'load_pm': {'action': load_pm, 'desc': 'загружает профилактические мероприятия из ЕРКМН', 'args': ["Год, за который нужно выгрузить профилактические мероприятия"]},
         'merge_tu': {'action': mergeTu, 'desc': 'забирает столбец из файла exel c ТУ и по регурялке проверяет, кто есть в списке и сколько раз, а кого нет', 'args': ["путь до файла с ТУ в столбце А", 'номер столбца, который берем']},
+        'report_by_diened_objects': {'action': reportByDienedObjects, 'desc': 'отчет по объектам, исключенным в ходе проверки плана прокуратурой',
+                     'args': []},
         'report_by_objects': {'action': reportByObjects, 'desc': 'делает отчет о количестве видов деятельности', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим", """фильтры для поиска, в формате "{'k': 'v'}"""]},
         'report_by_aggreed': {'action': reportByAggreedProcess, 'desc': 'делает отчет о ходе согласования по регионам', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим"]},
         'report_daily_aggreed': {'action': reportDayliAggreedProcess, 'desc': 'делает ежедневный отчет о ходе согласования по регионам в папке C:\\Users\zaitsev_ad\Documents\ЕРКНМ\План 2024\этап планирования\ежедневный мониторинг процесса согласования',
-                              'args': []},
+                              'args': ['аттрибут, по которому будем считать: "knm" или "objects"']},
         'report_by_risks': {'action': reportByRisks, 'desc': 'делает отчет о количестве категорий риска объектов', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим", """фильтры для поиска, в формате "{'k': 'v'}"""]},
         'report_by_fk': {'action': reportByFreeCommand, 'desc': 'выгружает отчет по введенной команде', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим", """команда для поиска, в формате "{'k': 'v'}"""]},
         'report_by_iskl': {'action': reportByProsecutorComments, 'desc': 'выгружает причины исключений с номерами проверок', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим"]},
