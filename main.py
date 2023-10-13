@@ -269,7 +269,7 @@ def countIsklByReasons(pathDir):
         pathFile = os.path.join(pathDir, file)
         comments = xl.bringCol(pathFile, minRow=3)
         categories = get_reasons(comments)
-        results = [['', 'причины исключений', 'Найдено в КНМ'], *sorted([[n+1, str(value['explanation']), int(value['count'])] for n, value in enumerate(categories.values())], key=lambda x: x[2])]
+        results = [['', 'причины исключений', 'Найдено в КНМ'], *sorted([[n+1, str(value['explanation']), int(value['count'])] for n, value in enumerate(categories.values())], key=lambda x: x[2], reverse=True)]
         # pprint(results)
         xl.writeResultsInXL(results=results, title=Path(pathFile).stem, pathFile=pathFile, sheetIndex=1, sheetTitle='причины исключений')
     return 'Причины исключений собраны!'
