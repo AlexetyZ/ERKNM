@@ -22,6 +22,7 @@ import config
 from crypto import Crypto
 from bs4 import BeautifulSoup
 from direct_pxl import Operation
+from private_config import yandex_driver_path
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
                     filename=f'logging/{datetime.date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
@@ -36,8 +37,7 @@ class erknm:
         # prefs = {"profile.password_manager_enabled": False}
         # #
         # self.options.add_experimental_option('prefs', prefs)
-        binary_yandex_driver_file = 'C:\\Users\zaitsev_ad\PycharmProjects\WORK_sed\yandexdriver.exe'  # path to YandexDriver
-        browser_service = Service(executable_path=binary_yandex_driver_file)
+        browser_service = Service(executable_path=yandex_driver_path)
 
         # self.options.add_argument('--ignore-certificate-errors-spki-list')
         # self.options.add_argument("disable-infobars")

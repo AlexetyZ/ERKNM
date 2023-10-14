@@ -5,7 +5,9 @@ bot_token = "1907923175:AAFL4k33axeyw6GBIZiFc1ePJYx1Ln0w0ZY"
 
 chat_id_knm = -1001890234303
 
-key_path = "D:\keys\primary.key"
+key_path = "S:\Зайцев_АД\keys\primary.key"
+
+key_path_2 = '/Users/aleksejzajcev/Documents/keys/primary.key'
 
 erknm_auth_url = 'https://private.proverki.gov.ru/esia-authentication-provider/api/esiaauth/login'
 

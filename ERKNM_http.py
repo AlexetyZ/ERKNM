@@ -39,7 +39,7 @@ class Erknm:
             self.o = Operation(path_xl_table)
 
         self.session = erknm(
-            headless=True
+            # headless=True
         )
         self.session.autorize()
         self.result = []

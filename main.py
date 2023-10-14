@@ -76,6 +76,7 @@ def reportByDienedObjects():
     import json
     from datetime import datetime
     import Dictionary as d
+    from private_config import dayliProcessFile
 
     group_kinds = {
         'Деятельность в сфере здравоохранения': d.health_care_kinds,
@@ -144,7 +145,7 @@ def reportByDienedObjects():
         # print(kinds)
         value_list.append([tu, *[kinds[val] if val in kinds else 0 for val in list(results['Всего'].keys())]])
 
-    pathFile = f"C:\\Users\zaitsev_ad\Documents\ЕРКНМ\План 2024\этап планирования\ежедневный мониторинг процесса согласования\отчет по объектам {t_data}.xlsx"
+    pathFile = dayliProcessFile(f"отчет по объектам {t_data}.xlsx")
 
     xl.writeResultsInXL(results=value_list, title=f'Количество и состав объектов, исключенных из плана прокуратурой {t_data}', pathFile=pathFile)
     xl.writeResultsInXL(results=[kind for kind in set(otherKinds)], title=f'Прочие виды деятельности', pathFile=pathFile, sheetTitle='прочие', sheetIndex=1)
@@ -165,7 +166,7 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
     import json
 
     parentDir = Path(pathFile).parent
-    previewsResultFile = os.path.join(parentDir, 'preview_results.json')
+    previewsResultFile = os.path.join(parentDir, f'preview_results {count_by}.json')
     value_list = []
     results = {}
     statusses = []
@@ -300,10 +301,13 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
 
 def reportDayliAggreedProcess(count_attribute='knm'):
     from datetime import datetime
+    from private_config import dayliProcessFile
+    import os
     today = str(datetime.now().strftime('%d.%m.%Y'))
-    filePath = f"C:\\Users\zaitsev_ad\Documents\ЕРКНМ\План 2024\этап планирования\ежедневный мониторинг процесса согласования\\{today}.xlsx"
-    reportByAggreedProcess(filePath, today, count_by=count_attribute)
-    reportByProsecutorComments(f"C:\\Users\zaitsev_ad\Documents\ЕРКНМ\План 2024\этап планирования\ежедневный мониторинг процесса согласования\\Исключения {today}.xlsx")
+    reportByAggreedProcess(dayliProcessFile(f"ежедневный {today} {count_attribute}.xlsx"), today, count_by=count_attribute)
+    isklListPath = dayliProcessFile(f"Исключения {today}.xlsx")
+    if not os.path.exists(isklListPath):
+        reportByProsecutorComments(isklListPath)
     return 'Отчет готов!'
 
 

@@ -10,7 +10,10 @@ class Crypto:
         '''
             Если ты жулик - ухади!
         '''
-        self.key_path = config.key_path
+        if os.path.exists(config.key_path_2):
+            self.key_path = config.key_path_2
+        else:
+            self.key_path = config.key_path
 
     def get_cifer_key(self):
         if os.path.exists(self.key_path):
