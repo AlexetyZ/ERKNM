@@ -137,17 +137,17 @@ def reportByDienedObjects():
     # pprint(results)
     results['Всего'] = dict((sorted(results['Всего'].items(), key=lambda x: x[1], reverse=True)))
 
-    value_list.append(['', *[key for key in results['Всего'].keys()]])
+    value_list.append(['№', 'ТУ', *[key for key in results['Всего'].keys()]])
     # for main_kind in results['Всего'].keys():+
 
     # print(list(results['Всего'].keys()))
-    for tu, kinds in results.items():
+    for number, (tu, kinds) in enumerate(results.items()):
         # print(kinds)
-        value_list.append([tu, *[kinds[val] if val in kinds else 0 for val in list(results['Всего'].keys())]])
+        value_list.append([number if number else '', tu, *[kinds[val] if val in kinds else 0 for val in list(results['Всего'].keys())]])
 
     pathFile = dayliProcessFile(f"отчет по объектам {t_data}.xlsx")
 
-    xl.writeResultsInXL(results=value_list, title=f'Количество и состав объектов, исключенных из плана прокуратурой {t_data}', pathFile=pathFile)
+    xl.writeResultsInXL(results=value_list, title=f'Структура по видам деятельности объектов, исключенных из плана прокуратурой на {t_data}', pathFile=pathFile)
     xl.writeResultsInXL(results=[kind for kind in set(otherKinds)], title=f'Прочие виды деятельности', pathFile=pathFile, sheetTitle='прочие', sheetIndex=1)
     pathFileStr = str(pathFile).replace("\\\\", "\\")
     # pprint(otherKinds)
@@ -215,18 +215,13 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
                 excluded = values['Исключена']
                 if excluded:
                     existExcluded = [tu, onApplyCount, excluded]
-
                     totalExcluded['excluded'] += excluded
-
                     persentExcludedTotal = excluded/onApplyCount
                     existExcluded.append(persentExcludedTotal)
-
                     onApply = values['На согласовании']
                     existExcluded.append(onApply)
-
                     existExcluded.append(tuIncreaseExcluded)
                     totalExcluded['increaseExcluded'] += tuIncreaseExcluded
-
                     persentExcludedOnDate = tuIncreaseExcluded/onApplyCount
                     existExcluded.append(persentExcludedOnDate)
                     totalExcluded['persentExcludedOnDate'] += persentExcludedOnDate
@@ -234,6 +229,7 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
                     registredExcludedKnm.append(existExcluded)
 
             value_list.append([tu, *v, onApplyCount])
+
     else:
         with open(previewsResultFile, 'r', encoding='utf-8') as previewsFile:
             previewsResult = json.load(previewsFile)
@@ -278,10 +274,14 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
                     registredExcludedKnm.append(existExcluded)
             value_list.append([tu, *v, onApplyCount])
 
+
+    excludedReportTitle = ['', 'ТУ', "Всего КНМ в проекте плана", "Исключено прокуратурой",	'% исключенных всего',	'Осталось на согласовании',	f'Прирост исключенных за {today}',	f'% исключенных всего за {today}']
+
     totalExcluded['persentExcludedTotal'] += totalExcluded['excluded'] / totalExcluded['total']
     totalExcluded['persentExcludedOnDate'] += totalExcluded['increaseExcluded'] / totalExcluded['total']
     registredExcludedKnm = sorted(registredExcludedKnm, key=lambda x: x[3], reverse=True)
-    registredExcludedKnm.insert(0, ['Всего', *[val for val in totalExcluded.values()]])
+    registredExcludedKnm.insert(0, ['', 'Всего', *[val for val in totalExcluded.values()]])
+    registredExcludedKnm.insert(0, excludedReportTitle)
     title = []
     title.append('ТУ')
     for s in statusses:
@@ -289,10 +289,7 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
         title.append('прирост')
     title.append('Всего на согласовании')
     xl.writeResultsInXL(results=value_list, title=title, pathFile=pathFile, sheetTitle='Общий отчет')
-
-    excludedReportTitle = ['ТУ', "Всего КНМ в проекте плана", "Исключено прокуратурой",	'% исключенных всего',	'Осталось на согласовании',	f'Прирост исключенных за {today}',	f'% исключенных всего за {today}']
-    xl.writeResultsInXL(results=registredExcludedKnm, title=excludedReportTitle, pathFile=pathFile, sheetIndex=1, sheetTitle='Исключенные')
-
+    xl.writeResultsInXL(results=registredExcludedKnm, title=f'Регионы, в которых зарегистрированы исключения КНМ органами прокуратуры на {today}', pathFile=pathFile, sheetIndex=1, sheetTitle='Исключенные')
     with open(previewsResultFile, 'w', encoding='utf-8') as file:
         json.dump(results, file)
 

@@ -4,6 +4,17 @@ import openpyxl
 from sys import argv
 import os
 from pprint import pprint
+from openpyxl.styles import Font
+
+
+def formatFile(pathFile, sheetIndex):
+    # wb = openpyxl.load_workbook(pathFile)
+    wb = openpyxl.load_workbook(pathFile)
+    sh = wb.worksheets[sheetIndex]
+    sh.column_dimensions['A'].width = 8
+    sh.column_dimensions['B'].width = 24.5
+
+    wb.save(pathFile)
 
 
 def dellnull(pathDir):
@@ -55,7 +66,7 @@ def prepareForchekingInDir(dirPath):
         wb.save(filePath)
 
 
-def writeResultsInXL(results, title='столбец', pathFile: str = "C:\\Users\zaitsev_ad\Desktop\Сохраненные сведения.xlsx", sheetIndex: int = 0, sheetTitle: str = 'Sheet'):
+def writeResultsInXL(results, title='столбец', pathFile: str = "C:\\Users\zaitsev_ad\Desktop\Сохраненные сведения.xlsx", sheetIndex: int = 0, sheetTitle: str = 'Sheet', numerateResults: bool = False):
     if title is None:
         title = ['столбец1', 'столбец2']
     if os.path.exists(pathFile):
@@ -82,13 +93,13 @@ def writeResultsInXL(results, title='столбец', pathFile: str = "C:\\Users
     else:
         sh.append([title])
 
-    for result in results:
+    for n, result in enumerate(results):
         # print(f'{result} --- {type(result)}')
         if isinstance(result, list) or isinstance(result, tuple):
             # print(result)
-            sh.append([r if not isinstance(r, list) else r[0] for r in result])
+            sh.append([[n+1, *r] if numerateResults else r if not isinstance(r, list) else r[0] for r in result])
         else:
-            sh.append([result])
+            sh.append([n+1, result] if numerateResults else [result])
     wb.save(pathFile)
 
 
