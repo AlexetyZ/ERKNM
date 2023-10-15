@@ -42,13 +42,13 @@ class WorkMongo:
         return self.collection.aggregate([{'$group': {'_id': {'tu': "$controllingOrganization", 'status': "$status"}, 'totalCount': {'$sum': 1}}}])
 
     def reportByAggreedProcessObjects(self):
-        return self.collection.aggregate([{"$unwind": "$riskCategory"}, {'$group': {'_id': {'tu': "$controllingOrganization", 'status': "$status"}, 'totalCount': {'$sum': 1}}}])
+        return self.collection.aggregate([{"$unwind": "$objectsKind"}, {'$group': {'_id': {'tu': "$controllingOrganization", 'status': "$status"}, 'totalCount': {'$sum': 1}}}])
 
     def reportFromDeniedKNMComment(self):
         return self.collection.find({'status': 'Исключена'}, {'_id': 0, 'controllingOrganization': 1, 'comment': 1, 'erpId': 1, 'id': 1, 'organizationsInn': {'$slice': 1}})
 
     def reportFromDeniedKNMObjectCategory(self):
-        return self.collection.aggregate([{'$match': {'status': "Исключена"}}, {'$unwind': "$objectsKind"}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': 1}}}])
+        return self.collection.aggregate([{'$unwind': "$objectsKind"}, {'$match': {'status': "Исключена"}}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': 1}}}])
 
 
     def getObjectsFromPlan(self):
