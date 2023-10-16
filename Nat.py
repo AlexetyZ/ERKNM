@@ -238,12 +238,16 @@ def main(text):
     return comments
 
 
+def prepareText(text: str):
+    return text.replace(';', '. ')
+
+
 def get_reasons(text_list: list):
     from not_mine import merge_both, in_one_of
     comments = {}
     # comments = {'dehyd': {'count': 'count', 'explanation': 'explanation'}}
     for text in tqdm(text_list, 'обработка...'):
-        res = main(text)
+        res = main(prepareText(text))
         # print(res)
         for k, v in res.items():
             commentKeyExists = in_one_of(k, list(comments.keys()))
