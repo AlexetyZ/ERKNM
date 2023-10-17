@@ -294,6 +294,11 @@ class erknm:
         # print(f'{object_kind=}')
         return object_kind
 
+    def getDictionnary(self, dictId, dictVersionId):
+        script = f"""const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-catalogs/api/dictionaries/get-dictionary-value/{dictId}/{dictVersionId}');const content = await rawResponse.json();return JSON.parse(content['value'])['title'];"""
+        value = self.browser.execute_script(script)
+        return value
+
     def quit(self):
         self.browser.quit()
         # os.system('taskkill /F /IM chrome.exe > null /T')

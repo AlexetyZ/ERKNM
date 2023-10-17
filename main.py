@@ -308,6 +308,30 @@ def reportDayliAggreedProcess(count_attribute='knm'):
     return 'Отчет готов!'
 
 
+def findIsklInfo(dirPath):
+    import openpyxl
+    wb = openpyxl.load_workbook(dirPath)
+    sh = wb['причины исключений']
+    tu = sh['A1'].value
+    iskl_list = []
+    for row in sh.iter_rows(min_row=3, values_only=True):
+        iskl_list.append([tu, row[1], row[2]])
+    return iskl_list
+
+
+def mergeIskl(pathDir):
+    import os
+    import xl
+    from private_config import dayliProcessFile
+    from tqdm import tqdm
+
+    iskl_list = []
+    for file in tqdm(os.listdir(pathDir)):
+        dirPath = os.path.join(pathDir, file)
+        iskl_list.extend(findIsklInfo(dirPath))
+    newFile = dayliProcessFile('все причины исключений.xlsx')
+    xl.writeResultsInXL(results=iskl_list, pathFile=newFile, title='Совокупность исключений')
+
 
 
 def useDatabase():
@@ -379,6 +403,8 @@ if __name__ == '__main__':
                        'args': ["путь до файла"]},
         'load_knm': {'action': load_knm, 'desc': 'загружает проверки из ЕРКМН', 'args': ["Год, за который нужно выгрузить проверки"]},
         'load_pm': {'action': load_pm, 'desc': 'загружает профилактические мероприятия из ЕРКМН', 'args': ["Год, за который нужно выгрузить профилактические мероприятия"]},
+        'merge_iskl_reason': {'action': mergeIskl, 'desc': 'сводит в одну таблицу результаты после анализа причин исключений',
+                    'args': ["путь до папки, где хранятся результаты анализа по причинам исключений (у файлов на листе 'причины исключений' должен быть анализ нарушение - количество)"]},
         'merge_tu': {'action': mergeTu, 'desc': 'забирает столбец из файла exel c ТУ и по регурялке проверяет, кто есть в списке и сколько раз, а кого нет', 'args': ["путь до файла с ТУ в столбце А", 'номер столбца, который берем']},
         'report_by_diened_objects': {'action': reportByDienedObjects, 'desc': 'отчет по объектам, исключенным в ходе проверки плана прокуратурой',
                      'args': []},
