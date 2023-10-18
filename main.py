@@ -191,7 +191,7 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
     onApplyKinds = ['Есть замечания', 'На согласовании', 'Исключена', 'Готово к согласованию', 'Ожидает проведения',
                     'Не согласована']
     registredExcludedKnm = []
-    totalExcluded = {'total': 0, 'excluded': 0, 'persentExcludedTotal': 0, 'onApply': 0, 'increaseExcluded': 0,
+    totalExcluded = {'total': 0, 'excluded': 0, 'persentExcludedTotal': 0, 'onApply': 0, 'applied': 0, 'increaseExcluded': 0,
                      'persentExcludedOnDate': 0}
     if not os.path.exists(previewsResultFile):
 
@@ -210,6 +210,9 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
                     v.append(0)
                     v.append(0)
             totalExcluded['total'] += onApplyCount
+            isNotes = values['Есть замечания'] if 'Есть замечания' in values else 0
+            waitForStarting = values['Ожидает проведения'] if 'Ожидает проведения' in values else 0
+            totalExcluded['applied'] += isNotes + waitForStarting
             totalExcluded['onApply'] += values['На согласовании'] if 'На согласовании' in values else 0
             if 'Исключена' in values:
                 excluded = values['Исключена']
@@ -219,7 +222,10 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
                     persentExcludedTotal = excluded/onApplyCount
                     existExcluded.append(persentExcludedTotal)
                     onApply = values['На согласовании']
+
                     existExcluded.append(onApply)
+                    applied = isNotes + waitForStarting
+                    existExcluded.append(applied)
                     existExcluded.append(tuIncreaseExcluded)
                     totalExcluded['increaseExcluded'] += tuIncreaseExcluded
                     persentExcludedOnDate = tuIncreaseExcluded/onApplyCount
@@ -255,6 +261,9 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
                     v.append(0)
                     v.append(0)
             totalExcluded['total'] += onApplyCount
+            isNotes = values['Есть замечания'] if 'Есть замечания' in values else 0
+            waitForStarting = values['Ожидает проведения'] if 'Ожидает проведения' in values else 0
+            totalExcluded['applied'] += isNotes + waitForStarting
             totalExcluded['onApply'] += values['На согласовании'] if 'На согласовании' in values else 0
 
             if 'Исключена' in values:
@@ -266,6 +275,8 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
                     existExcluded.append(persentExcludedTotal)
                     onApply = values['На согласовании']
                     existExcluded.append(onApply)
+                    applied = isNotes + waitForStarting
+                    existExcluded.append(applied)
                     existExcluded.append(tuIncreaseExcluded)
                     totalExcluded['increaseExcluded'] += tuIncreaseExcluded
                     persentExcludedOnDate = tuIncreaseExcluded/onApplyCount
@@ -275,7 +286,7 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
             value_list.append([tu, *v, onApplyCount])
 
 
-    excludedReportTitle = ['', 'ТУ', "Всего КНМ в проекте плана", "Исключено прокуратурой",	'% исключенных всего',	'Осталось на согласовании',	f'Прирост исключенных за {today}',	f'% исключенных всего за {today}']
+    excludedReportTitle = ['', 'ТУ', "Всего КНМ в проекте плана", "Исключено прокуратурой",	'% исключенных всего',	'Осталось на согласовании', 'Согласовано',	f'Прирост исключенных за {today}',	f'% исключенных всего за {today}']
 
     totalExcluded['persentExcludedTotal'] += totalExcluded['excluded'] / totalExcluded['total']
     totalExcluded['persentExcludedOnDate'] += totalExcluded['increaseExcluded'] / totalExcluded['total']

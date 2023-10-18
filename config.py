@@ -13,4 +13,4 @@ erknm_auth_url = 'https://private.proverki.gov.ru/esia-authentication-provider/a
 
 erknm_list_knm_url = 'https://private.proverki.gov.ru/erknm-index/api/knm/find-indexes?page=0&size=50&order=erpId,asc'
 
-epgu_dont_send_sms_way = '/html/body/esia-root/div/esia-login/div/div/div/div[4]/button[2]'
+epgu_dont_send_sms_way = '/html/body/esia-root/div/esia-login/div/div/esia-fill-mfa-promo/div/div[2]/button[2]'
