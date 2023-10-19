@@ -252,7 +252,7 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
 
                     v.append(values[s])
 
-                    tuIncrease = values[s]-previewsResult[tu][s] if s in previewsResult[tu] else 0
+                    tuIncrease = values[s]-previewsResult[tu][s] if s in previewsResult[tu] else values[s]
                     if s == "Исключена":
                         tuIncreaseExcluded = tuIncrease
 
