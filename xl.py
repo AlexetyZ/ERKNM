@@ -27,7 +27,7 @@ def dellnull(pathDir):
             os.remove(pathFile)
 
 
-def bringCol(pathFile, minCol: str or int or bool = 1, minRow: str or int or bool = 2, colNumber: str or int or bool = None) -> list:
+def bringCol(pathFile, minCol: str or int or bool = 1, minRow: str or int or bool = 2, colNumber: str or int or bool = None, sheetIndex: int = 0) -> list:
     """
     pathFile: путь до файла эксель
     minCol: минимальный столбец, с которого отчитываем
@@ -37,6 +37,24 @@ def bringCol(pathFile, minCol: str or int or bool = 1, minRow: str or int or boo
     minCol = minCol if minCol and str(minCol).isdigit() is not None else '1'
     minRow = minRow if minRow and str(minRow).isdigit() is not None else '2'
     colNumber = colNumber if colNumber else '0'
+    wb = openpyxl.load_workbook(pathFile)
+    sh = wb.worksheets[sheetIndex]
+
+    if ':' in str(colNumber):
+        se = [int(val) if val else None for val in colNumber.split(':')]
+        colNumber = slice(se[0], se[1])
+    else:
+        try:
+            colNumber = int(colNumber)
+        except:
+            colNumber = 0
+
+    return [row for row in sh.iter_cols(min_col=int(minCol), min_row=int(minRow), values_only=True)][colNumber]
+
+
+def bringRowsVal(path, sheetIndex, minRow, minCol):
+    minCol = minCol if minCol and str(minCol).isdigit() is not None else '1'
+    minRow = minRow if minRow and str(minRow).isdigit() is not None else '2'
 
     if ':' in str(colNumber):
         se = [int(val) if val else None for val in colNumber.split(':')]
@@ -47,9 +65,8 @@ def bringCol(pathFile, minCol: str or int or bool = 1, minRow: str or int or boo
             colNumber = int(colNumber)
         except:
             colNumber = 0
-    wb = openpyxl.load_workbook(pathFile)
-    sh = wb.worksheets[0]
-    return [row for row in sh.iter_cols(min_col=int(minCol), min_row=int(minRow), values_only=True)][colNumber]
+
+
 
 
 def prepareForchekingInDir(dirPath):

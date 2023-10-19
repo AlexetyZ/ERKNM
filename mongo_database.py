@@ -41,6 +41,9 @@ class WorkMongo:
     def reportByAggreedProcessKNM(self):
         return self.collection.aggregate([{'$group': {'_id': {'tu': "$controllingOrganization", 'status': "$status"}, 'totalCount': {'$sum': 1}}}])
 
+    def reportByRiskIndicatorKNM(self):
+        return self.collection.find({'reasons': {'$in': [315, 341, 3]}, 'status': {'$in': ['Завершено']}}, {'_id': 0, 'controllingOrganization': 1, 'supervisionType': 1, 'erpId': 1, 'reasonList': 1})
+
     def reportByAggreedProcessObjects(self):
         return self.collection.aggregate([{"$unwind": "$objectsKind"}, {'$group': {'_id': {'tu': "$controllingOrganization", 'status': "$status"}, 'totalCount': {'$sum': 1}}}])
 

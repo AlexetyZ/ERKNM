@@ -387,12 +387,55 @@ def groupByRegions(pathFile):
         xl.writeResultsInXL([['', 'Причины', 'Встречается в КНМ'], *rows], title=region, pathFile=os.path.join(isklAnalysDir, f'{region}.xlsx'), sheetTitle='Исключения')
 
 
+def reportByIsklReasons(pathDir):
+    import os
+    import xl
+    from fts import Fts
+    from pathlib import Path
+    from tqdm import tqdm
+    from Dictionary import topIsklReasons
+
+    f = Fts()
+    full_dict = {}
+    value_list = []
+    for file in tqdm(os.listdir(pathDir)):
+
+        if 'xlsx' in file:
+            tuName = Path(file).stem
+            print(tuName)
+            pathFile = os.path.join(pathDir, file)
+            cols = xl.bringCol(pathFile, minRow=3, minCol=2, sheetIndex=1, colNumber='0:3')
+            rows = dict([reas for reas in zip(cols[0], cols[1])])
+
+            full_dict[tuName] = f.mapInTop(rows)
+
+    # pprint(dict(sorted(full_dict.items(), key=lambda x: sum(x[1].values()), reverse=True)))
+    topValues = topIsklReasons.values()
+
+    for tu, value in full_dict.items():
+        value_list.append([tu, *[full_dict[tu][val] for val in topValues]])
+
+    xl.writeResultsInXL(results=value_list, title=['', *list(topValues)], pathFile="S:\Зайцев_АД\План 2024\этап планирования\ежедневный мониторинг процесса согласования\все.xlsx")
+
+
+def reportByIndicators():
+    from private_config import dayliProcessFile
+    import xl
+    from mongo_database import WorkMongo
+    wm = WorkMongo()
+    knms = wm.convertForsaving(wm.reportByRiskIndicatorKNM())
+    pathFile = dayliProcessFile('выгрузка по индикаторным проверкам.xlsx')
+    xl.writeResultsInXL(results=knms[1], title=knms[0], pathFile=pathFile)
+
+    print(pathFile)
+    return f'Выгрузка по индикаторам риска готова!'
+
+
 def countIsklByReasons(pathDir):
     import xl
     from Nat import get_reasons, get_reasons_multy
     import os
     from pathlib import Path
-
 
     for file in os.listdir(pathDir):
         print(file)
@@ -412,6 +455,9 @@ if __name__ == '__main__':
         'group_iskl_by_regions': {'action': groupByRegions,
                        'desc': 'Сортирует нарушения по регионам',
                        'args': ["путь до файла"]},
+        'report_by_reasons_iskl': {'action': reportByIsklReasons,
+                                  'desc': 'Сводит в таблицу анализ исключений по регионам',
+                                  'args': ["путь до папки Анализ исключений"]},
         'load_knm': {'action': load_knm, 'desc': 'загружает проверки из ЕРКМН', 'args': ["Год, за который нужно выгрузить проверки"]},
         'load_pm': {'action': load_pm, 'desc': 'загружает профилактические мероприятия из ЕРКМН', 'args': ["Год, за который нужно выгрузить профилактические мероприятия"]},
         'merge_iskl_reason': {'action': mergeIskl, 'desc': 'сводит в одну таблицу результаты после анализа причин исключений',
@@ -424,6 +470,9 @@ if __name__ == '__main__':
         'report_daily_aggreed': {'action': reportDayliAggreedProcess, 'desc': 'делает ежедневный отчет о ходе согласования по регионам в папке C:\\Users\zaitsev_ad\Documents\ЕРКНМ\План 2024\этап планирования\ежедневный мониторинг процесса согласования',
                               'args': ['аттрибут, по которому будем считать: "knm" или "objects"']},
         'report_by_risks': {'action': reportByRisks, 'desc': 'делает отчет о количестве категорий риска объектов', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим", """фильтры для поиска, в формате "{'k': 'v'}"""]},
+
+        'report_by_risksIndicators': {'action': reportByIndicators, 'desc': 'делает выгрузку по проверкам, основаниями для которых стали срабатывания индикаторов риска',
+                            'args': []},
         'report_by_fk': {'action': reportByFreeCommand, 'desc': 'выгружает отчет по введенной команде', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим", """команда для поиска, в формате "{'k': 'v'}"""]},
         'report_by_iskl': {'action': reportByProsecutorComments, 'desc': 'выгружает причины исключений с номерами проверок', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим"]},
 

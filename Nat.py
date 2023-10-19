@@ -147,6 +147,25 @@ class KnowHow:
         else:
             return self.syntezHeader(dehydrotateString, lemmatize=False)
 
+    def lemma(self, tokens):
+        from natasha import MorphVocab
+        morph_vocab = MorphVocab()
+
+        for token in tokens:
+            token.lemmatize(morph_vocab)
+
+        results = [token for token in tokens]
+        results = sorted(results, key=lambda x: int(str(x.id).split('_')[1]))
+        # print([result.lemmatize(self.morph_vocab) for result in results])
+        resultsLemma = [result.lemma for result in results]
+        return self.finallyPreparing(' '.join(resultsLemma))
+
+
+    def lemmatize(self) -> list:
+        for sent in self.sents:
+            yield self.lemma(sent.tokens)
+
+
     def func2(self, tokens, lemmatize: bool = True) -> str:
 
         from natasha import MorphVocab
@@ -195,6 +214,9 @@ class KnowHow:
         # print(roots)
         # r1 =finder.find_all()
 
+
+
+
     def printScheme(self, *sents):
         try:
             for sent in sents:
@@ -202,6 +224,15 @@ class KnowHow:
             pass
         except Exception as ex:
             print(f'Не удалось напечатать все: {ex}')
+
+
+def dehydrate(text):
+    kh = KnowHow(text)
+    lastVersion = kh.func2(kh.sents[0].tokens)[0]
+    if lastVersion == text or not lastVersion:
+        return text
+    else:
+        return dehydrate(lastVersion)
 
 
 def multiproc_main(text):
@@ -236,6 +267,8 @@ def main(text):
 
 
     return comments
+
+
 
 
 def prepareText(text: str):
@@ -280,12 +313,10 @@ def get_reasons_multy(text_list: list):
 
 
 if __name__ == '__main__':
-    texts = [
-        'Не в полном объеме, неверно, не в соответствии со структурой НПА отражены наименования и формулировки обязательных требований (структурные единицы ряда НПА), что свидетельствует о неправомерном расширении предмета проверки.',
-        'Не в полном объеме, неверно, не в соответствии со структурой НПА отражены наименования и формулировки обязательных требований (структурные единицы ряда НПА), что свидетельствует о неправомерном расширении предмета проверки.'
-    ]
-    pprint(get_reasons(texts))
-
+    # from Dictionary import topIsklReasons
+    text = 'В разделе « Обязательные требования » отражены структурные единицы нормативных правовых актов , которые не относятся объекту контроля и осуществляемой контролируемым лицом деятельности .'
+    # for text in topIsklReasons.values():
+    print(list(KnowHow(text).func4())[0][0])
 
 
 
