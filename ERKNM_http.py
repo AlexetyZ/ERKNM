@@ -39,7 +39,7 @@ class Erknm:
             self.o = Operation(path_xl_table)
 
         self.session = erknm(
-            headless=True
+            # headless=True
         )
         self.session.autorize()
         self.result = []
@@ -270,6 +270,9 @@ class Erknm:
                 print(len(response['list']))
                 for knm_in_month in response['list']:
                     result.append(knm_in_month)
+        full_result = []
+        for pm in tqdm(result, desc='Сбор полных данных об объектах'):
+            full_result.append(self.session.get_knm_by_true_id(pm['id']))
 
         logger.info('сбор данных завершен, записываем для сохранения в json')
 

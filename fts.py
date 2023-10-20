@@ -16,7 +16,7 @@ class Fts:
         # pprint(list(topIsklKeys))
         summ = sum(isklCount.values())
 
-        resultMethrics = {iskl: 0 for iskl in topIsklReasons.values()}
+        resultMethrics = {iskl: 0 for iskl in set(topIsklReasons.values())}
         for iskl, count in isklCount.items():
             for regex, value in findSpecial.items():
                 if re.search(regex, iskl.lower()):
@@ -35,9 +35,11 @@ class Fts:
             else:
                 percent = count / summ
                 if percent >= 0.003:
+                    print()
                     print(f'Предлагается дополнить:   {count} - {iskl}')
+                    print()
                 else:
-                    print(f'{percent*100} %')
+                    pass
 
         return resultMethrics
 

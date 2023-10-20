@@ -53,6 +53,8 @@ class WorkMongo:
     def reportFromDeniedKNMObjectCategory(self):
         return self.collection.aggregate([{'$unwind': "$objectsKind"}, {'$match': {'status': "Исключена"}}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': 1}}}])
 
+    def reportByProductionConsist(self):
+        return self.collection.aggregate([{'$match': {'kind': 'Выборочный контроль', 'status': 'Ожидает проведения'}}, {'$unwind': '$objectsKind'}, {'$group': {'_id': {'production': '$objectsKind'}, 'totalCount': {'$sum': 1}}}])
 
     def getObjectsFromPlan(self):
         return self.collection.find({'status': "На согласовании", 'kind': {'$ne': 'Выборочный контроль'}}, {'_id': 0, 'inn': 1, 'addresses': 1, 'riskCategory': 1, 'objectsKind': 1}).limit(1)
