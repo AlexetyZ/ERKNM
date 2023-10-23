@@ -143,19 +143,19 @@ def reportByDienedObjects():
     # print(list(results['Всего'].keys()))
     for number, (tu, kinds) in enumerate(results.items()):
         # print(kinds)
-        value_list.append([number if number else '', tu, *[kinds[val] if val in kinds else 0 for val in list(results['Всего'].keys())]])
+        value_list.append([number if number else '', tu,
+                           *[kinds[val] if val in kinds else 0 for val in list(results['Всего'].keys())]])
 
     pathFile = dayliProcessFile(f"отчет по объектам {t_data}.xlsx")
 
-    xl.writeResultsInXL(results=value_list, title=f'Структура по видам деятельности объектов, исключенных из плана прокуратурой на {t_data}', pathFile=pathFile)
-    xl.writeResultsInXL(results=[kind for kind in set(otherKinds)], title=f'Прочие виды деятельности', pathFile=pathFile, sheetTitle='прочие', sheetIndex=1)
+    xl.writeResultsInXL(results=value_list,
+                        title=f'Структура по видам деятельности объектов, исключенных из плана прокуратурой на {t_data}',
+                        pathFile=pathFile)
+    xl.writeResultsInXL(results=[kind for kind in set(otherKinds)], title=f'Прочие виды деятельности',
+                        pathFile=pathFile, sheetTitle='прочие', sheetIndex=1)
     pathFileStr = str(pathFile).replace("\\\\", "\\")
     # pprint(otherKinds)
     return f'Отчет готов! Сохранен в {pathFileStr}'
-
-
-
-
 
 
 def reportByAggreedProcess(pathFile, today, count_by='knm'):
@@ -184,14 +184,15 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
         count = _object['totalCount']
         statusses.append(status)
         if name in results:
-            results[name][status] = count   # ТУ с определенным статусом попадается только 1 раз
+            results[name][status] = count  # ТУ с определенным статусом попадается только 1 раз
         else:
             results[name] = {status: count}
     statusses = set(statusses)
     onApplyKinds = ['Есть замечания', 'На согласовании', 'Исключена', 'Готово к согласованию', 'Ожидает проведения',
                     'Не согласована']
     registredExcludedKnm = []
-    totalExcluded = {'total': 0, 'excluded': 0, 'persentExcludedTotal': 0, 'onApply': 0, 'applied': 0, 'increaseExcluded': 0,
+    totalExcluded = {'total': 0, 'excluded': 0, 'persentExcludedTotal': 0, 'onApply': 0, 'applied': 0,
+                     'increaseExcluded': 0,
                      'persentExcludedOnDate': 0}
     if not os.path.exists(previewsResultFile):
 
@@ -213,22 +214,21 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
             isNotes = values['Есть замечания'] if 'Есть замечания' in values else 0
             waitForStarting = values['Ожидает проведения'] if 'Ожидает проведения' in values else 0
             totalExcluded['applied'] += isNotes + waitForStarting
-            totalExcluded['onApply'] += values['На согласовании'] if 'На согласовании' in values else 0
+            onApply = values['На согласовании'] if 'На согласовании' in values else 0
+            totalExcluded['onApply'] += onApply
             if 'Исключена' in values:
                 excluded = values['Исключена']
                 if excluded:
                     existExcluded = [tu, onApplyCount, excluded]
                     totalExcluded['excluded'] += excluded
-                    persentExcludedTotal = excluded/onApplyCount
+                    persentExcludedTotal = excluded / onApplyCount
                     existExcluded.append(persentExcludedTotal)
-                    onApply = values['На согласовании']
-
                     existExcluded.append(onApply)
                     applied = isNotes + waitForStarting
                     existExcluded.append(applied)
                     existExcluded.append(tuIncreaseExcluded)
                     totalExcluded['increaseExcluded'] += tuIncreaseExcluded
-                    persentExcludedOnDate = tuIncreaseExcluded/onApplyCount
+                    persentExcludedOnDate = tuIncreaseExcluded / onApplyCount
                     existExcluded.append(persentExcludedOnDate)
                     totalExcluded['persentExcludedOnDate'] += persentExcludedOnDate
 
@@ -252,7 +252,7 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
 
                     v.append(values[s])
 
-                    tuIncrease = values[s]-previewsResult[tu][s] if s in previewsResult[tu] else values[s]
+                    tuIncrease = values[s] - previewsResult[tu][s] if s in previewsResult[tu] else values[s]
                     if s == "Исключена":
                         tuIncreaseExcluded = tuIncrease
 
@@ -264,29 +264,38 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
             isNotes = values['Есть замечания'] if 'Есть замечания' in values else 0
             waitForStarting = values['Ожидает проведения'] if 'Ожидает проведения' in values else 0
             totalExcluded['applied'] += isNotes + waitForStarting
-            totalExcluded['onApply'] += values['На согласовании'] if 'На согласовании' in values else 0
+            onApply = values['На согласовании'] if 'На согласовании' in values else 0
+            totalExcluded['onApply'] += onApply
 
             if 'Исключена' in values:
                 excluded = values['Исключена']
                 if excluded:
                     existExcluded = [tu, onApplyCount, excluded]
                     totalExcluded['excluded'] += excluded
-                    persentExcludedTotal = excluded/onApplyCount
+                    persentExcludedTotal = excluded / onApplyCount
                     existExcluded.append(persentExcludedTotal)
-                    onApply = values['На согласовании']
                     existExcluded.append(onApply)
                     applied = isNotes + waitForStarting
                     existExcluded.append(applied)
                     existExcluded.append(tuIncreaseExcluded)
                     totalExcluded['increaseExcluded'] += tuIncreaseExcluded
-                    persentExcludedOnDate = tuIncreaseExcluded/onApplyCount
+                    persentExcludedOnDate = tuIncreaseExcluded / onApplyCount
                     existExcluded.append(persentExcludedOnDate)
                     totalExcluded['persentExcludedOnDate'] += persentExcludedOnDate
                     registredExcludedKnm.append(existExcluded)
             value_list.append([tu, *v, onApplyCount])
 
-
-    excludedReportTitle = ['', 'ТУ', "Всего КНМ в проекте плана", "Исключено прокуратурой",	'% исключенных всего',	'Осталось на согласовании', 'Согласовано',	f'Прирост исключенных за {today}',	f'% исключенных всего за {today}']
+    excludedReportTitle = [
+        '',
+        'ТУ',
+        "Всего КНМ в проекте плана" if count_by == 'knm' else "Всего объектов в проекте плана",
+        "Исключено прокуратурой",
+        '% исключенных всего',
+        'Осталось на согласовании',
+        'Согласовано',
+        f'Прирост исключенных за {today}',
+        f'% исключенных всего за {today}'
+    ]
 
     totalExcluded['persentExcludedTotal'] += totalExcluded['excluded'] / totalExcluded['total']
     totalExcluded['persentExcludedOnDate'] += totalExcluded['increaseExcluded'] / totalExcluded['total']
@@ -300,11 +309,11 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
         title.append('прирост')
     title.append('Всего на согласовании')
     xl.writeResultsInXL(results=value_list, title=title, pathFile=pathFile, sheetTitle='Общий отчет')
-    xl.writeResultsInXL(results=registredExcludedKnm, title=f'Регионы, в которых зарегистрированы исключения КНМ органами прокуратуры на {today}', pathFile=pathFile, sheetIndex=1, sheetTitle='Исключенные')
+    xl.writeResultsInXL(results=registredExcludedKnm,
+                        title=f'Регионы, в которых зарегистрированы исключения КНМ органами прокуратуры на {today}',
+                        pathFile=pathFile, sheetIndex=1, sheetTitle='Исключенные')
     with open(previewsResultFile, 'w', encoding='utf-8') as file:
         json.dump(results, file)
-
-
 
 
 def reportDayliAggreedProcess(count_attribute='knm'):
@@ -312,7 +321,8 @@ def reportDayliAggreedProcess(count_attribute='knm'):
     from private_config import dayliProcessFile
     import os
     today = str(datetime.now().strftime('%d.%m.%Y'))
-    reportByAggreedProcess(dayliProcessFile(f"ежедневный {today} {count_attribute}.xlsx"), today, count_by=count_attribute)
+    reportByAggreedProcess(dayliProcessFile(f"ежедневный {today} {count_attribute}.xlsx"), today,
+                           count_by=count_attribute)
     isklListPath = dayliProcessFile(f"Исключения {today}.xlsx")
     if not os.path.exists(isklListPath):
         reportByProsecutorComments(isklListPath)
@@ -344,7 +354,6 @@ def mergeIskl(pathDir):
     xl.writeResultsInXL(results=iskl_list, pathFile=newFile, title='Совокупность исключений')
 
 
-
 def useDatabase():
     from sql import Database
     d = Database(init_erknm=False)
@@ -358,9 +367,6 @@ def groupByRegions(pathFile):
     import os
     from datetime import datetime
     from pathlib import Path
-
-
-
 
     t_date = datetime.now().strftime('%d.%m.%Y')
 
@@ -383,8 +389,8 @@ def groupByRegions(pathFile):
         else:
             datas[tu] = [row]
     for region, rows in datas.items():
-
-        xl.writeResultsInXL([['', 'Причины', 'Встречается в КНМ'], *rows], title=region, pathFile=os.path.join(isklAnalysDir, f'{region}.xlsx'), sheetTitle='Исключения')
+        xl.writeResultsInXL([['', 'Причины', 'Встречается в КНМ'], *rows], title=region,
+                            pathFile=os.path.join(isklAnalysDir, f'{region}.xlsx'), sheetTitle='Исключения')
 
 
 def reportByIsklReasons(pathDir):
@@ -415,7 +421,8 @@ def reportByIsklReasons(pathDir):
     for tu, value in full_dict.items():
         value_list.append([tu, *[full_dict[tu][val] for val in topValues]])
 
-    xl.writeResultsInXL(results=value_list, title=['', *list(topValues)], pathFile="S:\Зайцев_АД\План 2024\этап планирования\ежедневный мониторинг процесса согласования\все.xlsx")
+    xl.writeResultsInXL(results=value_list, title=['', *list(topValues)],
+                        pathFile="S:\Зайцев_АД\План 2024\этап планирования\ежедневный мониторинг процесса согласования\все.xlsx")
 
 
 def reportByIndicators():
@@ -442,39 +449,61 @@ def countIsklByReasons(pathDir):
         pathFile = os.path.join(pathDir, file)
         comments = xl.bringCol(pathFile, minRow=3)
         categories = get_reasons(comments)
-        results = [['', 'причины исключений', 'Найдено в КНМ'], *sorted([[n+1, str(value['explanation']), int(value['count'])] for n, value in enumerate(categories.values())], key=lambda x: x[2], reverse=True)]
+        results = [['', 'причины исключений', 'Найдено в КНМ'], *sorted(
+            [[n + 1, str(value['explanation']), int(value['count'])] for n, value in enumerate(categories.values())],
+            key=lambda x: x[2], reverse=True)]
         # pprint(results)
-        xl.writeResultsInXL(results=results, title=Path(pathFile).stem, pathFile=pathFile, sheetIndex=1, sheetTitle='причины исключений')
+        xl.writeResultsInXL(results=results, title=Path(pathFile).stem, pathFile=pathFile, sheetIndex=1,
+                            sheetTitle='причины исключений')
     return 'Причины исключений собраны!'
 
 
 if __name__ == '__main__':
     functions = {
-        'count_iskl': {'action': countIsklByReasons, 'desc': 'Делает отчет, по причинам исключений проверок прокуратурой',
-                     'args': ["путь до файла с ТУ в столбце А"]},
+        'count_iskl': {'action': countIsklByReasons,
+                       'desc': 'Делает отчет, по причинам исключений проверок прокуратурой',
+                       'args': ["путь до файла с ТУ в столбце А"]},
         'group_iskl_by_regions': {'action': groupByRegions,
-                       'desc': 'Сортирует нарушения по регионам',
-                       'args': ["путь до файла"]},
+                                  'desc': 'Сортирует нарушения по регионам',
+                                  'args': ["путь до файла"]},
         'report_by_reasons_iskl': {'action': reportByIsklReasons,
-                                  'desc': 'Сводит в таблицу анализ исключений по регионам',
-                                  'args': ["путь до папки Анализ исключений"]},
-        'load_knm': {'action': load_knm, 'desc': 'загружает проверки из ЕРКМН', 'args': ["Год, за который нужно выгрузить проверки"]},
-        'load_pm': {'action': load_pm, 'desc': 'загружает профилактические мероприятия из ЕРКМН', 'args': ["Год, за который нужно выгрузить профилактические мероприятия"]},
-        'merge_iskl_reason': {'action': mergeIskl, 'desc': 'сводит в одну таблицу результаты после анализа причин исключений',
-                    'args': ["путь до папки, где хранятся результаты анализа по причинам исключений (у файлов на листе 'причины исключений' должен быть анализ нарушение - количество)"]},
-        'merge_tu': {'action': mergeTu, 'desc': 'забирает столбец из файла exel c ТУ и по регурялке проверяет, кто есть в списке и сколько раз, а кого нет', 'args': ["путь до файла с ТУ в столбце А", 'номер столбца, который берем']},
-        'report_by_diened_objects': {'action': reportByDienedObjects, 'desc': 'отчет по объектам, исключенным в ходе проверки плана прокуратурой',
-                     'args': []},
-        'report_by_objects': {'action': reportByObjects, 'desc': 'делает отчет о количестве видов деятельности', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим", """фильтры для поиска, в формате "{'k': 'v'}"""]},
-        'report_by_aggreed': {'action': reportByAggreedProcess, 'desc': 'делает отчет о ходе согласования по регионам', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим"]},
-        'report_daily_aggreed': {'action': reportDayliAggreedProcess, 'desc': 'делает ежедневный отчет о ходе согласования по регионам в папке C:\\Users\zaitsev_ad\Documents\ЕРКНМ\План 2024\этап планирования\ежедневный мониторинг процесса согласования',
-                              'args': ['аттрибут, по которому будем считать: "knm" или "objects"']},
-        'report_by_risks': {'action': reportByRisks, 'desc': 'делает отчет о количестве категорий риска объектов', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим", """фильтры для поиска, в формате "{'k': 'v'}"""]},
+                                   'desc': 'Сводит в таблицу анализ исключений по регионам',
+                                   'args': ["путь до папки Анализ исключений"]},
+        'load_knm': {'action': load_knm, 'desc': 'загружает проверки из ЕРКМН',
+                     'args': ["Год, за который нужно выгрузить проверки"]},
+        'load_pm': {'action': load_pm, 'desc': 'загружает профилактические мероприятия из ЕРКМН',
+                    'args': ["Год, за который нужно выгрузить профилактические мероприятия"]},
+        'merge_iskl_reason': {'action': mergeIskl,
+                              'desc': 'сводит в одну таблицу результаты после анализа причин исключений',
+                              'args': [
+                                  "путь до папки, где хранятся результаты анализа по причинам исключений (у файлов на листе 'причины исключений' должен быть анализ нарушение - количество)"]},
+        'merge_tu': {'action': mergeTu,
+                     'desc': 'забирает столбец из файла exel c ТУ и по регурялке проверяет, кто есть в списке и сколько раз, а кого нет',
+                     'args': ["путь до файла с ТУ в столбце А", 'номер столбца, который берем']},
+        'report_by_diened_objects': {'action': reportByDienedObjects,
+                                     'desc': 'отчет по объектам, исключенным в ходе проверки плана прокуратурой',
+                                     'args': []},
+        'report_by_objects': {'action': reportByObjects, 'desc': 'делает отчет о количестве видов деятельности',
+                              'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим",
+                                       """фильтры для поиска, в формате "{'k': 'v'}"""]},
+        'report_by_aggreed': {'action': reportByAggreedProcess, 'desc': 'делает отчет о ходе согласования по регионам',
+                              'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим"]},
+        'report_daily_aggreed': {'action': reportDayliAggreedProcess,
+                                 'desc': 'делает ежедневный отчет о ходе согласования по регионам в папке C:\\Users\zaitsev_ad\Documents\ЕРКНМ\План 2024\этап планирования\ежедневный мониторинг процесса согласования',
+                                 'args': ['аттрибут, по которому будем считать: "knm" или "objects"']},
+        'report_by_risks': {'action': reportByRisks, 'desc': 'делает отчет о количестве категорий риска объектов',
+                            'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим",
+                                     """фильтры для поиска, в формате "{'k': 'v'}"""]},
 
-        'report_by_risksIndicators': {'action': reportByIndicators, 'desc': 'делает выгрузку по проверкам, основаниями для которых стали срабатывания индикаторов риска',
-                            'args': []},
-        'report_by_fk': {'action': reportByFreeCommand, 'desc': 'выгружает отчет по введенной команде', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим", """команда для поиска, в формате "{'k': 'v'}"""]},
-        'report_by_iskl': {'action': reportByProsecutorComments, 'desc': 'выгружает причины исключений с номерами проверок', 'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим"]},
+        'report_by_risksIndicators': {'action': reportByIndicators,
+                                      'desc': 'делает выгрузку по проверкам, основаниями для которых стали срабатывания индикаторов риска',
+                                      'args': []},
+        'report_by_fk': {'action': reportByFreeCommand, 'desc': 'выгружает отчет по введенной команде',
+                         'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим",
+                                  """команда для поиска, в формате "{'k': 'v'}"""]},
+        'report_by_iskl': {'action': reportByProsecutorComments,
+                           'desc': 'выгружает причины исключений с номерами проверок',
+                           'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим"]},
 
         'use_database': {'action': useDatabase, 'desc': 'Дает интерактивный доступ в базу данных doc/knd', 'args': []},
 
