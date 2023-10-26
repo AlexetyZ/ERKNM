@@ -38,6 +38,9 @@ class WorkMongo:
     def free_command(self, request):
         return self.collection.find(request)
 
+    def countKnmWhereisObjectsKind(self, *objectsKinds):
+        return self.collection.count_documents({'objectsKind': {'$in': [*objectsKinds]}})
+
     def reportByAggreedProcessKNM(self):
         return self.collection.aggregate([{'$group': {'_id': {'tu': "$controllingOrganization", 'status': "$status"}, 'totalCount': {'$sum': 1}}}])
 
@@ -52,6 +55,9 @@ class WorkMongo:
 
     def reportFromDeniedKNMObjectCategory(self):
         return self.collection.aggregate([{'$unwind': "$objectsKind"}, {'$match': {'status': "Исключена"}}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': 1}}}])
+
+    def reportFromDeniedKNMObjectCategoryKNM(self):
+        return self.collection.aggregate([{'$project': {'objectsKind': 1, 'status': 1, 'controllingOrganization': 1, 'countknm': {'$add': [1]}}}, {'$unwind': "$objectsKind"}, {'$match': {'status': "Исключена"}}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': '$countknm'}}}])
 
     def reportByProductionConsist(self):
         return self.collection.aggregate([{'$match': {'kind': 'Выборочный контроль', 'status': 'Ожидает проведения'}}, {'$unwind': '$objectsKind'}, {'$group': {'_id': {'production': '$objectsKind'}, 'totalCount': {'$sum': 1}}}])

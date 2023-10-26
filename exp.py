@@ -438,11 +438,17 @@ def _dict_oper():
 
 
 def getReg(text):
-    print(text[-17:])
+    import re
+
+    reg = r'[^тр]омск'
+    result = re.findall(reg, str(text).lower())
+    print(result)
+
 
 
 if __name__ == '__main__':
-    print(getReg('603057, обл. Нижегородская, г. Нижний Новгород, ул. Косогорная, д 3'))
+    print(getReg('Управление Роспотребнадзора по томской'))
+    # print(getReg('Управление Роспотребнадзора по Алтайскому краю'))
     # _dict_oper()
     # for r in manyOperation('раз', "два", "три"):
     #     print(r[0])

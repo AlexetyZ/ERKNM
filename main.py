@@ -68,7 +68,7 @@ def reportByProsecutorComments(pathFile):
     return 'Причины исключений успешно выгружены!'
 
 
-def reportByDienedObjects():
+def reportByDienedObjects(countBy):
     from mongo_database import WorkMongo
     import xl
     from pathlib import Path
@@ -96,7 +96,7 @@ def reportByDienedObjects():
     t_data = datetime.now().strftime('%d.%m.%Y')
 
     wm = WorkMongo()
-    _tus_kinds_counts = wm.reportFromDeniedKNMObjectCategory()
+    _tus_kinds_counts = wm.reportFromDeniedKNMObjectCategory() if countBy == 'objects' else wm.reportFromDeniedKNMObjectCategoryKNM()
 
     results = {'Всего': {'Общее': 0}}
     value_list = []
@@ -146,10 +146,10 @@ def reportByDienedObjects():
         value_list.append([number if number else '', tu,
                            *[kinds[val] if val in kinds else 0 for val in list(results['Всего'].keys())]])
 
-    pathFile = dayliProcessFile(f"отчет по объектам {t_data}.xlsx")
+    pathFile = dayliProcessFile(f"отчет по объектам {t_data} {countBy}.xlsx")
 
     xl.writeResultsInXL(results=value_list,
-                        title=f'Структура по видам деятельности объектов, исключенных из плана прокуратурой на {t_data}',
+                        title=f'Структура по видам деятельности объектов, исключенных из плана прокуратурой на {t_data}' if countBy == 'objects' else f'Структура КНМ по видам деятельности объектов, исключенных из плана прокуратурой на {t_data}',
                         pathFile=pathFile)
     xl.writeResultsInXL(results=[kind for kind in set(otherKinds)], title=f'Прочие виды деятельности',
                         pathFile=pathFile, sheetTitle='прочие', sheetIndex=1)
@@ -230,8 +230,6 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
                     totalExcluded['increaseExcluded'] += tuIncreaseExcluded
                     persentExcludedOnDate = tuIncreaseExcluded / onApplyCount
                     existExcluded.append(persentExcludedOnDate)
-                    totalExcluded['persentExcludedOnDate'] += persentExcludedOnDate
-
                     registredExcludedKnm.append(existExcluded)
 
             value_list.append([tu, *v, onApplyCount])
@@ -281,7 +279,6 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
                     totalExcluded['increaseExcluded'] += tuIncreaseExcluded
                     persentExcludedOnDate = tuIncreaseExcluded / onApplyCount
                     existExcluded.append(persentExcludedOnDate)
-                    totalExcluded['persentExcludedOnDate'] += persentExcludedOnDate
                     registredExcludedKnm.append(existExcluded)
             value_list.append([tu, *v, onApplyCount])
 
@@ -297,8 +294,8 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
         f'% исключенных всего за {today}'
     ]
 
-    totalExcluded['persentExcludedTotal'] += totalExcluded['excluded'] / totalExcluded['total']
-    totalExcluded['persentExcludedOnDate'] += totalExcluded['increaseExcluded'] / totalExcluded['total']
+    totalExcluded['persentExcludedTotal'] = totalExcluded['excluded'] / totalExcluded['total']
+    totalExcluded['persentExcludedOnDate'] = totalExcluded['increaseExcluded'] / totalExcluded['total']
     registredExcludedKnm = sorted(registredExcludedKnm, key=lambda x: x[3], reverse=True)
     registredExcludedKnm.insert(0, ['', 'Всего', *[val for val in totalExcluded.values()]])
     registredExcludedKnm.insert(0, excludedReportTitle)
@@ -462,7 +459,7 @@ if __name__ == '__main__':
     functions = {
         'count_iskl': {'action': countIsklByReasons,
                        'desc': 'Делает отчет, по причинам исключений проверок прокуратурой',
-                       'args': ["путь до файла с ТУ в столбце А"]},
+                       'args': ["путь до папки Анализ исключений"]},
         'group_iskl_by_regions': {'action': groupByRegions,
                                   'desc': 'Сортирует нарушения по регионам',
                                   'args': ["путь до файла"]},
@@ -482,7 +479,7 @@ if __name__ == '__main__':
                      'args': ["путь до файла с ТУ в столбце А", 'номер столбца, который берем']},
         'report_by_diened_objects': {'action': reportByDienedObjects,
                                      'desc': 'отчет по объектам, исключенным в ходе проверки плана прокуратурой',
-                                     'args': []},
+                                     'args': ['аттрибут, по которому будем считать: "knm" или "objects"']},
         'report_by_objects': {'action': reportByObjects, 'desc': 'делает отчет о количестве видов деятельности',
                               'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим",
                                        """фильтры для поиска, в формате "{'k': 'v'}"""]},
