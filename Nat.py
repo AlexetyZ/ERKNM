@@ -272,7 +272,7 @@ def main(text):
 
 
 def prepareText(text: str):
-    return text.replace(';', '. ')
+    return text.replace(';', '. ') if text else None
 
 
 def get_reasons(text_list: list):
@@ -280,7 +280,10 @@ def get_reasons(text_list: list):
     comments = {}
     # comments = {'dehyd': {'count': 'count', 'explanation': 'explanation'}}
     for text in tqdm(text_list, 'обработка...'):
-        res = main(prepareText(text))
+        if not text:
+            continue
+        preparedText = prepareText(text)
+        res = main(preparedText)
         # print(res)
         for k, v in res.items():
             commentKeyExists = in_one_of(k, list(comments.keys()))
@@ -307,14 +310,9 @@ def get_reasons_multy(text_list: list):
     print(f"ушло времени - {datetime.datetime.now()-start}")
 
 
-
-
-
-
-
 if __name__ == '__main__':
     from Dictionary import topIsklReasons
-    text = 'п 11 3 постановления Правительства РФ от 10.03.2022 № 336 « Об особенностях организации и осуществления государственного контроля надзора , муниципального контроля »'
+    text = 'Проведение плановых КНМ в отношении продукции товаров повлечет к необоснованному повышению нагрузки на хозяйствующие субъекты и не отвечает последним решениям Правительства РФ о поддержке бизнеса'
 
     # for text in topIsklReasons.values():
     print(list(KnowHow(text).func4())[0][0])

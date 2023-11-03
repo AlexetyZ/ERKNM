@@ -90,6 +90,8 @@ def reportByDienedObjects(countBy):
         'Общественное питание населения': d.public_catering_kind,
         'Деятельность водоснабжения и водоотведения': d.water_supply_kinds,
         'Коммунальное обслуживание': d.communal_services,
+        'Деятельность по предоставлению персональных услуг': d.personal_services,
+        'Деятельность гостиниц и прочих мест для временного проживания': d.motels,
         'Предоставление социальных услуг': d.social_services,
     }
 
@@ -146,10 +148,102 @@ def reportByDienedObjects(countBy):
         value_list.append([number if number else '', tu,
                            *[kinds[val] if val in kinds else 0 for val in list(results['Всего'].keys())]])
 
-    pathFile = dayliProcessFile(f"отчет по объектам {t_data} {countBy}.xlsx")
+    pathFile = dayliProcessFile(f"отчет по отклоненным объектам {t_data} {countBy}.xlsx")
 
     xl.writeResultsInXL(results=value_list,
                         title=f'Структура по видам деятельности объектов, исключенных из плана прокуратурой на {t_data}' if countBy == 'objects' else f'Структура КНМ по видам деятельности объектов, исключенных из плана прокуратурой на {t_data}',
+                        pathFile=pathFile)
+    xl.writeResultsInXL(results=[kind for kind in set(otherKinds)], title=f'Прочие виды деятельности',
+                        pathFile=pathFile, sheetTitle='прочие', sheetIndex=1)
+    pathFileStr = str(pathFile).replace("\\\\", "\\")
+    # pprint(otherKinds)
+    return f'Отчет готов! Сохранен в {pathFileStr}'
+
+
+def reportByAccepedObjects(countBy):
+    from mongo_database import WorkMongo
+    import xl
+    from pathlib import Path
+    import os
+    import json
+    from datetime import datetime
+    import Dictionary as d
+    from private_config import dayliProcessFile
+
+    group_kinds = {
+        'Деятельность в сфере здравоохранения': d.health_care_kinds,
+        'Детские лагеря с дневным пребыванием': d.child_camps_kinds,
+        'Деятельность организаторов детского питания': d.children_meal_kinds,
+        'Деятельность общеобразовательных организаций': d.school_kinds,
+        'Деятельность дошкольных образовательных организаций': d.preschool_kinds,
+        'Торговля пищевыми продуктами': d.food_store_kind,
+        'Объекты промышленности и транспорта': d.industry_kinds,
+        'Производство пищевых продуктов': d.food_production,
+        'Общественное питание населения': d.public_catering_kind,
+        'Деятельность водоснабжения и водоотведения': d.water_supply_kinds,
+        'Коммунальное обслуживание': d.communal_services,
+        'Деятельность по предоставлению персональных услуг': d.personal_services,
+        'Деятельность гостиниц и прочих мест для временного проживания': d.motels,
+        'Предоставление социальных услуг': d.social_services,
+    }
+
+    t_data = datetime.now().strftime('%d.%m.%Y')
+
+    wm = WorkMongo()
+    _tus_kinds_counts = wm.reportFromAcceptKNMObjectCategory()
+
+    results = {'Всего': {'Общее': 0}}
+    value_list = []
+    # print(results['Всего']['Общее'])
+    otherKinds = []
+    for tu_object_count in _tus_kinds_counts:
+        recordId = tu_object_count['_id']
+        count = tu_object_count['totalCount']
+        tu = recordId['tu']
+        kind = recordId['kind']
+        isOther = True
+        for groupName, groupRefs in group_kinds.items():
+            if kind in groupRefs:
+                kind = groupName
+                isOther = False
+        if isOther:
+            otherKinds.append(kind)
+            kind = 'Прочие виды деятельности'
+
+        if tu in results:
+            # print(results[tu])
+            if kind in results[tu]:
+                results[tu][kind] += count
+            else:
+                results[tu][kind] = count
+            results[tu]['Общее'] += count
+
+        else:
+            results[tu] = {'Общее': count, kind: count}
+        if kind in results['Всего']:
+            results['Всего'][kind] += count
+        else:
+            results['Всего'][kind] = count
+        # pprint(results)
+        results['Всего']['Общее'] += count
+
+    results = dict(sorted(results.items(), key=lambda x: x[1]['Общее'], reverse=True))
+    # pprint(results)
+    results['Всего'] = dict((sorted(results['Всего'].items(), key=lambda x: x[1], reverse=True)))
+
+    value_list.append(['№', 'ТУ', *[key for key in results['Всего'].keys()]])
+    # for main_kind in results['Всего'].keys():+
+
+    # print(list(results['Всего'].keys()))
+    for number, (tu, kinds) in enumerate(results.items()):
+        # print(kinds)
+        value_list.append([number if number else '', tu,
+                           *[kinds[val] if val in kinds else 0 for val in list(results['Всего'].keys())]])
+
+    pathFile = dayliProcessFile(f"отчет по согласованным объектам {t_data} {countBy}.xlsx")
+
+    xl.writeResultsInXL(results=value_list,
+                        title=f'Структура по видам деятельности объектов, согласованных прокуратурой на {t_data}' if countBy == 'objects' else f'Структура КНМ по видам деятельности объектов, согласованных прокуратурой на {t_data}',
                         pathFile=pathFile)
     xl.writeResultsInXL(results=[kind for kind in set(otherKinds)], title=f'Прочие виды деятельности',
                         pathFile=pathFile, sheetTitle='прочие', sheetIndex=1)
@@ -397,6 +491,7 @@ def reportByIsklReasons(pathDir):
     from pathlib import Path
     from tqdm import tqdm
     from Dictionary import topIsklReasons
+    from private_config import dayliProcessFile
 
     f = Fts()
     full_dict = {}
@@ -419,7 +514,7 @@ def reportByIsklReasons(pathDir):
         value_list.append([tu, *[full_dict[tu][val] for val in topValues]])
 
     xl.writeResultsInXL(results=value_list, title=['', *list(topValues)],
-                        pathFile="S:\Зайцев_АД\План 2024\этап планирования\ежедневный мониторинг процесса согласования\все.xlsx")
+                        pathFile=dayliProcessFile("все.xlsx"))
 
 
 def reportByIndicators():
@@ -455,6 +550,42 @@ def countIsklByReasons(pathDir):
     return 'Причины исключений собраны!'
 
 
+def reportByVk():
+    import xl
+    from mongo_database import WorkMongo
+    from private_config import dayliProcessFile
+    from datetime import datetime
+
+    now = datetime.now().strftime('%d.%m.%Y %H.%M')
+
+    wm = WorkMongo()
+    vkKinds = wm.reportByProductionConsist()
+    finalList = []
+
+    allProductionKinds = []
+    results = {}
+    # results = {'tu': {'prod1': 'count', 'prod2': 'count'}}
+
+    for vkkind in vkKinds:
+        tu = vkkind['_id']['tu']
+        production = vkkind['_id']['production']
+        totalCount = vkkind['totalCount']
+        if not production in allProductionKinds:
+            allProductionKinds.append(production)
+        if tu in results:
+            results[tu][production] = totalCount
+        else:
+            results[tu] = {production: totalCount}
+
+    for n, (tu, productions) in enumerate(results.items()):
+        finalList.append([n+1, tu, *[productions[kind] if kind in productions else 0 for kind in allProductionKinds]])
+
+    pathFile = dayliProcessFile(f'выгрузка по составу согласованных объектов выборочного контроля {now}.xlsx')
+    xl.writeResultsInXL(results=finalList, title=['', '', *allProductionKinds], pathFile=pathFile)
+    print(len(allProductionKinds))
+    return 'Выгрузка по составу согласованных объектов выборочного контроля готова!'
+
+
 if __name__ == '__main__':
     functions = {
         'count_iskl': {'action': countIsklByReasons,
@@ -480,6 +611,9 @@ if __name__ == '__main__':
         'report_by_diened_objects': {'action': reportByDienedObjects,
                                      'desc': 'отчет по объектам, исключенным в ходе проверки плана прокуратурой',
                                      'args': ['аттрибут, по которому будем считать: "knm" или "objects"']},
+        'report_by_accept_objects': {'action': reportByAccepedObjects,
+                                     'desc': 'отчет по объектам, исключенным в ходе проверки плана прокуратурой',
+                                     'args': ['аттрибут, по которому будем считать: "knm" или "objects"']},
         'report_by_objects': {'action': reportByObjects, 'desc': 'делает отчет о количестве видов деятельности',
                               'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим",
                                        """фильтры для поиска, в формате "{'k': 'v'}"""]},
@@ -491,7 +625,9 @@ if __name__ == '__main__':
         'report_by_risks': {'action': reportByRisks, 'desc': 'делает отчет о количестве категорий риска объектов',
                             'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим",
                                      """фильтры для поиска, в формате "{'k': 'v'}"""]},
-
+        'report_by_consists_vk': {'action': reportByVk,
+                                  'desc': 'делает отчет о составе продукции выборочного контроля',
+                                  'args': []},
         'report_by_risksIndicators': {'action': reportByIndicators,
                                       'desc': 'делает выгрузку по проверкам, основаниями для которых стали срабатывания индикаторов риска',
                                       'args': []},

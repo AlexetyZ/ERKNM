@@ -1882,7 +1882,7 @@ class erknm:
             time.sleep(2)
 
             try:
-                self.browser.find_element(by=By.CLASS_NAME, value='_LoaderWrap_14wne_1')
+                self.browser.find_element(by=By.CLASS_NAME, value='_LoaderWrap_ksq0q_1')
                 # print('еще есть загрузчик')
                 time.sleep(2)
             except:

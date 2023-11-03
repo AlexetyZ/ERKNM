@@ -5,14 +5,16 @@ from sys import argv
 import os
 from pprint import pprint
 from openpyxl.styles import Font
+from openpyxl.utils import cell
 
 
-def formatFile(pathFile, sheetIndex):
+
+def formatFile(pathFile, sheetIndex, columsWidth: dict):
     # wb = openpyxl.load_workbook(pathFile)
     wb = openpyxl.load_workbook(pathFile)
     sh = wb.worksheets[sheetIndex]
-    sh.column_dimensions['A'].width = 8
-    sh.column_dimensions['B'].width = 24.5
+    for col, width in columsWidth.items():
+        sh.column_dimensions[col].width = width
 
     wb.save(pathFile)
 
