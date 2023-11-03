@@ -93,6 +93,22 @@ def reportByDienedObjects(countBy):
         'Деятельность по предоставлению персональных услуг': d.personal_services,
         'Деятельность гостиниц и прочих мест для временного проживания': d.motels,
         'Предоставление социальных услуг': d.social_services,
+
+        'Деятельность детских и подростковых организаций, образования, в том числе дополнительного образования': [
+            *d.child_organization,
+            *d.education,
+            *d.other_child_organization,
+            *d.addictional_education
+        ],
+        'Деятельность в области обращения с отходами': d.trash,
+        'Работы с микроорганизмами': d.patogens_work,
+        'Организации для детей-сирот': d.orphans_child,
+        'Деятельность по организации отдыха и развлечений, культуры и спорта': d.relax_animation_sport_culture,
+        'Работы с источниками ионизирующего излучения': d.ionizing_radiation,
+        'Профессиональные образовательные организации': d.professional_education,
+        'Учреждения высшего профессионального образования': d.high_education,
+        'Деятельность в области связи': d.connection,
+        'Продукция': d.production
     }
 
     t_data = datetime.now().strftime('%d.%m.%Y')
@@ -185,6 +201,22 @@ def reportByAccepedObjects(countBy):
         'Деятельность по предоставлению персональных услуг': d.personal_services,
         'Деятельность гостиниц и прочих мест для временного проживания': d.motels,
         'Предоставление социальных услуг': d.social_services,
+
+        'Деятельность детских и подростковых организаций, образования, в том числе дополнительного образования': [
+            *d.child_organization,
+            *d.education,
+            *d.other_child_organization,
+            *d.addictional_education
+        ],
+        'Деятельность в области обращения с отходами': d.trash,
+        'Работы с микроорганизмами': d.patogens_work,
+        'Организации для детей-сирот': d.orphans_child,
+        'Деятельность по организации отдыха и развлечений, культуры и спорта': d.relax_animation_sport_culture,
+        'Работы с источниками ионизирующего излучения': d.ionizing_radiation,
+        'Профессиональные образовательные организации': d.professional_education,
+        'Учреждения высшего профессионального образования': d.high_education,
+        'Деятельность в области связи': d.connection,
+        'Продукция': d.production
     }
 
     t_data = datetime.now().strftime('%d.%m.%Y')

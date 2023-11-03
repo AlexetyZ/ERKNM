@@ -35,8 +35,18 @@ class WorkMongo:
         return self.collection.aggregate(
             [{"$match": filters}, {"$unwind": "$riskCategory"}, {"$group": {"_id": "$riskCategory", "count": {"$sum": 1}}}])
 
-    def free_command(self, request):
-        return self.collection.find(request)
+    def free_command(self, request = None, fields=None):
+
+        if fields is None:
+            fields = {}
+        if request:
+            request = {}
+
+        return self.collection.find({**request}, {**fields})
+
+    def findChildCampings(self):
+        return self.collection.find({'status': {'$in': ['Завершено', 'Ожидает проведения', 'Ожидает завершения', 'Есть замечания']}, 'objectsKind': {'$in': ['организации отдыха детей и их оздоровления, в том числе лагеря с дневным пребыванием', 'Деятельность по организации отдыха детей и их оздоровления, в том числе лагеря с дневным пребыванием', 'Деятельность детских лагерей на время каникул']}}, {'_id': 0, 'id': 1, 'controllingOrganization': 1, 'organizationName': 1})
+
 
     def countKnmWhereisObjectsKind(self, *objectsKinds):
         return self.collection.count_documents({'objectsKind': {'$in': [*objectsKinds]}})
@@ -52,6 +62,7 @@ class WorkMongo:
 
     def reportFromDeniedKNMComment(self):
         return self.collection.find({'status': 'Исключена'}, {'_id': 0, 'controllingOrganization': 1, 'comment': 1, 'erpId': 1, 'id': 1, 'organizationsInn': {'$slice': 1}})
+
 
     def reportFromDeniedKNMObjectCategory(self):
         return self.collection.aggregate([{'$unwind': "$objectsKind"}, {'$match': {'status': "Исключена"}}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': 1}}}])

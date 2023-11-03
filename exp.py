@@ -444,10 +444,23 @@ def getReg(text):
     result = re.findall(reg, str(text).lower())
     print(result)
 
-
+def lists():
+    l1 = [
+        1,
+        2,
+        3
+    ]
+    l2 = [
+        *l1,
+        4,
+        5,
+        6
+    ]
+    return l2
 
 if __name__ == '__main__':
-    print(getReg('Управление Роспотребнадзора по томской'))
+    print(lists())
+    # print(getReg('Управление Роспотребнадзора по томской'))
     # print(getReg('Управление Роспотребнадзора по Алтайскому краю'))
     # _dict_oper()
     # for r in manyOperation('раз', "два", "три"):
