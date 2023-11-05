@@ -444,21 +444,108 @@ def getReg(text):
     result = re.findall(reg, str(text).lower())
     print(result)
 
+
+def stabillizeCoordinates(coordinate: str):
+    functions = ['max']
+    if ':' in coordinate:
+        parts = coordinate.split(':')
+    else:
+        parts = [coordinate]
+    newParts = []
+    for part in parts:
+        if 'max' in part:
+            part = part.replace('max', '100')
+        newParts.append(part)
+    return ':'.join(newParts)
+
+
 def lists():
-    l1 = [
-        1,
-        2,
-        3
+    import xl
+    from openpyxl.styles import Font
+    file = '/Users/aleksejzajcev/Documents/отчеты/План 2024/Ежедневный отчет о ходе согласования/ежедневный 05.11.2023 knm.xlsx'
+    rules = {
+        'A': 4,
+        'B': 32.67,
+        'C': 17.17,
+        'D': 17.17,
+        'E': 18.33,
+        'F': 17.67,
+        'G': 17.67,
+        'H': 27.83,
+        'I': 19.17
+    }
+    merge_cells = [
+        'A1:I1',
     ]
-    l2 = [
-        *l1,
-        4,
-        5,
-        6
+
+
+    positional = {
+        'A1:I1': 'center',
+        'C2:Imax': 'center',
+        'A4:Amax': 'center'
+    }
+
+    alignmentFor = 'A:I'
+
+    formatNumber = {
+        'E3:Emax': '0.0%',
+        'I3:Imax': '0.0%',
+
+    }
+
+    borderForAllCellInRange = [
+        f'{letter}1:{letter}max' for letter in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
     ]
-    return l2
+    printArea = 'A1:Imax'
+    printRows = '1:3'
+    fitToWidht = 1
+    fitToHeight = 5
+
+    style1 = Font(bold=True, sz=14, name='Times New Roman')
+    style2 = Font(sz=14, name='Times New Roman')
+    fonts = {
+        'A:A': style1,
+        'B2:I3': style1,
+        'B2:Cmax': style1,
+        'D4:Imax': style2
+    }
+    # Worksheet.PAPERSIZE_A3 = '8'.
+    # Worksheet.PAPERSIZE_A4 = '9'.
+    # Worksheet.PAPERSIZE_A4_SMALL = '10'.
+    # Worksheet.PAPERSIZE_A5 = '11'.
+    # Worksheet.PAPERSIZE_EXECUTIVE = '7'.
+    # Worksheet.PAPERSIZE_LEDGER = '4'.
+    # Worksheet.PAPERSIZE_LEGAL = '5'.
+    # Worksheet.PAPERSIZE_LETTER = '1'.
+    # Worksheet.PAPERSIZE_LETTER_SMALL = '2'.
+    # Worksheet.PAPERSIZE_STATEMENT = '6'.
+    # Worksheet.PAPERSIZE_TABLOID = '3'.
+
+    paperSize = 8
+
+    xl.formatFile(
+        pathFile=file,
+        columsWidth=rules,
+        mergeCells=merge_cells,
+        cellsWrap=alignmentFor,
+        positionText=positional,
+        formatNumber=formatNumber,
+        borderForAllCellInRange=borderForAllCellInRange,
+        paperSize=paperSize,
+        printArea=printArea,
+        printRows=printRows,
+        fitToWidht=fitToWidht,
+        fitToHeight=fitToHeight,
+        fonts=fonts,
+        sheetIndex=1
+    )
+
+
+
+
 
 if __name__ == '__main__':
+    # print(stabillizeCoordinates('AM9:Cmax'))
     print(lists())
     # print(getReg('Управление Роспотребнадзора по томской'))
     # print(getReg('Управление Роспотребнадзора по Алтайскому краю'))

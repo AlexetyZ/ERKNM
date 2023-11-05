@@ -282,6 +282,82 @@ def reportByAccepedObjects(countBy):
     pathFileStr = str(pathFile).replace("\\\\", "\\")
     # pprint(otherKinds)
     return f'Отчет готов! Сохранен в {pathFileStr}'
+def dailyAggreedProcessStyles(pathFile):
+    import xl
+    from openpyxl.styles import Font
+    colsWidth = {
+        'A': 4,
+        'B': 32.67,
+        'C': 17.17,
+        'D': 17.17,
+        'E': 18.33,
+        'F': 17.67,
+        'G': 17.67,
+        'H': 27.83,
+        'I': 19.17
+    }
+    merge_cells = [
+        'A1:I1',
+    ]
+    positional = {
+        'A1:I1': 'center',
+        'C2:Imax': 'center',
+        'A4:Amax': 'center'
+    }
+    alignmentFor = 'A:I'
+
+    formatNumber = {
+        'E3:Emax': '0.0%',
+        'I3:Imax': '0.0%',
+
+    }
+
+    borderForAllCellInRange = [
+        f'{letter}1:{letter}max' for letter in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+    ]
+    printArea = 'A1:Imax'
+    printRows = '1:3'
+    fitToWidht = 1
+    fitToHeight = 5
+
+    style1 = Font(bold=True, sz=14, name='Times New Roman')
+    style2 = Font(sz=14, name='Times New Roman')
+    fonts = {
+        'A:A': style1,
+        'B2:I3': style1,
+        'B2:Cmax': style1,
+        'D4:Imax': style2
+    }
+    # Worksheet.PAPERSIZE_A3 = '8'.
+    # Worksheet.PAPERSIZE_A4 = '9'.
+    # Worksheet.PAPERSIZE_A4_SMALL = '10'.
+    # Worksheet.PAPERSIZE_A5 = '11'.
+    # Worksheet.PAPERSIZE_EXECUTIVE = '7'.
+    # Worksheet.PAPERSIZE_LEDGER = '4'.
+    # Worksheet.PAPERSIZE_LEGAL = '5'.
+    # Worksheet.PAPERSIZE_LETTER = '1'.
+    # Worksheet.PAPERSIZE_LETTER_SMALL = '2'.
+    # Worksheet.PAPERSIZE_STATEMENT = '6'.
+    # Worksheet.PAPERSIZE_TABLOID = '3'.
+
+    paperSize = 8
+
+    xl.formatFile(
+        pathFile=pathFile,
+        columsWidth=colsWidth,
+        mergeCells=merge_cells,
+        cellsWrap=alignmentFor,
+        positionText=positional,
+        formatNumber=formatNumber,
+        borderForAllCellInRange=borderForAllCellInRange,
+        paperSize=paperSize,
+        printArea=printArea,
+        printRows=printRows,
+        fitToWidht=fitToWidht,
+        fitToHeight=fitToHeight,
+        fonts=fonts,
+        sheetIndex=1
+    )
 
 
 def reportByAggreedProcess(pathFile, today, count_by='knm'):
@@ -423,6 +499,7 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
     totalExcluded['persentExcludedTotal'] = totalExcluded['excluded'] / totalExcluded['total']
     totalExcluded['persentExcludedOnDate'] = totalExcluded['increaseExcluded'] / totalExcluded['total']
     registredExcludedKnm = sorted(registredExcludedKnm, key=lambda x: x[3], reverse=True)
+    registredExcludedKnm = [[number+1, *region] for number, region in enumerate(registredExcludedKnm)]
     registredExcludedKnm.insert(0, ['', 'Всего', *[val for val in totalExcluded.values()]])
     registredExcludedKnm.insert(0, excludedReportTitle)
     title = []
@@ -437,6 +514,7 @@ def reportByAggreedProcess(pathFile, today, count_by='knm'):
                         pathFile=pathFile, sheetIndex=1, sheetTitle='Исключенные')
     with open(previewsResultFile, 'w', encoding='utf-8') as file:
         json.dump(results, file)
+    dailyAggreedProcessStyles(pathFile)
 
 
 def reportDayliAggreedProcess(count_attribute='knm'):
