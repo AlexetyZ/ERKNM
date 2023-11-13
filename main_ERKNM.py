@@ -344,7 +344,6 @@ class erknm:
         self.browser.get(href_plan)
 
 
-
     def add_plan_to_export(self):
         self.wait_loader(WebDriverWait(self.browser, 60).until(EC.element_to_be_clickable((By.ID, 'visibleChangeActionsButton'))))
         popit = 0

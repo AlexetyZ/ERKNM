@@ -171,6 +171,7 @@ def reportByDienedObjects(countBy):
                         pathFile=pathFile)
     xl.writeResultsInXL(results=[kind for kind in set(otherKinds)], title=f'Прочие виды деятельности',
                         pathFile=pathFile, sheetTitle='прочие', sheetIndex=1)
+    dienedObjectsStyles(pathFile)
     pathFileStr = str(pathFile).replace("\\\\", "\\")
     # pprint(otherKinds)
     return f'Отчет готов! Сохранен в {pathFileStr}'
@@ -279,9 +280,88 @@ def reportByAccepedObjects(countBy):
                         pathFile=pathFile)
     xl.writeResultsInXL(results=[kind for kind in set(otherKinds)], title=f'Прочие виды деятельности',
                         pathFile=pathFile, sheetTitle='прочие', sheetIndex=1)
+    dienedObjectsStyles(pathFile)
     pathFileStr = str(pathFile).replace("\\\\", "\\")
     # pprint(otherKinds)
     return f'Отчет готов! Сохранен в {pathFileStr}'
+
+
+def dienedObjectsStyles(pathFile):
+    import xl
+    from openpyxl.styles import Font
+    someCols = ['C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
+     'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB']
+    colsWidth = {
+        'A': 4,
+        'B': 28.83,
+        **{letter: 8.85 for letter in someCols}
+    }
+    merge_cells = [
+        'A1:AB1',
+    ]
+    positional = {
+        'A1:I1': 'center',
+        'C2:ABmax': 'center',
+        'A4:Amax': 'center'
+    }
+    cellsWrap = [
+        'B2:Bmax',
+        'B2:AB2'
+    ]
+
+    formatNumber = {
+        # 'E3:Emax': '0.0%',
+        # 'I3:Imax': '0.0%',
+
+    }
+
+    borderForAllCellInRange = [
+        f'{letter}1:{letter}max' for letter in ['A', 'B', *someCols]
+    ]
+    printArea = 'A1:ABmax'
+    printRows = '1:3'
+    fitToWidht = 1
+    fitToHeight = 5
+
+    style1 = Font(bold=True, sz=11, name='Times New Roman')
+    style2 = Font(sz=11, name='Times New Roman')
+    fonts = {
+        'A:A': style1,
+        'B2:AB4': style1,
+        'B2:Cmax': style1,
+        'D5:Imax': style2
+    }
+    # Worksheet.PAPERSIZE_A3 = '8'.
+    # Worksheet.PAPERSIZE_A4 = '9'.
+    # Worksheet.PAPERSIZE_A4_SMALL = '10'.
+    # Worksheet.PAPERSIZE_A5 = '11'.
+    # Worksheet.PAPERSIZE_EXECUTIVE = '7'.
+    # Worksheet.PAPERSIZE_LEDGER = '4'.
+    # Worksheet.PAPERSIZE_LEGAL = '5'.
+    # Worksheet.PAPERSIZE_LETTER = '1'.
+    # Worksheet.PAPERSIZE_LETTER_SMALL = '2'.
+    # Worksheet.PAPERSIZE_STATEMENT = '6'.
+    # Worksheet.PAPERSIZE_TABLOID = '3'.
+
+    paperSize = 8
+
+    xl.formatFile(
+        pathFile=pathFile,
+        columsWidth=colsWidth,
+        mergeCells=merge_cells,
+        cellsWrap=cellsWrap,
+        positionText=positional,
+        formatNumber=formatNumber,
+        borderForAllCellInRange=borderForAllCellInRange,
+        paperSize=paperSize,
+        printArea=printArea,
+        printRows=printRows,
+        fitToWidht=fitToWidht,
+        fitToHeight=fitToHeight,
+        fonts=fonts,
+        sheetIndex=0
+    )
+
 def dailyAggreedProcessStyles(pathFile):
     import xl
     from openpyxl.styles import Font

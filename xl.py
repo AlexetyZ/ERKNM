@@ -54,6 +54,7 @@ def formatFile(
         if isinstance(mergeCells, str):
             mergeCells = [mergeCells]
         for cells in mergeCells:
+            cells = stabillizeCoordinates(cells)
             sh.merge_cells(cells)
 
     if positionText:
@@ -73,6 +74,7 @@ def formatFile(
         if isinstance(cellsWrap, str):
             cellsWrap = [cellsWrap]
         for cells in cellsWrap:
+            cells = stabillizeCoordinates(cells)
             if isinstance(sh[cells], tuple):
                 for cell in sh[cells]:
                     if isinstance(cell, tuple):
