@@ -776,6 +776,9 @@ def reportByVk():
     return 'Выгрузка по составу согласованных объектов выборочного контроля готова!'
 
 
+
+
+
 if __name__ == '__main__':
     functions = {
         'count_iskl': {'action': countIsklByReasons,

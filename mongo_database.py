@@ -61,17 +61,17 @@ class WorkMongo:
         return self.collection.aggregate([{'$match': {'planId': {'$ne': None}}}, {"$unwind": "$objectsKind"}, {'$group': {'_id': {'tu': "$controllingOrganization", 'status': "$status"}, 'totalCount': {'$sum': 1}}}])
 
     def reportFromDeniedKNMComment(self):
-        return self.collection.find({'status': 'Исключена'}, {'_id': 0, 'controllingOrganization': 1, 'comment': 1, 'erpId': 1, 'id': 1, 'organizationsInn': {'$slice': 1}})
+        return self.collection.find({'status': 'Исключена', 'planId': {"$ne": None}}, {'_id': 0, 'controllingOrganization': 1, 'comment': 1, 'erpId': 1, 'id': 1, 'organizationsInn': {'$slice': 1}})
 
 
     def reportFromDeniedKNMObjectCategory(self):
-        return self.collection.aggregate([{'$unwind': "$objectsKind"}, {'$match': {'status': "Исключена"}}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': 1}}}])
+        return self.collection.aggregate([{'$unwind': "$objectsKind"}, {'$match': {'status': "Исключена", 'planId': {"$ne": None}}}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': 1}}}])
 
     def reportFromAcceptKNMObjectCategory(self):
-        return self.collection.aggregate([{'$unwind': "$objectsKind"}, {'$match': {'status': {'$in': ['Ожидает проведения', 'Есть замечания']}}}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': 1}}}])
+        return self.collection.aggregate([{'$unwind': "$objectsKind"}, {'$match': {'planId': {"$ne": None}, 'status': {'$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': 1}}}])
 
     def reportFromDeniedKNMObjectCategoryKNM(self):
-        return self.collection.aggregate([{'$project': {'objectsKind': 1, 'status': 1, 'controllingOrganization': 1, 'countknm': {'$add': [1]}}}, {'$unwind': "$objectsKind"}, {'$match': {'status': "Исключена"}}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': '$countknm'}}}])
+        return self.collection.aggregate([{'$project': {'objectsKind': 1, 'status': 1, 'controllingOrganization': 1, 'countknm': {'$add': [1]}}}, {'$unwind': "$objectsKind"}, {'$match': {'planId': {"$ne": None}, 'status': "Исключена"}}, {'$group': {'_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': '$countknm'}}}])
 
     def reportByProductionConsist(self):
         return self.collection.aggregate([{'$match': {'kind': 'Выборочный контроль', 'status': 'Ожидает проведения'}}, {'$unwind': '$objectsKind'}, {'$group': {'_id': {'tu': "$controllingOrganization", 'production': '$objectsKind'}, 'totalCount': {'$sum': 1}}}])
