@@ -92,7 +92,7 @@ def reportByDienedObjects(countBy):
         'Коммунальное обслуживание': d.communal_services,
         'Деятельность по предоставлению персональных услуг': d.personal_services,
         'Деятельность гостиниц и прочих мест для временного проживания': d.motels,
-        'Предоставление социальных услуг': d.social_services,
+        'Предоставление социальных услуг': d.all_social_services,
 
         'Деятельность детских и подростковых организаций, образования, в том числе дополнительного образования': [
             *d.child_organization,
@@ -201,7 +201,7 @@ def reportByAccepedObjects(countBy):
         'Коммунальное обслуживание': d.communal_services,
         'Деятельность по предоставлению персональных услуг': d.personal_services,
         'Деятельность гостиниц и прочих мест для временного проживания': d.motels,
-        'Предоставление социальных услуг': d.social_services,
+        'Предоставление социальных услуг': d.all_social_services,
 
         'Деятельность детских и подростковых организаций, образования, в том числе дополнительного образования': [
             *d.child_organization,
@@ -776,6 +776,150 @@ def reportByVk():
     return 'Выгрузка по составу согласованных объектов выборочного контроля готова!'
 
 
+def getKnmWithout336PP():
+    import xl
+    from mongo_database import WorkMongo
+    from private_config import dayliProcessFile
+
+    wm = WorkMongo()
+
+    knms = wm.getKNMWithoutBudjets()
+    print(list(knms))
+    results = wm.convertForsaving(list(knms))
+
+    title = results[0]
+    results = [[r[0]['tu'], r[1]] for r in results[1]]
+
+    # print(results[])
+    print(results)
+    xl.writeResultsInXL(title=title, results=results)
+
+
+def downdoalZppInspection():
+    import xl
+    from mongo_database import WorkMongo
+    from Dictionary import erknmFields
+
+
+    wm = WorkMongo()
+    knms = wm.getZPPInspections()
+    new_knms = []
+    for knm in knms:
+        reason = knm['reasonsList'][0]['text'] if knm['reasonsList'] else 'Не заполнен'
+        knm['reasonsList'] = reason
+        new_knms.append(knm)
+    # pprint(f"{list(knms)[0]=}")
+
+    results = wm.convertForsaving(list(new_knms))
+
+    titles = []
+    for field in results[0]:
+        if field in erknmFields:
+            titles.append(erknmFields[field])
+        else:
+            titles.append(field)
+    #
+    xl.writeResultsInXL(title=results[0], results=results[1])
+
+
+def getObjectFromRHSByTu():
+    import xl
+    from mongo_database import WorkMongo
+    from Dictionary import public_catering_kind
+
+    wm = WorkMongo('rhs')
+
+    _objects = wm.getRhsObjectsByTu(
+        objectsKind=public_catering_kind,
+        objectsRisk=['Высокий риск']
+    )
+    # pprint(list(_objects))
+    result = wm.convertForsaving(list(_objects))
+    xl.writeResultsInXL(title=result[0], results=result[1])
+
+
+def downloadForInspect():
+    import xl
+    from mongo_database import WorkMongo
+
+    wm = WorkMongo('knm')
+    knms = wm.reportForInspectSite()
+    knms1 = []
+
+    for knm in knms:
+        durationHours = int(knm['durationHours']) if knm['durationHours'] else 0
+        if 'Малое предприятие' in knm['mspCategory']:
+            msp = 1
+        elif 'Микропредприятие' in knm['mspCategory']:
+            msp = 2
+        else:
+            msp = None
+
+        if not msp:
+            durationDays = knm['directDurationDays'] if knm['directDurationDays'] else knm['durationDays'] if knm['durationDays'] else 10
+            durationDays = int(durationDays)
+            durationDays = durationDays if durationDays <= 10 else 10
+        else:
+            durationDays = None
+            durationHours = durationHours if durationHours else 50 if msp == 1 else 15
+
+        places = '; '.join(knm['addresses']).replace('\n', ' ').replace('\t', ' ').strip()
+        all_duration = " ".join([f"{durationDays if durationDays >= 10 else 10} дней" if durationDays else "", f"{durationHours} часов" if durationHours else ""]).strip()
+        allCollaboratingOrganizations = '; '.join(knm['collaboratingOrganizations']).replace('\n', ' ').replace('\t', ' ').strip()
+        knms1.append({
+            'controllingOrganization': knm['controllingOrganization'],
+            'organizationName': knm['organizationName'],
+            'ogrn': knm['ogrn'],
+            'inn': knm['inn'],
+            'addresses': places,
+            'startDate': knm['startDate'],
+            'duration': all_duration,
+            'collaboratingOrganizations': allCollaboratingOrganizations,
+            'kind': knm['kind'],
+            'id': knm['id'],
+            'erpId': knm['erpId'],
+            'mspCategory': 'Микропредприятие' if msp == 2 else 'Малое предприятие' if msp == 1 else "Не является субъектом МСП",
+        })
+    results = wm.convertForsaving(knms1)
+    xl.writeResultsInXL(results=results[1], title=results[0], pathFile="C:\\Users\zaitsev_ad\Desktop\кнм для размещения на сайте.xlsx")
+
+
+def reportKnmByDates(year):
+    from Dates_manager import getListDaysFromYear, split_year_for_periods
+    from merge_tu import getActualName
+    from mongo_database import WorkMongo
+    from Dictionary import tuList
+    import xl
+
+    allDaysInYear = getListDaysFromYear(int(year))
+
+    wm = WorkMongo('knm')
+    tu_dict = {}
+    title = ['ТУ']
+    result = []
+    for tu in tuList:
+        tu_dict[tu] = {day: 0 for day in allDaysInYear}
+
+    for date in tqdm(allDaysInYear, desc='Обработка запроса по каждому дню'):
+        title.append(date)
+        knm_tu = wm.getKnmFromDate(date)
+        for knm in knm_tu:
+
+            tu_dict[getActualName(knm["_id"])][date] += knm['count']
+
+    for tu, days in tu_dict.items():
+
+        for knmCount in days.values():
+            pass
+        result.append([tu, *[knmCount for knmCount in days.values()]])
+
+    xl.writeResultsInXL(title=title, results=result, pathFile="C:\\Users\zaitsev_ad\Desktop\кнм по дням.xlsx")
+
+    return 'Завершено!'
+
+    # for day in allDaysInYear:
+    #     knmsTu = wm.getKnmFromDate(day)
+
 
 
 
@@ -830,7 +974,15 @@ if __name__ == '__main__':
         'report_by_iskl': {'action': reportByProsecutorComments,
                            'desc': 'выгружает причины исключений с номерами проверок',
                            'args': ["Путь до файла, куда вносятся данные/если такого файла нет-создадим"]},
-
+        'report_without_336': {'action': getKnmWithout336PP, 'desc': 'делает выгрузку по регионам исключенных 336 ПП', 'args': []},
+        'downdoal_zpp_inspection': {'action': downdoalZppInspection, 'desc': 'Выгрузка для Управления мониторинга за продукцией в обороте', 'args': []},
+        'report_rhs_by_kind_object': {'action': getObjectFromRHSByTu,
+                                    'desc': 'Отчет по составу определенных объектов в РХС по ТУ', 'args': []},
+        'report_knm_for_inspectrospotrebnadzor': {'action': downloadForInspect,
+                                      'desc': 'выгрузка КНМ для загрузки на сайт Роспотребнадзора inspect.rospotrebnadzor.ru', 'args': []},
+        'report_knm_byDates': {'action': reportKnmByDates,
+                                                  'desc': 'выгрузка КНМ по каждому дню в году в разрезе ТУ',
+                                                  'args': ["Год КНМ"]},
         'use_database': {'action': useDatabase, 'desc': 'Дает интерактивный доступ в базу данных doc/knd', 'args': []},
 
     }

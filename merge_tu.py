@@ -18,11 +18,6 @@ def main(file, tu_cell_number, cell_number_to_paste):
 
 
 
-
-
-
-
-
 def getActualName(text):
     for reg in tuRegExp:
         if re.search(reg, str(text).lower().strip()):
@@ -32,8 +27,8 @@ def getActualName(text):
 
 if __name__ == '__main__':
     main(
-        file="C:\\Users\zaitsev_ad\Desktop\Совещание 12.12\Плановые_проверки_2018_2023_планом_на_2024_г_ранж (3).xlsx",
+        file="C:\\Users\zaitsev_ad\Downloads\\regions-gsen.xlsx",
         tu_cell_number=0,
-        cell_number_to_paste=12
+        cell_number_to_paste=4
     )
     # print(getActualName('свердл'))

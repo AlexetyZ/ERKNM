@@ -38,7 +38,7 @@ def split_period(date_start, date_end, parts: int = 2):
     delta = (end - start).days + 1 - parts
 
     len_part = math.floor(delta/parts)
-    print(len_part)
+    # print(len_part)
 
 
     result = []
@@ -59,6 +59,22 @@ def split_year_for_periods(year: int, parts: int = 50):
     return split_period(date_start=f'{year}-01-01', date_end=f'{year}-12-31', parts=parts)
 
 
+def getListDaysFromYear(year: int):
+    periods = split_year_for_periods(year=year, parts=366 if calendar.isleap(year) else 365)
+    return [period['start'] for period in periods]
+
+
+def sortWeek(date: str):   # Формат ГГГГ-ММ-ДД
+    year = int(date.split("-")[0])
+    weeks = split_year_for_periods(year=year, parts=52)
+
+    for week in weeks:
+        if week['start'] <= date <= week['end']:
+            return week
+    raise Exception(f"Can't find date {date} in period")
+
+
 if __name__ == '__main__':
-    dates = split_period(date_start='2022-01-01', date_end='2022-12-31', parts=52)
-    print(dates)
+    print(getListDaysFromYear(2024))
+    # dates = split_period(date_start='2022-01-01', date_end='2022-12-31', parts=52)
+    # print(dates)

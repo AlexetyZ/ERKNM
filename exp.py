@@ -541,12 +541,17 @@ def lists():
     )
 
 
+def joins():
+    _list = ['some1', 'some2']
+    _string = '; '.join(_list)
+    print(_string)
 
 
 
 if __name__ == '__main__':
+    joins()
     # print(stabillizeCoordinates('AM9:Cmax'))
-    print(lists())
+    # print(lists())
     # print(getReg('Управление Роспотребнадзора по томской'))
     # print(getReg('Управление Роспотребнадзора по Алтайскому краю'))
     # _dict_oper()
