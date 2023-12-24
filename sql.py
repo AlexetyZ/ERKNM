@@ -4,6 +4,7 @@ import traceback
 from datetime import date
 from pathlib import Path
 import openpyxl
+from private_config import default_path_to_save_result
 from main_ERKNM import erknm
 
 # from REG_to_APPLY import Registration_sadik
@@ -877,7 +878,7 @@ class Database:
                     result = cursor.fetchall()
                     # logger.info(f"responce {result}")
                     if write_to_exel:
-                        wb_path = 'C:\\Users\zaitsev_ad\Desktop\сведения из базы данных.xlsx'
+                        wb_path = default_path_to_save_result
                         wb = openpyxl.Workbook(wb_path)
                         ws = wb.create_sheet('Лист1')
                         ws.append(('', '', ''))

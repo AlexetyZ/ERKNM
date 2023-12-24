@@ -1,5 +1,5 @@
 import re
-
+from Dates_manager import *
 from pymongo import MongoClient
 from multiprocessing import Pool
 import pprint
@@ -150,7 +150,7 @@ class WorkMongo:
 
             {'$match': {'planId': {"$ne": None}, "startDateEn": date, 'status': {
             '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}}, {'$group': {
-            '_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'objectsCount': {"$sum": 1}}, "c": {"$count": "_id"}}])
+            '_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'objectsCount': {"$sum": 1}}}])
 
     def reportFromDeniedKNMObjectCategoryKNM(self):
         return self.collection.aggregate(
@@ -289,11 +289,18 @@ class WorkMongo:
 
     # def getKNMByRiskIndicators
 
+def objects_kind_tu_count_by_dates(dates: list):   # date format yyyy-mm-dd
+    wm = WorkMongo()
+    # objects_kind_tu_count = wm.getKnmFromDate("2024-07-12")
+    # pprint(list(objects_kind_tu_count))
+
 
 if __name__ == '__main__':
+
     wm = WorkMongo()
-    res = wm.getKnmFromDate("2024-07-12")
-    pprint(list(res))
+    # objects_kind_tu_count = wm.getKnmFromDate("2024-07-12")
+    # pprint(list(objects_kind_tu_count))
+
     # results = [r for r in wm.getKNMWithoutBudjets()]
     # for r in results:
     #     pprint(r)
