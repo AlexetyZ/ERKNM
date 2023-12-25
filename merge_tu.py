@@ -17,7 +17,6 @@ def main(file, tu_cell_number, cell_number_to_paste):
 
 
 
-
 def getActualName(text):
     for reg in tuRegExp:
         if re.search(reg, str(text).lower().strip()):

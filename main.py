@@ -839,8 +839,11 @@ def getObjectFromRHSByTu():
 
 
 def downloadForInspect():
+    import os
     import xl
     from mongo_database import WorkMongo
+    from Dictionary import tuCodeRegion, getActualTuName
+    import json
 
     wm = WorkMongo('knm')
     knms = wm.reportForInspectSite()
@@ -866,8 +869,12 @@ def downloadForInspect():
         places = '; '.join(knm['addresses']).replace('\n', ' ').replace('\t', ' ').strip()
         all_duration = " ".join([f"{durationDays if durationDays >= 10 else 10} дней" if durationDays else "", f"{durationHours} часов" if durationHours else ""]).strip()
         allCollaboratingOrganizations = '; '.join(knm['collaboratingOrganizations']).replace('\n', ' ').replace('\t', ' ').strip()
+        controllingOrganization = getActualTuName(knm['controllingOrganization'])
+        codeRegion = tuCodeRegion[controllingOrganization]
+
         knms1.append({
-            'controllingOrganization': knm['controllingOrganization'],
+            'codeRegion': codeRegion,
+            'controllingOrganization': controllingOrganization,
             'organizationName': knm['organizationName'],
             'ogrn': knm['ogrn'],
             'inn': knm['inn'],
@@ -876,12 +883,18 @@ def downloadForInspect():
             'duration': all_duration,
             'collaboratingOrganizations': allCollaboratingOrganizations,
             'kind': knm['kind'],
-            'id': knm['id'],
-            'erpId': knm['erpId'],
-            'mspCategory': 'Микропредприятие' if msp == 2 else 'Малое предприятие' if msp == 1 else "Не является субъектом МСП",
+            'status': "Исключена" if knm['status'] == "Исключена" else ''
+            # 'id': knm['id'],
+            # 'erpId': knm['erpId'],
+            # 'mspCategory': 'Микропредприятие' if msp == 2 else 'Малое предприятие' if msp == 1 else "Не является субъектом МСП",
         })
+    # print(knms1)
     results = wm.convertForsaving(knms1)
-    xl.writeResultsInXL(results=results[1], title=results[0], pathFile="C:\\Users\zaitsev_ad\Desktop\кнм для размещения на сайте.xlsx")
+    saveDirPath = "C:\\Users\zaitsev_ad\Desktop"
+    xl.writeResultsInXL(results=results[1], title=results[0], pathFile=os.path.join(saveDirPath, "кнм для размещения на сайте.xlsx"))
+    with open(os.path.join(saveDirPath, "кнм для размещения на сайте.json"), "w", encoding="UTF-8") as file:
+        json.dump(knms1, file)
+
 
 
 def reportKnmByDates(year):

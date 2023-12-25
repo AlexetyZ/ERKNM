@@ -167,7 +167,9 @@ class WorkMongo:
 
     def reportForInspectSite(self):
         return self.collection.find({
-            'status': {'$in': ['Ожидает проведения', 'Ожидает завершения', "Завершено", "Есть замечания"]}
+            'status': {'$in': ['Ожидает проведения', 'Ожидает завершения', "Завершено", "Есть замечания"]},
+            '$and': [{'status': 'Исключена'}, {'approved': True}],
+            'planId': {'$ne': None}
         },
             {
                 '_id': 0,
@@ -184,7 +186,8 @@ class WorkMongo:
                 'collaboratingOrganizations': 1,
                 'id': 1,
                 'erpId': 1,
-                'mspCategory': 1
+                'mspCategory': 1,
+                'status': 1
             }
         )
 
