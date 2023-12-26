@@ -1,7 +1,7 @@
 from Dictionary import tuList
 from pprint import pprint
 from Dates_manager import split_year_for_periods
-from datetime import datetime
+from datetime import datetime, date
 import re
 
 
@@ -43,13 +43,18 @@ def main():
     print(re.search(r'https://.*', string).string)
 
 
+def curDate():
+    print(date.today())
+
+
 if __name__ == '__main__':
+    curDate()
     # main()
-    result = mergeDatesByWeeks({
-        '2024-05-12': 5,
-        '2024-05-06': 3,
-        '2024-05-13': 7,
-        '2024-05-11': 7
-    })
-    pprint(result)
+    # result = mergeDatesByWeeks({
+    #     '2024-05-12': 5,
+    #     '2024-05-06': 3,
+    #     '2024-05-13': 7,
+    #     '2024-05-11': 7
+    # })
+    # pprint(result)
 
