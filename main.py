@@ -2,6 +2,67 @@ import os.path
 from sys import argv
 from tqdm import tqdm
 from pprint import pprint
+import Dictionary as d
+from private_config import default_path_to_save_result
+
+# *group_kinds['Деятельность в сфере здравоохранения'],
+# *group_kinds['Детские лагеря с дневным пребыванием'],
+# *group_kinds['Деятельность общеобразовательных организаций'],
+# *group_kinds['Деятельность дошкольных образовательных организаций'],
+# *group_kinds['Объекты промышленности и транспорта'],
+# *group_kinds['Деятельность водоснабжения и водоотведения'],
+# *group_kinds['Коммунальное обслуживание'],
+# *group_kinds['Деятельность по предоставлению персональных услуг'],
+# *group_kinds['Деятельность гостиниц и прочих мест для временного проживания'],
+# *group_kinds['Предоставление социальных услуг'],
+# *group_kinds['Деятельность детских и подростковых организаций, образования, в том числе дополнительного образования'],
+# *group_kinds['Деятельность в области обращения с отходами'],
+# *group_kinds['Работы с микроорганизмами'],
+# *group_kinds['Организации для детей-сирот'],
+# *group_kinds['Деятельность по организации отдыха и развлечений, культуры и спорта'],
+# *group_kinds['Профессиональные образовательные организации'],
+# *group_kinds['Учреждения высшего профессионального образования'],
+# *group_kinds['Деятельность организаторов детского питания'],
+# *group_kinds['Торговля пищевыми продуктами'],
+# *group_kinds['Производство пищевых продуктов'],
+# *group_kinds['Общественное питание населения'],
+# *group_kinds['Продукция'],
+
+
+
+
+group_kinds = {
+    'Деятельность в сфере здравоохранения': d.health_care_kinds,
+    'Детские лагеря с дневным пребыванием': d.child_camps_kinds,
+    'Деятельность организаторов детского питания': d.children_meal_kinds,
+    'Деятельность общеобразовательных организаций': d.school_kinds,
+    'Деятельность дошкольных образовательных организаций': d.preschool_kinds,
+    'Торговля пищевыми продуктами': d.food_store_kind,
+    'Объекты промышленности и транспорта': d.industry_kinds,
+    'Производство пищевых продуктов': d.food_production,
+    'Общественное питание населения': d.public_catering_kind,
+    'Деятельность водоснабжения и водоотведения': d.water_supply_kinds,
+    'Коммунальное обслуживание': d.communal_services,
+    'Деятельность по предоставлению персональных услуг': d.personal_services,
+    'Деятельность гостиниц и прочих мест для временного проживания': d.motels,
+    'Предоставление социальных услуг': d.all_social_services,
+
+    'Деятельность детских и подростковых организаций, образования, в том числе дополнительного образования': [
+        *d.child_organization,
+        *d.education,
+        *d.other_child_organization,
+        *d.addictional_education
+    ],
+    'Деятельность в области обращения с отходами': d.trash,
+    'Работы с микроорганизмами': d.patogens_work,
+    'Организации для детей-сирот': d.orphans_child,
+    'Деятельность по организации отдыха и развлечений, культуры и спорта': d.relax_animation_sport_culture,
+    'Работы с источниками ионизирующего излучения': d.ionizing_radiation,
+    'Профессиональные образовательные организации': d.professional_education,
+    'Учреждения высшего профессионального образования': d.high_education,
+    'Деятельность в области связи': d.connection,
+    'Продукция': d.production
+}
 
 
 def load_knm(year):
@@ -838,6 +899,126 @@ def getObjectFromRHSByTu():
     xl.writeResultsInXL(title=result[0], results=result[1])
 
 
+def getObjectsFromRHSByTuRisk():
+    import xl
+    from mongo_database import WorkMongo
+    import Dictionary as d
+
+    wm = WorkMongo('rhs')
+
+
+    #  количество категорий риска по ТУ, сопоставимых по видам деятельности с 1 индикатором ()
+    tuRisksInfectIndicator = wm.getRhsObjectsTuRiskKind(
+        kinds=[
+            *group_kinds['Деятельность в сфере здравоохранения'],
+            *group_kinds['Детские лагеря с дневным пребыванием'],
+            *group_kinds['Деятельность общеобразовательных организаций'],
+            *group_kinds['Деятельность дошкольных образовательных организаций'],
+            *group_kinds['Объекты промышленности и транспорта'],
+            *group_kinds['Деятельность водоснабжения и водоотведения'],
+            *group_kinds['Коммунальное обслуживание'],
+            *group_kinds['Деятельность по предоставлению персональных услуг'],
+            *group_kinds['Деятельность гостиниц и прочих мест для временного проживания'],
+            *group_kinds['Предоставление социальных услуг'],
+            *group_kinds[
+                'Деятельность детских и подростковых организаций, образования, в том числе дополнительного образования'],
+            *group_kinds['Деятельность в области обращения с отходами'],
+            *group_kinds['Работы с микроорганизмами'],
+            *group_kinds['Организации для детей-сирот'],
+            *group_kinds['Деятельность по организации отдыха и развлечений, культуры и спорта'],
+            *group_kinds['Профессиональные образовательные организации'],
+            *group_kinds['Учреждения высшего профессионального образования'],
+        ]
+    )
+    unpackedTuRisksInfectIndicator = wm.unpac_idAggregation(list(tuRisksInfectIndicator))
+    resultTuRisksInfectIndicator = wm.convertForsaving(unpackedTuRisksInfectIndicator)
+    xl.writeResultsInXL(
+        title=resultTuRisksInfectIndicator[0],
+        results=resultTuRisksInfectIndicator[1],
+        sheetIndex=0,
+        sheetTitle="для индикатора 1",
+        pathFile=os.path.join(default_path_to_save_result, "Категории риска по ТУ для расчета доли нереализованного риска.xlsx")
+    )
+
+    #  количество категорий риска по ТУ, сопоставимых по видам деятельности со 2 индикатором ()
+    tuRisksParasitIndicator = wm.getRhsObjectsTuRiskKind(
+        kinds=[
+            *group_kinds['Деятельность в сфере здравоохранения'],
+            *group_kinds['Детские лагеря с дневным пребыванием'],
+            *group_kinds['Деятельность общеобразовательных организаций'],
+            *group_kinds['Деятельность дошкольных образовательных организаций'],
+            *group_kinds['Объекты промышленности и транспорта'],
+            *group_kinds['Деятельность водоснабжения и водоотведения'],
+            *group_kinds['Коммунальное обслуживание'],
+            *group_kinds['Деятельность по предоставлению персональных услуг'],
+            *group_kinds['Деятельность гостиниц и прочих мест для временного проживания'],
+            *group_kinds['Предоставление социальных услуг'],
+            *group_kinds['Деятельность детских и подростковых организаций, образования, в том числе дополнительного образования'],
+            *group_kinds['Деятельность в области обращения с отходами'],
+            *group_kinds['Работы с микроорганизмами'],
+            *group_kinds['Организации для детей-сирот'],
+            *group_kinds['Деятельность по организации отдыха и развлечений, культуры и спорта'],
+            *group_kinds['Профессиональные образовательные организации'],
+            *group_kinds['Учреждения высшего профессионального образования'],
+            *group_kinds['Деятельность организаторов детского питания'],
+            *group_kinds['Торговля пищевыми продуктами'],
+            *group_kinds['Производство пищевых продуктов'],
+            *group_kinds['Общественное питание населения'],
+            *group_kinds['Продукция'],
+        ]
+    )
+    unpackedTuRisksParasitIndicator = wm.unpac_idAggregation(list(tuRisksParasitIndicator))
+    resultTuRisksParasitIndicator = wm.convertForsaving(unpackedTuRisksParasitIndicator)
+    xl.writeResultsInXL(
+        title=resultTuRisksParasitIndicator[0],
+        results=resultTuRisksParasitIndicator[1],
+        sheetIndex=1,
+        sheetTitle="для индикатора 2",
+        pathFile=os.path.join(default_path_to_save_result,
+                              "Категории риска по ТУ для расчета доли нереализованного риска.xlsx")
+    )
+
+    #  количество категорий риска по ТУ, сопоставимых по видам деятельности с 3 индикатором ()
+    tuRisksOKIIndicator = wm.getRhsObjectsTuRiskKind(
+        kinds=[
+            *group_kinds['Деятельность организаторов детского питания'],
+            *group_kinds['Торговля пищевыми продуктами'],
+            *group_kinds['Производство пищевых продуктов'],
+            *group_kinds['Общественное питание населения'],
+        ]
+    )
+    unpackedTuRisksOKIIndicator = wm.unpac_idAggregation(list(tuRisksOKIIndicator))
+    resultTuRisksOKIIndicator = wm.convertForsaving(unpackedTuRisksOKIIndicator)
+    xl.writeResultsInXL(
+        title=resultTuRisksOKIIndicator[0],
+        results=resultTuRisksOKIIndicator[1],
+        sheetIndex=2,
+        sheetTitle="для индикатора 3",
+        pathFile=os.path.join(default_path_to_save_result,
+                              "Категории риска по ТУ для расчета доли нереализованного риска.xlsx")
+    )
+
+    #  количество категорий риска по ТУ, сопоставимых по видам деятельности с 3 индикатором только продукция
+    tuRisksOKIIndicatorProduction = wm.getRhsObjectsTuRiskKind(
+        kinds=[
+            *group_kinds['Продукция'],
+        ]
+    )
+    unpackedTuRisksOKIIndicatorProduction = wm.unpac_idAggregation(list(tuRisksOKIIndicatorProduction))
+    resultTuRisksOKIIndicatorProduction = wm.convertForsaving(unpackedTuRisksOKIIndicatorProduction)
+    xl.writeResultsInXL(
+        title=resultTuRisksOKIIndicatorProduction[0],
+        results=resultTuRisksOKIIndicatorProduction[1],
+        sheetIndex=3,
+        sheetTitle="для индикатора 3П",
+        pathFile=os.path.join(default_path_to_save_result,
+                              "Категории риска по ТУ для расчета доли нереализованного риска.xlsx")
+    )
+
+
+
+
+
 def downloadForInspect():
     import os
     import xl
@@ -934,6 +1115,23 @@ def reportKnmByDates(year):
     #     knmsTu = wm.getKnmFromDate(day)
 
 
+def loadEffectiveIndicatorsOfTu(path):
+    import openpyxl
+    from sql import Database
+    wb = openpyxl.load_workbook(path)
+    sh = wb.worksheets[0]
+
+    results = []
+    # print(results).
+
+    for row in sh.iter_rows(min_row=4, min_col=3, values_only=True):
+        r = [str(d) for d in row]
+        results.append(r)
+
+    Database().loadDataToEffIndic(results)
+    return 'Загрузка успешно завершена!'
+
+
 
 
 if __name__ == '__main__':
@@ -996,10 +1194,12 @@ if __name__ == '__main__':
         'report_knm_byDates': {'action': reportKnmByDates,
                                                   'desc': 'выгрузка КНМ по каждому дню в году в разрезе ТУ',
                                                   'args': ["Год КНМ"]},
+        'report_for_unrealized_risk': {'action': getObjectsFromRHSByTuRisk, 'desc': 'Делает выгрузку по категориям риска в ТУ для расчета нереализованного риска', 'args': []},
+        'load_tu_sql_tu_indicators': {'action': loadEffectiveIndicatorsOfTu, 'desc': 'Загружает в базу данных кнд sql индикаторы эффективности из файла', 'args': ["Путь к файлу показатели эффективности"]},
         'use_database': {'action': useDatabase, 'desc': 'Дает интерактивный доступ в базу данных doc/knd', 'args': []},
 
     }
-
+    # getObjectsFromRHSByTuRisk
     arg1 = argv[1] if len(argv) >= 2 else None
     if arg1 in functions:
         # print([None if len(argv) < n+1 else 1 for n in range(functions[arg1]['args'])])

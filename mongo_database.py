@@ -1,4 +1,6 @@
 import re
+
+import xl
 from Dates_manager import *
 from pymongo import MongoClient
 from multiprocessing import Pool
@@ -97,6 +99,28 @@ class WorkMongo:
                 }
             }
         ]
+        return self.collection.aggregate(pipline)
+
+    def getRhsObjectsTuRiskKind(self, kinds):
+        """
+        только если collection_name задан rhs!!!!!!!
+        Возвращает аггрегацию по ТУ и категориям риска в разрезе видов деятельности
+        Используется для построения сводной таблицы и выяснения сколько объектов указанной категории риска имеется в ТУ
+        @return:
+        """
+        pipline = [
+            {
+                "$match": {"risk_scope_name": {"$in": kinds}}
+            },
+
+            {
+                "$group": {
+                    "_id": {"tu": "$control_org_name", "risk": "$actual_risk_category_activities_name"},
+                    'count': {"$sum": 1}
+                }
+            }
+        ]
+
         return self.collection.aggregate(pipline)
 
     def findChildCampings(self):
@@ -203,6 +227,21 @@ class WorkMongo:
         values = [list(result.values()) for result in list(results)]
         return title, values
 
+    def unpac_idAggregation(self, _list):
+        result = []
+        for record in _list:
+            new_record = {}
+            for key, value in record.items():
+                if key == "_id":
+                    for kv, vv in value.items():
+                        new_record[kv] = vv
+                else:
+                    new_record[key] = value
+            result.append(new_record)
+        return result
+
+
+
     def predosterezhenia(self):
         # xl_path = 'inns_predostereg.xlsx'
         # wb = openpyxl.Workbook()
@@ -301,8 +340,10 @@ def objects_kind_tu_count_by_dates(dates: list):   # date format yyyy-mm-dd
 
 
 if __name__ == '__main__':
-
     wm = WorkMongo()
+
+
+
     # objects_kind_tu_count = wm.getKnmFromDate("2024-07-12")
     # pprint(list(objects_kind_tu_count))
 

@@ -1,3 +1,5 @@
+import os.path
+
 import pymysql
 import logging
 import traceback
@@ -733,6 +735,11 @@ class Database:
                     f"""INSERT INTO knd_m_to_m_object_inspection(inspection_id, object_id) VALUES ('{inspection_id}', '{object_id}')""")
                 self.conn.commit()
 
+    def loadDataToEffIndic(self, dataList):
+        with self.conn.cursor() as cursor:
+            query = """INSERT INTO effIndic(terr_id, sumRiskObjects1, valueIndicator1, unrealizeRiskIndex1, sumRiskObjects2, valueIndicator2, unrealizeRiskIndex2, sumRiskObjects3, valueIndicator3, unrealizeRiskIndex3) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+            cursor.executemany(query, dataList)
+            self.conn.commit()
 
     def find_risk_id(self, condition):
         with self.conn.cursor() as cursor:
@@ -878,7 +885,7 @@ class Database:
                     result = cursor.fetchall()
                     # logger.info(f"responce {result}")
                     if write_to_exel:
-                        wb_path = default_path_to_save_result
+                        wb_path = os.path.join(default_path_to_save_result, "Выгрузка из бд.xlsx")
                         wb = openpyxl.Workbook(wb_path)
                         ws = wb.create_sheet('Лист1')
                         ws.append(('', '', ''))
