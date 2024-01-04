@@ -855,6 +855,12 @@ class Database:
             result = cursor.fetchall()
             return result
 
+    def create_terr_upr(self, terr_uprs_list):
+        request = """INSERT INTO knd_terr_upravlenie(name, controllingOrganizationId, district, iso) VALUES (%s, %s, %s, %s) ON DUPLICATE KEY UPDATE name=name"""
+        with self.conn.cursor() as cursor:
+            cursor.executemany(request, terr_uprs_list)
+            self.conn.commit()
+
     def user_info(self, district):
         with self.conn.cursor() as cursor:
             cursor.execute(
