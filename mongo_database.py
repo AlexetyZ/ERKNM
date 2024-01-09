@@ -46,7 +46,7 @@ class WorkMongo:
 
         if fields is None:
             fields = {}
-        if request:
+        if request is None:
             request = {}
 
         return self.collection.find({**request}, {**fields})
@@ -174,7 +174,16 @@ class WorkMongo:
 
             {'$match': {'planId': {"$ne": None}, "startDateEn": date, 'status': {
             '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}}, {'$group': {
-            '_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'objectsCount': {"$sum": 1}}}])
+            '_id': {'controllingOrganization': "$controllingOrganization", 'objectsKind': "$objectsKind", "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
+
+    def reportFromDeniedKNMObjectCategoryByDate(self, date):
+        return self.collection.aggregate([
+            {'$unwind': "$objectsKind"},
+            # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
+
+            {'$match': {'planId': {"$ne": None}, "startDateEn": date, 'status': {
+            '$in': ['Исключена']}}}, {'$group': {
+            '_id': {'controllingOrganization': "$controllingOrganization", 'objectsKind': "$objectsKind", "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
 
     def reportFromDeniedKNMObjectCategoryKNM(self):
         return self.collection.aggregate(
