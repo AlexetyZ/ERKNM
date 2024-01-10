@@ -1,0 +1,25 @@
+function findKnm(number) {
+    (async () =>{
+        const req = await fetch("https://private.proverki.gov.ru/erknm-catalogs/api/knm/"+ number, {
+          "headers": {
+            "accept": "*/*",
+            "accept-language": "ru,en;q=0.9",
+            "sec-ch-ua": "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"YaBrowser\";v=\"23\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin"
+          },
+          "referrer": "https://private.proverki.gov.ru/",
+          "referrerPolicy": "origin",
+          "body": null,
+          "method": "GET",
+          "mode": "cors",
+          "credentials": "include"
+        });
+        const resp = await req.json()
+        console.log(resp)
+        return resp
+    })();
+}

@@ -26,6 +26,9 @@ def makeObjectsKindTuDateSet(year: int, statusGroup: str = 'accepted'):
         result.extend(knms)
     return result
 
+
+
+
 def findBySetQuery():
     """
     найти по обратным параметрам

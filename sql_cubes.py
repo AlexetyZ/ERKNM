@@ -5,7 +5,6 @@ from cubeOpeartion import makeSet as MS
 from sys import argv
 
 
-
 class Database:
     def __init__(self):
 

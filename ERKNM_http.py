@@ -177,9 +177,22 @@ class Erknm:
         #     WorkMongo().insert(knm)
 
         # Для тотальной записи
-        print(f"Начало записи - {datetime.datetime.now()}")
-        WorkMongo().insert_many(result)
-        print(f"Конец записи - {datetime.datetime.now()}")
+        print(f"Начало записи1 - {datetime.datetime.now()}")
+        WorkMongo('knm').insert_many(result)
+        print(f"Конец записи1 - {datetime.datetime.now()}")
+
+
+
+        # fullResult = []
+        # for record in tqdm(result, desc='Сбор полной информации...'):
+        #     fullResult.append(self.session.get_knm_by_true_id(record['id']))
+        # print(f"Начало записи2 - {datetime.datetime.now()}")
+        # WorkMongo('knm').insert_many(fullResult)
+        # print(f"Конец записи2 - {datetime.datetime.now()}")
+
+
+
+
 
 
 

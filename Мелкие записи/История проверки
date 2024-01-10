@@ -1,0 +1,40 @@
+Запрос
+
+const req = await fetch("https://private.proverki.gov.ru/erknm-catalogs/api/knm/17197576/history", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "ru,en;q=0.9",
+    "sec-ch-ua": "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"YaBrowser\";v=\"23\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin"
+  },
+  "referrer": "https://private.proverki.gov.ru/",
+  "referrerPolicy": "origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "include"
+});
+const resp = await req.json()
+function check() {
+    var result = false
+    resp.map(
+        function(rec) {
+            rec['changes'].map(
+                function(ch) {
+
+                    if (ch['newValue'] === 'REJECT_APPEALED' && ch['oldValue'] === 'REJECTED') {
+                        console.log(ch)
+                        result = true
+                    }
+                }
+            );
+
+        }
+    )
+    return result
+}
+check();

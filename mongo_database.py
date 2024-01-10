@@ -176,6 +176,8 @@ class WorkMongo:
             '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}}, {'$group': {
             '_id': {'controllingOrganization': "$controllingOrganization", 'objectsKind': "$objectsKind", "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
 
+
+
     def reportFromDeniedKNMObjectCategoryByDate(self, date):
         return self.collection.aggregate([
             {'$unwind': "$objectsKind"},

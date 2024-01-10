@@ -195,7 +195,11 @@ class erknm:
                 raise Exception('Too many popit...')
             try:
                 script = f"""
-                const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-index/api/knm/find-indexes?page={page}&size={count}&order=erpId%2Casc', """ + """{method: 'POST', headers: {'Accept': 'application/json','Content-Type': 'application/json'}, body: JSON.stringify({""" + f'''"name":"все проверки","years":[{year}],"domainIds":[1000000000000001],"includeDomainChild":true,"ignoreKno":false,"federalLawIds":[3],"knmTypeIds":[6,4,5],"controllingOrganizationIds":["10000001082"],"includeChildKno":true,"startDateBetween":[{between_date}],"supervisionTypeId":"","subjectInn":null,"subjectOrgName":null,{planNum}"approveDocOrderNum":null,"approveDocRequestNum":null,"objectOgrn":null,"prosecutorOrganizationIds":[],"legalBasisDocName":null,"statusIds":[],"pubStatuses":[],"subjectTypeIds":[],"erpId":null,"inspectorFullName":null,"address":null,"kinds":["Контрольная закупка","Рейдовый осмотр","Выборочный контроль","Инспекционный визит","Мониторинговая закупка","Документарная проверка","Выездная проверка"],"version":"ERKNM"''' + """})});const content = await rawResponse.json();return content;"""
+                const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-index/api/knm/find-indexes?page={page}&size={count}&order=erpId%2Casc', """ + """{method: 'POST', headers: {'Accept': 'application/json','Content-Type': 'application/json'}, body: JSON.stringify({""" + f'''"name":"все проверки","years":[{year}],"domainIds":[1000000000000001],"includeDomainChild":true,"ignoreKno":false,"federalLawIds":[3],"knmTypeIds":[6,4,5],"controllingOrganizationIds":["10000001082"],"includeChildKno":true,"startDateBetween":[{between_date}],"supervisionTypeId":"","subjectInn":null,"subjectOrgName":null,{planNum}"approveDocOrderNum":null,"approveDocRequestNum":null,"objectOgrn":null,"prosecutorOrganizationIds":[],"legalBasisDocName":null,"statusIds":[],"pubStatuses":[],"subjectTypeIds":[],"erpId":null,"inspectorFullName":null,"address":null,"kinds":["Контрольная закупка","Рейдовый осмотр","Выборочный контроль","Инспекционный визит","Мониторинговая закупка","Документарная проверка","Выездная проверка"],"version":"ERKNM"''' + """})});
+                const resp = await rawResponse.json();
+                
+                return resp
+                """
                 # print(script)
                 result = self.browser.execute_script(script)
                 # print('запрос прошел')
@@ -275,7 +279,7 @@ class erknm:
 
     def get_knm_by_true_id(self, true_id):
         result = self.browser.execute_script(
-            f"""const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-catalogs/api/knm/{true_id}');const content = await rawResponse.json();console.log(content);return content;""")
+            f"""const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-catalogs/api/knm/{true_id}');const content = await rawResponse.json();return content;""")
         return result
 
     def get_okved(self, inn, ogrn):
