@@ -3,6 +3,7 @@ from pprint import pprint
 from Dates_manager import split_year_for_periods
 from datetime import datetime, date
 import re
+import uuid
 
 
 def mergeDatesByWeeks(dates: dict):
@@ -145,9 +146,14 @@ def zipLists():
 
     return zip(addresses, riskCategory, objectsType, objectsKind)
 
+def createUUID():
+    arg2 = '2024-2023'
+    return [int(year) for year in arg2.split('-')]
+
 
 if __name__ == '__main__':
-    print(list(zipLists()))
+    print(createUUID())
+    # print(list(zipLists()))
     # curDate()
     # main()
     # result = mergeDatesByWeeks({

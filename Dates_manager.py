@@ -102,6 +102,6 @@ def shakePeriods(date, value):
 
 
 if __name__ == '__main__':
-    print(getListDaysFromYear(2024))
+    print([p['start'] for p in split_period(date_start='2024-05-01', date_end='2024-05-10', parts=10)])
     # dates = split_period(date_start='2022-01-01', date_end='2022-12-31', parts=52)
     # print(dates)

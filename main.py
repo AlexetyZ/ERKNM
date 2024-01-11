@@ -4,6 +4,7 @@ from tqdm import tqdm
 from pprint import pprint
 import Dictionary as d
 from private_config import default_path_to_save_result
+from mongo_database import convertForsaving, unpac_idAggregation
 
 # *group_kinds['Деятельность в сфере здравоохранения'],
 # *group_kinds['Детские лагеря с дневным пребыванием'],
@@ -83,7 +84,7 @@ def reportByObjects(pathFile, filters: str):
     filters = json.loads(filters.replace("'", '"')) if filters else {}
     wm = WorkMongo()
     _objects = wm.reportByObjects(**filters)
-    results = wm.convertForsaving(list(_objects))
+    results = convertForsaving(list(_objects))
     xl.writeResultsInXL(title=results[0], results=results[1], pathFile=pathFile)
 
 
@@ -101,7 +102,7 @@ def reportByRisks(pathFile, filters: str):
     filters = json.loads(filters.replace("'", '"')) if filters else {}
     wm = WorkMongo()
     _objects = wm.reportByRisk(**filters)
-    results = wm.convertForsaving(list(_objects))
+    results = convertForsaving(list(_objects))
     xl.writeResultsInXL(title=results[0], results=results[1], pathFile=pathFile)
 
 
@@ -113,7 +114,7 @@ def reportByFreeCommand(pathFile, command):
     filters = json.loads(command.replace("'", '"')) if command else {}
     wm = WorkMongo()
     _objects = wm.free_command(filters)
-    results = wm.convertForsaving(list(_objects))
+    results = convertForsaving(list(_objects))
     xl.writeResultsInXL(title=results[0], results=results[1], pathFile=pathFile)
 
 
@@ -124,7 +125,7 @@ def reportByProsecutorComments(pathFile):
 
     wm = WorkMongo()
     _objects = wm.reportFromDeniedKNMComment()
-    results = wm.convertForsaving(list(_objects))
+    results = convertForsaving(list(_objects))
     xl.writeResultsInXL(title=results[0], results=results[1], pathFile=pathFile)
     return 'Причины исключений успешно выгружены!'
 
@@ -773,7 +774,7 @@ def reportByIndicators():
     import xl
     from mongo_database import WorkMongo
     wm = WorkMongo()
-    knms = wm.convertForsaving(wm.reportByRiskIndicatorKNM())
+    knms = convertForsaving(wm.reportByRiskIndicatorKNM())
     pathFile = dayliProcessFile('выгрузка по индикаторным проверкам.xlsx')
     xl.writeResultsInXL(results=knms[1], title=knms[0], pathFile=pathFile)
 
@@ -846,7 +847,7 @@ def getKnmWithout336PP():
 
     knms = wm.getKNMWithoutBudjets()
     print(list(knms))
-    results = wm.convertForsaving(list(knms))
+    results = convertForsaving(list(knms))
 
     title = results[0]
     results = [[r[0]['tu'], r[1]] for r in results[1]]
@@ -871,7 +872,7 @@ def downdoalZppInspection():
         new_knms.append(knm)
     # pprint(f"{list(knms)[0]=}")
 
-    results = wm.convertForsaving(list(new_knms))
+    results = convertForsaving(list(new_knms))
 
     titles = []
     for field in results[0]:
@@ -895,7 +896,7 @@ def getObjectFromRHSByTu():
         objectsRisk=['Высокий риск']
     )
     # pprint(list(_objects))
-    result = wm.convertForsaving(list(_objects))
+    result = convertForsaving(list(_objects))
     xl.writeResultsInXL(title=result[0], results=result[1])
 
 
@@ -930,8 +931,8 @@ def getObjectsFromRHSByTuRisk():
             *group_kinds['Учреждения высшего профессионального образования'],
         ]
     )
-    unpackedTuRisksInfectIndicator = wm.unpac_idAggregation(list(tuRisksInfectIndicator))
-    resultTuRisksInfectIndicator = wm.convertForsaving(unpackedTuRisksInfectIndicator)
+    unpackedTuRisksInfectIndicator = unpac_idAggregation(list(tuRisksInfectIndicator))
+    resultTuRisksInfectIndicator = convertForsaving(unpackedTuRisksInfectIndicator)
     xl.writeResultsInXL(
         title=resultTuRisksInfectIndicator[0],
         results=resultTuRisksInfectIndicator[1],
@@ -967,8 +968,8 @@ def getObjectsFromRHSByTuRisk():
             *group_kinds['Продукция'],
         ]
     )
-    unpackedTuRisksParasitIndicator = wm.unpac_idAggregation(list(tuRisksParasitIndicator))
-    resultTuRisksParasitIndicator = wm.convertForsaving(unpackedTuRisksParasitIndicator)
+    unpackedTuRisksParasitIndicator = unpac_idAggregation(list(tuRisksParasitIndicator))
+    resultTuRisksParasitIndicator = convertForsaving(unpackedTuRisksParasitIndicator)
     xl.writeResultsInXL(
         title=resultTuRisksParasitIndicator[0],
         results=resultTuRisksParasitIndicator[1],
@@ -987,8 +988,8 @@ def getObjectsFromRHSByTuRisk():
             *group_kinds['Общественное питание населения'],
         ]
     )
-    unpackedTuRisksOKIIndicator = wm.unpac_idAggregation(list(tuRisksOKIIndicator))
-    resultTuRisksOKIIndicator = wm.convertForsaving(unpackedTuRisksOKIIndicator)
+    unpackedTuRisksOKIIndicator = unpac_idAggregation(list(tuRisksOKIIndicator))
+    resultTuRisksOKIIndicator = convertForsaving(unpackedTuRisksOKIIndicator)
     xl.writeResultsInXL(
         title=resultTuRisksOKIIndicator[0],
         results=resultTuRisksOKIIndicator[1],
@@ -1004,8 +1005,8 @@ def getObjectsFromRHSByTuRisk():
             *group_kinds['Продукция'],
         ]
     )
-    unpackedTuRisksOKIIndicatorProduction = wm.unpac_idAggregation(list(tuRisksOKIIndicatorProduction))
-    resultTuRisksOKIIndicatorProduction = wm.convertForsaving(unpackedTuRisksOKIIndicatorProduction)
+    unpackedTuRisksOKIIndicatorProduction = unpac_idAggregation(list(tuRisksOKIIndicatorProduction))
+    resultTuRisksOKIIndicatorProduction = convertForsaving(unpackedTuRisksOKIIndicatorProduction)
     xl.writeResultsInXL(
         title=resultTuRisksOKIIndicatorProduction[0],
         results=resultTuRisksOKIIndicatorProduction[1],
@@ -1070,7 +1071,7 @@ def downloadForInspect():
             # 'mspCategory': 'Микропредприятие' if msp == 2 else 'Малое предприятие' if msp == 1 else "Не является субъектом МСП",
         })
     # print(knms1)
-    results = wm.convertForsaving(knms1)
+    results = convertForsaving(knms1)
     saveDirPath = "C:\\Users\zaitsev_ad\Desktop"
     xl.writeResultsInXL(results=results[1], title=results[0], pathFile=os.path.join(saveDirPath, "кнм для размещения на сайте.xlsx"))
     with open(os.path.join(saveDirPath, "кнм для размещения на сайте.json"), "w", encoding="UTF-8") as file:
@@ -1115,6 +1116,10 @@ def reportKnmByDates(year):
     #     knmsTu = wm.getKnmFromDate(day)
 
 
+def load_rhs():
+    from EIAS import Eias
+
+
 def loadEffectiveIndicatorsOfTu(path):
     import openpyxl
     from sql import Database
@@ -1149,6 +1154,8 @@ if __name__ == '__main__':
                      'args': ["Год, за который нужно выгрузить проверки"]},
         'load_pm': {'action': load_pm, 'desc': 'загружает профилактические мероприятия из ЕРКМН',
                     'args': ["Год, за который нужно выгрузить профилактические мероприятия"]},
+        'load_rhs': {'action': load_rhs, 'desc': 'загружает все объекты из РХС',
+                    'args': []},
         'merge_iskl_reason': {'action': mergeIskl,
                               'desc': 'сводит в одну таблицу результаты после анализа причин исключений',
                               'args': [

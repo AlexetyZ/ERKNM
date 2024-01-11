@@ -12,6 +12,27 @@ from pprint import pprint
 import Dictionary as d
 
 
+def unpac_idAggregation(_list):
+    result = []
+    for record in _list:
+        new_record = {}
+        for key, value in record.items():
+            if key == "_id":
+                for kv, vv in value.items():
+                    new_record[kv] = vv
+            else:
+                new_record[key] = value
+        result.append(new_record)
+    return result
+
+
+def convertForsaving(results: list[dict]) -> list:
+
+    title = list(results[0].keys())
+    values = [list(result.values()) for result in list(results)]
+    return title, values
+
+
 class WorkMongo:
     def __init__(self, collection_name: str = 'knm'):
         client = MongoClient('localhost', 27017)
@@ -231,27 +252,6 @@ class WorkMongo:
     def getObjectsFromPlan(self):
         return self.collection.find({'status': "На согласовании", 'kind': {'$ne': 'Выборочный контроль'}},
                                     {'_id': 0, 'inn': 1, 'addresses': 1, 'riskCategory': 1, 'objectsKind': 1}).limit(1)
-
-    def convertForsaving(self, results: list[dict]) -> list:
-
-        title = list(results[0].keys())
-        values = [list(result.values()) for result in list(results)]
-        return title, values
-
-    def unpac_idAggregation(self, _list):
-        result = []
-        for record in _list:
-            new_record = {}
-            for key, value in record.items():
-                if key == "_id":
-                    for kv, vv in value.items():
-                        new_record[kv] = vv
-                else:
-                    new_record[key] = value
-            result.append(new_record)
-        return result
-
-
 
     def predosterezhenia(self):
         # xl_path = 'inns_predostereg.xlsx'
