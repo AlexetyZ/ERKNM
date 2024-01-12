@@ -23,7 +23,7 @@ class Database:
         self.conn = pymysql.connect(
             user='root',
             password='ntygazRPNautoz',
-            host='127.0.0.1',
+            host='10.1.13.137',
             port=3308,
             database='knm'
         )
@@ -737,7 +737,7 @@ class Database:
 
     def loadDataToEffIndic(self, dataList):
         with self.conn.cursor() as cursor:
-            query = """INSERT INTO effIndic(terr_id, sumRiskObjects1, valueIndicator1, unrealizeRiskIndex1, sumRiskObjects2, valueIndicator2, unrealizeRiskIndex2, sumRiskObjects3, valueIndicator3, unrealizeRiskIndex3) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+            query = """INSERT INTO effIndic(terr_id, sumRiskObjects3, valueIndicator3_2019, targetIndicator3_2019, unrealizeRiskIndex3_2019, valueIndicator3_2020, targetIndicator3_2020, unrealizeRiskIndex3_2020, valueIndicator3_2021, targetIndicator3_2021, unrealizeRiskIndex3_2021, valueIndicator3_2022, targetIndicator3_2022, unrealizeRiskIndex3_2022, valueIndicator3_2023, targetIndicator3_2023, unrealizeRiskIndex3_2023, knmPlanCount_2023, knmPlanCount_2024, grownKNM2023_2024, GUOnTime, GU_EPGU) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
             cursor.executemany(query, dataList)
             self.conn.commit()
 

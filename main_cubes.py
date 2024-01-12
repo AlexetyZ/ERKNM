@@ -38,9 +38,9 @@ def _help():
 
 
 def mainLoad(arg2: str):
-    for year in [int(year) for year in arg2.split('-')]:
-        loadCubeYear(year)
-    # loadCube()
+    # for year in [int(year) for year in arg2.split('-')]:
+    #     loadCubeYear(year)
+    loadCube()
 
 
 def main():

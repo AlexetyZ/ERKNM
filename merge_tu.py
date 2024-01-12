@@ -28,7 +28,18 @@ def main(file, tu_cell_number, cell_number_to_paste, sheetName=None, sheetIndex=
     wb.save(file)
 
 
+def get_tu_iso(file, tu_cell_number, cell_number_to_paste, sheetName=None, sheetIndex=None):
+    wb = openpyxl.load_workbook(file)
 
+    if sheetIndex:
+        sh = wb.worksheets[sheetIndex]
+    elif sheetName:
+        sh = wb[sheetName]
+    else:
+        sh = wb.worksheets[0]
+
+
+    wb.save(file)
 
 
 def getActualName(text):
@@ -41,10 +52,10 @@ def getActualName(text):
 if __name__ == '__main__':
 
     main(
-        file="C:\\Users\zaitsev_ad\Desktop\Выгрузка из бд.xlsx",
-        tu_cell_number=1,
-        cell_number_to_paste=15,
-        sheetIndex=1
+        file="C:\\Users\zaitsev_ad\Desktop\Справка об эффективности КНМ и ПМ (1).12\СЗЗ услуги статистика.xlsx",
+        tu_cell_number=0,
+        cell_number_to_paste=10,
+        sheetIndex=0
     )
     # print(getActualName('свердл'))
 

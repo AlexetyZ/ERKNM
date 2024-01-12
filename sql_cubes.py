@@ -11,7 +11,7 @@ class Database:
         self.conn = pymysql.connect(
             user='root',
             password='ntygazRPNautoz',
-            host='localhost',
+            host='10.1.13.137',
             port=3308,
             database='cubes'
         )
@@ -25,7 +25,8 @@ class Database:
                 codeRegion INT, 
                 iso VARCHAR(255),
                 groupKind TEXT,
-                actualRisk VARCHAR(255)                
+                actualRisk VARCHAR(255),
+                objectsCount INT                
             );"""
             cursor.execute(request)
             self.conn.commit()
@@ -38,7 +39,8 @@ class Database:
                 okved TEXT,
                 codeRegion INT, 
                 iso VARCHAR(255),
-                actualRisk VARCHAR(255)                
+                actualRisk VARCHAR(255),
+                objectsCount INT                 
             );"""
             cursor.execute(request)
             self.conn.commit()
@@ -96,7 +98,7 @@ class Database:
     def load_RHS_tu_objectsKind_risk(self):
         _set = MS.makeRHStuobjectsKindriskSet()
         _set = [[cell['id'], cell['controllingOrganization'], cell['objectsKind'], cell['codeRegion'], cell['iso'],
-                 cell['groupKind'], cell['actualRisk']] for cell in _set]
+                 cell['groupKind'], cell['actualRisk'], cell['objectsCount']] for cell in _set]
         with self.conn.cursor() as cursor:
             request = f"""INSERT INTO rhs_tu_ObjectsKind_risk(
                 id,
@@ -105,15 +107,17 @@ class Database:
                 codeRegion, 
                 iso,
                 groupKind,
-                actualRisk  
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s);"""
+                actualRisk,
+                objectsCount  
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);"""
             cursor.executemany(request, _set)
             self.conn.commit()
+            print('заполнена таблица РХС ТУ вид_объекта риск')
 
     def load_RHS_tu_okved_risk(self):
         _set = MS.makeRHStuOkvedKindriskSet()
         _set = [[cell['id'], cell['controllingOrganization'], cell['okvedName'], cell['codeRegion'], cell['iso'],
-                 cell['actualRisk']] for cell in _set]
+                 cell['actualRisk'], cell['objectsCount']] for cell in _set]
         with self.conn.cursor() as cursor:
             request = f"""INSERT INTO rhs_tu_okved_risk(
                 id,
@@ -121,10 +125,12 @@ class Database:
                 okved,
                 codeRegion, 
                 iso,
-                actualRisk   
-            ) VALUES (%s, %s, %s, %s, %s, %s);"""
+                actualRisk,
+                objectsCount   
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s);"""
             cursor.executemany(request, _set)
             self.conn.commit()
+            print('заполнена таблица РХС ТУ вид_объекта риск')
 
     def truncateCube(self):
         with self.conn.cursor() as cursor:
