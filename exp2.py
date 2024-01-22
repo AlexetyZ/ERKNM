@@ -147,8 +147,8 @@ def zipLists():
     return zip(addresses, riskCategory, objectsType, objectsKind)
 
 def createUUID():
-    arg2 = '2024-2023'
-    return [int(year) for year in arg2.split('-')]
+    from Dates_manager import differenceDays
+    return differenceDays('01.05.2023', '02.06.2023')
 
 
 if __name__ == '__main__':

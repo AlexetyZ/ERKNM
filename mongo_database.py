@@ -27,7 +27,6 @@ def unpac_idAggregation(_list):
 
 
 def convertForsaving(results: list[dict]) -> list:
-
     title = list(results[0].keys())
     values = [list(result.values()) for result in list(results)]
     return title, values
@@ -185,28 +184,28 @@ class WorkMongo:
             {'$unwind': "$objectsKind"},
             # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
             {'$match': {'planId': {"$ne": None}, 'status': {
-            '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}}, {'$group': {
-            '_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': 1}}}])
+                '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}}, {'$group': {
+                '_id': {'tu': "$controllingOrganization", 'kind': "$objectsKind"}, 'totalCount': {'$sum': 1}}}])
 
-    def reportFromAcceptKNMObjectCategoryByDate(self, date):
+    def reportFromAcceptKNMObjectCategoryByDate(self):
         return self.collection.aggregate([
             {'$unwind': "$objectsKind"},
             # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
 
-            {'$match': {'planId': {"$ne": None}, "startDateEn": date, 'status': {
-            '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}}, {'$group': {
-            '_id': {'controllingOrganization': "$controllingOrganization", 'objectsKind': "$objectsKind", "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
+            {'$match': {'planId': {"$ne": None}, 'status': {
+                '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}}, {'$group': {
+                '_id': {'controllingOrganization': "$controllingOrganization", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
+                        "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
 
-
-
-    def reportFromDeniedKNMObjectCategoryByDate(self, date):
+    def reportFromDeniedKNMObjectCategoryByDate(self):
         return self.collection.aggregate([
             {'$unwind': "$objectsKind"},
             # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
 
-            {'$match': {'planId': {"$ne": None}, "startDateEn": date, 'status': {
-            '$in': ['Исключена']}}}, {'$group': {
-            '_id': {'controllingOrganization': "$controllingOrganization", 'objectsKind': "$objectsKind", "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
+            {'$match': {'planId': {"$ne": None}, 'status': {
+                '$in': ['Исключена']}}}, {'$group': {
+                '_id': {'controllingOrganization': "$controllingOrganization", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
+                        "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
 
     def reportFromDeniedKNMObjectCategoryKNM(self):
         return self.collection.aggregate(
@@ -342,9 +341,67 @@ class WorkMongo:
             }
         ])
 
+    def reportFromAcceptKNMTypeKindReasonByDate(self, date):
+        return self.collection.aggregate([
+            {'$unwind': "$objectsKind"},
+            # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
+
+            {'$match': {'planId': {"$ne": None}, "startDateEn": date, 'status': {
+                '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}},
+            {'$unwind': '$reasonsList'},
+            {'$group': {
+                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType",
+                        "status": "$status",
+                        'kind': "$kind", 'reason': "$reasonsList.text"}, 'objectsCount': {"$sum": 1}}}])
+
+    def reportPeriodApplyingProsecutors(self):
+        """
+        Агрегация для вычисления по годам срока согласования внеплановых проверок прокуратурой
+        @return:
+        агрегация с уникальными ТУ, дата направления, дата ответа, год
+        """
+        pipline = [
+            {'$match': {
+                'planId': None,
+                'approveDocOrderDate': {'$ne': None},
+                'approveDocRequestDate': {'$ne': None},
+                # 'objectsKind': {'$in': [*d.public_catering_kind, *d.children_meal_kinds]}
+            }
+             },
+
+            {
+                "$group": {
+                    '_id': {
+                        'controllingOrganization': "$controllingOrganization",
+                        'orderDate': "$startDate",
+                        'responceDate': "$approveDocRequestDate",
+                        'year': "$year"
+                    },
+                    'objectsCount': {"$sum": 1}
+
+                }
+            }
+        ]
+
+        return self.collection.aggregate(pipline)
+
+    def reportFromDeniedKNMTypeKindReasonByDate(self, date):
+        return self.collection.aggregate([
+            {'$unwind': "$objectsKind"},
+            # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
+
+            {'$match': {'planId': {"$ne": None}, "startDateEn": date, 'status': {
+                '$in': ['Исключена']}}},
+            {'$unwind': '$reasonsList'},
+            {'$group': {
+                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType",
+                        "status": "$status",
+                        'kind': "$kind", 'reason': "$reasonsList.text"}, 'objectsCount': {"$sum": 1}}}])
+
     # def getKNMByRiskIndicators
 
-def objects_kind_tu_count_by_dates(dates: list):   # date format yyyy-mm-dd
+
+def objects_kind_tu_count_by_dates(dates: list):  # date format yyyy-mm-dd
     wm = WorkMongo()
     # objects_kind_tu_count = wm.getKnmFromDate("2024-07-12")
     # pprint(list(objects_kind_tu_count))
@@ -352,8 +409,11 @@ def objects_kind_tu_count_by_dates(dates: list):   # date format yyyy-mm-dd
 
 if __name__ == '__main__':
     wm = WorkMongo()
-
-
+    # date = '2024-05-01'
+    unpacked = unpac_idAggregation(list(wm.reportPeriodApplyingProsecutors()))
+    # pprint(unpacked)
+    for u in unpacked:
+        print(u['orderDate'], u['responceDate'])
 
     # objects_kind_tu_count = wm.getKnmFromDate("2024-07-12")
     # pprint(list(objects_kind_tu_count))

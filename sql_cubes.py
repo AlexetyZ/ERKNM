@@ -55,22 +55,62 @@ class Database:
                 iso VARCHAR(255),
                 status VARCHAR(255),
                 startDateEn DATE,
+                month INT,
+                year INT,
                 objectsCount INT, 
                 groupKind TEXT
             );"""
             cursor.execute(request)
             self.conn.commit()
 
+    def create_table_prosecutor_apply_period(self):
+        with self.conn.cursor() as cursor:
+            request = f"""CREATE TABLE prosecutorAply(
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                difference INT,
+                avgsumdate INT,
+                codeRegion INT,
+                controllingOrganization VARCHAR(255),
+                iso VARCHAR(255),
+                orderDate DATE,
+                responceDate DATE,
+                objectsCount INT,
+                year INT
+            );"""
+            cursor.execute(request)
+            self.conn.commit()
+
+
+    def load_prosecutor_apply_period(self):
+        _set = MS.make_prosecutor_apply_period()
+        _set = [[cell['difference'], cell['avgsumdate'], cell['codeRegion'], cell['controllingOrganization'], cell['iso'], cell['orderDate'], cell['responceDate'],
+                 cell['objectsCount'], cell['year']] for cell in _set]
+        with self.conn.cursor() as cursor:
+            request = f"""INSERT INTO prosecutorAply(
+                            difference,
+                            avgsumdate,
+                            codeRegion,
+                            controllingOrganization,
+                            iso,
+                            orderDate,
+                            responceDate,
+                            objectsCount,
+                            year
+                         ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+            cursor.executemany(request, _set)
+            self.conn.commit()
+
     def create_table_diened_objects_kind_tu_day(self, year):
         with self.conn.cursor() as cursor:
             request = f"""CREATE TABLE dienedObjects_kind_tu_day_{year}(
-                id VARCHAR(255) PRIMARY KEY,
                 objectsKind TEXT,
                 controllingOrganization VARCHAR(255), 
                 codeRegion INT,
                 iso VARCHAR(255),
                 status VARCHAR(255),
                 startDateEn DATE,
+                month INT,
+                year INT,
                 objectsCount INT, 
                 groupKind TEXT
             );"""
@@ -79,19 +119,20 @@ class Database:
 
     def load_objects_kind_tu_day(self, year: int = 2024, status: str = 'accepted'):
         _set = MS.makeObjectsKindTuDateSet(year, status)
-        _set = [[cell['id'], cell['objectsKind'], cell['controllingOrganization'], cell['codeRegion'], cell['iso'], cell['status'], cell['startDateEn'], cell['objectsCount'], cell['groupKind']] for cell in _set]
+        _set = [[cell['objectsKind'], cell['controllingOrganization'], cell['codeRegion'], cell['iso'], cell['status'], cell['startDateEn'], cell['month'], cell['year'], cell['objectsCount'], cell['groupKind']] for cell in _set]
         with self.conn.cursor() as cursor:
             request = f"""INSERT INTO {status}Objects_kind_tu_day_{year}(
-                id,
                 objectsKind, 
                 controllingOrganization,
                 codeRegion, 
                 iso, 
                 status, 
                 startDateEn, 
+                month,
+                year,
                 objectsCount,
                 groupKind
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
             cursor.executemany(request, _set)
             self.conn.commit()
 

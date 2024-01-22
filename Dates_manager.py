@@ -3,12 +3,35 @@ import datetime
 import math
 
 
+
 def period_between_month(year: int = 2023, month: int = 1):
     month_last_day = calendar.monthrange(year, month)[1]
     start = datetime.date(year, month, 1).strftime('%Y-%m-%d')
     end = datetime.date(year, month, month_last_day).strftime('%Y-%m-%d')
     result = ({'start': str(start), 'end': str(end)})
     return result
+
+
+def differenceCalendaryDays(date1: str, date2: str):
+    """
+    Все даты в формате дд.мм.ГГГГ
+    @param date1: Дата начала
+    @param date2: Дата окончания
+    @return: Разница в календарных днях
+    """
+    date1 = datetime.datetime.strptime(date1, '%d.%m.%Y')
+    date2 = datetime.datetime.strptime(date2, '%d.%m.%Y')
+    return (date2 - date1).days
+
+
+def reformDateToEn(date: str):
+    """
+
+    @param date: date format dd.mm.YYYY
+    @return: date format YYYY-mm_dd
+    """
+    return datetime.datetime.strptime(date, '%d.%m.%Y').strftime('%Y-%m-%d')
+
 
 
 def periods_into_month(year: int = 2023, month: int = 1, parts: int = 2):

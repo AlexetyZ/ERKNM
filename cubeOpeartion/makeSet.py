@@ -1,3 +1,5 @@
+import datetime
+
 from mongo_database import WorkMongo as wmKNM, unpac_idAggregation, convertForsaving
 from mongo_rhs import WorkMongo as wmRHS
 from pprint import pprint
@@ -5,30 +7,60 @@ from Dates_manager import getListDaysFromYear
 from tqdm import tqdm
 from Dictionary import getActualTuName, sortObjectKindInGroup, tu_iso, tuCodeRegion
 import uuid
+from Dates_manager import differenceCalendaryDays, reformDateToEn
 
 
 def makeObjectsKindTuDateSet(year: int, statusGroup: str = 'accepted'):
-    datesYear = getListDaysFromYear(year)
+
     wm_knm = wmKNM('knm')
     result = []
     if statusGroup == 'accepted':
         function = wm_knm.reportFromAcceptKNMObjectCategoryByDate
     else:
         function = wm_knm.reportFromDeniedKNMObjectCategoryByDate
-    # dates = ['2024-05-01', '2024-05-02', '2024-05-03', '2024-05-04', '2024-05-05', '2024-05-06', '2024-05-07', '2024-05-08', '2024-05-09', '2024-05-10']
-    for date in tqdm(datesYear, desc='Сбор по дням...'):
-        knms = function(date)
-        knms = unpac_idAggregation(knms)
-        for knm in knms:
-            actualName = getActualTuName(knm['controllingOrganization'])
-            knm['id'] = uuid.uuid4()
-            knm['controllingOrganization'] = actualName
-            knm['codeRegion'] = tuCodeRegion[actualName]
-            knm['iso'] = tu_iso[actualName]
-            knm['groupKind'] = sortObjectKindInGroup(knm['objectsKind'])
-            knm['startDateEn'] = date
-        result.extend(knms)
+    knms = function()
+    knms = unpac_idAggregation(knms)
+    for knm in knms:
+        actualName = getActualTuName(knm['controllingOrganization'])
+        knm['controllingOrganization'] = actualName
+        knm['codeRegion'] = tuCodeRegion[actualName]
+        knm['iso'] = tu_iso[actualName]
+        knm['groupKind'] = sortObjectKindInGroup(knm['objectsKind'])
+        knm['month'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').month
+        knm['year'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').year
+    result.extend(knms)
     return result
+
+
+def make_prosecutor_apply_period():
+    """
+    Делаем агрегацию и приводим каждую ее запись к стандарту ТУ, время согласования прокуратуры, количество КНМ, год
+    @return:
+    """
+    wm_knm = wmKNM('knm')
+    _set = wm_knm.reportPeriodApplyingProsecutors()
+    _set = unpac_idAggregation(_set)
+    result = []
+    for _obj in _set:
+        difference = differenceCalendaryDays(_obj['orderDate'], _obj['responceDate'])
+        if difference < -30 or difference > 14:
+            continue
+        normalCalculation = differenceCalendaryDays(_obj['orderDate'], _obj['responceDate']) * _obj['objectsCount']
+        actualName = getActualTuName(_obj['controllingOrganization'])
+        if not actualName:
+            print(_obj['controllingOrganization'])
+        _obj['controllingOrganization'] = actualName
+        _obj['codeRegion'] = tuCodeRegion[actualName]
+        _obj['iso'] = tu_iso[actualName]
+        _obj['avgsumdate'] = normalCalculation if normalCalculation >= 0 else 1
+        _obj['orderDate'] = reformDateToEn(_obj['orderDate'])
+        _obj['difference'] = difference
+        _obj['responceDate'] = reformDateToEn(_obj['responceDate'])
+        result.append(_obj)
+
+    return result
+
+
 
 
 def makeRHStuobjectsKindriskSet():
@@ -86,6 +118,6 @@ def findBySetQuery():
 
 if __name__ == '__main__':
     year = '2024'
-    resultSet = makeRHStuobjectsKindriskSet()
+    resultSet = make_prosecutor_apply_period()
     # resultSet = findBySetQuery()
     pprint(list(resultSet))

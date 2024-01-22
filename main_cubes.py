@@ -5,14 +5,22 @@ from cubeOpeartion import makeSet as MS
 
 def loadCube():
     d = Database()
-    try:
-        d.create_table_RHS_tu_objectsKind_risk()
-        d.create_table_RHS_tu_okved_risk()
-    except:
-        pass
+    funcs = [
+        d.create_table_prosecutor_apply_period,
+        d.create_table_RHS_tu_objectsKind_risk,
+        d.create_table_RHS_tu_okved_risk
+    ]
+    for func in funcs:
+        try:
+            func()
+        except:
+            pass
 
     d.load_RHS_tu_objectsKind_risk()
     d.load_RHS_tu_okved_risk()
+    d.load_prosecutor_apply_period()
+
+
 
 
 def loadCubeYear(year):
@@ -38,8 +46,8 @@ def _help():
 
 
 def mainLoad(arg2: str):
-    # for year in [int(year) for year in arg2.split('-')]:
-    #     loadCubeYear(year)
+    for year in [int(year) for year in arg2.split('-')]:
+        loadCubeYear(year)
     loadCube()
 
 

@@ -283,9 +283,7 @@ class Erknm:
                 print(len(response['list']))
                 for knm_in_month in response['list']:
                     result.append(knm_in_month)
-        full_result = []
-        for pm in tqdm(result, desc='Сбор полных данных об объектах'):
-            full_result.append(self.session.get_knm_by_true_id(pm['id']))
+        # f
 
         logger.info('сбор данных завершен, записываем для сохранения в json')
 
