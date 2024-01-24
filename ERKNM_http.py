@@ -288,7 +288,7 @@ class Erknm:
         logger.info('сбор данных завершен, записываем для сохранения в json')
 
         print(f"Начало записи - {datetime.datetime.now()}")
-        WorkMongo().insert_many(result)
+        WorkMongo('pm').insert_many(result)
         print(f"Конец записи - {datetime.datetime.now()}")
 
 

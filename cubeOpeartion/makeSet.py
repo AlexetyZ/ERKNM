@@ -10,10 +10,8 @@ import uuid
 from Dates_manager import differenceCalendaryDays, reformDateToEn
 
 
-def makeObjectsKindTuDateSet(year: int, statusGroup: str = 'accepted'):
-
+def makeObjectsKindTuDateSet(statusGroup: str = 'accepted'):
     wm_knm = wmKNM('knm')
-    result = []
     if statusGroup == 'accepted':
         function = wm_knm.reportFromAcceptKNMObjectCategoryByDate
     else:
@@ -28,8 +26,25 @@ def makeObjectsKindTuDateSet(year: int, statusGroup: str = 'accepted'):
         knm['groupKind'] = sortObjectKindInGroup(knm['objectsKind'])
         knm['month'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').month
         knm['year'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').year
-    result.extend(knms)
-    return result
+    return knms
+
+
+def makeKnmTypeTuDateSet(statusGroup: str = 'accepted'):
+    wm_knm = wmKNM('knm')
+    if statusGroup == 'accepted':
+        function = wm_knm.reportFromAcceptKNMTypeKindReasonByDate
+    else:
+        function = wm_knm.reportFromDeniedKNMTypeKindReasonByDate
+    knms = function()
+    knms = unpac_idAggregation(knms)
+    for knm in knms:
+        actualName = getActualTuName(knm['controllingOrganization'])
+        knm['controllingOrganization'] = actualName
+        knm['codeRegion'] = tuCodeRegion[actualName]
+        knm['iso'] = tu_iso[actualName]
+        knm['month'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').month
+        knm['year'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').year
+    return knms
 
 
 def make_prosecutor_apply_period():
@@ -70,7 +85,6 @@ def makeRHStuobjectsKindriskSet():
 
     for _obj in rhsObjs:
         actualName = getActualTuName(_obj['controllingOrganization'])
-        _obj['id'] = uuid.uuid4()
         _obj['controllingOrganization'] = actualName
         _obj['codeRegion'] = tuCodeRegion[actualName]
         _obj['iso'] = tu_iso[actualName]
@@ -85,7 +99,6 @@ def makeRHStuOkvedKindriskSet():
     # pprint(rhsObjs)
     for _obj in rhsObjs:
         actualName = getActualTuName(_obj['controllingOrganization'])
-        _obj['id'] = uuid.uuid4()
         _obj['controllingOrganization'] = actualName
         _obj['codeRegion'] = tuCodeRegion[actualName]
         _obj['iso'] = tu_iso[actualName]

@@ -1,0 +1,353 @@
+{
+    "id": 19281340,
+    "erpId": "77240041000009209252",
+    "planId": null,
+    "planGuid": null,
+    "guid": "3d767149-dde1-452b-b0d1-82719275a496",
+    "status": {
+        "id": 11,
+        "name": "В процессе заполнения",
+        "code": "FILL_IN_PROCESS",
+        "enabled": false,
+        "weight": 1,
+        "note": null
+    },
+    "year": 2024,
+    "month": null,
+    "creationDate": null,
+    "publicationDate": null,
+    "type": null,
+    "kind": null,
+    "federalLaw": {
+        "id": 3,
+        "name": "248 ФЗ",
+        "code": "248"
+    },
+    "title": null,
+    "testPurchaseMethod": null,
+    "testPurchaseDescription": null,
+    "supervisionType": null,
+    "startDate": "2024-01-26",
+    "stopDate": "2024-01-27",
+    "startDateIsMonth": null,
+    "approve": null,
+    "reasons": null,
+    "legalBases": null,
+    "events": null,
+    "knoOrganization": null,
+    "inspectors": null,
+    "prosecutorOrganization": null,
+    "rejectReasons": null,
+    "organization": null,
+    "riskCategory": null,
+    "objects": null,
+    "noticeMethod": null,
+    "noticeDate": null,
+    "documents": null,
+    "links": [],
+    "district": null,
+    "requirements": null,
+    "deleted": false,
+    "publishedStatus": "UNPUBLISHED",
+    "manualPublish": false,
+    "published": false,
+    "correlationToken": null,
+    "createdBy": {
+        "id": 230743,
+        "username": "042f109e-0a34-4e78-ab29-d93c5edd87f1",
+        "fullName": "Алексей Зайцев"
+    },
+    "updatedBy": {
+        "id": 209329,
+        "username": "ERKNMDB",
+        "fullName": "ФГИС ЕРКНМ"
+    },
+    "created": "2024-01-24T18:13:35.605367Z",
+    "updated": "2024-01-24T18:15:03.182182Z",
+    "note": null,
+    "hash": null,
+    "signed": false,
+    "signatureInfo": null,
+    "dateCreate": "2024-01-24T15:13:35.605603Z",
+    "classificationDateCreate": "2024-01-24T15:13:35.605603Z",
+    "publishDateCreate": "2024-01-24T15:13:35.605603Z",
+    "statusDateCreate": "2024-01-24T18:13:35.605367Z",
+    "knmErknm": null,
+    "pmErknm": {
+        "appealStatus": null,
+        "accessToken": null,
+        "knoOrganization": {
+            "dictId": "af002594-a4f0-11eb-bcbc-0242ac130002",
+            "dictVersionId": "0af4cd2e-78cb-109b-8178-e92043fc007c"
+        },
+        "supervisionType": {
+            "dictId": "1f27d942-a52e-11eb-bcbc-0242ac130002",
+            "dictVersionId": "0af4cd2e-78cb-109b-8178-e9812dda02c0"
+        },
+        "pmType": {
+            "dictId": "e8703904-a545-11eb-bcbc-0242ac130002",
+            "dictVersionId": "736b18c7-3544-4cbb-9672-29cfd87b5673"
+        },
+        "pmForm": {
+            "id": 1,
+            "title": "Профилактическая беседа по месту осуществления деятельности контролируемого лица",
+            "code": "PROF_CONVERSATION"
+        },
+        "location": "place 1",
+        "noteWarning": null,
+        "contentWarning": null,
+        "objectionWarning": null,
+        "reasons": [
+            {
+                "reason": {
+                    "id": null,
+                    "guid": "2cc10aa8-9b85-4ab8-9cd0-ed7da5febacb",
+                    "ervkUuid": "0ae96a12-866f-1b92-8186-73edb10e24ff",
+                    "title": "(ФЗ 248) Контрольный орган может проводить профилактические мероприятия по решению контрольного органа",
+                    "type": {
+                        "id": null,
+                        "name": null,
+                        "code": null,
+                        "digitCode": null,
+                        "hasText": true,
+                        "indicatorRiskRequired": false,
+                        "approveRequired": false,
+                        "dateRequired": false,
+                        "requirementDetailsRequired": false,
+                        "assignmentDateRequired": false,
+                        "assignmentNumberRequired": false,
+                        "flkRequired": false,
+                        "indicatorRiskRequiredAuto": false,
+                        "indicatorRiskRequiredFile": false,
+                        "detailsRequirement": false,
+                        "dateRequirement": false,
+                        "linkOther": false,
+                        "prescriptionFile": false,
+                        "title": "(ФЗ 248) Контрольный орган может проводить профилактические мероприятия по решению контрольного органа",
+                        "agreement": "Не требуется"
+                    },
+                    "text": " a",
+                    "date": null,
+                    "main": null,
+                    "approveRequired": null,
+                    "assignmentNumber": null,
+                    "assignmentDate": null,
+                    "requirementDetails": null,
+                    "dateRequirement": null,
+                    "dateCreate": null,
+                    "dateBegin": null,
+                    "dateEnd": null,
+                    "links": null,
+                    "flagProfvizit": null
+                },
+                "order": null,
+                "riskIndikators": null,
+                "indicatorRiskAuto": null,
+                "indicatorRiskAttachment": null,
+                "numGuid": "fae56ee5-f262-4585-a467-a7cdfc770c14",
+                "dateCreate": null
+            }
+        ],
+        "subject": {
+            "inn": "3122008429",
+            "ogrn": "1033106502120",
+            "okveds": [
+                {
+                    "code": "85.11",
+                    "name": "Образование дошкольное",
+                    "isMain": true,
+                    "numGuid": "4073a69b-b654-4123-876a-62837f2bbbbe",
+                    "dateCreate": null,
+                    "id": "85.11"
+                }
+            ],
+            "addressFns": null,
+            "organizationName": "МУНИЦИПАЛЬНОЕ БЮДЖЕТНОЕ ДОШКОЛЬНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ \"ПОДСЕРЕДНЕНСКИЙ ДЕТСКИЙ САД\" АЛЕКСЕЕВСКОГО ГОРОДСКОГО ОКРУГА",
+            "mspCode": null,
+            "checkSubjectResult": {
+                "requestTime": "2024-01-24T15:13:35.681703Z",
+                "egrul": {
+                    "id": null,
+                    "legacyId": null,
+                    "time": "2024-01-24T18:13:35.681711Z",
+                    "status": "IN_PROGRESS"
+                },
+                "egrip": {
+                    "id": null,
+                    "legacyId": null,
+                    "time": "2024-01-24T18:13:35.681714Z",
+                    "status": "NOT_FOUND"
+                },
+                "msp": {
+                    "id": null,
+                    "legacyId": null,
+                    "time": "2024-01-24T18:13:35.681715Z",
+                    "status": "IN_PROGRESS"
+                },
+                "toser": {
+                    "id": null,
+                    "legacyId": null,
+                    "time": "2024-01-24T18:13:35.682608Z",
+                    "status": "NOT_FOUND"
+                },
+                "spv": {
+                    "id": null,
+                    "legacyId": null,
+                    "time": "2024-01-24T18:13:35.684861Z",
+                    "status": "NOT_FOUND"
+                },
+                "oez": {
+                    "id": null,
+                    "legacyId": null,
+                    "time": "2024-01-24T18:13:35.686425Z",
+                    "status": "NOT_FOUND"
+                }
+            },
+            "dateCreate": null,
+            "firstOrganizationName": null,
+            "guid": "9a876f99-cb16-4507-8323-45a1087f8a42",
+            "act": null,
+            "isFiz": false,
+            "resultDecisions": null,
+            "isAutocomplete": true,
+            "isDocumentOrganization": null,
+            "nkoForeignAgentsRegistryNumber": null,
+            "nkoForeignAgentsRegistryInclusionDate": null,
+            "nkoForeignAgentsRegistryExclusionDate": null,
+            "subjectType": {
+                "code": "1",
+                "title": "Юридические лица",
+                "id": "Юридические лица",
+                "label": "Юридические лица"
+            },
+            "kpp": null,
+            "smevRequestStatus": null,
+            "rafpNza": null,
+            "isForeignSubjectAgencyNotRegistredInRf": null,
+            "country": null,
+            "isSonko": false,
+            "locationAddress": "309833, ОБЛАСТЬ БЕЛГОРОДСКАЯ, Р-Н АЛЕКСЕЕВСКИЙ, С ПОДСЕРЕДНЕЕ, УЛ. ОЛЬМИНСКОГО, Д. Д. 47, ",
+            "workAddress": null,
+            "factualAddress": null,
+            "snils": null,
+            "document": null,
+            "epguNotifications": null,
+            "ervkId": null,
+            "isPresentInItRegistry": false,
+            "itAccreditationResponse": {
+                "requestId": "2a8ad954-6ad7-4d24-8767-b1c696d6c4fe",
+                "requestStatus": "SUCCESS",
+                "registryNumber": null,
+                "dateRecord": null,
+                "fullNameOrganization": null,
+                "inn": null,
+                "dateDecisionAccreditation": null,
+                "numberDecisionAccreditation": null,
+                "dateChange": null,
+                "informationAboutChanges": null,
+                "organizationStatus": "ABSENT"
+            },
+            "smevItAccreditationRequestStatus": "SUCCESS",
+            "position": null,
+            "pmResultDecisions": null
+        },
+        "objects": [
+            {
+                "address": "309833, ОБЛАСТЬ БЕЛГОРОДСКАЯ, Р-Н АЛЕКСЕЕВСКИЙ, С ПОДСЕРЕДНЕЕ, УЛ. ОЛЬМИНСКОГО, Д. Д. 47, ",
+                "objectType": {
+                    "dictId": "641d3956-a5b1-11eb-bcbc-0242ac130002",
+                    "dictVersionId": "0af4cd2e-78cb-109b-8178-ea2e8d46040d"
+                },
+                "objectKind": {
+                    "dictId": "641d3bb8-a5b1-11eb-bcbc-0242ac130002",
+                    "dictVersionId": "0ae94760-7a6d-1f16-817a-7bac2df60864"
+                },
+                "objectSubKind": {
+                    "dictId": "641d3bb8-a5b1-11eb-bcbc-0242ac130002",
+                    "dictVersionId": "0ae94760-7a6d-1f16-817a-7bac2df60864"
+                },
+                "riskCategory": {
+                    "dictId": "18d790d4-a5a9-11eb-bcbc-0242ac130002",
+                    "dictVersionId": "0af4cd2e-78cb-109b-8178-d5aaf1430026"
+                },
+                "dangerClass": null,
+                "guid": "bc05a0d6-a8b9-40bd-8cc5-e5426adca4c6",
+                "ervkNumber": null,
+                "ervkId": null,
+                "name": null,
+                "streetGuid": null,
+                "houseGuid": null,
+                "roomGuid": null,
+                "steadGuid": null,
+                "addressFns": null,
+                "autocomplete": false,
+                "dateCreate": null,
+                "geolocation": null
+            }
+        ],
+        "events": [
+            {
+                "guid": "912480ef-afbf-4d40-8e1d-f60e3c3b2c23",
+                "event": {
+                    "dictId": "f0f9a79a-a5b3-11eb-bcbc-0242ac130002",
+                    "dictVersionId": "0af4cd2e-78cb-109b-8178-d5a7ba0e0012"
+                },
+                "startDate": "2024-01-26T00:00:00.000Z",
+                "stopDate": "2024-01-26T00:00:00.000Z",
+                "dateCreate": null,
+                "suspension": [],
+                "interactionCategory": {
+                    "id": 3,
+                    "name": "3 - дистанционные технологии не применялись",
+                    "label": "3 - дистанционные технологии не применялись",
+                    "value": 3
+                },
+                "inspectors": null,
+                "periodExtension": null
+            }
+        ],
+        "inspectors": null,
+        "isHasCollaboratingOrganization": null,
+        "collaboratingOrganizations": null,
+        "isHasNotification": null,
+        "dateOfNotification": null,
+        "isRejectSubject": null,
+        "dateRejectSubject": null,
+        "resultOfInspection": null,
+        "requirements": [
+            {
+                "npaId": 925845,
+                "number": "881",
+                "title": "Евразийская экономическая комиссия: Решение Комиссии Таможенного союза от 2011-02-09 №881 «ТР ТС 022/2011. Технический регламент Таможенного союза. Пищевая продукция в части ее маркировки»",
+                "acceptanceDate": "2011-02-09",
+                "structuralUnit": {
+                    "id": 3325962,
+                    "title": "Пункт 1, Статья 5",
+                    "mandatoryRequirements": [
+                        {
+                            "id": 2838527,
+                            "title": " Соответствие маркировки пищевой продукции настоящему техническому регламенту Таможенного союза обеспечивается выполнением его требований к маркировке непосредственно и выполнением требований технических регламентов Таможенного союза на отдельные виды пищевой продукции, устанавливающих дополнительные требования к ее маркировке."
+                        }
+                    ]
+                }
+            }
+        ],
+        "pmRejects": null,
+        "approveDocs": null,
+        "accessPrivilege": null,
+        "pm_reject": null,
+        "violations": null,
+        "isViolations": null,
+        "isUnableToRefuse": null,
+        "withoutIssue": null,
+        "originalStopDate": null
+    },
+    "version": "ERKNM",
+    "smevInteractions": null,
+    "clientTime": "2024-01-24T18:26:02.593Z",
+    "snapshotGroupId": null,
+    "completed336": false,
+    "createPlan": false,
+    "subjectNotifications": null,
+    "signStatus": null
+}

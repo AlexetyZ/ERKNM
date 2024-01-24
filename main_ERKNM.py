@@ -241,6 +241,10 @@ class erknm:
                 popit += 1
                 time.sleep(10)
 
+    def get_reqirements_from_pm(self, trueId):
+        pmJson = self.get_knm_by_true_id(trueId)
+        return pmJson['pmErknm']['requirements']
+
     def get_knm_by_number(self, number):
         result_0 = self.browser.execute_script(
             f"""const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-index/api/knm/find-indexes?page=0&size=50&order=erpId%2Casc', """ + """{method: 'POST', headers: {'Accept': 'application/json','Content-Type': 'application/json'}, body: JSON.stringify({""" + f'''"name":"все проверки","years":[2022,2015,2016,2017,2018,2019,2020,2021,2023],"domainIds":[1000000000000001],"includeDomainChild":true,"ignoreKno":false,"federalLawIds":[3],"knmTypeIds":[6,4,5],"controllingOrganizationIds":["10000001082"],"includeChildKno":true,"supervisionTypeId":"","subjectInn":null,"subjectOrgName":null,"planNum":null,"approveDocOrderNum":null,"approveDocRequestNum":null,"objectOgrn":null,"prosecutorOrganizationIds":[],"legalBasisDocName":null,"statusIds":[],"pubStatuses":[], searchString: "{number}", "subjectTypeIds":[],"erpId":null,"inspectorFullName":null,"address":null,"kinds":["Контрольная закупка","Рейдовый осмотр","Выборочный контроль","Инспекционный визит","Мониторинговая закупка","Документарная проверка","Выездная проверка"],"version":"ERKNM"''' + """})});const content = await rawResponse.json();return content;""")

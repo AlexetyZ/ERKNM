@@ -1,54 +1,45 @@
 from sys import argv
 from sql_cubes import Database
+from datetime import datetime
 from cubeOpeartion import makeSet as MS
 
 
 def loadCube():
+    print(f'начало операции - {datetime.now()}')
     d = Database()
     funcs = [
         d.create_table_prosecutor_apply_period,
         d.create_table_RHS_tu_objectsKind_risk,
-        d.create_table_RHS_tu_okved_risk
+        d.create_table_RHS_tu_okved_risk,
+        d.create_table_denied_knm_type_tu_kind_reason_day,
+        d.create_table_accepted_knm_type_tu_kind_reason_day,
+        d.create_table_accepted_objects_kind_tu_day,
+        d.create_table_denied_objects_kind_tu_day,
+
+
     ]
     for func in funcs:
         try:
             func()
-        except:
-            pass
+        except Exception as ex:
+            print(func.__name__, ex)
 
-    d.load_RHS_tu_objectsKind_risk()
-    d.load_RHS_tu_okved_risk()
+    # d.load_RHS_tu_objectsKind_risk()
+    # d.load_RHS_tu_okved_risk()
     d.load_prosecutor_apply_period()
 
+    d.load_objects_kind_tu_day(status='accepted')
+    d.load_objects_kind_tu_day(status='denied')
 
-
-
-def loadCubeYear(year):
-    if len(str(year)) == 4:
-        d = Database()
-        try:
-            d.create_table_accepted_objects_kind_tu_day(year)
-            d.create_table_diened_objects_kind_tu_day(year)
-        except:
-            pass
-
-        d.load_objects_kind_tu_day(year, status='accepted')
-        d.load_objects_kind_tu_day(year, status='diened')
-    else:
-        print("year (второй аргумент) должен быть четырехзначным")
+    d.knm_type_tu_kind_reason_day(status='accepted')
+    d.knm_type_tu_kind_reason_day(status='denied')
 
 
 def _help():
-    text = ("load_cube: [год YYYY или года в формате YYYY-YYYY] загрузить куб, при условии, что есть чистая база данных без предыдущих кубов\n"
+    text = ("load_cube: загрузить куб, при условии, что есть чистая база данных без предыдущих кубов\n"
             "truncate_cube: удалить все таблицы кубов\n"
             "reload_cube: перезалить кубы - удалить существующие и залить новые")
     print(text)
-
-
-def mainLoad(arg2: str):
-    for year in [int(year) for year in arg2.split('-')]:
-        loadCubeYear(year)
-    loadCube()
 
 
 def main():
@@ -56,14 +47,14 @@ def main():
     print(command)
     match command:
         case 'load_cube':
-            mainLoad(argv[2])
+            loadCube()
 
         case 'truncate_cube':
             Database().truncateCube()
 
         case 'reload_cube':
             Database().truncateCube()
-            mainLoad(argv[2])
+            loadCube()
 
         case 'help':
             _help()

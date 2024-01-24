@@ -55,7 +55,7 @@ def periods_into_month(year: int = 2023, month: int = 1, parts: int = 2):
     return result
 
 
-def split_period(date_start, date_end, parts: int = 2):
+def split_period(date_start, date_end, parts: int = 2) -> list:
     start = datetime.datetime.strptime(date_start, '%Y-%m-%d')
     end = datetime.datetime.strptime(date_end, '%Y-%m-%d')
     delta = (end - start).days + 1 - parts
@@ -78,7 +78,7 @@ def split_period(date_start, date_end, parts: int = 2):
     return result
 
 
-def split_year_for_periods(year: int, parts: int = 50):
+def split_year_for_periods(year: int, parts: int = 50) -> list:
     return split_period(date_start=f'{year}-01-01', date_end=f'{year}-12-31', parts=parts)
 
 

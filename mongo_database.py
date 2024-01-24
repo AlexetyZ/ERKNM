@@ -192,9 +192,9 @@ class WorkMongo:
             {'$unwind': "$objectsKind"},
             # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
 
-            {'$match': {'planId': {"$ne": None}, 'status': {
+            {'$match': {'status': {
                 '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}}, {'$group': {
-                '_id': {'controllingOrganization': "$controllingOrganization", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
+                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType", 'kind': "$kind", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
                         "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
 
     def reportFromDeniedKNMObjectCategoryByDate(self):
@@ -202,10 +202,36 @@ class WorkMongo:
             {'$unwind': "$objectsKind"},
             # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
 
-            {'$match': {'planId': {"$ne": None}, 'status': {
+            {'$match': {'status': {
                 '$in': ['Исключена']}}}, {'$group': {
-                '_id': {'controllingOrganization': "$controllingOrganization", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
+                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType", 'kind': "$kind", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
                         "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
+
+    def reportFromAcceptKNMTypeKindReasonByDate(self):
+        return self.collection.aggregate([
+
+            # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
+
+            {'$match': {'status': {
+                '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}},
+            {'$unwind': '$reasonsList'},
+            {'$group': {
+                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType",
+                        "status": "$status", 'startDateEn': '$startDateEn',
+                        'kind': "$kind", 'reason': "$reasonsList.text"}, 'objectsCount': {"$sum": 1}}}])
+
+    def reportFromDeniedKNMTypeKindReasonByDate(self):
+        return self.collection.aggregate([
+            {'$unwind': "$objectsKind"},
+            # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
+
+            {'$match': {'status': {
+                '$in': ['Исключена']}}},
+            {'$unwind': '$reasonsList'},
+            {'$group': {
+                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType",
+                        "status": "$status",  "startDateEn": '$startDateEn',
+                        'kind': "$kind", 'reason': "$reasonsList.text"}, 'objectsCount': {"$sum": 1}}}])
 
     def reportFromDeniedKNMObjectCategoryKNM(self):
         return self.collection.aggregate(
@@ -341,18 +367,6 @@ class WorkMongo:
             }
         ])
 
-    def reportFromAcceptKNMTypeKindReasonByDate(self, date):
-        return self.collection.aggregate([
-            {'$unwind': "$objectsKind"},
-            # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
-
-            {'$match': {'planId': {"$ne": None}, "startDateEn": date, 'status': {
-                '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}},
-            {'$unwind': '$reasonsList'},
-            {'$group': {
-                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType",
-                        "status": "$status",
-                        'kind': "$kind", 'reason': "$reasonsList.text"}, 'objectsCount': {"$sum": 1}}}])
 
     def reportPeriodApplyingProsecutors(self):
         """
@@ -385,17 +399,17 @@ class WorkMongo:
 
         return self.collection.aggregate(pipline)
 
-    def reportFromDeniedKNMTypeKindReasonByDate(self, date):
+    def reportFromDeniedKNMTypeKindReasonByDate(self):
         return self.collection.aggregate([
             {'$unwind': "$objectsKind"},
             # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
 
-            {'$match': {'planId': {"$ne": None}, "startDateEn": date, 'status': {
+            {'$match': {'planId': {"$ne": None}, 'status': {
                 '$in': ['Исключена']}}},
             {'$unwind': '$reasonsList'},
             {'$group': {
                 '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType",
-                        "status": "$status",
+                        "status": "$status",  "startDateEn": "$startDateEn",
                         'kind': "$kind", 'reason': "$reasonsList.text"}, 'objectsCount': {"$sum": 1}}}])
 
     # def getKNMByRiskIndicators
