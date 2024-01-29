@@ -207,6 +207,8 @@ class WorkMongo:
                 '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType", 'kind': "$kind", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
                         "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
 
+
+
     def reportFromAcceptKNMTypeKindReasonByDate(self):
         return self.collection.aggregate([
 
@@ -413,6 +415,25 @@ class WorkMongo:
                         'kind': "$kind", 'reason': "$reasonsList.text"}, 'objectsCount': {"$sum": 1}}}])
 
     # def getKNMByRiskIndicators
+    def reportKNM_by_kind_objects(self, kinds):
+        pipline = [
+            {"$match": {
+                "objectsKind": {"$in": kinds},
+                "supervisionTypeId": "004"
+            }
+             },
+            {"$group": {
+                "_id": {"controllingOrganization": "$controllingOrganization",
+                        "kind": "$kind",
+                        "knmType": "$knmType",
+                        "startDateEn": "$startDateEn",
+                        "status": "$status"
+                        },
+                "objectsCount": {"$sum": 1}
+            }
+             }
+        ]
+        return self.collection.aggregate(pipline)
 
 
 def objects_kind_tu_count_by_dates(dates: list):  # date format yyyy-mm-dd

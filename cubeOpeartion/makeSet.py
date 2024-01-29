@@ -5,7 +5,7 @@ from mongo_rhs import WorkMongo as wmRHS
 from pprint import pprint
 from Dates_manager import getListDaysFromYear
 from tqdm import tqdm
-from Dictionary import getActualTuName, sortObjectKindInGroup, tu_iso, tuCodeRegion
+from Dictionary import getActualTuName, sortObjectKindInGroup, tu_iso, tuCodeRegion, group_kinds
 import uuid
 from Dates_manager import differenceCalendaryDays, reformDateToEn
 
@@ -45,6 +45,28 @@ def makeKnmTypeTuDateSet(statusGroup: str = 'accepted'):
         knm['month'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').month
         knm['year'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').year
     return knms
+
+
+def makeKNMByObjectsKind(groupName, kinds):
+    wm_knm = wmKNM('knm')
+    knms = wm_knm.reportKNM_by_kind_objects(kinds)
+    knms = unpac_idAggregation(knms)
+    for knm in knms:
+        actualName = getActualTuName(knm['controllingOrganization'])
+        if not actualName:
+            continue
+        knm['controllingOrganization'] = actualName
+        knm['codeRegion'] = tuCodeRegion[actualName]
+        knm['iso'] = tu_iso[actualName]
+        knm['groupName'] = groupName
+        knm['month'] = knm['month'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').month
+        knm['year'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').year
+    return knms
+
+
+def makeKNMAByObjectsAllKind():
+    for groupName, kinds in group_kinds.items():
+        yield makeKNMByObjectsKind(groupName, kinds)
 
 
 def make_prosecutor_apply_period():

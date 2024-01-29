@@ -23,7 +23,7 @@ class Database:
         self.conn = pymysql.connect(
             user='root',
             password='ntygazRPNautoz',
-            host='10.1.13.137',
+            host='0.0.0.0',
             port=3308,
             database='knm'
         )

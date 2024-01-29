@@ -13,7 +13,7 @@ class Database:
         self.conn = pymysql.connect(
             user='root',
             password='ntygazRPNautoz',
-            host='10.1.13.137',
+            host='0.0.0.0',
             port=3308,
             database='cubes'
         )
@@ -45,6 +45,54 @@ class Database:
             );"""
             cursor.execute(request)
             self.conn.commit()
+
+    def create_table_KNM_by_objects_kind(self):
+        with self.conn.cursor() as cursor:
+            request = f"""CREATE TABLE knm_by_objects_kins(
+                controllingOrganization VARCHAR(255),
+                codeRegion INT, 
+                iso VARCHAR(255),
+                groupName VARCHAR(255),
+                startDateEn DATE,
+                month INT,
+                year INT,
+                kind VARCHAR(255),
+                knmType VARCHAR(255),
+                status VARCHAR(255),
+                objectsCount INT                 
+            );"""
+            cursor.execute(request)
+            self.conn.commit()
+
+
+    def load_knm_by_kind_objects(self):
+        _set = list(MS.makeKNMAByObjectsAllKind())
+        # for i in _set[0]:
+        #     if not i['controllingOrganization']:
+        #         print(i)
+        _set = [[cell['controllingOrganization'],
+                 cell['codeRegion'],
+                 cell['iso'],
+                 cell['groupName'],
+                 cell['startDateEn'], cell['month'], cell['year'], cell['kind'], cell['knmType'], cell['status'],
+                 cell['objectsCount']] for cell in _set[0]]
+
+        with self.conn.cursor() as cursor:
+            request = f"""INSERT INTO knm_by_objects_kins(
+                controllingOrganization,
+                codeRegion, 
+                iso,
+                groupName,
+                startDateEn,
+                month,
+                year,
+                kind,
+                knmType,
+                status,
+                objectsCount) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+            cursor.executemany(request, _set)
+            self.conn.commit()
+        print(f'заполнена таблица проверок в отношении разных групп объектов контроля- {datetime.datetime.now()}')
 
     def create_table_accepted_objects_kind_tu_day(self):
         with self.conn.cursor() as cursor:
