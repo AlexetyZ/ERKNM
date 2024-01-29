@@ -5,6 +5,7 @@ from pprint import pprint
 from Dates_manager import getListDaysFromYear
 from cubeOpeartion import makeSet as MS
 from sys import argv
+from Dictionary import group_kinds
 
 
 class Database:
@@ -66,32 +67,33 @@ class Database:
 
 
     def load_knm_by_kind_objects(self):
-        _set = list(MS.makeKNMAByObjectsAllKind())
-        # for i in _set[0]:
-        #     if not i['controllingOrganization']:
-        #         print(i)
-        _set = [[cell['controllingOrganization'],
-                 cell['codeRegion'],
-                 cell['iso'],
-                 cell['groupName'],
-                 cell['startDateEn'], cell['month'], cell['year'], cell['kind'], cell['knmType'], cell['status'],
-                 cell['objectsCount']] for cell in _set[0]]
+        for groupName, kinds in group_kinds.items():
+            _set = MS.makeKNMByObjectsKind(groupName, kinds)
+            # for i in _set[0]:
+            #     if not i['controllingOrganization']:
+            #         print(i)
+            _set = [[cell['controllingOrganization'],
+                     cell['codeRegion'],
+                     cell['iso'],
+                     cell['groupName'],
+                     cell['startDateEn'], cell['month'], cell['year'], cell['kind'], cell['knmType'], cell['status'],
+                     cell['objectsCount']] for cell in _set]
 
-        with self.conn.cursor() as cursor:
-            request = f"""INSERT INTO knm_by_objects_kins(
-                controllingOrganization,
-                codeRegion, 
-                iso,
-                groupName,
-                startDateEn,
-                month,
-                year,
-                kind,
-                knmType,
-                status,
-                objectsCount) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
-            cursor.executemany(request, _set)
-            self.conn.commit()
+            with self.conn.cursor() as cursor:
+                request = f"""INSERT INTO knm_by_objects_kins(
+                    controllingOrganization,
+                    codeRegion, 
+                    iso,
+                    groupName,
+                    startDateEn,
+                    month,
+                    year,
+                    kind,
+                    knmType,
+                    status,
+                    objectsCount) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+                cursor.executemany(request, _set)
+        self.conn.commit()
         print(f'заполнена таблица проверок в отношении разных групп объектов контроля- {datetime.datetime.now()}')
 
     def create_table_accepted_objects_kind_tu_day(self):
