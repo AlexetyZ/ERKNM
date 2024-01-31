@@ -47,18 +47,22 @@ def makeKnmTypeTuDateSet(statusGroup: str = 'accepted'):
     return knms
 
 
-def makeKNMByObjectsKind(groupName, kinds):
+def makeKNMByObjectsKind(groupName, kinds, risks, notIn: bool = False):
     wm_knm = wmKNM('knm')
-    knms = wm_knm.reportKNM_by_kind_objects(kinds)
+    knms = wm_knm.reportKNM_by_kind_objects(kinds, risks, notIn=notIn)
     knms = unpac_idAggregation(knms)
     for knm in knms:
         actualName = getActualTuName(knm['controllingOrganization'])
         if not actualName:
             continue
         knm['controllingOrganization'] = actualName
+        if not tuCodeRegion[actualName]:
+            raise Exception(knm['controllingOrganization'])
         knm['codeRegion'] = tuCodeRegion[actualName]
         knm['iso'] = tu_iso[actualName]
         knm['groupName'] = groupName
+        knm['risk'] = risks
+
         knm['month'] = knm['month'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').month
         knm['year'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').year
     return knms

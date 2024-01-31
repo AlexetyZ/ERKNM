@@ -146,11 +146,12 @@ def zipLists():
 
     return zip(addresses, riskCategory, objectsType, objectsKind)
 
+
 def createUUID():
-    knm = {'startDateEn': '2024-01-22'}
-    return datetime.strptime(knm['startDateEn'], '%Y-%m-%d').year
-
-
+    import Dictionary as d
+    b = []
+    [b.extend(a) for a in d.group_kinds.values()]
+    return b
 
 if __name__ == '__main__':
     print(createUUID())

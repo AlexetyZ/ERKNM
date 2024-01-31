@@ -224,7 +224,7 @@ class WorkMongo:
 
     def reportFromDeniedKNMTypeKindReasonByDate(self):
         return self.collection.aggregate([
-            {'$unwind': "$objectsKind"},
+            # {'$unwind': "$objectsKind"},
             # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
 
             {'$match': {'status': {
@@ -415,11 +415,16 @@ class WorkMongo:
                         'kind': "$kind", 'reason': "$reasonsList.text"}, 'objectsCount': {"$sum": 1}}}])
 
     # def getKNMByRiskIndicators
-    def reportKNM_by_kind_objects(self, kinds):
+    def reportKNM_by_kind_objects(self, kinds, risks, notIn: bool = False):
+        if not isinstance(risks, list):
+            risks = [risks]
+        if not isinstance(kinds, list):
+            kinds = [kinds]
         pipline = [
             {"$match": {
-                "objectsKind": {"$in": kinds},
-                "supervisionTypeId": "004"
+                "objectsKind": {"$nin": kinds} if notIn else {"$in": kinds},
+                "supervisionTypeId": "004",
+                "riskCategory": {"$in": risks}
             }
              },
             {"$group": {

@@ -5,7 +5,7 @@ from pprint import pprint
 from Dates_manager import getListDaysFromYear
 from cubeOpeartion import makeSet as MS
 from sys import argv
-from Dictionary import group_kinds
+from Dictionary import group_kinds, risk_categories
 
 
 class Database:
@@ -57,6 +57,7 @@ class Database:
                 startDateEn DATE,
                 month INT,
                 year INT,
+                risk VARCHAR(255),
                 kind VARCHAR(255),
                 knmType VARCHAR(255),
                 status VARCHAR(255),
@@ -67,13 +68,10 @@ class Database:
 
 
     def load_knm_by_kind_objects(self):
-        for groupName, kinds in group_kinds.items():
-            _set = MS.makeKNMByObjectsKind(groupName, kinds)
-            # for i in _set[0]:
-            #     if not i['controllingOrganization']:
-            #         print(i)
+        def getLoad(_set):
             _set = [[cell['controllingOrganization'],
                      cell['codeRegion'],
+                     cell['risk'],
                      cell['iso'],
                      cell['groupName'],
                      cell['startDateEn'], cell['month'], cell['year'], cell['kind'], cell['knmType'], cell['status'],
@@ -81,19 +79,34 @@ class Database:
 
             with self.conn.cursor() as cursor:
                 request = f"""INSERT INTO knm_by_objects_kins(
-                    controllingOrganization,
-                    codeRegion, 
-                    iso,
-                    groupName,
-                    startDateEn,
-                    month,
-                    year,
-                    kind,
-                    knmType,
-                    status,
-                    objectsCount) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+                                controllingOrganization,
+                                codeRegion, 
+                                risk,
+                                iso,
+                                groupName,
+                                startDateEn,
+                                month,
+                                year,
+                                kind,
+                                knmType,
+                                status,
+                                objectsCount) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
                 cursor.executemany(request, _set)
-        self.conn.commit()
+            self.conn.commit()
+
+        for risk in risk_categories:
+            for groupName, kinds in group_kinds.items():
+                _set = MS.makeKNMByObjectsKind(groupName, kinds, str(risk).lower(), notIn=False)
+                getLoad(_set)
+            else:
+                allKinds = []
+                [allKinds.extend(a) for a in group_kinds.values()]
+                _set = MS.makeKNMByObjectsKind('Иные виды деятельности', allKinds, str(risk).lower(),  notIn=True)
+                try:
+                    getLoad(_set)
+                except Exception as ex:
+                    raise Exception(ex)
+
         print(f'заполнена таблица проверок в отношении разных групп объектов контроля- {datetime.datetime.now()}')
 
     def create_table_accepted_objects_kind_tu_day(self):
