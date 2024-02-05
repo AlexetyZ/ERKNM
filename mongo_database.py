@@ -224,16 +224,20 @@ class WorkMongo:
 
     def reportFromDeniedKNMTypeKindReasonByDate(self):
         return self.collection.aggregate([
-            # {'$unwind': "$objectsKind"},
+
             # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
 
             {'$match': {'status': {
                 '$in': ['Исключена']}}},
-            {'$unwind': '$reasonsList'},
+            # {'$unwind': '$reasonsList'},
             {'$group': {
-                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType",
-                        "status": "$status",  "startDateEn": '$startDateEn',
-                        'kind': "$kind", 'reason': "$reasonsList.text"}, 'objectsCount': {"$sum": 1}}}])
+                '_id': {'controllingOrganization': "$controllingOrganization",
+                        # 'knmtype': "$knmType",
+                        # "status": "$status",
+                        # 'startDateEn': '$startDateEn',
+                        # 'kind': "$kind",
+                        # 'reason': "$reasonsList.text"
+                        }, 'objectsCount': {"$sum": 1}}}])
 
     def reportFromDeniedKNMObjectCategoryKNM(self):
         return self.collection.aggregate(
@@ -423,12 +427,13 @@ class WorkMongo:
         pipline = [
             {"$match": {
                 "objectsKind": {"$nin": kinds} if notIn else {"$in": kinds},
-                "supervisionTypeId": "004",
+                # "supervisionTypeId": "004",
                 "riskCategory": {"$in": risks}
             }
              },
             {"$group": {
                 "_id": {"controllingOrganization": "$controllingOrganization",
+                        "supervisionType": "$supervisionType",
                         "kind": "$kind",
                         "knmType": "$knmType",
                         "startDateEn": "$startDateEn",
@@ -450,10 +455,14 @@ def objects_kind_tu_count_by_dates(dates: list):  # date format yyyy-mm-dd
 if __name__ == '__main__':
     wm = WorkMongo()
     # date = '2024-05-01'
-    unpacked = unpac_idAggregation(list(wm.reportPeriodApplyingProsecutors()))
-    # pprint(unpacked)
+    unpacked = unpac_idAggregation(list(wm.reportFromDeniedKNMTypeKindReasonByDate()))
+    summ = 0
     for u in unpacked:
-        print(u['orderDate'], u['responceDate'])
+        if u['controllingOrganization'] == 'Управление Роспотребнадзора по Московской области':
+            summ += u['objectsCount']
+            print(u)
+
+    print(summ)
 
     # objects_kind_tu_count = wm.getKnmFromDate("2024-07-12")
     # pprint(list(objects_kind_tu_count))

@@ -19,7 +19,11 @@ def makeObjectsKindTuDateSet(statusGroup: str = 'accepted'):
     knms = function()
     knms = unpac_idAggregation(knms)
     for knm in knms:
+        if knm['controllingOrganization'] == 'Федеральная служба по надзору в сфере защиты прав потребителей и благополучия человека':
+            continue
         actualName = getActualTuName(knm['controllingOrganization'])
+        if not actualName or actualName == 'Федеральная служба по надзору в сфере защиты прав потребителей и благополучия человека':
+            continue
         knm['controllingOrganization'] = actualName
         knm['codeRegion'] = tuCodeRegion[actualName]
         knm['iso'] = tu_iso[actualName]
@@ -39,6 +43,8 @@ def makeKnmTypeTuDateSet(statusGroup: str = 'accepted'):
     knms = unpac_idAggregation(knms)
     for knm in knms:
         actualName = getActualTuName(knm['controllingOrganization'])
+        if not actualName:
+            continue
         knm['controllingOrganization'] = actualName
         knm['codeRegion'] = tuCodeRegion[actualName]
         knm['iso'] = tu_iso[actualName]
@@ -89,7 +95,7 @@ def make_prosecutor_apply_period():
         normalCalculation = differenceCalendaryDays(_obj['orderDate'], _obj['responceDate']) * _obj['objectsCount']
         actualName = getActualTuName(_obj['controllingOrganization'])
         if not actualName:
-            print(_obj['controllingOrganization'])
+            continue
         _obj['controllingOrganization'] = actualName
         _obj['codeRegion'] = tuCodeRegion[actualName]
         _obj['iso'] = tu_iso[actualName]

@@ -1,5 +1,5 @@
 import datetime
-
+from tqdm import tqdm
 import pymysql
 from pprint import pprint
 from Dates_manager import getListDaysFromYear
@@ -49,8 +49,9 @@ class Database:
 
     def create_table_KNM_by_objects_kind(self):
         with self.conn.cursor() as cursor:
-            request = f"""CREATE TABLE knm_by_objects_kins(
+            request = f"""CREATE TABLE knm_by_objects_kinds(
                 controllingOrganization VARCHAR(255),
+                supervisionType VARCHAR(255),
                 codeRegion INT, 
                 iso VARCHAR(255),
                 groupName VARCHAR(255),
@@ -70,16 +71,18 @@ class Database:
     def load_knm_by_kind_objects(self):
         def getLoad(_set):
             _set = [[cell['controllingOrganization'],
+                     cell['supervisionType'],
                      cell['codeRegion'],
                      cell['risk'],
                      cell['iso'],
                      cell['groupName'],
                      cell['startDateEn'], cell['month'], cell['year'], cell['kind'], cell['knmType'], cell['status'],
-                     cell['objectsCount']] for cell in _set]
+                     cell['objectsCount']] for cell in _set if 'codeRegion' in cell]
 
             with self.conn.cursor() as cursor:
-                request = f"""INSERT INTO knm_by_objects_kins(
+                request = f"""INSERT INTO knm_by_objects_kinds(
                                 controllingOrganization,
+                                supervisionType,
                                 codeRegion, 
                                 risk,
                                 iso,
@@ -90,12 +93,12 @@ class Database:
                                 kind,
                                 knmType,
                                 status,
-                                objectsCount) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+                                objectsCount) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
                 cursor.executemany(request, _set)
             self.conn.commit()
 
-        for risk in risk_categories:
-            for groupName, kinds in group_kinds.items():
+        for risk in tqdm(risk_categories, desc='сбор по категориям риска'):
+            for groupName, kinds in tqdm(group_kinds.items(), desc="Сбор по видам"):
                 _set = MS.makeKNMByObjectsKind(groupName, kinds, str(risk).lower(), notIn=False)
                 getLoad(_set)
             else:
@@ -150,7 +153,7 @@ class Database:
     def load_prosecutor_apply_period(self):
         _set = MS.make_prosecutor_apply_period()
         _set = [[cell['difference'], cell['avgsumdate'], cell['codeRegion'], cell['controllingOrganization'], cell['iso'], cell['orderDate'], cell['responceDate'],
-                 cell['objectsCount'], cell['year']] for cell in _set]
+                 cell['objectsCount'], cell['year']] for cell in _set if 'codeRegion' in cell]
         with self.conn.cursor() as cursor:
             request = f"""INSERT INTO prosecutorAply(
                             difference,
@@ -188,7 +191,7 @@ class Database:
 
     def load_objects_kind_tu_day(self, status: str = 'accepted'):
         _set = MS.makeObjectsKindTuDateSet(status)
-        _set = [[cell['objectsKind'], cell['controllingOrganization'], cell['codeRegion'], cell['iso'], cell['status'], cell['knmtype'], cell['kind'], cell['startDateEn'], cell['month'], cell['year'], cell['objectsCount'], cell['groupKind']] for cell in _set]
+        _set = [[cell['objectsKind'], cell['controllingOrganization'], cell['codeRegion'], cell['iso'], cell['status'], cell['knmtype'], cell['kind'], cell['startDateEn'], cell['month'], cell['year'], cell['objectsCount'], cell['groupKind']] for cell in _set if "codeRegion" in cell]
         with self.conn.cursor() as cursor:
             request = f"""INSERT INTO {status}Objects_kind_tu_day(
                 objectsKind, 
@@ -247,12 +250,32 @@ class Database:
     def truncateCube(self):
         with self.conn.cursor() as cursor:
             tables = "SHOW TABLES;"
-            iskl = ['rhs_tu_ObjectsKind_risk', 'rhs_tu_okved_risk']
+            iskl = ['rhs_tu_ObjectsKind_risk', 'rhs_tu_okved_risk',
+                    'acceptedKnm_type_tu_kind_reason_day_2021', 'acceptedObjects_kind_tu_day_2021', 'deniedKnm_type_tu_kind_reason_day_2021',
+                    'deniedObjects_kind_tu_day_2021', 'knm_by_objects_kinds_2021', 'prosecutorAply_2021', 'rhs_tu_ObjectsKind_risk_2021',
+                    'rhs_tu_okved_risk_2021',
+
+                    'acceptedKnm_type_tu_kind_reason_day_2022', 'acceptedObjects_kind_tu_day_2022',
+                    'deniedKnm_type_tu_kind_reason_day_2022',
+                    'deniedObjects_kind_tu_day_2022', 'knm_by_objects_kinds_2022', 'prosecutorAply_2022',
+                    'rhs_tu_ObjectsKind_risk_2022',
+                    'rhs_tu_okved_risk_2022',
+
+                    'acceptedKnm_type_tu_kind_reason_day_2023', 'acceptedObjects_kind_tu_day_2023',
+                    'deniedKnm_type_tu_kind_reason_day_2023',
+                    'deniedObjects_kind_tu_day_2023', 'knm_by_objects_kinds_2023', 'prosecutorAply_2023',
+                    'rhs_tu_ObjectsKind_risk_2023',
+                    'rhs_tu_okved_risk_2023',
+
+
+                    ]
             cursor.execute(tables)
             existedTables = [table[0] for table in cursor.fetchall()]
-            request = f"""DROP TABLE {', '.join([table for table in existedTables if table not in iskl])}"""
-            cursor.execute(request)
-            self.conn.commit()
+            tablesToDelete = [table for table in existedTables if table not in iskl]
+            if tablesToDelete:
+                request = f"""DROP TABLE {', '.join(tablesToDelete)}"""
+                cursor.execute(request)
+                self.conn.commit()
 
     def create_table_accepted_knm_type_tu_kind_reason_day(self):
         with self.conn.cursor() as cursor:
@@ -293,7 +316,7 @@ class Database:
     def knm_type_tu_kind_reason_day(self, year: int = 2024, status: str = 'accepted'):
         _set = MS.makeKnmTypeTuDateSet(status)
         _set = [[cell['controllingOrganization'], cell['iso'], cell['codeRegion'], cell['status'], cell['startDateEn'], cell['month'], cell['year'], cell['knmtype'],
-                 cell['kind'], cell['reason'], cell['objectsCount']] for cell in _set]
+                 cell['kind'], cell['reason'], cell['objectsCount']] for cell in _set if "codeRegion" in cell]
         with self.conn.cursor() as cursor:
             request = f"""INSERT INTO {status}Knm_type_tu_kind_reason_day(
                 controllingOrganization, 

@@ -1584,6 +1584,6 @@ def sortObjectKindInGroup(objectKind: str) -> str or None:
 
 
 if __name__ == '__main__':
-    objectKind = 'Деятельность аптечных организаций'
-    print(sortObjectKindInGroup(objectKind))
+    objectKind = 'Федеральная служба по надзору в сфере защиты прав потребителей и благополучия человека'
+    print(getActualTuName(objectKind))
 
