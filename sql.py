@@ -6,7 +6,8 @@ import traceback
 from datetime import date
 from pathlib import Path
 import openpyxl
-from private_config import default_path_to_save_result
+
+from private_config import default_path_to_save_result, net_address
 from main_ERKNM import erknm
 
 # from REG_to_APPLY import Registration_sadik
@@ -23,7 +24,7 @@ class Database:
         self.conn = pymysql.connect(
             user='root',
             password='ntygazRPNautoz',
-            host='0.0.0.0',
+            host=net_address,
             port=3308,
             database='knm'
         )
