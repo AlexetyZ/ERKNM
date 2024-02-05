@@ -6,6 +6,7 @@ from Dates_manager import getListDaysFromYear
 from cubeOpeartion import makeSet as MS
 from sys import argv
 from Dictionary import group_kinds, risk_categories
+from private_config import net_address
 
 
 class Database:
@@ -14,7 +15,7 @@ class Database:
         self.conn = pymysql.connect(
             user='root',
             password='ntygazRPNautoz',
-            host='0.0.0.0',
+            host=net_address,
             port=3308,
             database='cubes'
         )
@@ -51,7 +52,7 @@ class Database:
         with self.conn.cursor() as cursor:
             request = f"""CREATE TABLE knm_by_objects_kinds(
                 controllingOrganization VARCHAR(255),
-                supervisionType VARCHAR(255),
+                supervisionType TEXT,
                 codeRegion INT, 
                 iso VARCHAR(255),
                 groupName VARCHAR(255),
@@ -72,7 +73,7 @@ class Database:
         with self.conn.cursor() as cursor:
             request = f"""CREATE TABLE knm_by_ordinary(
                 controllingOrganization VARCHAR(255),
-                supervisionType VARCHAR(255),
+                supervisionType TEXT,
                 codeRegion INT, 
                 iso VARCHAR(255),
                 startDateEn DATE,
@@ -405,20 +406,7 @@ def main(year):
 
 
 if __name__ == '__main__':
-    command = argv[1]
-    match command:
-        case 'load_cube':
-            main(int(argv[2]))
-
-        case 'truncate_cube':
-            Database().truncateCube()
-
-        case 'reload_cube':
-            Database().truncateCube()
-            main(int(argv[2]))
-
-        case 'help':
-            _help()
+    Database().knm_type_tu_kind_reason_day(status='denied')
 
 
 

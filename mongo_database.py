@@ -227,14 +227,14 @@ class WorkMongo:
 
             {'$match': {'status': {
                 '$in': ['Исключена']}}},
-            # {'$unwind': '$reasonsList'},
+            {'$unwind': '$reasonsList'},
             {'$group': {
                 '_id': {'controllingOrganization': "$controllingOrganization",
-                        # 'knmtype': "$knmType",
-                        # "status": "$status",
-                        # 'startDateEn': '$startDateEn',
-                        # 'kind': "$kind",
-                        # 'reason': "$reasonsList.text"
+                        'knmtype': "$knmType",
+                        "status": "$status",
+                        'startDateEn': '$startDateEn',
+                        'kind': "$kind",
+                        'reason': "$reasonsList.text"
                         }, 'objectsCount': {"$sum": 1}}}])
 
     def reportFromDeniedKNMObjectCategoryKNM(self):
