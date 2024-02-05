@@ -207,8 +207,6 @@ class WorkMongo:
                 '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType", 'kind': "$kind", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
                         "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
 
-
-
     def reportFromAcceptKNMTypeKindReasonByDate(self):
         return self.collection.aggregate([
 
@@ -405,7 +403,8 @@ class WorkMongo:
 
         return self.collection.aggregate(pipline)
 
-    def reportFromDeniedKNMTypeKindReasonByDate(self):
+
+    def reportFromDeniedKNMTypeKindReasonByDate1(self):
         return self.collection.aggregate([
             {'$unwind': "$objectsKind"},
             # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
@@ -446,6 +445,24 @@ class WorkMongo:
         return self.collection.aggregate(pipline)
 
 
+    def reportKNM_by_ordinary(self):
+        pipline = [
+            {"$group": {
+                "_id": {"controllingOrganization": "$controllingOrganization",
+                        "supervisionType": "$supervisionType",
+                        "kind": "$kind",
+                        # "approveRequired": "$approveRequired",
+                        "knmType": "$knmType",
+                        "startDateEn": "$startDateEn",
+                        "status": "$status"
+                        },
+                "objectsCount": {"$sum": 1}
+            }
+             }
+        ]
+        return self.collection.aggregate(pipline)
+
+
 def objects_kind_tu_count_by_dates(dates: list):  # date format yyyy-mm-dd
     wm = WorkMongo()
     # objects_kind_tu_count = wm.getKnmFromDate("2024-07-12")
@@ -455,14 +472,8 @@ def objects_kind_tu_count_by_dates(dates: list):  # date format yyyy-mm-dd
 if __name__ == '__main__':
     wm = WorkMongo()
     # date = '2024-05-01'
-    unpacked = unpac_idAggregation(list(wm.reportFromDeniedKNMTypeKindReasonByDate()))
-    summ = 0
-    for u in unpacked:
-        if u['controllingOrganization'] == 'Управление Роспотребнадзора по Московской области':
-            summ += u['objectsCount']
-            print(u)
-
-    print(summ)
+    unpacked = unpac_idAggregation(list(wm.reportKNM_by_ordinary()))
+    pprint(unpacked)
 
     # objects_kind_tu_count = wm.getKnmFromDate("2024-07-12")
     # pprint(list(objects_kind_tu_count))

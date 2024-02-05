@@ -68,6 +68,25 @@ class Database:
             self.conn.commit()
 
 
+    def create_table_KNM_by_ordinary(self):
+        with self.conn.cursor() as cursor:
+            request = f"""CREATE TABLE knm_by_ordinary(
+                controllingOrganization VARCHAR(255),
+                supervisionType VARCHAR(255),
+                codeRegion INT, 
+                iso VARCHAR(255),
+                startDateEn DATE,
+                month INT,
+                year INT,
+                kind VARCHAR(255),
+                knmType VARCHAR(255),
+                status VARCHAR(255),
+                objectsCount INT                 
+            );"""
+            cursor.execute(request)
+            self.conn.commit()
+
+
     def load_knm_by_kind_objects(self):
         def getLoad(_set):
             _set = [[cell['controllingOrganization'],
@@ -109,6 +128,36 @@ class Database:
                     getLoad(_set)
                 except Exception as ex:
                     raise Exception(ex)
+
+        print(f'заполнена таблица проверок в отношении разных групп объектов контроля- {datetime.datetime.now()}')
+
+    def load_knm_by_ordinary(self):
+        def getLoad(_set):
+            _set = [[cell['controllingOrganization'],
+                     cell['supervisionType'],
+                     cell['codeRegion'],
+                     cell['iso'],
+                     cell['startDateEn'], cell['month'], cell['year'], cell['kind'], cell['knmType'], cell['status'],
+                     cell['objectsCount']] for cell in _set if 'codeRegion' in cell]
+
+            with self.conn.cursor() as cursor:
+                request = f"""INSERT INTO knm_by_ordinary(
+                                controllingOrganization,
+                                supervisionType,
+                                codeRegion, 
+                                iso,
+                                startDateEn,
+                                month,
+                                year,
+                                kind,
+                                knmType,
+                                status,
+                                objectsCount) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+                cursor.executemany(request, _set)
+            self.conn.commit()
+
+        _set = MS.makeKNMByOrdinary()
+        getLoad(_set)
 
         print(f'заполнена таблица проверок в отношении разных групп объектов контроля- {datetime.datetime.now()}')
 

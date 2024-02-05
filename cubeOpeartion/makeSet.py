@@ -74,6 +74,28 @@ def makeKNMByObjectsKind(groupName, kinds, risks, notIn: bool = False):
     return knms
 
 
+def makeKNMByOrdinary():
+    wm_knm = wmKNM('knm')
+    knms = wm_knm.reportKNM_by_ordinary()
+    knms = unpac_idAggregation(knms)
+    _dictAppReq = [
+
+    ]
+    for knm in knms:
+        actualName = getActualTuName(knm['controllingOrganization'])
+        if not actualName:
+            continue
+        knm['controllingOrganization'] = actualName
+        if not tuCodeRegion[actualName]:
+            raise Exception(knm['controllingOrganization'])
+        knm['codeRegion'] = tuCodeRegion[actualName]
+        knm['iso'] = tu_iso[actualName]
+        # knm['approveRequired'] = _dictAppReq[knm['approveRequired']] if knm['approveRequired'] in _dictAppReq else "Не требует согласования"
+        knm['month'] = knm['month'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').month
+        knm['year'] = datetime.datetime.strptime(knm['startDateEn'], '%Y-%m-%d').year
+    return knms
+
+
 def makeKNMAByObjectsAllKind():
     for groupName, kinds in group_kinds.items():
         yield makeKNMByObjectsKind(groupName, kinds)
@@ -163,6 +185,6 @@ def findBySetQuery():
 
 if __name__ == '__main__':
     year = '2024'
-    resultSet = make_prosecutor_apply_period()
+    resultSet = makeKNMByOrdinary()
     # resultSet = findBySetQuery()
     pprint(list(resultSet))

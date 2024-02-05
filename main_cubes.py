@@ -16,6 +16,7 @@ def loadCube():
         d.create_table_accepted_objects_kind_tu_day,
         d.create_table_denied_objects_kind_tu_day,
         d.create_table_KNM_by_objects_kind,
+        d.create_table_KNM_by_ordinary,
 
     ]
     for func in funcs:
@@ -35,6 +36,7 @@ def loadCube():
     d.knm_type_tu_kind_reason_day(status='denied')
 
     d.load_knm_by_kind_objects()
+    d.load_knm_by_ordinary()
 
 
 def _help():
