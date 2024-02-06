@@ -52,7 +52,7 @@ class Eias:
             'employee': '95c50716%2Da840%2D11ed%2D8444%2D005056958e11',
             'position': '%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D0%BD%D0%B8%D0%BA',
             'email': 'zaitsev%5Fad%40rospotrebnadzor%2Eru',
-            'SESSION_master': 'IjI0MjE3ZTZhLTc4MDAtNGFmMi1hZjg1LTE3MDU3ZWRiMDdmMSI%3D%2EHaY7xgdHkwi21PIwxCh5kHI7Ix3Gw1bDKhypYQUxnfg%3D',
+            'SESSION_master': 'IjM2YWNiN2UwLWE4OTQtNDViZS1hOTg4LTEwMmNiYWNkZTcyZSI%3D%2E75z7JLrNkt48b3nEtM4oVjXtOnDwBqKgO6SUSvCux6w%3D',
         }
         data = {
             'redirect_uri': 'http://eias.rospotrebnadzor.ru/',
@@ -64,8 +64,13 @@ class Eias:
             'username': 'aldzaytsev',
             'password': 'U4f7lhXi0g3B',
         }
-        headers = {
-            'user-agent': self.userAgent,
+        self.headers = {
+            'sec-ch-ua': '"Chromium";v="118", "YaBrowser";v="23", "Not=A?Brand";v="99"',
+            'Accept': 'application/json, text/plain, */*',
+            'Referer': 'https://eias.rospotrebnadzor.ru/rhs/register-industrial-objects',
+            'sec-ch-ua-mobile': '?0',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.807 YaBrowser/23.11.1.807 (corp) Yowser/2.5 Safari/537.36',
+            'sec-ch-ua-platform': '"Windows"',
         }
         params = {
             'redirect_uri': 'http://eias.rospotrebnadzor.ru/',
@@ -78,7 +83,7 @@ class Eias:
             'https://eias.rospotrebnadzor.ru/auth/master/oauth/auth',
             params=params,
             cookies=self.cookies,
-            headers=headers,
+            headers=self.headers,
             data=data,
             # verify=False
         )
@@ -90,7 +95,7 @@ class Eias:
         request = self.session.get(url, headers={'User-Agent': self.userAgent}, cookies=self.cookies)
         return request.json()['subjects'][0]
 
-    def loadAllObjects(self, limit=2000):
+    def loadAllObjects(self, limit=50):
         firstUrl = f'https://eias.rospotrebnadzor.ru/api/households/industrial_objects/v2?limit={limit}&sort=created_at&region=in::1|4|22|28|29|30|2|31|32|3|33|34|35|36|5|93|79|75|90|37|6|38|7|39|8|40|41|9|10|42|43|11|44|23|24|91|45|46|47|48|94|49|12|13|77|50|51|83|52|53|54|55|56|57|58|59|25|60|61|62|63|78|64|14|65|66|92|15|67|26|68|16|69|70|71|17|72|18|73|27|19|86|95|74|20|21|87|89|76&has_liquidated_date=false&supervised_status=in::supervised'
         wm = WorkMongo(collection_name='rhs')
         print(f'started {datetime.datetime.now()}')
@@ -100,9 +105,8 @@ class Eias:
         else:
             firstRequest = self.session.get(
                 firstUrl,
-                headers={'User-Agent': self.userAgent},
+                headers=self.headers,
                 cookies=self.cookies,
-                timeout=30
             )
             # print(firstRequest.json())
             try:
@@ -117,7 +121,7 @@ class Eias:
         n = 0
         while True:
             url = f'https://eias.rospotrebnadzor.ru/api/households/industrial_objects/v2?cursor_down={cursor}'
-            request = self.session.get(url, headers={'User-Agent': self.userAgent}, cookies=self.cookies, timeout=30)
+            request = self.session.get(url, headers=self.headers, cookies=self.cookies, timeout=30)
             try:
                 cursor = request.json()['cursor']
             except:
