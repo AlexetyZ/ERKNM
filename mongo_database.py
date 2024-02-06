@@ -444,6 +444,9 @@ class WorkMongo:
         ]
         return self.collection.aggregate(pipline)
 
+    def outplanReasons(self):
+        return self.collection.aggregate([{"$match": {"knmType": "Внеплановое КНМ", "status": {"$in": ["Завершено"]}}}, {"$unwind": "$reasonsList"},  {"$group": {"_id": {"reason": "$reasonsList.text"}, "count": {"$sum": 1}}}])
+
 
     def reportKNM_by_ordinary(self):
         pipline = [

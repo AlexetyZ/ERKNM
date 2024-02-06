@@ -95,7 +95,7 @@ class Eias:
         request = self.session.get(url, headers={'User-Agent': self.userAgent}, cookies=self.cookies)
         return request.json()['subjects'][0]
 
-    def loadAllObjects(self, limit=50):
+    def loadAllObjects(self, limit=2000):
         firstUrl = f'https://eias.rospotrebnadzor.ru/api/households/industrial_objects/v2?limit={limit}&sort=created_at&region=in::1|4|22|28|29|30|2|31|32|3|33|34|35|36|5|93|79|75|90|37|6|38|7|39|8|40|41|9|10|42|43|11|44|23|24|91|45|46|47|48|94|49|12|13|77|50|51|83|52|53|54|55|56|57|58|59|25|60|61|62|63|78|64|14|65|66|92|15|67|26|68|16|69|70|71|17|72|18|73|27|19|86|95|74|20|21|87|89|76&has_liquidated_date=false&supervised_status=in::supervised'
         wm = WorkMongo(collection_name='rhs')
         print(f'started {datetime.datetime.now()}')
