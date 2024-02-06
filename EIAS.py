@@ -32,14 +32,13 @@ class Eias:
     def authorize(self):
         url = 'https://eias.rospotrebnadzor.ru/auth/master/oauth/auth'
         self.cookies = {
-            'metabase.DEVICE': '77f122aa-25d9-4c67-ab57-1e17c91518a5',
-            '_ga': 'GA1.2.2114253625.1701265012',
             'last_login_u_id': '957306',
-            '_ym_uid': '1701442515868010097',
-            '_ym_d': '1701442515',
-            '__ddg1_': 'Py2L4rbzT6Uv1xZrpXe4',
-            '_gid': 'GA1.2.1923139743.1702917510',
-            '_ym_isad': '1',
+            '_ym_uid': '1705405856636899637',
+            '_ym_d': '1705405856',
+            '_clck': 'gd5iim%7C2%7Cfig%7C0%7C1476',
+            '_ga_GYKLT1ZMTB': 'GS1.1.1705405928.1.1.1705405936.0.0.0',
+            'xcuser_sess': '7198b486-bac1-11ee-ab55-003048bddde7',
+            'xcuser_action': '3de425d8-bac5-11ee-ab55-003048bddde7',
             'employee_guid': '95c50716%2Da840%2D11ed%2D8444%2D005056958e11',
             'name': '%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9',
             'patronymic': '%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B5%D0%B2%D0%B8%D1%87',
@@ -50,6 +49,9 @@ class Eias:
             'employee': '95c50716%2Da840%2D11ed%2D8444%2D005056958e11',
             'position': '%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D0%BD%D0%B8%D0%BA',
             'email': 'zaitsev%5Fad%40rospotrebnadzor%2Eru',
+            'metabase.DEVICE': '9d4841f3-ef7f-4c99-bba5-b67a0e827610',
+            '_ga': 'GA1.2.1617587542.1705405929',
+            '_gid': 'GA1.2.364273186.1707148477',
             'SESSION_master': 'IjI0MjE3ZTZhLTc4MDAtNGFmMi1hZjg1LTE3MDU3ZWRiMDdmMSI%3D%2EHaY7xgdHkwi21PIwxCh5kHI7Ix3Gw1bDKhypYQUxnfg%3D',
         }
         data = {
@@ -80,7 +82,7 @@ class Eias:
             data=data,
             # verify=False
         )
-        print(response.text)
+        # print(response.text)
 
     def getSubjectByOGRN(self, ogrn):
         url = f'https://eias.rospotrebnadzor.ru/api/households/employee/subject_entities_attributes/v2?limit=50&sort=created_at&region=in::1|4|22|28|29|30|2|31|32|3|33|34|35|36|5|93|79|75|90|37|6|38|7|39|8|40|41|9|10|42|43|11|44|23|24|91|45|46|47|48|94|49|12|13|77|50|51|83|52|53|54|55|56|57|58|59|25|60|61|62|63|78|64|14|65|66|92|15|67|26|68|16|69|70|71|17|72|18|73|27|19|86|95|74|20|21|87|89|76&ogrn={ogrn}&is_liquidated=false&supervised_status=in::supervised'
@@ -88,22 +90,27 @@ class Eias:
         request = self.session.get(url, headers={'User-Agent': self.userAgent}, cookies=self.cookies)
         return request.json()['subjects'][0]
 
-    def loadAllObjects(self):
-        firstUrl = f'https://eias.rospotrebnadzor.ru/api/households/industrial_objects/v2?limit=10000&sort=created_at&region=in::1|4|22|28|29|30|2|31|32|3|33|34|35|36|5|93|79|75|90|37|6|38|7|39|8|40|41|9|10|42|43|11|44|23|24|91|45|46|47|48|94|49|12|13|77|50|51|83|52|53|54|55|56|57|58|59|25|60|61|62|63|78|64|14|65|66|92|15|67|26|68|16|69|70|71|17|72|18|73|27|19|86|95|74|20|21|87|89|76&has_liquidated_date=false&supervised_status=in::supervised'
+    def loadAllObjects(self, limit=3000):
+        firstUrl = f'https://eias.rospotrebnadzor.ru/api/households/industrial_objects/v2?limit={limit}&sort=created_at&region=in::1|4|22|28|29|30|2|31|32|3|33|34|35|36|5|93|79|75|90|37|6|38|7|39|8|40|41|9|10|42|43|11|44|23|24|91|45|46|47|48|94|49|12|13|77|50|51|83|52|53|54|55|56|57|58|59|25|60|61|62|63|78|64|14|65|66|92|15|67|26|68|16|69|70|71|17|72|18|73|27|19|86|95|74|20|21|87|89|76&has_liquidated_date=false&supervised_status=in::supervised'
         wm = WorkMongo(collection_name='rhs')
         print(f'started {datetime.datetime.now()}')
-        firstRequest = self.session.get(firstUrl, headers={'User-Agent': self.userAgent})
-        print(firstRequest.json())
+        firstRequest = self.session.get(
+            firstUrl,
+            headers={'User-Agent': self.userAgent},
+            cookies=self.cookies,
+            timeout=30
+        )
+        # print(firstRequest.json())
         cursor = firstRequest.json()['cursor']
         firstObjects = firstRequest.json()['industrial_objects']
         print(f'get responce {datetime.datetime.now()}')
         # guids = [obj['guid'] for obj in firstRequest.json()['industrial_objects']]
         wm.insert_many(firstObjects)
-        len_obj = 10000
+        len_obj = limit
         n = 0
         while True:
             url = f'https://eias.rospotrebnadzor.ru/api/households/industrial_objects/v2?cursor_down={cursor}'
-            request = self.session.get(url, headers={'User-Agent': self.userAgent})
+            request = self.session.get(url, headers={'User-Agent': self.userAgent}, cookies=self.cookies, timeout=30)
             cursor = request.json()['cursor']
             objects = request.json()['industrial_objects']
             wm.insert_many(objects)

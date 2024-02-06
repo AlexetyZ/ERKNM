@@ -9,11 +9,12 @@ from datetime import datetime
 from pprint import pprint
 import Dictionary as d
 from mongo_database import unpac_idAggregation, convertForsaving
+from private_config import net_address
 
 
 class WorkMongo:
     def __init__(self, collection_name: str = 'rhs'):
-        client = MongoClient('localhost', 27018)
+        client = MongoClient(net_address, 27018)
 
         db = client['knm']
         self.collection = db[collection_name]
