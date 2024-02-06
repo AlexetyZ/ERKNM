@@ -1118,6 +1118,7 @@ def reportKnmByDates(year):
 
 def load_rhs():
     from EIAS import Eias
+    Eias().loadAllObjects()
 
 
 def loadEffectiveIndicatorsOfTu(path):

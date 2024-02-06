@@ -50,7 +50,7 @@ class Eias:
             'employee': '95c50716%2Da840%2D11ed%2D8444%2D005056958e11',
             'position': '%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D0%BD%D0%B8%D0%BA',
             'email': 'zaitsev%5Fad%40rospotrebnadzor%2Eru',
-            'SESSION_master': 'IjhkN2ZmZTJjLTQ4YTgtNDhiZi04ZmFjLTg1NDMzNjBlOGM3MCI%3D%2E68rbsMYqnxD6SXotvhAbRSlwSqr9cV29qHvzjyC7pGY%3D',
+            'SESSION_master': 'IjI0MjE3ZTZhLTc4MDAtNGFmMi1hZjg1LTE3MDU3ZWRiMDdmMSI%3D%2EHaY7xgdHkwi21PIwxCh5kHI7Ix3Gw1bDKhypYQUxnfg%3D',
         }
         data = {
             'redirect_uri': 'http://eias.rospotrebnadzor.ru/',
@@ -93,7 +93,7 @@ class Eias:
         wm = WorkMongo(collection_name='rhs')
         print(f'started {datetime.datetime.now()}')
         firstRequest = self.session.get(firstUrl, headers={'User-Agent': self.userAgent})
-        # print(firstRequest.json())
+        print(firstRequest.json())
         cursor = firstRequest.json()['cursor']
         firstObjects = firstRequest.json()['industrial_objects']
         print(f'get responce {datetime.datetime.now()}')
