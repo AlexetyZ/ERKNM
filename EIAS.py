@@ -52,7 +52,7 @@ class Eias:
             'employee': '95c50716%2Da840%2D11ed%2D8444%2D005056958e11',
             'position': '%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D0%BD%D0%B8%D0%BA',
             'email': 'zaitsev%5Fad%40rospotrebnadzor%2Eru',
-            'SESSION_master': 'IjM2YWNiN2UwLWE4OTQtNDViZS1hOTg4LTEwMmNiYWNkZTcyZSI%3D%2E75z7JLrNkt48b3nEtM4oVjXtOnDwBqKgO6SUSvCux6w%3D',
+            'SESSION_master': 'IjcwNzQ2MWM3LTFkMmMtNGY2MC05YjY0LTA1ZGJhNGYwYWQ1NyI%3D%2Eiw3TuPcXxnrRQ0987Pojvz8GJplWOYaF0GcHZt%5FUaaM%3D',
         }
         data = {
             'redirect_uri': 'http://eias.rospotrebnadzor.ru/',
@@ -135,6 +135,7 @@ class Eias:
             if len_obj > len(objects):
                 os.remove('cursor.txt')
                 break
+        return True
 
     def getMassObjectsByGuids(self, guids_list):
         for guid in tqdm(guids_list, desc='обработка гуидов и загрузка'):
