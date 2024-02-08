@@ -135,6 +135,7 @@ class Eias:
             if len_obj > len(objects):
                 os.remove('cursor.txt')
                 break
+
         return True
 
     def getMassObjectsByGuids(self, guids_list):

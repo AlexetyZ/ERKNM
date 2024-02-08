@@ -1119,8 +1119,13 @@ def reportKnmByDates(year):
 def load_rhs():
     from EIAS import Eias
     while True:
-        if Eias().loadAllObjects():
-            break
+        try:
+            if Eias().loadAllObjects():
+                break
+        except:
+            continue
+    return 'Весь РХС успешно загружен'
+
 
 
 def loadEffectiveIndicatorsOfTu(path):

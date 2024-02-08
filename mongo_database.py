@@ -447,6 +447,24 @@ class WorkMongo:
     def outplanReasons(self):
         return self.collection.aggregate([{"$match": {"knmType": "Внеплановое КНМ", "status": {"$in": ["Завершено"]}}}, {"$unwind": "$reasonsList"},  {"$group": {"_id": {"reason": "$reasonsList.text"}, "count": {"$sum": 1}}}])
 
+    def reportForCountPalat(self):
+
+        return self.collection.find({
+            "planId": {"$ne": None},
+            "status": {"$in": [
+                'Завершено',
+                # 'Исключена',
+                'Не может быть проведено',
+                'Решение обжаловано'
+            ]}
+        }, {
+            "_id": 0,
+            'erpId': 1,
+            "controllingOrganization": 1,
+            "kind": 1,
+            "status": 1,
+            "comment": 1
+        })
 
     def reportKNM_by_ordinary(self):
         pipline = [
