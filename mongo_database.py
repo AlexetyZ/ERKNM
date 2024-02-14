@@ -194,7 +194,7 @@ class WorkMongo:
 
             {'$match': {'status': {
                 '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}}, {'$group': {
-                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType", 'kind': "$kind", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
+                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType", "risk": "$riskCategory", 'kind': "$kind", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
                         "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
 
     def reportFromDeniedKNMObjectCategoryByDate(self):
@@ -204,7 +204,7 @@ class WorkMongo:
 
             {'$match': {'status': {
                 '$in': ['Исключена']}}}, {'$group': {
-                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType", 'kind': "$kind", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
+                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType", "risk": "$riskCategory", 'kind': "$kind", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
                         "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
 
     def reportFromAcceptKNMTypeKindReasonByDate(self):
@@ -451,6 +451,7 @@ class WorkMongo:
 
         return self.collection.find({
             "planId": {"$ne": None},
+            # 'knmType': 'Плановая проверка по 248-ФЗ (утвержденная по плану 294-ФЗ)',
             "status": {"$in": [
                 'Завершено',
                 # 'Исключена',
@@ -461,6 +462,7 @@ class WorkMongo:
             "_id": 0,
             'erpId': 1,
             "controllingOrganization": 1,
+            "organizationName": 1,
             "kind": 1,
             "status": 1,
             "comment": 1

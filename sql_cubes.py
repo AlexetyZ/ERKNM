@@ -20,6 +20,10 @@ class Database:
             database='cubes'
         )
 
+    def createAnyTable(self, namesFormats: zip):
+        pass
+
+
     def create_table_RHS_tu_objectsKind_risk(self):
         with self.conn.cursor() as cursor:
             request = f"""CREATE TABLE rhs_tu_ObjectsKind_risk(
@@ -172,6 +176,7 @@ class Database:
                 iso VARCHAR(255),
                 status VARCHAR(255),
                 knmtype VARCHAR(255),
+                risk VARCHAR(255),
                 kind VARCHAR(255),
                 startDateEn DATE,
                 month INT,
@@ -230,6 +235,7 @@ class Database:
                 status VARCHAR(255),
                 knmtype VARCHAR(255),
                 kind VARCHAR(255),
+                risk VARCHAR(255),
                 startDateEn DATE,
                 month INT,
                 year INT,
@@ -241,10 +247,11 @@ class Database:
 
     def load_objects_kind_tu_day(self, status: str = 'accepted'):
         _set = MS.makeObjectsKindTuDateSet(status)
-        _set = [[cell['objectsKind'], cell['controllingOrganization'], cell['codeRegion'], cell['iso'], cell['status'], cell['knmtype'], cell['kind'], cell['startDateEn'], cell['month'], cell['year'], cell['objectsCount'], cell['groupKind']] for cell in _set if "codeRegion" in cell]
+        _set = [[cell['objectsKind'], cell['risk'], cell['controllingOrganization'], cell['codeRegion'], cell['iso'], cell['status'], cell['knmtype'], cell['kind'], cell['startDateEn'], cell['month'], cell['year'], cell['objectsCount'], cell['groupKind']] for cell in _set if "codeRegion" in cell]
         with self.conn.cursor() as cursor:
             request = f"""INSERT INTO {status}Objects_kind_tu_day(
                 objectsKind, 
+                risk,
                 controllingOrganization,
                 codeRegion, 
                 iso, 
@@ -301,21 +308,21 @@ class Database:
         with self.conn.cursor() as cursor:
             tables = "SHOW TABLES;"
             iskl = ['rhs_tu_ObjectsKind_risk', 'rhs_tu_okved_risk',
-                    'acceptedKnm_type_tu_kind_reason_day_2021', 'acceptedObjects_kind_tu_day_2021', 'deniedKnm_type_tu_kind_reason_day_2021',
-                    'deniedObjects_kind_tu_day_2021', 'knm_by_objects_kinds_2021', 'prosecutorAply_2021', 'rhs_tu_ObjectsKind_risk_2021',
-                    'rhs_tu_okved_risk_2021',
-
-                    'acceptedKnm_type_tu_kind_reason_day_2022', 'acceptedObjects_kind_tu_day_2022',
-                    'deniedKnm_type_tu_kind_reason_day_2022',
-                    'deniedObjects_kind_tu_day_2022', 'knm_by_objects_kinds_2022', 'prosecutorAply_2022',
-                    'rhs_tu_ObjectsKind_risk_2022',
-                    'rhs_tu_okved_risk_2022',
-
-                    'acceptedKnm_type_tu_kind_reason_day_2023', 'acceptedObjects_kind_tu_day_2023',
-                    'deniedKnm_type_tu_kind_reason_day_2023',
-                    'deniedObjects_kind_tu_day_2023', 'knm_by_objects_kinds_2023', 'prosecutorAply_2023',
-                    'rhs_tu_ObjectsKind_risk_2023',
-                    'rhs_tu_okved_risk_2023',
+                    # 'acceptedKnm_type_tu_kind_reason_day_2021', 'acceptedObjects_kind_tu_day_2021', 'deniedKnm_type_tu_kind_reason_day_2021',
+                    # 'deniedObjects_kind_tu_day_2021', 'knm_by_objects_kinds_2021', 'prosecutorAply_2021', 'rhs_tu_ObjectsKind_risk_2021',
+                    # 'rhs_tu_okved_risk_2021',
+                    #
+                    # 'acceptedKnm_type_tu_kind_reason_day_2022', 'acceptedObjects_kind_tu_day_2022',
+                    # 'deniedKnm_type_tu_kind_reason_day_2022',
+                    # 'deniedObjects_kind_tu_day_2022', 'knm_by_objects_kinds_2022', 'prosecutorAply_2022',
+                    # 'rhs_tu_ObjectsKind_risk_2022',
+                    # 'rhs_tu_okved_risk_2022',
+                    #
+                    # 'acceptedKnm_type_tu_kind_reason_day_2023', 'acceptedObjects_kind_tu_day_2023',
+                    # 'deniedKnm_type_tu_kind_reason_day_2023',
+                    # 'deniedObjects_kind_tu_day_2023', 'knm_by_objects_kinds_2023', 'prosecutorAply_2023',
+                    # 'rhs_tu_ObjectsKind_risk_2023',
+                    # 'rhs_tu_okved_risk_2023',
 
 
                     ]

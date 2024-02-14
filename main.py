@@ -1145,6 +1145,20 @@ def loadEffectiveIndicatorsOfTu(path):
     return 'Загрузка успешно завершена!'
 
 
+def loadAnyDataInDatabaseFromExel(path):
+    import openpyxl
+    from sql_cubes import Database
+    wb = openpyxl.load_workbook(path)
+    sh = wb.worksheets[0]
+    tableName = sh['A1'].value
+    headers = list(sh.iter_rows(min_row=2, max_row=3, values_only=True))
+    columnNames = headers[0]
+    columnFormats = headers[1]
+    print(tableName)
+    print(list(zip(columnNames, columnFormats)))
+    print(list(sh.iter_rows(min_row=4, values_only=True)))
+
+
 
 
 if __name__ == '__main__':
@@ -1211,6 +1225,7 @@ if __name__ == '__main__':
                                                   'args': ["Год КНМ"]},
         'report_for_unrealized_risk': {'action': getObjectsFromRHSByTuRisk, 'desc': 'Делает выгрузку по категориям риска в ТУ для расчета нереализованного риска', 'args': []},
         'load_tu_sql_tu_indicators': {'action': loadEffectiveIndicatorsOfTu, 'desc': 'Загружает в базу данных кнд sql индикаторы эффективности из файла', 'args': ["Путь к файлу показатели эффективности"]},
+        'load_any_data_in_database': {'action': loadAnyDataInDatabaseFromExel, 'desc': 'Загружает любые данные в sql из эксель (первая строка(А1) - название таблицы, вторая строка - название столбцов, третья строка - тип данных, далее - сами данные)', 'args': ['Путь до файла']},
         'use_database': {'action': useDatabase, 'desc': 'Дает интерактивный доступ в базу данных doc/knd', 'args': []},
 
     }
