@@ -191,6 +191,7 @@ class WorkMongo:
         return self.collection.aggregate([
             {'$unwind': "$objectsKind"},
             # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
+            {'$unwind': "$riskCategory"},
 
             {'$match': {'status': {
                 '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}}, {'$group': {
@@ -201,7 +202,7 @@ class WorkMongo:
         return self.collection.aggregate([
             {'$unwind': "$objectsKind"},
             # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
-
+            {'$unwind': "$riskCategory"},
             {'$match': {'status': {
                 '$in': ['Исключена']}}}, {'$group': {
                 '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType", "risk": "$riskCategory", 'kind': "$kind", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",

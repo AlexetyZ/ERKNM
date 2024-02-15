@@ -20,9 +20,14 @@ class Database:
             database='cubes'
         )
 
-    def createAnyTable(self, namesFormats: zip):
-        pass
+    def createAnyTable(self, tableName, columnsFormats: zip):
 
+        request = f"""CREATE TABLE {tableName}(
+            {", ".join([f"{c} {f}" for c, f in columnsFormats])}
+        );"""
+        with self.conn.cursor() as cursor:
+            cursor.execute(request)
+            self.conn.commit()
 
     def create_table_RHS_tu_objectsKind_risk(self):
         with self.conn.cursor() as cursor:
@@ -169,7 +174,6 @@ class Database:
     def create_table_accepted_objects_kind_tu_day(self):
         with self.conn.cursor() as cursor:
             request = f"""CREATE TABLE acceptedObjects_kind_tu_day(
-                id VARCHAR(255),
                 objectsKind TEXT,
                 controllingOrganization VARCHAR(255),
                 codeRegion INT, 
@@ -263,7 +267,7 @@ class Database:
                 year,
                 objectsCount,
                 groupKind
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
             cursor.executemany(request, _set)
             self.conn.commit()
         print(f'заполнена таблица объект ТУ вид_объекта - {datetime.datetime.now()}')

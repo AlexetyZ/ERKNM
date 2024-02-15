@@ -1157,6 +1157,8 @@ def loadAnyDataInDatabaseFromExel(path):
     print(tableName)
     print(list(zip(columnNames, columnFormats)))
     print(list(sh.iter_rows(min_row=4, values_only=True)))
+    d = Database()
+    d.createAnyTable(tableName, zip(columnNames, columnFormats))
 
 
 
