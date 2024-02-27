@@ -49,6 +49,21 @@ class WorkMongo:
     def insert_many(self, knm_list):
         self.collection.insert_many(knm_list)
 
+    def getSubjectsInPlan(self, objectsKinds: list, risks: list):
+        return self.collection.find(
+            {
+                "knmType": 'Плановое КНМ',
+                "status": "Завершено",
+                "objectsKind": {
+                    "$in": objectsKinds
+                },
+                "riskCategory": {
+                    "$in": risks
+                }
+            },
+            {"_id": 0, 'inn': 1}
+        )
+
     def count_objects(self, **filters):
         pipeline = [{"$match": filters}, {"$group": {"_id": 1, "count": {"$sum": {"$size": "$addresses"}}}}]
         return list(self.collection.aggregate(pipeline))[0]['count']
@@ -143,6 +158,20 @@ class WorkMongo:
 
         return self.collection.aggregate(pipline)
 
+    def existInnInPlan(self, inn):
+        exists = self.collection.find({
+            "inn": inn,
+            "knmType": 'Плановое КНМ',
+            "status": "Завершено"
+        }, {'_id': 0, 'year': 1}).limit(1)
+        year = list(exists)
+        if year:
+            return year[0]['year']
+        else:
+            return False
+
+
+
     def findChildCampings(self):
         return self.collection.find(
             {'status': {'$in': ['Завершено', 'Ожидает проведения', 'Ожидает завершения', 'Есть замечания']},
@@ -170,7 +199,7 @@ class WorkMongo:
 
     def reportFromDeniedKNMComment(self):
         return self.collection.find({'status': 'Исключена', 'planId': {"$ne": None}},
-                                    {'_id': 0, 'controllingOrganization': 1, 'comment': 1, 'erpId': 1, 'id': 1,
+                                    {'_id': 0, 'controllingOrganization': 1, 'kind': 1, 'comment': 1, 'erpId': 1, 'id': 1,
                                      'organizationsInn': {'$slice': 1}})
 
     def reportFromDeniedKNMObjectCategory(self):
@@ -189,24 +218,65 @@ class WorkMongo:
 
     def reportFromAcceptKNMObjectCategoryByDate(self):
         return self.collection.aggregate([
-            {'$unwind': "$objectsKind"},
-            # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
-            {'$unwind': "$riskCategory"},
 
             {'$match': {'status': {
-                '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}}, {'$group': {
-                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType", "risk": "$riskCategory", 'kind': "$kind", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
-                        "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
+                '$in': ['Ожидает проведения', 'Есть замечания', 'Ожидает завершения', 'Завершено']}}},
+            {
+                "$project": {
+                    "status": 1,
+                    "kind": 1,
+                    "startDateEn": 1,
+                    "knmType": 1,
+                    "controllingOrganization": 1,
+                    "x": {"$zip": {"inputs": ["$objectsKind", "$riskCategory"]}}}
+            },
+            {"$unwind": "$x"},
+            {"$group":
+                {"_id": {
+                    'status': '$status',
+                    "kind": "$kind",
+                    'startDateEn': '$startDateEn',
+                    "knmtype": "$knmType",
+                    'objectsKind': {"$first": '$x'},
+                    "risk": {"$last": {"$firstN": {"n": 2, "input": '$x'}}},
+                    "controllingOrganization": "$controllingOrganization"},
+                    "objectsCount": {"$sum": 1}}}])
 
     def reportFromDeniedKNMObjectCategoryByDate(self):
+        # return self.collection.aggregate([
+        #     {'$unwind': "$objectsKind"},
+        #     # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
+        #     {'$unwind': "$riskCategory"},
+        #     {'$match': {'status': {
+        #         '$in': ['Исключена']}}}, {'$group': {
+        #         '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType", "risk": "$riskCategory", 'kind': "$kind", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
+        #                 "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
+
         return self.collection.aggregate([
-            {'$unwind': "$objectsKind"},
-            # {"$project": {"planId": 1, "status": 1, "controllingOrganization": 1, "objectsKind": 1, "erpId": 1}},
-            {'$unwind': "$riskCategory"},
-            {'$match': {'status': {
-                '$in': ['Исключена']}}}, {'$group': {
-                '_id': {'controllingOrganization': "$controllingOrganization", 'knmtype': "$knmType", "risk": "$riskCategory", 'kind': "$kind", 'startDateEn': '$startDateEn', 'objectsKind': "$objectsKind",
-                        "status": "$status"}, 'objectsCount': {"$sum": 1}}}])
+            {
+                '$match': {'status': {
+                    '$in': ['Исключена']}}
+            },
+            {
+                "$project": {
+                "status": 1,
+                "kind": 1,
+                "startDateEn": 1,
+                "knmType": 1,
+                "controllingOrganization": 1,
+                "x": {"$zip": {"inputs": ["$objectsKind", "$riskCategory"]}}}
+            },
+            {"$unwind": "$x"},
+            {"$group":
+                {"_id": {
+                    'status': '$status',
+                    "kind": "$kind",
+                    'startDateEn': '$startDateEn',
+                    "knmtype": "$knmType",
+                    'objectsKind': {"$first": '$x'},
+                    "risk": {"$last": {"$firstN": {"n": 2, "input": '$x'}}},
+                    "controllingOrganization": "$controllingOrganization"},
+                    "objectsCount": {"$sum": 1}}}])
 
     def reportFromAcceptKNMTypeKindReasonByDate(self):
         return self.collection.aggregate([
@@ -495,9 +565,13 @@ def objects_kind_tu_count_by_dates(dates: list):  # date format yyyy-mm-dd
 
 if __name__ == '__main__':
     wm = WorkMongo()
+    print(list(wm.getSubjectsInPlan(
+        objectsKinds=d.group_kinds['Торговля пищевыми продуктами'],
+        risks=['высокий риск']
+    )))
     # date = '2024-05-01'
-    unpacked = unpac_idAggregation(list(wm.reportKNM_by_ordinary()))
-    pprint(unpacked)
+    # unpacked = unpac_idAggregation(list(wm.reportKNM_by_ordinary()))
+    # pprint(unpacked)
 
     # objects_kind_tu_count = wm.getKnmFromDate("2024-07-12")
     # pprint(list(objects_kind_tu_count))

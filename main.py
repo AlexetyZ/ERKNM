@@ -1,3 +1,4 @@
+import datetime
 import os.path
 from sys import argv
 from tqdm import tqdm
@@ -1127,6 +1128,51 @@ def load_rhs():
     return 'Весь РХС успешно загружен'
 
 
+def inspectInlastYear():
+    from mongo_rhs import WorkMongo as WM_rhs
+    from mongo_database import WorkMongo as WM_knm
+    from Dictionary import group_kinds
+
+    wm_knm = WM_knm()
+
+
+    allSubjectsInRHS = WM_rhs().getSubjectsByObjectsKinds(
+        objectsKinds=group_kinds['Торговля пищевыми продуктами'],
+        risks=['Высокий риск']
+    )
+    wm_rhs = WM_rhs()
+    innsExist = []
+    innsNotExist = []
+
+    for inn in tqdm(allSubjectsInRHS):
+        inspectInfo = str(wm_knm.existInnInPlan(inn))
+        if inspectInfo:
+            innsExist.append(inn)
+        else:
+            innsNotExist.append(inn)
+    print(f"{len(innsExist)}")
+    print(f"{len(innsNotExist)}")
+    wm_rhs.insertManyInspectInfo(innsExist, '2024')
+    wm_rhs.insertManyInspectInfo(innsNotExist, False)
+
+
+def inspectInlastYear1():
+    from mongo_rhs import WorkMongo as WM_rhs
+    from mongo_database import WorkMongo as WM_knm
+    from Dictionary import group_kinds, risk_categories
+
+    wm_knm = WM_knm()
+    wm_rhs = WM_rhs()
+    allSubjectsInPlan = wm_knm.getSubjectsInPlan(
+        objectsKinds=[*group_kinds['Общественное питание населения'], *group_kinds['Торговля пищевыми продуктами']],
+        risks=[str(risk).lower() for risk in risk_categories]
+    )
+    inns = [inn['inn'] for inn in allSubjectsInPlan]
+    print("Обработаны ИНН")
+    start = datetime.datetime.now()
+    wm_rhs.insertManyInspectInfo(inns, "2021")
+    print(f"завершено - {datetime.datetime.now()-start}")
+
 
 def loadEffectiveIndicatorsOfTu(path):
     import openpyxl
@@ -1157,8 +1203,8 @@ def loadAnyDataInDatabaseFromExel(path):
     print(tableName)
     print(list(zip(columnNames, columnFormats)))
     print(list(sh.iter_rows(min_row=4, values_only=True)))
-    d = Database()
-    d.createAnyTable(tableName, zip(columnNames, columnFormats))
+    # d = Database()
+    # d.createAnyTable(tableName, zip(columnNames, columnFormats))
 
 
 
@@ -1228,6 +1274,10 @@ if __name__ == '__main__':
         'report_for_unrealized_risk': {'action': getObjectsFromRHSByTuRisk, 'desc': 'Делает выгрузку по категориям риска в ТУ для расчета нереализованного риска', 'args': []},
         'load_tu_sql_tu_indicators': {'action': loadEffectiveIndicatorsOfTu, 'desc': 'Загружает в базу данных кнд sql индикаторы эффективности из файла', 'args': ["Путь к файлу показатели эффективности"]},
         'load_any_data_in_database': {'action': loadAnyDataInDatabaseFromExel, 'desc': 'Загружает любые данные в sql из эксель (первая строка(А1) - название таблицы, вторая строка - название столбцов, третья строка - тип данных, далее - сами данные)', 'args': ['Путь до файла']},
+        'inspect_last_year': {'action': inspectInlastYear, 'desc': 'смотрит карточки РХС и проверяет, были ли в плане эти объекты - только по ЮР лицу', 'args': []},
+        'inspect_last_year1': {'action': inspectInlastYear1,
+                              'desc': '2 version, смотрит карточки РХС и проверяет, были ли в плане эти объекты - только по ЮР лицу',
+                              'args': []},
         'use_database': {'action': useDatabase, 'desc': 'Дает интерактивный доступ в базу данных doc/knd', 'args': []},
 
     }

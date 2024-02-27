@@ -29,6 +29,9 @@ class Database:
             cursor.execute(request)
             self.conn.commit()
 
+    def loadAnyTable(self):
+        pass
+
     def create_table_RHS_tu_objectsKind_risk(self):
         with self.conn.cursor() as cursor:
             request = f"""CREATE TABLE rhs_tu_ObjectsKind_risk(
@@ -251,6 +254,12 @@ class Database:
 
     def load_objects_kind_tu_day(self, status: str = 'accepted'):
         _set = MS.makeObjectsKindTuDateSet(status)
+        # for s in _set:
+        #     try:
+        #         print(s['knmtype'])
+        #     except Exception as ex:
+        #         print(s)
+        #         raise Exception(ex)
         _set = [[cell['objectsKind'], cell['risk'], cell['controllingOrganization'], cell['codeRegion'], cell['iso'], cell['status'], cell['knmtype'], cell['kind'], cell['startDateEn'], cell['month'], cell['year'], cell['objectsCount'], cell['groupKind']] for cell in _set if "codeRegion" in cell]
         with self.conn.cursor() as cursor:
             request = f"""INSERT INTO {status}Objects_kind_tu_day(
@@ -311,7 +320,8 @@ class Database:
     def truncateCube(self):
         with self.conn.cursor() as cursor:
             tables = "SHOW TABLES;"
-            iskl = ['rhs_tu_ObjectsKind_risk', 'rhs_tu_okved_risk',
+            iskl = [
+                # 'rhs_tu_ObjectsKind_risk', 'rhs_tu_okved_risk',
                     # 'acceptedKnm_type_tu_kind_reason_day_2021', 'acceptedObjects_kind_tu_day_2021', 'deniedKnm_type_tu_kind_reason_day_2021',
                     # 'deniedObjects_kind_tu_day_2021', 'knm_by_objects_kinds_2021', 'prosecutorAply_2021', 'rhs_tu_ObjectsKind_risk_2021',
                     # 'rhs_tu_okved_risk_2021',

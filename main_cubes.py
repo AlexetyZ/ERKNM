@@ -25,8 +25,8 @@ def loadCube():
         except Exception as ex:
             print(func.__name__, ex)
 
-    # d.load_RHS_tu_objectsKind_risk()
-    # d.load_RHS_tu_okved_risk()
+    d.load_RHS_tu_objectsKind_risk()
+    d.load_RHS_tu_okved_risk()
     d.load_prosecutor_apply_period()
 
     d.load_objects_kind_tu_day(status='accepted')

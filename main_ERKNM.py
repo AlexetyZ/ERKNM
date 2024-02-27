@@ -128,6 +128,7 @@ class erknm:
         try:
             WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(
                 (By.XPATH, '//*[@id="root"]/div/main/div/form/div[2]/button[2]'))).click()
+            # "/html/body/div/div/main/div/form/div[2]/button[2]"
         except Exception as ex:
             logger.warning(ex)
             try:
@@ -142,7 +143,7 @@ class erknm:
 
                 logger.warning(f'{ex=}')
 
-        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, '//*[@id="login"]'))).send_keys(
+        WebDriverWait(self.browser, 100).until(EC.presence_of_element_located((By.XPATH, '//*[@id="login"]'))).send_keys(
             str(erknm_accounts['Alexety']['login']))
         self.browser.find_element(by=By.XPATH, value='//*[@id="password"]').send_keys(
             str(Crypto().unpack_password(erknm_accounts['Alexety']['password'])))
