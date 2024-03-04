@@ -23,6 +23,7 @@ from crypto import Crypto
 from bs4 import BeautifulSoup
 from direct_pxl import Operation
 from private_config import yandex_driver_path
+from keypass import getTheFuckUpAndBadBitchGO
 
 logging.basicConfig(format='%(asctime)s - [%(levelname)s] - %(name)s - %(funcName)s(%(lineno)d) - %(message)s',
                     filename=f'logging/{datetime.date.today().strftime("%d.%m.%Y")}.log', encoding='utf-8',
@@ -157,7 +158,11 @@ class erknm:
             self.browser.find_element(by=By.XPATH,
                                       value=config.epgu_dont_send_sms_way).click()
         except Exception as ex:
-            print(ex)
+            try:
+                code = getTheFuckUpAndBadBitchGO()
+                self.browser.find_element(by=By.XPATH, value='/html/body/esia-root/div/esia-login/div/div/esia-enter-mfa/esia-ttp/form/div[2]/div/esia-code-input/div/code-input/span[1]/input').send_keys(code)
+            except:
+                print(ex)
 
 
         try:
@@ -165,6 +170,7 @@ class erknm:
             WebDriverWait(self.browser, 20).until(EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/main/div[2]/table/tbody/tr[1]/td[3]/button'))).click()
 
         except:
+
             print('не было выбора орагнизации')
 
         WebDriverWait(self.browser, 10).until(
