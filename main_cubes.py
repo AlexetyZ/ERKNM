@@ -17,6 +17,7 @@ def loadCube():
         d.create_table_denied_objects_kind_tu_day,
         d.create_table_KNM_by_objects_kind,
         d.create_table_KNM_by_ordinary,
+        d.create_table_effective_indicators
 
     ]
     for func in funcs:
@@ -25,18 +26,24 @@ def loadCube():
         except Exception as ex:
             print(func.__name__, ex)
 
-    d.load_RHS_tu_objectsKind_risk()
-    d.load_RHS_tu_okved_risk()
-    d.load_prosecutor_apply_period()
+    # d.load_RHS_tu_objectsKind_risk()
+    # d.load_RHS_tu_okved_risk()
+    # d.load_prosecutor_apply_period()
+    #
+    # d.load_objects_kind_tu_day(status='accepted')
+    # d.load_objects_kind_tu_day(status='denied')
+    #
+    # d.knm_type_tu_kind_reason_day(status='accepted')
+    # d.knm_type_tu_kind_reason_day(status='denied')
+    #
+    # d.load_knm_by_kind_objects()
+    # d.load_knm_by_ordinary()
 
-    d.load_objects_kind_tu_day(status='accepted')
-    d.load_objects_kind_tu_day(status='denied')
-
-    d.knm_type_tu_kind_reason_day(status='accepted')
-    d.knm_type_tu_kind_reason_day(status='denied')
-
-    d.load_knm_by_kind_objects()
-    d.load_knm_by_ordinary()
+    indicators = {
+        'Процент включения в план 2024 года объектов ЧВР и ВР': d.indicatorPlanCoveragePercentage
+    }
+    for indicatorName, indicatorFunction in indicators.items():
+        d.load_effective_indicator(indicatorName, indicatorFunction)
 
 
 def _help():

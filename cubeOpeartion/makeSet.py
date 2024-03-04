@@ -146,6 +146,22 @@ def makeRHStuobjectsKindriskSet():
     return rhsObjs
 
 
+def makeEffIndicSet(indicatorName, query):
+    results = []
+    for tu, indicatorValue, comment in query:
+        actualName = getActualTuName(tu)
+        results.append({
+            'controllingOrganization': actualName,
+            'codeRegion': tuCodeRegion[actualName],
+            'iso': tu_iso[actualName],
+            'indicatorName': indicatorName,
+            'indicatorValue': indicatorValue,
+            'comment': comment
+        })
+    return results
+
+
+
 def makeRHStuOkvedKindriskSet():
     wm_rhs = wmRHS()
     rhsObjs = wm_rhs.reportTuOkvedRisk()

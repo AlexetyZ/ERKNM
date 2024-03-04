@@ -148,10 +148,9 @@ def zipLists():
 
 
 def createUUID():
-    import Dictionary as d
-    b = []
-    [b.extend(a) for a in d.group_kinds.values()]
-    return b
+    res = (('key1', 'val1', 'val3'), ('key2', 'val2', 'val3'))
+    for a, b, c in res:
+        print(f'{a}, {b}, {c}')
 
 if __name__ == '__main__':
     print(createUUID())

@@ -32,6 +32,19 @@ class Database:
     def loadAnyTable(self):
         pass
 
+    def create_table_effective_indicators(self):
+        with self.conn.cursor() as cursor:
+            request = f"""CREATE TABLE effIndic(
+                controllingOrganization VARCHAR(255),
+                codeRegion INT, 
+                iso VARCHAR(255),
+                indicatorName TEXT,
+                indicatorValue FLOAT,
+                comment TEXT            
+            );"""
+            cursor.execute(request)
+            self.conn.commit()
+
     def create_table_RHS_tu_objectsKind_risk(self):
         with self.conn.cursor() as cursor:
             request = f"""CREATE TABLE rhs_tu_ObjectsKind_risk(
@@ -405,6 +418,31 @@ class Database:
             cursor.executemany(request, _set)
             self.conn.commit()
 
+    def load_effective_indicator(self, indicatorName, indicatorFunction):
+        query = indicatorFunction()
+        _set = MS.makeEffIndicSet(indicatorName, query)
+        _set = [[cell['controllingOrganization'], cell['codeRegion'], cell['iso'], cell['indicatorName'],
+                 cell['indicatorValue'], cell['comment']] for cell in _set if "codeRegion" in cell]
+        with self.conn.cursor() as cursor:
+            request = f"""INSERT INTO effIndic(
+                            controllingOrganization,
+                            codeRegion, 
+                            iso,
+                            indicatorName,
+                            indicatorValue,
+                            comment            
+                        ) VALUES (%s, %s, %s, %s, %s, %s)"""
+            cursor.executemany(request, _set)
+            self.conn.commit()
+
+    def indicatorPlanCoveragePercentage(self):
+        with self.conn.cursor() as cursor:
+            request = """select controllingOrganization as cn, 
+                             (select a+d as plan from (select sum(objectsCount) as d from deniedObjects_kind_tu_day where controllingOrganization=cn) as at, (select sum(objectsCount) as a from acceptedObjects_kind_tu_day where controllingOrganization=cn) as dt)/rhsCount as percent,
+                            CONCAT('На учете объектов чрезвычайно высокого и высокого рисков ', rhsCount, ', из которых включено в план - ', (select a+d as plan from (select sum(objectsCount) as d from deniedObjects_kind_tu_day where controllingOrganization=cn) as at, (select sum(objectsCount) as a from acceptedObjects_kind_tu_day where controllingOrganization=cn) as dt)) as comment
+                        from (select controllingOrganization, sum(objectsCount) as rhsCount from rhs_tu_ObjectsKind_risk where actualRisk in ('чрезвычайно высокий риск', "высокий риск") group by controllingOrganization) as rhs"""
+            cursor.execute(request)
+            return cursor.fetchall()
 
 def _help():
     text = ("load_cube: [год: int] загрузить куб, при условии, что есть чистая база данных без предыдущих кубов\n"
@@ -427,7 +465,10 @@ def main(year):
 
 
 if __name__ == '__main__':
-    Database().knm_type_tu_kind_reason_day(status='denied')
+    name = 'индикатор 1'
+    func = Database().indicatorPlanCoveragePercentage
+    result = Database().load_effective_indicator(name, func)
+    print(result)
 
 
 
