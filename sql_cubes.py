@@ -40,7 +40,8 @@ class Database:
                 iso VARCHAR(255),
                 indicatorName TEXT,
                 indicatorValue FLOAT,
-                comment TEXT            
+                comment TEXT,
+                year INT
             );"""
             cursor.execute(request)
             self.conn.commit()
@@ -159,12 +160,15 @@ class Database:
 
     def load_knm_by_ordinary(self):
         def getLoad(_set):
+            # print(f"{_set[0]['reason']=}")
+            # print(f"{type(_set[0]['reason'])=}")
             _set = [[cell['controllingOrganization'],
                      cell['supervisionType'],
                      cell['codeRegion'],
                      cell['iso'],
                      cell['startDateEn'], cell['month'], cell['year'], cell['kind'], cell['knmType'], cell['status'],
                      cell['objectsCount']] for cell in _set if 'codeRegion' in cell]
+
 
             with self.conn.cursor() as cursor:
                 request = f"""INSERT INTO knm_by_ordinary(
@@ -334,7 +338,7 @@ class Database:
         with self.conn.cursor() as cursor:
             tables = "SHOW TABLES;"
             iskl = [
-                # 'rhs_tu_ObjectsKind_risk', 'rhs_tu_okved_risk',
+                'rhs_tu_ObjectsKind_risk', 'rhs_tu_okved_risk',
                     # 'acceptedKnm_type_tu_kind_reason_day_2021', 'acceptedObjects_kind_tu_day_2021', 'deniedKnm_type_tu_kind_reason_day_2021',
                     # 'deniedObjects_kind_tu_day_2021', 'knm_by_objects_kinds_2021', 'prosecutorAply_2021', 'rhs_tu_ObjectsKind_risk_2021',
                     # 'rhs_tu_okved_risk_2021',
@@ -360,6 +364,22 @@ class Database:
                 request = f"""DROP TABLE {', '.join(tablesToDelete)}"""
                 cursor.execute(request)
                 self.conn.commit()
+    def deleteCurrentYearValues(self):
+        currentYear = datetime.datetime.now().year
+        with self.conn.cursor() as cursor:
+            tables = "SHOW TABLES;"
+            iskl = [
+                'rhs_tu_ObjectsKind_risk', 'rhs_tu_okved_risk'
+            ]
+            cursor.execute(tables)
+            existedTables = [table[0] for table in cursor.fetchall()]
+            tablesToDelete = [table for table in existedTables if table not in iskl]
+            for t in tablesToDelete:
+                request = f"""DELETE FROM {t} WHERE year={currentYear}"""
+                cursor.execute(request)
+                self.conn.commit()
+
+
 
     def create_table_accepted_knm_type_tu_kind_reason_day(self):
         with self.conn.cursor() as cursor:
@@ -418,11 +438,11 @@ class Database:
             cursor.executemany(request, _set)
             self.conn.commit()
 
-    def load_effective_indicator(self, indicatorName, indicatorFunction):
-        query = indicatorFunction()
+    def load_effective_indicator(self, indicatorName, indicatorFunction, year):
+        query = indicatorFunction(year)
         _set = MS.makeEffIndicSet(indicatorName, query)
         _set = [[cell['controllingOrganization'], cell['codeRegion'], cell['iso'], cell['indicatorName'],
-                 cell['indicatorValue'], cell['comment']] for cell in _set if "codeRegion" in cell]
+                 cell['indicatorValue'], cell['comment'], year] for cell in _set if "codeRegion" in cell]
         with self.conn.cursor() as cursor:
             request = f"""INSERT INTO effIndic(
                             controllingOrganization,
@@ -430,16 +450,17 @@ class Database:
                             iso,
                             indicatorName,
                             indicatorValue,
-                            comment            
-                        ) VALUES (%s, %s, %s, %s, %s, %s)"""
+                            comment,
+                            year            
+                        ) VALUES (%s, %s, %s, %s, %s, %s, %s)"""
             cursor.executemany(request, _set)
             self.conn.commit()
 
-    def indicatorPlanCoveragePercentage(self):
+    def indicatorPlanCoveragePercentage(self, currentYear):
         with self.conn.cursor() as cursor:
-            request = """select controllingOrganization as cn, 
-                             (select a+d as plan from (select sum(objectsCount) as d from deniedObjects_kind_tu_day where controllingOrganization=cn) as at, (select sum(objectsCount) as a from acceptedObjects_kind_tu_day where controllingOrganization=cn) as dt)/rhsCount as percent,
-                            CONCAT('На учете объектов чрезвычайно высокого и высокого рисков ', rhsCount, ', из которых включено в план - ', (select a+d as plan from (select sum(objectsCount) as d from deniedObjects_kind_tu_day where controllingOrganization=cn) as at, (select sum(objectsCount) as a from acceptedObjects_kind_tu_day where controllingOrganization=cn) as dt)) as comment
+            request = f"""select controllingOrganization as cn, 
+                             (select a+d as plan from (select sum(objectsCount) as d from deniedObjects_kind_tu_day where controllingOrganization=cn AND year={currentYear}) as at, (select sum(objectsCount) as a from acceptedObjects_kind_tu_day where controllingOrganization=cn  AND year={currentYear}) as dt)/rhsCount as percent,
+                            CONCAT('На учете объектов чрезвычайно высокого и высокого рисков ', rhsCount, ', из которых включено в план {currentYear} - ', (select a+d as plan from (select sum(objectsCount) as d from deniedObjects_kind_tu_day where controllingOrganization=cn AND year={currentYear}) as at, (select sum(objectsCount) as a from acceptedObjects_kind_tu_day where controllingOrganization=cn AND year={currentYear}) as dt)) as comment
                         from (select controllingOrganization, sum(objectsCount) as rhsCount from rhs_tu_ObjectsKind_risk where actualRisk in ('чрезвычайно высокий риск', "высокий риск") group by controllingOrganization) as rhs"""
             cursor.execute(request)
             return cursor.fetchall()

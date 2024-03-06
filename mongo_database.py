@@ -546,6 +546,7 @@ class WorkMongo:
                         "supervisionType": "$supervisionType",
                         "kind": "$kind",
                         # "approveRequired": "$approveRequired",
+                        # 'reason': "$reasonsList.text",
                         "knmType": "$knmType",
                         "startDateEn": "$startDateEn",
                         "status": "$status"
@@ -565,10 +566,7 @@ def objects_kind_tu_count_by_dates(dates: list):  # date format yyyy-mm-dd
 
 if __name__ == '__main__':
     wm = WorkMongo()
-    print(list(wm.getSubjectsInPlan(
-        objectsKinds=d.group_kinds['Торговля пищевыми продуктами'],
-        risks=['высокий риск']
-    )))
+    print(list(wm.reportFromAcceptKNMTypeKindReasonByDate()))
     # date = '2024-05-01'
     # unpacked = unpac_idAggregation(list(wm.reportKNM_by_ordinary()))
     # pprint(unpacked)

@@ -70,6 +70,7 @@ group_kinds = {
 def load_knm(year):
     from ERKNM_http import Erknm
     Erknm().get_all_knm_for_a_year(year=year)
+    return True
 
 
 def load_pm(year):

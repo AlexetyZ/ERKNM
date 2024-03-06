@@ -129,7 +129,7 @@ class erknm:
         try:
             WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(
                 (By.XPATH, '//*[@id="root"]/div/main/div/form/div[2]/button[2]'))).click()
-            # "/html/body/div/div/main/div/form/div[2]/button[2]"
+            #               "/html/body/div/div/main/div/form/div[2]/button[2]"
         except Exception as ex:
             logger.warning(ex)
             try:
@@ -141,8 +141,12 @@ class erknm:
                     (By.XPATH, '//*[@id="root"]/div/main/div/form/div[2]/button[2]'))).click()
 
             except Exception as ex:
-
                 logger.warning(f'{ex=}')
+                try:
+                    WebDriverWait(self.browser, 10).until(EC.presence_of_element_located((By.XPATH, '/html/body/div/div/main/div/form/div[2]/button[2]'))).click()
+                except Exception as ex:
+                    logger.warning(f'{ex=}')
+
 
         WebDriverWait(self.browser, 100).until(EC.presence_of_element_located((By.XPATH, '//*[@id="login"]'))).send_keys(
             str(erknm_accounts['Alexety']['login']))
@@ -179,12 +183,12 @@ class erknm:
                                                        value='//*[@id="root"]/div/header/div/div[2]/button[1]')
 
         # time.sleep(4456456)
-        while ekrnm_button_class.get_attribute(
-                'data-active') is None:
-            ekrnm_button_class.click()
-
-        self.browser.get('https://private.proverki.gov.ru/private/knms')
-        print('перешли на вкладку КНМ')
+        # while ekrnm_button_class.get_attribute(
+        #         'data-active') is None:
+        #     ekrnm_button_class.click()
+        #
+        # self.browser.get('https://private.proverki.gov.ru/private/knms')
+        # print('перешли на вкладку КНМ')
         # time.sleep(100000)
         # WebDriverWait(self.browser, 20).until(
         #     EC.visibility_of_element_located((By.ID, 'addButton')))

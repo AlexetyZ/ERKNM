@@ -1,11 +1,11 @@
 
 erknm_accounts = {'Alexety': {'login': "al9536@yandex.ru", 'password': b"gAAAAABjbh-MOIkPDaMYQtZ4atMDTVwu4owOAfm8M6wFXbKM2zYCi45dV49AyiQPX3q8RYjEKqP1hc_TgaSPLMhXyx0lmaePHg=="}}
 
-bot_token = "1907923175:AAFL4k33axeyw6GBIZiFc1ePJYx1Ln0w0ZY"
+bot_token = "7115354525:AAEuovLUhxxTVqVZchM_wz5nHNLhuK0ZPGY"
 
-chat_id_knm = -1001890234303
+chat_id_knm = 1728152119
 
-key_path = "S:\Зайцев_АД\keys\primary.key"
+key_path = r"C:\Users\zaitsev_ad\Documents\primary.key"
 
 key_path_2 = '/Users/aleksejzajcev/Documents/keys/primary.key'
 

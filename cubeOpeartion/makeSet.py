@@ -156,7 +156,7 @@ def makeEffIndicSet(indicatorName, query):
             'iso': tu_iso[actualName],
             'indicatorName': indicatorName,
             'indicatorValue': indicatorValue,
-            'comment': comment
+            'comment': comment,
         })
     return results
 

@@ -1635,11 +1635,17 @@ def sortObjectKindInGroup(objectKind: str) -> str or None:
     for group, kinds in group_kinds.items():
         if objectKind in kinds:
             return group
-    print(objectKind)
+    # print(objectKind)
     return 'Прочие виды деятельности'
+
+def printGroupKind(group):
+    return ', '.join([f'"{kind}"' for kind in group_kinds[group]])
+
 
 
 if __name__ == '__main__':
-    objectKind = 'Федеральная служба по надзору в сфере защиты прав потребителей и благополучия человека'
-    print(getActualTuName(objectKind))
+    print(printGroupKind("Деятельность в сфере здравоохранения"))
+
+    # objectKind = 'Федеральная служба по надзору в сфере защиты прав потребителей и благополучия человека'
+    # print(getActualTuName(objectKind))
 
