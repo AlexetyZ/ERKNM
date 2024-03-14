@@ -42,6 +42,12 @@ class WorkMongo:
     def insert(self, knm):
         self.collection.insert_one(knm)
 
+    def unwIndic(self):
+        return self.collection.aggregate([{'$unwind': "$knmErknm.reasons.riskIndikators.dictVersionId"}, {"$group": {'_id': {'indic': "$knmErknm.reasons.riskIndikators.dictVersionId"}, 'count': {"$sum": 1}} }])
+
+    def dewIndic(self):
+        return self.collection.find({}, {"_id": 0, "knmErknm.reasons.riskIndikators.dictVersionId": 1})
+
     def multiple_insert(self, processes, knm_list):
         pool = Pool(processes)
         pool.map(self.insert, knm_list)
@@ -518,6 +524,14 @@ class WorkMongo:
     def outplanReasons(self):
         return self.collection.aggregate([{"$match": {"knmType": "Внеплановое КНМ", "status": {"$in": ["Завершено"]}}}, {"$unwind": "$reasonsList"},  {"$group": {"_id": {"reason": "$reasonsList.text"}, "count": {"$sum": 1}}}])
 
+    def indic(self):
+        return self.collection.find({"reasonsList.text": re.compile('индикатор', re.IGNORECASE)}, {'_id': 0, 'id': 1})
+    def outplanReasonsIndic(self):
+        return self.collection.aggregate(
+            [{"$match": {"knmType": "Внеплановое КНМ", "reasonsList.text": re.compile('индикатор', re.IGNORECASE), "status": {"$in": ["Завершено"]}}}, {"$unwind": "$reasonsList"},
+             {"$group": {"_id": {"reason": "$reasonsList.text", 'supervisionType': "$supervisionType:"}, "count": {"$sum": 1}}}])
+
+
     def reportForCountPalat(self):
 
         return self.collection.find({
@@ -565,8 +579,8 @@ def objects_kind_tu_count_by_dates(dates: list):  # date format yyyy-mm-dd
 
 
 if __name__ == '__main__':
-    wm = WorkMongo()
-    print(list(wm.reportFromAcceptKNMTypeKindReasonByDate()))
+    wm = WorkMongo('wmi')
+    pprint(list(wm.dewIndic()))
     # date = '2024-05-01'
     # unpacked = unpac_idAggregation(list(wm.reportKNM_by_ordinary()))
     # pprint(unpacked)

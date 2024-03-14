@@ -315,8 +315,9 @@ class erknm:
         return object_kind
 
     def getDictionnary(self, dictId, dictVersionId):
-        script = f"""const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-catalogs/api/dictionaries/get-dictionary-value/{dictId}/{dictVersionId}');const content = await rawResponse.json();return JSON.parse(content['value'])['title'];"""
+        script = f"""const rawResponse = await fetch('https://private.proverki.gov.ru/erknm-catalogs/api/dictionaries/get-dictionary-value/{dictId}/{dictVersionId}');const content = await rawResponse.json();return JSON.parse(content['value'])['description'];"""
         value = self.browser.execute_script(script)
+        time.sleep(0.2)
         return value
 
     def quit(self):

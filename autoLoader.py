@@ -21,12 +21,12 @@ def reload():
         try:
             load_knm(2024)
             break
-        except:
+        except Exception as ex:
             popit -= 1
-            if not popit:
+            if popit == 0:
                 error = f'ОШИБКА! {datetime.now()} - предприняты все возможные попытки обновить сведения, необходим дебаг autoloader.py (22)!'
-                send_message_to_terr_upr(error)
-                break
+                send_message_to_terr_upr(f'{error=},\n {ex=}')
+                # raise Exception(f'{error} {ex}')
             continue
     Database().deleteCurrentYearValues()
     loadCube()
@@ -36,7 +36,7 @@ def reload():
 
 
 if __name__ == '__main__':
-    timeX = "00:00"
+    timeX = "11:14"
     print(f'{datetime.now()} - запушено. следующее обновление в {timeX}')
     schedule.every().day.at(timeX).do(reload)
     while True:
