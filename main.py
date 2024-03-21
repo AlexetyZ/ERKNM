@@ -1201,11 +1201,13 @@ def loadAnyDataInDatabaseFromExel(path):
     headers = list(sh.iter_rows(min_row=2, max_row=3, values_only=True))
     columnNames = headers[0]
     columnFormats = headers[1]
-    print(tableName)
-    print(list(zip(columnNames, columnFormats)))
-    print(list(sh.iter_rows(min_row=4, values_only=True)))
-    # d = Database()
-    # d.createAnyTable(tableName, zip(columnNames, columnFormats))
+    # print(tableName)
+    # print(list(zip(columnNames, columnFormats)))
+    # print(list([[v for v in val] for val in sh.iter_rows(min_row=4, values_only=True)]))
+    # print(list(sh.iter_rows(min_row=4, values_only=True)))
+    d = Database()
+    d.createAnyTable(tableName, zip(columnNames, columnFormats), ifAlreadyExist='deleteOld')
+    d.loadAnyTable(tableName, columnNames, list(sh.iter_rows(min_row=4, values_only=True)))
 
 
 

@@ -1,3 +1,4 @@
+import datetime
 import time
 
 import config
@@ -28,4 +29,6 @@ def send_message_to_terr_upr(text):
 
 if __name__ == '__main__':
     bot.polling()
+    send_message_to_terr_upr(f'Бот завершил работу {datetime.datetime.now()}')
+
 

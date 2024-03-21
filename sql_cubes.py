@@ -20,17 +20,52 @@ class Database:
             database='cubes'
         )
 
-    def createAnyTable(self, tableName, columnsFormats: zip):
+    def createAnyTable(self, tableName, columnsFormats: zip, ifAlreadyExist='pass'):
+        """
 
+        @param tableName:
+        @param columnsFormats:
+        @param ifAlreadyExist: что делаем, если такая таблица уже существует. варианты:
+        pass - ничего не делаем, данные таблицы сохраняются-добавляются новыми далее
+        deleteOld - старую таблицу удаляем и создаем новую с таким же именем
+        @return:
+        """
+        exists = f"""SHOW TABLES LIKE '{tableName}'"""
         request = f"""CREATE TABLE {tableName}(
             {", ".join([f"{c} {f}" for c, f in columnsFormats])}
         );"""
         with self.conn.cursor() as cursor:
+            cursor.execute(exists)
+            res = cursor.fetchall()
+
+            if res:
+                match ifAlreadyExist:
+                    case 'pass':
+                        return
+                    case 'deleteOld':
+                        self.truncateTables(tableName)
+                        cursor.execute(request)
+
+            else:
+
+                cursor.execute(request)
+            self.conn.commit()
+        # print(request)
+
+    def truncateTables(self, *tablesNames):
+        with self.conn.cursor() as cursor:
+            request = f"""DROP TABLE {', '.join(tablesNames)}"""
             cursor.execute(request)
             self.conn.commit()
 
-    def loadAnyTable(self):
-        pass
+    def loadAnyTable(self, tableName, columnNames,  dataSet, ):
+        lenSet = len(columnNames)
+        with self.conn.cursor() as cursor:
+            request = f"""INSERT INTO {tableName}() VALUES({', '.join(['%s'] * lenSet)});"""
+            cursor.executemany(request, dataSet)
+            self.conn.commit()
+
+
 
     def create_table_effective_indicators(self):
         with self.conn.cursor() as cursor:

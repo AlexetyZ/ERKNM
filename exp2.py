@@ -152,8 +152,14 @@ def createUUID():
     for a, b, c in res:
         print(f'{a}, {b}, {c}')
 
+
+def manyInList():
+    lenSet = 10
+    return ', '.join(['%s'] * lenSet)
+
+
 if __name__ == '__main__':
-    print(createUUID())
+    print(manyInList())
     # print(list(zipLists()))
     # curDate()
     # main()
